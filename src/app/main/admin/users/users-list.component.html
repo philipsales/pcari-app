@@ -1,6 +1,5 @@
 <div id="page-content"
      class="col-md-offset-3 col-md-9">
-
   <header class="app-header row">
     <div class="app-header--primary">
       
@@ -16,9 +15,7 @@
 	  Users
 	</h1>
       </div>
-    </div>
-
-    
+    </div>  
     <div class="app-header--secondary">
     </div>
   </header>
@@ -34,9 +31,9 @@
 	  </span>
 	</div>
       </div>
-      <button class="btn btn-default pull-right">
+      <a [routerLink]="['/admin/users/create']" class="btn btn-default pull-right">
 	<i class="fa fa-plus"></i> &nbsp; Create User
-      </button>
+      </a>
     </div>
     
     <div class="col-md-12">
