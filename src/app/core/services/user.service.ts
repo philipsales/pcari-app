@@ -24,26 +24,5 @@ export class UserService {
         });
     }//--getAll
 
-    mapUsers(response:Response): User[]{
-	// The response of the API has a results
-	// property with the actual results
-	console.warn(response.json());
-	console.warn(response.json().data);
-	return response.json().map(this.toUser)
-    }
-
-    toUser(r:any): User{
-	console.warn('waaaaaaaaaaaaaaaaaaaaa');
-	let user = <User>({
-	    username: r.username,
-	    first_name: r.first_name,
-	    middle_name: r.middle_name,
-	    last_name: r.last_name,
-	    gender: r.gender,
-	    verification_status: r.verification_status,
-	    email: r.username,
-	});
-	console.log('Parsed user:', user);
-	return user;
-    }
+    
 }
