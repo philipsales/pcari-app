@@ -50,32 +50,14 @@
 	  </tr>
 	</thead>
 	<tbody>
-	  <tr>
-	    <th scope="row">1</th>
-	    <td>Clinician</td>
-	    <td><span class="badge badge--success">Active</span></td>
+	  <tr  *ngFor="let role of roles; let i = index">
+	    <th scope="row">{{ i + 1 }}</th>
+	    <td>{{ role.name }}</td>
+	    <td>
+	      <span *ngIf="role.is_active" class="badge badge--success" #active> Active</span>
+	      <span *ngIf="!role.is_active"  class="badge badge--failed" #inactive>Inactive</span>
+	    </td>
 	  </tr>
-	  <tr>
-	    <th scope="row">2</th>
-	    <td>Encoder</td>
-	    <td><span class="badge badge--success">Active</span></td>
-	  </tr>
-	  <tr>
-	    <th scope="row">3</th>
-	    <td>Researcher</td>
-	    <td><span class="badge badge--success">Active</span></td>
-	  </tr>
-	  <tr>
-	    <th scope="row">4</th>
-	    <td>Administrator</td>
-	    <td><span class="badge badge--success">Active</span></td>
-	  </tr>
-	  <tr>
-	    <th scope="row">5</th>
-	    <td>Temporary Role</td>
-	    <td><span class="badge badge--failed">Inactive</span></td>
-	  </tr>
-
 	</tbody>
       </table>
     </div>

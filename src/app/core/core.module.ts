@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
-import { UserService } from './services';
+import { UserService, RoleService } from './services';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -28,7 +28,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 	    useFactory: authHttpServiceFactory,
 	    deps: [Http, RequestOptions]
 	},
-	UserService
+	UserService,
+	RoleService
     ],
     declarations: [],
 })

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { RoleService } from 'app/core/services';
+import { Role } from 'app/core/models';
+
 @Component({
   selector: 'app-roles-list',
   templateUrl: './roles-list.component.html',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RolesListComponent implements OnInit {
 
-  constructor() { }
+  private roles : Role[];
+    
+  constructor(private roleService: RoleService) {
+  }//--constructor
 
   ngOnInit() {
-  }
+      this.roleService.getAll().subscribe(roles => {
+	  this.roles = roles;
+	  console.warn(roles);
+      });
+  }//--OnInit
 
 }
