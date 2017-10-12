@@ -45,3 +45,9 @@
     padding-left: 5px;
     padding-right: 5px;
 }
+
+.nav-footer.side-menu li.active{
+    padding-left: 5px;
+    padding-right: 0px;
+    margin-left: 0px;
+}

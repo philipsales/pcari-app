@@ -9,6 +9,10 @@ const routes: Routes = [
 		path: 'admin',
 		loadChildren: './admin/admin.module#AdminModule'
 	    },
+	    {
+		path: 'my-account',
+		loadChildren: './my-account/my-account.module#MyAccountModule'
+	    },
 	    { path: '', redirectTo: 'admin' }
 	]
     }
