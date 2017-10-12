@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RolesRoutingModule } from './roles-routing.module';
-import { RolesComponent } from './roles.component';
+import { RolesListComponent } from './roles-list.component';
+import { RolesCreateComponent } from './roles-create.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    RolesRoutingModule
+      CommonModule,
+      RolesRoutingModule
   ],
-  declarations: [RolesComponent]
+  declarations: [
+      RolesListComponent,
+      RolesCreateComponent
+  ]
 })
 export class RolesModule { }

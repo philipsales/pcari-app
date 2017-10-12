@@ -3,3 +3,16 @@ body {
     background-color: #fff;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
 }
+
+
+.aui-nav a {
+    color: #1a7bb7 !important;
+}
+
+h1.app-header--heading {
+    margin-top: 20px;
+}
+
+.aui-nav a:hover {
+    text-decoration: underline;
+}

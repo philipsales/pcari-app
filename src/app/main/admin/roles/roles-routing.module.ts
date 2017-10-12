@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RolesComponent } from './roles.component';
+import { RolesListComponent } from './roles-list.component';
+import { RolesCreateComponent } from './roles-create.component';
 
 const routes: Routes = [
     {
-	path: '',
-	component: RolesComponent
-    }
+	path: 'list',
+	component: RolesListComponent
+    },
+    {
+	path: 'create',
+	component: RolesCreateComponent
+    },
+    {path: '', redirectTo: 'list'}
 ];
 
 @NgModule({
