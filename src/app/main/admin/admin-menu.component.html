@@ -9,10 +9,17 @@
   <div class="row">
     <div class="sidebar">
       <ul class="nav nav-sidebar" style="">
-	<li class="active">
-	  <a><i class="fa fa-user"></i> Users </a>
+	<li routerLinkActive="active">
+	  <a  [routerLink]="['./users']">
+	    <i class="fa fa-user"></i>
+	    Users
+	  </a>
 	</li>
-	<li><a><i class="fa fa-group"></i> Roles </a>
+	<li routerLinkActive="active">
+	  <a  [routerLink]="['./roles']">
+	    <i class="fa fa-group"></i>
+	    Roles
+	  </a>
 	</li>
       </ul>
     </div>
