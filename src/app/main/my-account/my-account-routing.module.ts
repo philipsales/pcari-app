@@ -3,7 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { MyAccountComponent } from './my-account.component';
 
 const routes: Routes = [
-    {   path: '', component: MyAccountComponent, }
+    {   path: '', component: MyAccountComponent,
+	children: [
+	    {
+		path: 'info',
+		loadChildren: './my-info/my-info.module#MyInfoModule'
+	    },
+	    { path: '', redirectTo: 'info' }
+	]
+    }
 ];
 
 @NgModule({
