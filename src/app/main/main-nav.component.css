@@ -25,3 +25,23 @@
 #side_nav-content{
     height: 100%;
 }
+
+.side-menu li.active > a{
+    color: #FFF;
+    font-weight: bolder;
+}
+
+.side-menu li.active{
+    border-right: 5px solid #5EB065;
+    margin-left: 5px;
+}
+
+.nav-footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.nav-footer > li {
+    padding-left: 5px;
+    padding-right: 5px;
+}
