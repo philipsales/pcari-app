@@ -8,9 +8,13 @@ import { MyAccountMenuTitleComponent } from './my-account-menu-title.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    MyAccountRoutingModule
+      CommonModule,
+      MyAccountRoutingModule
   ],
-  declarations: [MyAccountComponent, MyAccountMenuComponent, MyAccountMenuTitleComponent]
+  declarations: [
+      MyAccountComponent,
+      MyAccountMenuComponent,
+      MyAccountMenuTitleComponent
+  ]
 })
 export class MyAccountModule { }

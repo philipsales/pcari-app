@@ -1,0 +1,11 @@
+form {
+    padding-bottom: 20px;
+}
+
+.panel_toolbox {
+    min-width: 10px;
+}
+
+.required {
+    color: #F1343D;
+}

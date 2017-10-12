@@ -1,0 +1,18 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { UserFormsComponent } from './_components/user-forms.component';
+import { UserFormComponent } from './_components/user-form.component';
+
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+    UserFormsComponent,
+    UserFormComponent
+  ],
+  exports: [
+    UserFormsComponent
+  ]
+})
+export class SharedModule { }
