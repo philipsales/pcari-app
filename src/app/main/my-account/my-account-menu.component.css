@@ -22,6 +22,7 @@
 #side_menu .sidebar li.active > a{
     color: #C69248;
     background-color: rgba(9, 30, 66, 0.04);
+    font-weight: bolder;
 }
 
 #side_menu .sidebar li > a > i{

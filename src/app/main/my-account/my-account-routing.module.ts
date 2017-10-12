@@ -9,6 +9,10 @@ const routes: Routes = [
 		path: 'info',
 		loadChildren: './my-info/my-info.module#MyInfoModule'
 	    },
+	    {
+		path: 'password',
+		loadChildren: './change-password/change-password.module#ChangePasswordModule'
+	    },
 	    { path: '', redirectTo: 'info' }
 	]
     }
