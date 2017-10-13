@@ -10,6 +10,10 @@ const routes: Routes = [
 		loadChildren: './admin/admin.module#AdminModule'
 	    },
 	    {
+		path: 'biobanking',
+		loadChildren: './biobanking/biobanking.module#BiobankingModule'
+	    },
+	    {
 		path: 'my-account',
 		loadChildren: './my-account/my-account.module#MyAccountModule'
 	    },
