@@ -14,6 +14,10 @@ const routes: Routes = [
 		loadChildren: './biobanking/biobanking.module#BiobankingModule'
 	    },
 	    {
+		path: 'medical',
+		loadChildren: './medical/medical.module#MedicalModule'
+	    },
+	    {
 		path: 'my-account',
 		loadChildren: './my-account/my-account.module#MyAccountModule'
 	    },
