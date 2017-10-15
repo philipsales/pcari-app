@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import { AuthHttp } from 'angular2-jwt';
 
-import { Role }           from 'app/core/models';
+import { Role }           from '../models';
 import { environment }    from 'environments/environment';
 
 @Injectable()

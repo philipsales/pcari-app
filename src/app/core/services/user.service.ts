@@ -6,7 +6,8 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import { AuthHttp } from 'angular2-jwt';
 
-import { User }           from 'app/core/models';
+import { User }           from '../models';
+import { UserJSON }       from '../interfaces';
 import { environment }    from 'environments/environment';
 
 @Injectable()
@@ -20,7 +21,7 @@ export class UserService {
     getAll(): Observable<User[]> {
 	const url = environment.API_ENDPOINT + '/users-via-email/';
 	return this.http.get(url).map((response: Response) => {
-            return <User[]>response.json();
+            return response.json().map(User.fromJSON);
         });
     }//--getAll
 
