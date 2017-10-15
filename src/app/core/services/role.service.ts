@@ -20,7 +20,7 @@ export class RoleService {
     getAll(): Observable<Role[]> {
 	const url = environment.API_ENDPOINT + '/roles/';
 	return this.http.get(url).map((response: Response) => {
-            return <Role[]>response.json();
+            return response.json().map(Role.fromJSON);
         });
     }//--getAll
 
