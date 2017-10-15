@@ -52,13 +52,9 @@ export class User {
 	    return JSON.parse(json, User.reviver);
 	} else {	
 	    let user = Object.create(User.prototype);
-	    let is_active = false;
-	    if (json.is_active == 'True') {
-		is_active = true;
-	    }
 	    return Object.assign(user, json, {
 		username: json.username,
-		is_active: is_active,
+		is_active: (json.is_active == 'True'),
 		first_name: json.first_name,
 		last_name: json.last_name,
 		middle_name: json.middle_name,
