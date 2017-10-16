@@ -18,7 +18,9 @@
 
   <div class="col-sm-3 save-wrapper">
     <button class="btn btn-success pull-right"
-	    [disabled]="!userSaveForm.form.valid || is_processing"
+	    [disabled]="!userSaveFormAccount.form.valid || 
+			!userSaveFormGeneral.form.valid || 
+			is_processing"
 	    (click)="onSaveClick(user)">
       <i class="fa fa-save"></i> &nbsp; Save
     </button>
@@ -41,8 +43,7 @@
       <br>
       <form data-parsley-validate=""
 	    class="form-horizontal form-label-left"
-	    #userSaveForm="ngForm" novalidate>
-
+	    #userSaveFormAccount="ngForm" novalidate>
 	<div class="form-group"
 		 [ngClass]="{'has-error': errors?.username || 
 			    (input_username.errors && (input_username.dirty || input_username.touched)) }">
@@ -168,28 +169,75 @@
     <div class="x_content">
       <br>
       <form data-parsley-validate=""
-	    class="form-horizontal form-label-left" novalidate="">
+	    class="form-horizontal form-label-left"
+	    #userSaveFormGeneral="ngForm" novalidate>
+	<div class="form-group"
+		 [ngClass]="{'has-error': errors?.first_name || 
+			    (input_first_name.errors && (input_first_name.dirty || input_first_name.touched)) }">
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12"
+		 for="input_first_name">
+	    First Name <span class="required">*</span>
+	  </label>
+	  <div class="col-md-6 col-sm-6 col-xs-12">
+	    <input type="text" id="input_first_name"
+		   class="form-control col-md-7 col-xs-12"
+		   [(ngModel)]="user.first_name"
+		   #input_first_name="ngModel" name="input_first_name"
+		   required>
+	    <div class="help-block"
+		 *ngIf="errors?.first_name">
+	      <span *ngIf="errors?.first_name">
+		{{errors?.first_name}}
+	      </span>
+	    </div> <!-- help-block -->
+	    <div class="help-block"
+		 *ngIf="(input_first_name.errors && (input_first_name.dirty || input_first_name.touched))">
+	      <span  [hidden]="!(input_first_name.errors.required)">
+		First Name is required
+	      </span>
+	    </div>
+	  </div>
+	</div>
 
-	<div class="form-group">
-	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
+	<div class="form-group"
+		 [ngClass]="{'has-error': errors?.last_name || 
+			    (input_last_name.errors && (input_last_name.dirty || input_last_name.touched)) }">
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12"
+		 for="input_last_name">
+	    Last Name <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+	    <input type="text" id="input_last_name"
+		   class="form-control col-md-7 col-xs-12"
+		   [(ngModel)]="user.last_name"
+		   #input_last_name="ngModel" name="input_last_name"
+		   required>
+	    <div class="help-block"
+		 *ngIf="errors?.last_name">
+	      <span *ngIf="errors?.last_name">
+		{{errors?.last_name}}
+	      </span>
+	    </div> <!-- help-block -->
+	    <div class="help-block"
+		 *ngIf="(input_last_name.errors && (input_last_name.dirty || input_last_name.touched))">
+	      <span  [hidden]="!(input_last_name.errors.required)">
+		Last Name is required
+	      </span>
+	    </div>
 	  </div>
 	</div>
+	
+	
 	<div class="form-group">
-	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-	  </label>
+	  <label for="input_middle_name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <input type="text" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+	    <input type="text" id="input_middle_name"
+		   class="form-control col-md-7 col-xs-12"
+		   [(ngModel)]="user.middle_name"
+		   #input_middle_name="ngModel" name="input_middle_name">
 	  </div>
 	</div>
-	<div class="form-group">
-	  <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name / Initial</label>
-	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
-	  </div>
-	</div>
+	
 	<div class="form-group">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
