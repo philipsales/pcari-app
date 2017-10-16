@@ -27,6 +27,11 @@ export class UserFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  onToggleIsActive(input_is_active: boolean){
+      console.log(input_is_active);
+      this.user.is_active = input_is_active;
+  }
+    
   onSaveClick(input_user: User){
       this.errors = {};
       this.has_errors = false;
