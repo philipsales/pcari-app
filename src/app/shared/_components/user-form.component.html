@@ -257,16 +257,36 @@
 	<div class="form-group">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    Male :
-	    <div class="iradio_flat-green checked parsley-success"
-		 style="position: relative;">
-	      <input type="radio" class="flat" name="gender" id="genderM"
-		     value="M" checked="" required="" data-parsley-multiple="gender" style="position: absolute; opacity: 0;" data-parsley-id="25"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;">
-	      </ins>
-	    </div> Female :
-	    <div class="iradio_flat-green" style="position: relative;"><input type="radio" class="flat" name="gender" id="genderF" value="F" data-parsley-multiple="gender" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+	    <div class="radio-wrapper"
+		 (click)="onToggleGender('M')">
+	      Male :
+	      <div class="iradio_flat-green"
+		   [ngClass]="{'checked': user.gender == 'M'}"
+		   style="position: relative;">
+		<input type="radio" class="flat" id="input_gender_M"
+		       value="M" required
+		       style="position: absolute; opacity: 0;"
+		       data-parsley-id="25">
+		<ins class="iCheck-helper">
+		</ins>
+	      </div>
+	    </div>
+
+	    <div class="radio-wrapper"
+		 (click)="onToggleGender('F')">
+	      Female :
+	      <div class="iradio_flat-green"
+		   [ngClass]="{'checked': user.gender == 'F'}"
+		   style="position: relative;">
+		<input type="radio" class="flat"
+		       name="input_gender" id="input_gender_F"
+		       value="F" required
+		       style="position: absolute; opacity: 0;">
+		<ins class="iCheck-helper"></ins>
+	      </div>
 	    </div>
 	  </div>
+	  
 	</div>
       </form>
     </div>

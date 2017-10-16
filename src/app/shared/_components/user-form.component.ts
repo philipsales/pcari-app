@@ -21,6 +21,7 @@ export class UserFormComponent implements OnInit {
   constructor(private userService: UserService,
 	      private _notificationsService: NotificationsService) {		
       this.user = new User('',false, '', '','','','','');
+      this.user.gender = 'M';
       this.confirmation_password = '';
   }
 
@@ -30,6 +31,11 @@ export class UserFormComponent implements OnInit {
   onToggleIsActive(input_is_active: boolean){
       console.log(input_is_active);
       this.user.is_active = input_is_active;
+  }
+
+  onToggleGender(input_gender: string){
+      console.log(input_gender);
+      this.user.gender = input_gender;
   }
     
   onSaveClick(input_user: User){
