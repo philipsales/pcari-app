@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import { AuthHttp } from 'angular2-jwt';
 
+import { Helper }           from '../helper';
 import { Role }           from '../models';
 import { RoleJSON }       from '../interfaces';
 import { environment }    from 'environments/environment';
@@ -20,10 +21,12 @@ export class RoleService {
 
     getAll(): Observable<Role[]> {
 	const url = environment.API_ENDPOINT + '/roles/';
-	return this.http.get(url).map((response: Response) => {
-	    console.log(response.json())
-            return response.json().map(Role.fromJSON);
-        });
+	return this.http.get(url)
+	    .map((response: Response) => {
+		console.log(response.json())
+		return response.json().map(Role.fromJSON);
+            })
+	    .catch(Helper.handleError);
     }//--getAll
 
     create(role: Role): Observable<Role> {
@@ -37,21 +40,6 @@ export class RoleService {
             .map((response: Response) => {
 		return Role.fromJSON(response.json());
             })
-            .catch((error: Response | any) => {
-		console.error(error, 'ERROR : role.service');
-		let errMsg: string;
-		if (error instanceof Response) {
-		    const body = error.json() || '';
-		    const err = body.error || JSON.stringify(body);
-		    const status_code = err.status_code;
-		    const err_array = err.errors || JSON.stringify(err);
-		    console.error(err_array, 'err_array : ERROR : role.service');
-		    console.error(status_code, 'status_code : ERROR : role.service');
-		    errMsg = err_array;
-		} else {
-		    errMsg = error.message ? error.message : error.toString();
-		}
-		return Observable.throw(errMsg);
-            });
+            .catch(Helper.handleError);
     }//--create
 }
