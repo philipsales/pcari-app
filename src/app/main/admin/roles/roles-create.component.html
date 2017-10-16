@@ -95,7 +95,7 @@
 	    </div>
 
 	    <div class="form-group"
-		 [ngClass]="{'has-error': errors?.name || 
+		 [ngClass]="{'has-error': errors?.description || 
 			    (input_description.errors && (input_description.dirty || input_description.touched)) }">
 	      <label class="control-label col-md-3 col-sm-3 col-xs-12"
 		     for="roledescription">
@@ -123,10 +123,26 @@
 		Status
 		<span class="required">*</span>
 	      </label>
-	      <div class="col-md-6 col-sm-6 col-xs-12">
-		<label>
-		  <input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="background-color: rgb(38, 185, 154); border-color: rgb(38, 185, 154); box-shadow: rgb(38, 185, 154) 0px 0px 0px 11px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;"><small style="left: 12px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;"></small></span> Active
-		</label>
+	      <div *ngIf="new_role.is_active"
+		   (click)="onToggleIsActive(false)"
+		   class="checkbox-wrapper col-md-6 col-sm-6 col-xs-12">
+		<div class="icheckbox_flat-green checked" style="position: relative;">
+		  <input type="checkbox" class="flat"
+			 style="position: absolute; opacity: 0;">
+		  <ins class="iCheck-helper">
+		  </ins>
+		</div> &nbsp; Active
+	      </div>
+
+	      <div *ngIf="!new_role.is_active"
+		   (click)="onToggleIsActive(true)"
+		   class="checkbox-wrapper col-md-6 col-sm-6 col-xs-12">
+		<div class="icheckbox_flat-green" style="position: relative;">
+		  <input type="checkbox" class="flat"
+			 style="position: absolute; opacity: 0;">
+		  <ins class="iCheck-helper">
+		  </ins>
+		</div> &nbsp; Inactive
 	      </div>
 	    </div>
 	    

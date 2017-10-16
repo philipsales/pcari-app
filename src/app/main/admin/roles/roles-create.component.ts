@@ -25,6 +25,11 @@ export class RolesCreateComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  onToggleIsActive(input_is_active: boolean){
+      this.new_role.is_active = input_is_active;
+  }
+    
   onSaveClick(role: Role){
       this.errors = {};
       this.has_errors = false;

@@ -28,10 +28,11 @@ export class Role {
 	    return JSON.parse(json, Role.reviver);
 	} else {	
 	    let role = Object.create(Role.prototype);
+	    console.log(json.is_active, 'WWWWWWWWWWWWWWWWWWWWW');
 	    return Object.assign(role, json, {
 		name: json.name,
 		description: json.description,
-		is_active: (json.is_active == 'True'),
+		is_active: (json.is_active || json.is_active == 'True') ,
 	    });
 	}
     }
