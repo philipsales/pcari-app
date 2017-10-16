@@ -57,7 +57,7 @@ export class User {
 	    return Object.assign(user, json, {
 		username: json.username,
 		password: '',
-		is_active: (json.is_active == 'True'),
+		is_active: (json.is_active || json.is_active == 'True'),
 		first_name: json.first_name,
 		last_name: json.last_name,
 		middle_name: json.middle_name,
