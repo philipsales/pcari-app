@@ -95,7 +95,9 @@
 	      </div>
 	    </div>
 
-	    <div class="form-group">
+	    <div class="form-group"
+		 [ngClass]="{'has-error': errors?.name || 
+			    (input_description.errors && (input_description.dirty || input_description.touched)) }">
 	      <label class="control-label col-md-3 col-sm-3 col-xs-12"
 		     for="roledescription">
 		Description
@@ -103,9 +105,16 @@
 	      </label>
 	      <div class="col-md-6 col-sm-6 col-xs-12">
 		<input type="text" id="roledescription" required="required"
-		       [(ngModel)]="new_role.description" #name="ngModel"
+		       [(ngModel)]="new_role.description"
+		       #input_description="ngModel" name="input_description"
 		       name="description"
 		       class="form-control col-md-7 col-xs-12">
+		<div class="help-block"
+		     *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
+		  <span  [hidden]="!(input_description.errors.required)">
+		    Description is required
+		  </span>
+		</div>
 	      </div>
 	    </div>
 	    
