@@ -9,3 +9,18 @@ form {
 .required {
     color: #F1343D;
 }
+
+.alert.alert-danger {
+    margin-bottom: 0px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: #F8EEE7;
+    color: #a94442;
+    border-color: #a94442;
+    text-align: center;
+}
+
+.reset-wrapper, .save-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+}

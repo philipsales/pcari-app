@@ -1,11 +1,28 @@
+
 <div class="col-md-12 table-nav">
+  <div class="col-sm-3 reset-wrapper">
     <button class="btn btn-default pull-left">
       <i class="fa fa-refresh"></i> &nbsp; Reset
     </button>
+  </div>
+  
+  <div class="col-sm-6">
+    <div class="alert alert-danger"
+	 [hidden]="!has_errors">
+      <strong>
+	<i class="fa fa-warning"></i> Unable to process your request.
+      </strong>
+      <em>Please see details below: </em>
+    </div>
+  </div>
+
+  <div class="col-sm-3 save-wrapper">
     <button class="btn btn-success pull-right"
-	      (click)="onSaveClick(user)">
+	    [disabled]="!userSaveForm.form.valid || is_processing"
+	    (click)="onSaveClick(user)">
       <i class="fa fa-save"></i> &nbsp; Save
     </button>
+  </div>
 </div>
 
 <!-- Account Info -->
@@ -26,40 +43,89 @@
 	    class="form-horizontal form-label-left"
 	    #userSaveForm="ngForm" novalidate>
 
-	<div class="form-group">
-	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">
+	<div class="form-group"
+		 [ngClass]="{'has-error': errors?.username || 
+			    (input_username.errors && (input_username.dirty || input_username.touched)) }">
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_username">
 	    Username <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <input type="text" id="username" name="username"
-		   [(ngModel)]="user.username" #input_username="ngModel"
+	    <input type="text" id="input_username" 
+		   [(ngModel)]="user.username"
+		   #input_username="ngModel" name="input_username"
 		   required="required"
 		   class="form-control col-md-7 col-xs-12">
+	    <div class="help-block"
+		 *ngIf="errors?.username">
+	      <span *ngIf="errors?.username">
+		{{errors?.username}}
+	      </span>
+	    </div> <!-- help-block -->
+	    <div class="help-block"
+		 *ngIf="(input_username.errors && (input_username.dirty || input_username.touched))">
+	      <span  [hidden]="!(input_username.errors.required)">
+		Username is required
+	      </span>
+	    </div>
 	  </div>
 	</div>
 
-	<div class="form-group">
-	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">
+	<div class="form-group"
+		 [ngClass]="{'has-error': errors?.password || 
+			    (input_password.dirty || input_password.touched) && 
+  			      (input_password.errors) }">
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_password">
 	    Password <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <input type="text" id="password" name="password"
-		   [(ngModel)]="user.password" #input_password="ngModel"
+	    <input type="password" id="input_password" 
+		   [(ngModel)]="user.password"
+		   #input_password="ngModel" name="input_password"
 		   required="required"
 		   class="form-control col-md-7 col-xs-12">
+	    <div class="help-block"
+		 *ngIf="errors?.password">
+	      <span *ngIf="errors?.password">
+		{{errors?.password}}
+	      </span>
+	    </div> <!-- help-block -->
+	    <div class="help-block"
+		 *ngIf="(input_password.dirty || input_password.touched) && 
+			  (input_password.errors)">
+	      <span [hidden]="!(input_password.errors.required)">
+		Password is required
+	      </span>
+	    </div>
 	  </div>
 	</div>
 
-	<div class="form-group">
-	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">
+	<div class="form-group"
+		 [ngClass]="{'has-error': (input_confirmation_password.dirty || input_confirmation_password.touched) && 
+  			      (input_confirmation_password.errors ||
+			      (user.password != confirmation_password)) }">
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">
 	    Confirm Password <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <input type="text" id="confirmation_password" name="confirmation_password"
+	    <input type="password" id="input_confirmation_password" 
 		   [(ngModel)]="confirmation_password"
-		   #input_confirmation_password="ngModel"
+		   #input_confirmation_password="ngModel" name="input_confirmation_password"
 		   required="required"
 		   class="form-control col-md-7 col-xs-12">
+	    <div class="help-block"
+		 *ngIf="(input_confirmation_password.dirty || input_confirmation_password.touched) && 
+			  (input_confirmation_password.errors)">
+	      <span  [hidden]="!(input_confirmation_password.errors.required)">
+		Please confirm your password
+	      </span>
+	    </div>
+	    <div class="help-block"
+		 *ngIf="(input_confirmation_password.dirty || input_confirmation_password.touched) && 
+			(user.password != confirmation_password)">	    
+	      <span  [hidden]="(user.password == confirmation_password)">
+		Password do not match
+	      </span>
+	    </div>	    
 	  </div>
 	</div>
 	
