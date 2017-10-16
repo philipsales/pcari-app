@@ -1,0 +1,7 @@
+:host /deep/ simple-notifications .simple-notification.success {
+    background: #5EB065;
+}
+
+:host /deep/ simple-notifications .simple-notification.error {
+    background: #F1343D;
+}

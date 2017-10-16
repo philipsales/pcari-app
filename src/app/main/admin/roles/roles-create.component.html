@@ -30,13 +30,29 @@
   <div class="row" id="page-body">
 
     <div class="col-md-12 table-nav">
-      <button class="btn btn-default pull-left">
-	<i class="fa fa-refresh"></i> &nbsp; Reset
-      </button>
-      <button class="btn btn-success pull-right"
-	      (click)="onSaveClick(new_role)">
-	<i class="fa fa-save"></i> &nbsp; Save
-      </button>
+      <div class="col-sm-3 reset-wrapper">
+	<button class="btn btn-default pull-left">
+	  <i class="fa fa-refresh"></i> &nbsp; Reset
+	</button>
+      </div>
+      
+      <div class="col-sm-6">
+	<div class="alert alert-danger"
+	     [hidden]="!has_errors">
+	  <strong>
+	    <i class="fa fa-warning"></i> Unable to process your request.
+	  </strong>
+	  <em>Please see details below: </em>
+	</div>
+      </div>
+
+      <div class="col-sm-3 save-wrapper">
+	<button class="btn btn-success pull-right"
+		[disabled]="!roleCreateForm.form.valid || is_processing"
+		(click)="onSaveClick(new_role)">
+	  <i class="fa fa-save"></i> &nbsp; Save
+	</button>
+      </div>
     </div>
 
     <!-- Role Name -->
@@ -47,8 +63,12 @@
 	  <form data-parsley-validate=""
 		class="form-horizontal form-label-left"
 		#roleCreateForm="ngForm" novalidate>
-
-	    <div class="form-group">
+	    <div class="row">
+	    </div>
+	    
+	    <div class="form-group"
+		 [ngClass]="{'has-error': errors?.name || 
+			    (input_name.errors && (input_name.dirty || input_name.touched)) }">
 	      <label class="control-label col-md-3 col-sm-3 col-xs-12"
 		     for="rolename">
 		Role Name
@@ -56,9 +76,22 @@
 	      </label>
 	      <div class="col-md-6 col-sm-6 col-xs-12">
 		<input type="text" id="rolename" required="required"
-		       [(ngModel)]="new_role.name" #name="ngModel"
-		       name="name"
+		       [(ngModel)]="new_role.name"
+		       #input_name="ngModel" name="input_name"
 		       class="form-control col-md-7 col-xs-12">
+		<div class="help-block"
+		     *ngIf="errors?.name">
+		  <span *ngIf="errors?.name">
+		    {{errors?.name}}
+		  </span>
+		</div> <!-- help-block -->
+		<div class="help-block"
+		     *ngIf="(input_name.errors && (input_name.dirty || input_name.touched))">
+		  <span  [hidden]="!(input_name.errors.required)">
+		    Name is required
+		  </span>
+		</div>
+		
 	      </div>
 	    </div>
 
