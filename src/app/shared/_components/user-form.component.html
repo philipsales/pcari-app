@@ -2,7 +2,8 @@
     <button class="btn btn-default pull-left">
       <i class="fa fa-refresh"></i> &nbsp; Reset
     </button>
-    <button class="btn btn-success pull-right">
+    <button class="btn btn-success pull-right"
+	      (click)="onSaveClick(user)">
       <i class="fa fa-save"></i> &nbsp; Save
     </button>
 </div>
@@ -22,21 +23,54 @@
     <div class="x_content">
       <br>
       <form data-parsley-validate=""
-	    class="form-horizontal form-label-left" novalidate="">
+	    class="form-horizontal form-label-left"
+	    #userSaveForm="ngForm" novalidate>
 
 	<div class="form-group">
-	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Username <span class="required">*</span>
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">
+	    Username <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <input type="text" id="username" required="required" class="form-control col-md-7 col-xs-12">
+	    <input type="text" id="username" name="username"
+		   [(ngModel)]="user.username" #input_username="ngModel"
+		   required="required"
+		   class="form-control col-md-7 col-xs-12">
 	  </div>
 	</div>
 
 	<div class="form-group">
-	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">Status  <span class="required">*</span>
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">
+	    Password <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <div class="icheckbox_flat-green checked" style="position: relative;"><input type="checkbox" class="flat" checked="checked" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> &nbsp; Active 
+	    <input type="text" id="password" name="password"
+		   [(ngModel)]="user.password" #input_password="ngModel"
+		   required="required"
+		   class="form-control col-md-7 col-xs-12">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">
+	    Confirm Password <span class="required">*</span>
+	  </label>
+	  <div class="col-md-6 col-sm-6 col-xs-12">
+	    <input type="text" id="confirmation_password" name="confirmation_password"
+		   [(ngModel)]="confirmation_password"
+		   #input_confirmation_password="ngModel"
+		   required="required"
+		   class="form-control col-md-7 col-xs-12">
+	  </div>
+	</div>
+	
+	<div class="form-group">
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
+	    Status <span class="required">*</span>
+	  </label>
+	  <div class="col-md-6 col-sm-6 col-xs-12">
+	    <div class="icheckbox_flat-green checked" style="position: relative;">
+	      <input type="checkbox" class="flat" checked="checked" style="position: absolute; opacity: 0;">
+	      <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> &nbsp; Active 
 	  </div>
 	</div>
 

@@ -1,5 +1,6 @@
 export interface UserJSON {
     username: string;
+    password: string;
     is_active: string;
     first_name: string;
     last_name: string;

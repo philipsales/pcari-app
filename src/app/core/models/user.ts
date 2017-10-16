@@ -2,6 +2,7 @@ import { UserJSON } from '../interfaces';
 
 export class User {
     username: string;
+    password: string;
     is_active: boolean;
     first_name: string;
     last_name: string;
@@ -36,6 +37,7 @@ export class User {
     toJSON(): UserJSON {
 	return Object.assign({}, this, {
 	    username: this.username,
+	    password: this.password,
 	    is_active: this.is_active ? 'True' : 'False',
 	    first_name: this.first_name,
 	    last_name: this.last_name,
@@ -54,6 +56,7 @@ export class User {
 	    let user = Object.create(User.prototype);
 	    return Object.assign(user, json, {
 		username: json.username,
+		password: '',
 		is_active: (json.is_active == 'True'),
 		first_name: json.first_name,
 		last_name: json.last_name,

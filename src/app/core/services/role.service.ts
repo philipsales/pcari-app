@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import { AuthHttp } from 'angular2-jwt';
 
-import { Helper }           from '../helper';
+import { Helper }         from '../helper';
 import { Role }           from '../models';
 import { RoleJSON }       from '../interfaces';
 import { environment }    from 'environments/environment';
