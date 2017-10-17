@@ -357,7 +357,7 @@
 	    class="form-horizontal form-label-left"
 	    #userSaveFormOrganization="ngForm" novalidate>
 	<div class="form-group"
-		 [ngClass]="{'has-error': !is_organization_ok }">
+		 [ngClass]="{'has-error': user.organizations && !is_organization_ok }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="organization">Organization <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
@@ -387,7 +387,7 @@
 	</div>
 	
 	<div class="form-group"
-		 [ngClass]="{'has-error': !is_organization_ok }">
+		 [ngClass]="{'has-error': user.organizations && !is_organization_ok }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
 	    Position <span class="required">*</span>
 	  </label>
