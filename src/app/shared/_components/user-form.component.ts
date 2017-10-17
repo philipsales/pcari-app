@@ -40,7 +40,8 @@ export class UserFormComponent implements OnInit {
   private errors: any = {};
   private has_errors = false;
   private is_processing = false;
-
+  private is_organization_ok = false;
+    
   constructor(private userService: UserService,
 	      private positionService: PositionService,
 	      private positionCompleterService: CompleterService,
@@ -74,19 +75,37 @@ export class UserFormComponent implements OnInit {
 
   onSelectOrganization(data: CompleterItem){
       if (data){
-	  console.log(data.originalObject.id);
-	  console.log(data.originalObject.name);
+	  if(!this.user.organizations){
+	      this.user.organizations = [{
+		  'organization':-1,
+		  'position':-1
+	      }];
+	  }
+	  this.user.organizations[0]['organization'] = data.originalObject.id;
+	  if(this.user.organizations[0]['position'] != -1){
+	      this.is_organization_ok = true;
+	  }
       } else {
-	  console.log('delete this entry');
+	  this.user.organizations[0]['organization'] = -1;
+	  this.is_organization_ok = false;
       }
   }
 
   onSelectPosition(data: CompleterItem){
       if (data){
-	  console.log(data.originalObject.id);
-	  console.log(data.originalObject.name);
+	  if(!this.user.organizations){
+	      this.user.organizations = [{
+		  'organization':-1,
+		  'position':-1
+	      }];
+	  }
+	  this.user.organizations[0]['position'] = data.originalObject.id;
+	  if(this.user.organizations[0]['organization'] != -1){
+	      this.is_organization_ok = true;
+	  }
       } else {
-	  console.log('delete this entry');
+	  this.user.organizations[0]['position'] = -1;
+	  this.is_organization_ok = false;
       }
   }
 

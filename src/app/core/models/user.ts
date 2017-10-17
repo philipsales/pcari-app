@@ -11,7 +11,8 @@ export class User {
     email: string;
     mobile_number: string;
     verification_status: string;
-
+    organizations: { organization: number, position: number }[];
+    
     constructor(
 	username: string,
 	is_active:  boolean,
@@ -52,12 +53,12 @@ export class User {
     static fromJSON(json: UserJSON): User {
 	if (typeof json === 'string') {
 	    return JSON.parse(json, User.reviver);
-	} else {	
+	} else {
 	    let user = Object.create(User.prototype);
 	    return Object.assign(user, json, {
 		username: json.username,
 		password: '',
-		is_active: (json.is_active || json.is_active == 'True'),
+		is_active: (json.is_active || json.is_active == 'True') ? true : false,
 		first_name: json.first_name,
 		last_name: json.last_name,
 		middle_name: json.middle_name,

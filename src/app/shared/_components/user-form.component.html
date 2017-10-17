@@ -20,6 +20,7 @@
     <button class="btn btn-success pull-right"
 	    [disabled]="!userSaveFormAccount.form.valid || 
 			!userSaveFormGeneral.form.valid || 
+			!is_organization_ok || 
 			is_processing"
 	    (click)="onSaveClick(user)">
       <i class="fa fa-save"></i> &nbsp; Save
@@ -353,9 +354,10 @@
     <div class="x_content">
       <br>
       <form data-parsley-validate=""
-	    class="form-horizontal form-label-left" novalidate="">
-
-	<div class="form-group">
+	    class="form-horizontal form-label-left"
+	    #userSaveFormOrganization="ngForm" novalidate>
+	<div class="form-group"
+		 [ngClass]="{'has-error': !is_organization_ok }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="organization">Organization <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
@@ -384,7 +386,8 @@
 	  </div>
 	</div>
 	
-	<div class="form-group">
+	<div class="form-group"
+		 [ngClass]="{'has-error': !is_organization_ok }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
 	    Position <span class="required">*</span>
 	  </label>
@@ -398,7 +401,9 @@
 			     (selected)="onSelectPosition($event)" 
 			     [inputClass]="form-control"
 			     [openOnClick]="true"
-			     [inputName]="input_position_search">
+			     [inputName]="'input_position_search'"
+			     #input_position_search
+			     required>
 	      </ng2-completer>
 	      <div class="input-group-btn">
 		<button type="button"
