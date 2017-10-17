@@ -1,6 +1,7 @@
 import { NgModule }          from '@angular/core';
 import { CommonModule }      from '@angular/common';
 import { FormsModule }       from '@angular/forms';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 import { UserFormComponent } from './_components/user-form.component';
 
@@ -8,6 +9,7 @@ import { UserFormComponent } from './_components/user-form.component';
   imports: [
     CommonModule,
     FormsModule,
+    Ng2CompleterModule,
   ],
   declarations: [
     UserFormComponent

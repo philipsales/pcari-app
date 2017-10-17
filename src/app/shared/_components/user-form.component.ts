@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { NotificationsService } from 'angular2-notifications';
+import {
+    CompleterCmp,
+    CompleterService,
+    CompleterData,
+    CompleterItem
+}  from 'ng2-completer';
 
 import {
     User,
@@ -21,33 +27,39 @@ import {
 export class UserFormComponent implements OnInit {
 
   private user: User;
-  private positions: Position[];
-  private organizations: Organization[];
-
   private confirmation_password : String;
+    
+  private position_search = '';
+  private positionCompleterData: CompleterData;
+  @ViewChild('positionCompleter') positionCompleter: CompleterCmp;
+    
+  private organization_search = '';
+  private organizationCompleterData: CompleterData;
+  @ViewChild('organizationCompleter') organizationCompleter: CompleterCmp;
+    
   private errors: any = {};
   private has_errors = false;
   private is_processing = false;
 
   constructor(private userService: UserService,
 	      private positionService: PositionService,
+	      private positionCompleterService: CompleterService,
+	      private organizationCompleterService: CompleterService,
 	      private organizationService: OrganizationService,
 	      private _notificationsService: NotificationsService) {		
       this.user = new User('',false, '', '','','','','');
       this.user.gender = 'M';
       this.confirmation_password = '';
+
+      this.positionCompleterData = positionCompleterService.local(
+	  this.positionService.getAll(), 'name','name'
+      );
+      this.organizationCompleterData = organizationCompleterService.local(
+	  this.organizationService.getAll(), 'name','name'
+      );
   }
 
   ngOnInit() {
-      this.positionService.getAll().subscribe(positions => {
-	  this.positions = positions;
-	  console.warn(positions);
-      });
-
-      this.organizationService.getAll().subscribe(organizations => {
-	  this.organizations = organizations;
-	  console.warn(organizations);
-      });
   }
 
   onToggleIsActive(input_is_active: boolean){
@@ -58,6 +70,40 @@ export class UserFormComponent implements OnInit {
   onToggleGender(input_gender: string){
       console.log(input_gender);
       this.user.gender = input_gender;
+  }
+
+  onSelectOrganization(data: CompleterItem){
+      if (data){
+	  console.log(data.originalObject.id);
+	  console.log(data.originalObject.name);
+      } else {
+	  console.log('delete this entry');
+      }
+  }
+
+  onSelectPosition(data: CompleterItem){
+      if (data){
+	  console.log(data.originalObject.id);
+	  console.log(data.originalObject.name);
+      } else {
+	  console.log('delete this entry');
+      }
+  }
+
+  onOrganizationSearchClick(){
+      if(this.organizationCompleter.isOpen()) {
+	  this.organizationCompleter.close();
+      } else {
+	  this.organizationCompleter.open();
+      }
+  }
+
+  onPositionSearchClick(){
+      if(this.positionCompleter.isOpen()) {
+	  this.positionCompleter.close();
+      } else {
+	  this.positionCompleter.open();
+      }
   }
     
   onSaveClick(input_user: User){

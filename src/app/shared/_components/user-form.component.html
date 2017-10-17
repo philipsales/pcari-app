@@ -359,12 +359,28 @@
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="organization">Organization <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <select id="organization" class="form-control" required="" data-parsley-id="38">
-	      <option value="">Choose..</option>
-	      <option value="press">Org A</option>
-	      <option value="net">Org B</option>
-	      <option value="mouth">Others</option>
-	    </select>
+	    <div class="input-group">
+	      <ng2-completer #organizationCompleter
+			     name="input_organization_search"
+			     [(ngModel)]="organization_search"
+		             [datasource]="organizationCompleterData"
+			     [minSearchLength]="0"
+			     (selected)="onSelectOrganization($event)" 
+			     [inputClass]="form-control"
+			     [openOnClick]="true"
+			     [inputName]="input_organization_search">
+	      </ng2-completer>
+	      <div class="input-group-btn">
+		<button type="button"
+			class="btn btn-default dropdown-toggle"
+			data-toggle="dropdown"
+			aria-haspopup="true"
+			aria-expanded="false"
+			(click)="onOrganizationSearchClick()">
+		  <span class="caret"></span>
+		</button>
+	      </div>
+	    </div> <!-- input-group -->
 	  </div>
 	</div>
 	
@@ -373,12 +389,28 @@
 	    Position <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <select id="position" class="form-control" required="" data-parsley-id="38">
-	      <option value="">Choose..</option>
-	      <option value="press">Staff</option>
-	      <option value="net">Administrator</option>
-	      <option value="mouth">Others</option>
-	    </select>
+	    <div class="input-group">
+	      <ng2-completer #positionCompleter
+		             name="input_position_search"
+			     [(ngModel)]="position_search"
+		             [datasource]="positionCompleterData"
+			     [minSearchLength]="0"
+			     (selected)="onSelectPosition($event)" 
+			     [inputClass]="form-control"
+			     [openOnClick]="true"
+			     [inputName]="input_position_search">
+	      </ng2-completer>
+	      <div class="input-group-btn">
+		<button type="button"
+			class="btn btn-default dropdown-toggle"
+			data-toggle="dropdown"
+			aria-haspopup="true"
+			aria-expanded="false"
+			(click)="onPositionSearchClick()">
+		  <span class="caret"></span>
+		</button>
+	      </div>
+	    </div> <!-- input-group -->
 	  </div>
 	</div>
 	
