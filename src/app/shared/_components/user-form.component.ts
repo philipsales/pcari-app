@@ -2,8 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { NotificationsService } from 'angular2-notifications';
 
-import { User }           from 'app/core/models';
-import { UserService }    from 'app/core/services';
+import {
+    User,
+    Position
+} from 'app/core/models';
+import {
+    UserService,
+    PositionService
+} from 'app/core/services';
 
 @Component({
   selector: 'shared-user-form',
@@ -18,7 +24,10 @@ export class UserFormComponent implements OnInit {
   private has_errors = false;
   private is_processing = false;
 
+  private positions: Position[];
+    
   constructor(private userService: UserService,
+	      private positionService: PositionService,
 	      private _notificationsService: NotificationsService) {		
       this.user = new User('',false, '', '','','','','');
       this.user.gender = 'M';
@@ -26,6 +35,10 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit() {
+      this.positionService.getAll().subscribe(positions => {
+	  this.positions = positions;
+	  console.warn(positions);
+      });
   }
 
   onToggleIsActive(input_is_active: boolean){

@@ -4,7 +4,11 @@ import { CommonModule } from '@angular/common';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
-import { UserService, RoleService } from './services';
+import {
+    UserService,
+    RoleService,
+    PositionService
+} from './services';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -29,7 +33,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 	    deps: [Http, RequestOptions]
 	},
 	UserService,
-	RoleService
+	RoleService,
+	PositionService
     ],
     declarations: [],
 })
