@@ -21,14 +21,14 @@ import {
 export class UserFormComponent implements OnInit {
 
   private user: User;
+  private positions: Position[];
+  private organizations: Organization[];
+
   private confirmation_password : String;
   private errors: any = {};
   private has_errors = false;
   private is_processing = false;
 
-  private positions: Position[];
-  private organizations: Organization[];
-    
   constructor(private userService: UserService,
 	      private positionService: PositionService,
 	      private organizationService: OrganizationService,
@@ -67,7 +67,6 @@ export class UserFormComponent implements OnInit {
       this.userService.create(input_user).subscribe(
           created_user => {
 	      this.is_processing = false;
-              console.log(created_user, 'USER CREATED : user-from.component');
 	      this._notificationsService.success(
 		  'New User : ' + input_user.username,
 		  'Successfully Created.',
@@ -80,7 +79,6 @@ export class UserFormComponent implements OnInit {
 	      )
           },
           errors  => {
-              console.log(errors, 'ERROR : user-form.component');
 	      this.errors = errors;
 	      this.has_errors = true;
 	      this.is_processing = false;
