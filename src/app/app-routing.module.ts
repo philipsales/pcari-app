@@ -7,6 +7,10 @@ const routes: Routes = [
 	loadChildren: './main/main.module#MainModule',
 	//canActivate: [AuthGuard]
     },
+    {
+	path: 'login',
+	loadChildren: 'app/auth/auth.module#AuthModule'
+    },
 ];
 
 @NgModule({

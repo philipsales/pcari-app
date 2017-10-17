@@ -1,0 +1,44 @@
+<div class="col-md-offset-4 col-md-4 col-xs-12 well form-login">
+
+  <div class="row">
+    <div class="col-xs-12" style="text-align: center;">
+      <img id="awh_logo" src="/assets/images/logo.png">
+    </div>
+  </div>
+
+  <div class="row"
+       style="padding-bottom: 20px; border-bottom: 1px solid lightgray;">
+    <h2 id="awh_title" class="muted">Administration</h2>
+    <div id="unauthorized_alert" class="alert alert-error hide">
+      <strong>Unauthorized access!</strong>
+    </div>
+    
+    <form id="login_form" name="form"
+	  (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+      <input id="username" name="username" autofocus="" class="input-block-level" type="text" placeholder="Username"  value="" 
+	     [(ngModel)]="model.username" #username="ngModel" required>
+      <input id="password" name="password" class="input-block-level" type="password" placeholder="Password"
+	     [(ngModel)]="model.password" #password="ngModel" required>
+
+      <button id="login_btn" type="submit" class="btn btn-block btn-primary"
+	      [disabled]="!username.valid || !password.valid || loading">
+	<span *ngIf="!loading">Log In</span>
+	<span *ngIf="loading" >
+	  <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+	  Please wait
+	</span>
+      </button>
+      <br/>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+
+      <div class="col-sm-12"
+	   style="text-align: center;">
+	<a href="#" class="forgot-password">Forgot your password?</a>
+      </div>
+    </form>
+  </div> <!-- row -->
+  <div class="row"
+       style="text-align: center;">
+    <em class="muted">All rights reserved. AWH - 2017</em>
+  </div>
+</div>
