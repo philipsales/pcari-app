@@ -4,11 +4,13 @@ import { NotificationsService } from 'angular2-notifications';
 
 import {
     User,
-    Position
+    Position,
+    Organization
 } from 'app/core/models';
 import {
     UserService,
-    PositionService
+    PositionService,
+    OrganizationService
 } from 'app/core/services';
 
 @Component({
@@ -25,9 +27,11 @@ export class UserFormComponent implements OnInit {
   private is_processing = false;
 
   private positions: Position[];
+  private organizations: Organization[];
     
   constructor(private userService: UserService,
 	      private positionService: PositionService,
+	      private organizationService: OrganizationService,
 	      private _notificationsService: NotificationsService) {		
       this.user = new User('',false, '', '','','','','');
       this.user.gender = 'M';
@@ -38,6 +42,11 @@ export class UserFormComponent implements OnInit {
       this.positionService.getAll().subscribe(positions => {
 	  this.positions = positions;
 	  console.warn(positions);
+      });
+
+      this.organizationService.getAll().subscribe(organizations => {
+	  this.organizations = organizations;
+	  console.warn(organizations);
       });
   }
 

@@ -7,7 +7,8 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt';
 import {
     UserService,
     RoleService,
-    PositionService
+    PositionService,
+    OrganizationService
 } from './services';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -34,7 +35,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 	},
 	UserService,
 	RoleService,
-	PositionService
+	PositionService,
+	OrganizationService
     ],
     declarations: [],
 })
