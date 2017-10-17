@@ -88,6 +88,10 @@ form {
     width: 100%;
 }
 
+.input-group {
+    margin-bottom: 0;
+}
+
 .input-group-btn > button{
     border-left: 0px;
 }
