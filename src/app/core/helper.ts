@@ -1,6 +1,9 @@
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
+import { AuthHttpError } from  'angular2-jwt';
+import { NoJWTError }     from './errors';
+
 export class Helper {
     static handleError (error: Response | any) {
 	// In a real world app, you might use a remote logging infrastructure
@@ -25,8 +28,13 @@ export class Helper {
 	    }
 	    errMsg = err_array;
 	} else {
-	    console.warn('PLEASE CATCH ME!', 'handleError');
+	    console.warn('TO DO : PLEASE CATCH ME!', 'handleError');
+	    console.log(error, 'error');
 	    errMsg = error.message ? error.message : error.toString();
+
+	    if(errMsg == 'No JWT present or has expired'){
+		errMsg = new NoJWTError('No JWT present or has expired');
+	    }
 	}
 	console.error(errMsg);
 	return Observable.throw(errMsg);

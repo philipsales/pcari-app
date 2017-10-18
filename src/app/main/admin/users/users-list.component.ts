@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { UserService } from 'app/core/services';
 import { User } from 'app/core/models';
+import { NoJWTError } from 'app/core/errors';
 
 @Component({
   selector: 'app-users-list',
@@ -16,10 +17,17 @@ export class UsersListComponent implements OnInit {
   }//--constructor
 
   ngOnInit() {
-      this.userService.getAll().subscribe(users => {
-	  this.users = users;
-	  console.warn(users);
-      });
+      this.userService.getAll().subscribe(
+	  users => {
+	      this.users = users;
+	      console.warn(users);
+	  },error => {
+	      console.log(error);//get the error in error handler
+	      if(error instanceof NoJWTError){
+		  console.warn('TO DO : handle JWT Expired');
+	      }
+	  }
+      );
   }//--OnInit
 
 }

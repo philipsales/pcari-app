@@ -21,9 +21,10 @@ export class UserService {
 
     getAll(): Observable<User[]> {
 	const url = environment.API_ENDPOINT + '/users-via-email/';
-	return this.http.get(url).map((response: Response) => {
+	return this.authHttp.get(url).map((response: Response) => {
             return response.json().map(User.fromJSON);
-        });
+        })
+	.catch(Helper.handleError);
     }//--getAll
 
 
@@ -34,7 +35,7 @@ export class UserService {
 	console.log(user_json);
 	let headers = new Headers({ 'Content-Type': 'application/json' });
 	let options = new RequestOptions({ headers: headers });
-	return this.http.post(url, user_json, options)
+	return this.authHttp.post(url, user_json)
             .map((response: Response) => {
 		return User.fromJSON(response.json());
             })
