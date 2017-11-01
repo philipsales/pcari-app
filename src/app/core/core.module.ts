@@ -8,7 +8,8 @@ import {
     UserService,
     RoleService,
     PositionService,
-    OrganizationService
+    OrganizationService,
+    AuthService
 } from './services';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -36,7 +37,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
 	UserService,
 	RoleService,
 	PositionService,
-	OrganizationService
+	OrganizationService,
+	AuthService
     ],
     declarations: [],
 })
