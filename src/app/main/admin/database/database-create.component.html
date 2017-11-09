@@ -1,0 +1,124 @@
+<div id="page-content"
+     class="col-md-offset-3 col-md-9">
+  <header class="app-header row">
+    <div class="app-header--primary">
+      <div class="app-header--context">
+        <div class="app-header--breadcrumbs">
+          <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
+            <li>
+              <a [routerLink]="['/admin/database']">Administration</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/database/list']">Database List</a>
+            </li>
+            <li>
+              <a [routerLink]="['/admin/database/create']">Create</a>
+            </li>
+          </ol>
+        </div>
+        <h1 class="app-header--heading">
+          Database 
+        </h1>
+      </div>
+    </div>  
+    <div class="app-header--secondary">
+    </div>
+  </header>
+
+  <div class="row" id="page-body">
+    <div class="col-md-12 table-nav">
+      <div class="col-sm-3 reset-wrapper">
+        <button class="btn btn-default pull-left">
+          <i class="fa fa-refresh"></i> &nbsp; Reset
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <div class="alert alert-danger"
+             [hidden]="!has_errors">
+          <strong>
+            <i class="fa fa-warning"></i> Unable to process your request.
+          </strong>
+          <em>Please see details below: </em>
+        </div>
+      </div>
+
+      <div class="col-sm-3 save-wrapper">
+        <button class="btn btn-success pull-right"
+          [disabled]="!databaseCreateForm.form.valid || is_processing"
+          (click)="onSaveClick(new_database)">
+          <i class="fa fa-save"></i> &nbsp; Save
+        </button>
+      </div>
+    </div>
+
+    <!-- Database Name -->
+    <div class="col-md-12 col-sm-12 col-xs-12"> 
+      <div class="x_panel">
+        <div class="x_content">
+          <br>
+          <form data-parsley-validate=""
+                class="form-horizontal form-label-left"
+                #databaseCreateForm="ngForm" novalidate>
+            <div class="row">
+            </div>
+            
+              <div class="form-group"
+                   [ngClass]="{'has-error': errors?.name || 
+                   (input_name.errors && (input_name.dirty || input_name.touched)) }">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                       for="databasename">
+                    Backup Name
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <input type="text" id="databasename" required="required"
+                         [(ngModel)]="new_database.name"
+                         #input_name="ngModel" name="input_name"
+                         class="form-control col-md-7 col-xs-12">
+                  <div class="help-block"
+                       *ngIf="errors?.name">
+                    <span *ngIf="errors?.name">
+                      {{errors?.name}}
+                    </span>
+                  </div> <!-- help-block -->
+                  <div class="help-block"
+                       *ngIf="(input_name.errors && (input_name.dirty || input_name.touched))">
+                      <span  [hidden]="!(input_name.errors.required)">
+                        Name is required
+                      </span>
+                  </div>		
+                </div>
+              </div>
+
+              <div class="form-group"
+                   [ngClass]="{'has-error': errors?.description || 
+                   (input_description.errors && (input_description.dirty || input_description.touched)) }">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                 for="databasedescription">
+                    Description
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+            <input type="text" id="databasedescription" required="required"
+                   [(ngModel)]="new_database.description"
+                   #input_description="ngModel" name="input_description"
+                   name="description"
+                   class="form-control col-md-7 col-xs-12">
+            <div class="help-block"
+                 *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
+              <span  [hidden]="!(input_description.errors.required)">
+                Description is required
+              </span>
+            </div>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>      
+  </div> <!-- DatabaseName -->
+
+
+    
+  </div> <!-- page-body -->
+  
+</div> <!-- page-content -->
