@@ -4,24 +4,20 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Helper }         from '../helper';
-import { Database }       from '../models';
+import { Report }       from '../models';
 import { environment }    from 'environments/environment';
 
 @Injectable()
-export class DatabaseService {
-
-  private headers = new Headers({'Content-Type': 'application/json'});
+export class ReportService {
 
   constructor(private http: Http) {
   }//--constructor
 
-  getAll(): Promise<Database[]> {
-    const url = environment.API_ENDPOINT + '/databases/';
-    console.log("--OnInit--Database.Service--");
-    console.log(url);
+  getAll(): Promise<Report[]> {
+    const url = environment.API_ENDPOINT + '/reports/';
     return this.http.get(url)
                     .toPromise()
-                    .then(response => response.json().data as Database[])
+                    .then(response => response.json().data as Report[])
                     .catch(this.handleError);
   }//--getAll
 
@@ -30,4 +26,5 @@ export class DatabaseService {
     console.log(error);
     return Promise.reject(error.message || error);
   }
+
 }

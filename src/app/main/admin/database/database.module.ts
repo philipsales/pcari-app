@@ -5,7 +5,7 @@ import { FormsModule }  from '@angular/forms';
 //InMemory modules
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from 'app/core/services';
+import { DatabaseDummyApiResponse } from 'app/core/services-dummy';
 
 import { DatabaseRoutingModule } from './database-routing.module';
 import { DatabaseListComponent } from './database-list.component';
@@ -18,7 +18,7 @@ import { DatabaseCreateComponent } from './database-create.component';
     CommonModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    InMemoryWebApiModule.forRoot(DatabaseDummyApiResponse),
     DatabaseRoutingModule
   ],
   declarations: [
@@ -26,7 +26,7 @@ import { DatabaseCreateComponent } from './database-create.component';
     DatabaseCreateComponent
   ],
   providers: [ 
-    InMemoryDataService,
+    DatabaseDummyApiResponse,
     DatabaseService
   ]
 })

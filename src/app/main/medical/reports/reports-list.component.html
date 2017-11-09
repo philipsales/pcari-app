@@ -23,17 +23,13 @@
 
     <div class="col-md-12 table-nav">
       <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-left top_search">
-	<div class="input-group">
-	  <input type="text" class="form-control" placeholder="Search for...">
-	  <span class="input-group-btn">
-	    <button class="btn btn-default" type="button">Go!</button>
-	  </span>
-	</div>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div>
       </div>
-      <a [routerLink]="['/medical/reports/create']"
-	 class="btn btn-default pull-right">
-	<i class="fa fa-plus"></i> &nbsp; Create Backup 
-      </a>
     </div>
     
     <div class="col-md-12">
@@ -42,24 +38,17 @@
 	  <tr>
 	    <th>#</th>
 	    <th>Name</th>
-	    <th>Backup Start Date</th>
-	    <th>Backup End Date</th>
-	    <th>Date Created</th>
-	    <th>Created By</th>
-	    <th>Status</th>
+	    <th>Duration Date</th>
+	    <th>Action</th>
 	  </tr>
 	</thead>
 	<tbody>
-	  <tr  *ngFor="let database of databases; let i = index">
+	  <tr  *ngFor="let report of reports; let i = index">
 	    <th scope="row">{{ i + 1 }}</th>
-	    <td>{{ database.name }}</td>
-      <td>{{ database.date_duration_start}} </td>
-      <td>{{ database.date_duration_end}} </td>
-	    <td>{{ database.date_created }}</td>
-	    <td>{{ database.created_by }}</td>
+	    <td>{{ report.name }}</td>
+      <td>{{ report.date_duration_start}} - {{ report.date_duration_end}} </td>
 	    <td>
-	      <span *ngIf="database.is_active" class="badge badge--success" #active> Active</span>
-	      <span *ngIf="!database.is_active"  class="badge badge--failed" #inactive>Inactive</span>
+	      <span class="badge badge--success" #download>View</span>
 	    </td>
 	  </tr>
 	</tbody>

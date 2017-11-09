@@ -1,8 +1,8 @@
 export class Database {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 
-    constructor(name: string) {
-        this.name = name;
-    }
+  constructor(name: string) {
+      this.name = name;
+  }
 }
