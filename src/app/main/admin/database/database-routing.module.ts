@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DatabaseListComponent } from './database-list.component';
 import { DatabaseCreateComponent } from './database-create.component';
+import { DatabaseRestoreComponent} from './database-restore.component';
 
 const routes: Routes = [
     {
@@ -12,6 +13,10 @@ const routes: Routes = [
     {
       path: 'create',
       component: DatabaseCreateComponent
+    },
+    {
+      path: 'restore',
+      component: DatabaseRestoreComponent
     },
     {path: '', redirectTo: 'list'}
 ];

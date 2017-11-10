@@ -12,6 +12,7 @@ import { DatabaseListComponent } from './database-list.component';
 
 import { DatabaseService } from 'app/core/services';
 import { DatabaseCreateComponent } from './database-create.component';
+import { DatabaseRestoreComponent } from './database-restore.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { DatabaseCreateComponent } from './database-create.component';
   ],
   declarations: [
     DatabaseListComponent,
-    DatabaseCreateComponent
+    DatabaseCreateComponent,
+    DatabaseRestoreComponent
   ],
   providers: [ 
     DatabaseDummyApiResponse,

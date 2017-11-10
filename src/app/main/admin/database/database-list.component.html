@@ -35,8 +35,8 @@
 	</div>
       </div>
       <a [routerLink]="['/admin/database/create']"
-	 class="btn btn-default pull-right">
-	<i class="fa fa-plus"></i> &nbsp; Create Backup 
+         class="btn btn-default pull-right">
+        <i class="fa fa-plus"></i> &nbsp; Create Backup 
       </a>
     </div>
     
@@ -50,7 +50,7 @@
 	    <th>Backup End Date</th>
 	    <th>Date Created</th>
 	    <th>Created By</th>
-	    <th>Status</th>
+	    <th colspan="2" style="text-align: center">Action</th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -62,8 +62,16 @@
 	    <td>{{ database.date_created }}</td>
 	    <td>{{ database.created_by }}</td>
 	    <td>
-	      <span *ngIf="database.is_active" class="badge badge--success" #active> Active</span>
-	      <span *ngIf="!database.is_active"  class="badge badge--failed" #inactive>Inactive</span>
+	      <button class="btn btn-sm btn-success"
+          (click)="downloadJSON()">Download</button>
+	    </td>
+	    <td>
+				<!--<button class="btn btn-sm btn-info"
+          (click)="restore()">Restore</button>-->
+          <button class="btn" [routerLink]="['/admin/database/restore']"
+             class="btn btn-default pull-right">
+             Restore
+          </button>
 	    </td>
 	  </tr>
 	</tbody>

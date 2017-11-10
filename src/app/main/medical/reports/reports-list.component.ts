@@ -65,17 +65,18 @@ export class ReportListComponent implements OnInit {
   }
 
   downloadJSPDF(): any {
-    const columns = [
-      { title: "ID", datakey: "id" },
-      { title: "Name", datakey: "name" }
+    var columns = [
+      {title: "Demographics", datakey: "id" },
+      {title: "Total", datakey: "name" }
     ];
-    const data = [
-      { "id": 1, "name": "Shaw"},
-      { "id": 2, "name": "Shaws"}
-    ]
+    var rows = [
+      {"id": 1, "name": "Male"},
+      {"id": 2, "name": "Female"}
+    ];
 
     var doc = new jsPDF('p', 'pt');
-    doc.autoTable(columns,data);
+    doc.text("Breast Cancer Stats");
+    doc.autoTable(columns,rows);
     doc.save("table.pdf");
   }
 

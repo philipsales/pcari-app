@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from 'app/core/services';
 import { Database } from 'app/core/models'; 
 
+import * as FileSaver from 'file-saver';
+
 @Component({
   selector: 'app-database-list',
   templateUrl: './database-list.component.html',
@@ -24,6 +26,14 @@ export class DatabaseListComponent implements OnInit {
           console.log(databases);
           this.databases = databases;
         });
+  }
+
+  downloadJSON(): any {
+    this.databaseService
+      .downloadFileJSON()
+      .subscribe((response) => {
+        FileSaver.saveAs(response, "test.json");
+      });
   }
 
 }
