@@ -6,6 +6,7 @@ import { QuestionControlService }    from './question-control.service';
 import { QuestionService } from './question.service';
 import { TextboxQuestion }  from './question-textbox';
 import { CheckboxQuestion }  from './question-checkbox';
+import { DropdownQuestion }  from './question-dropdown';
 
 @Component({
     selector: 'dynamic-form',
@@ -59,6 +60,16 @@ export class DynamicFormComponent implements OnInit {
 	      } else if(my_question.type == 'checkbox'){
 		  this.questions.push(
 		      new CheckboxQuestion({
+			  key      : my_question.key,
+			  label    : my_question.label,
+			  type     : my_question.type,
+			  value    : my_question.value,
+			  order    : my_question.order
+		      })
+		  );
+	      } else if(my_question.type == 'dropdown'){
+		  this.questions.push(
+		      new DropdownQuestion({
 			  key      : my_question.key,
 			  label    : my_question.label,
 			  type     : my_question.type,

@@ -25,7 +25,7 @@ export class QuestionService {
 	const url = environment.API_ENDPOINT + '/questions/';
 	return this.authHttp.get(url).map((response: Response) => {
 	    console.warn(response, 'OUTTTTTTTTTTTTTT');
-	    return <Question[]>response.json();	
+	    return response.json().map(Question.fromJSON);	
 	});
     }//--getQuestions
 }//--QuestionService

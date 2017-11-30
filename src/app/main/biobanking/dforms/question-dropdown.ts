@@ -11,6 +11,15 @@ export class DropdownQuestion extends QuestionBase<string> {
 	options: {} = {}
     ) {
 	super(options);
-	this.options = options['options'] || [];
+	if(this.value){
+	    let arrvalue = this.value.split('|');
+	    for(var curvalue of arrvalue){
+		this.options.push({
+		    key: this.key,
+		    value: curvalue
+		});
+	    }
+	    console.log(curvalue);
+	}
     }//--constructor
 }//--DropdownQuestion
