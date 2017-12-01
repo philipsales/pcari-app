@@ -11,6 +11,10 @@ const routes: Routes = [
 		loadChildren: './reports/reports.module#ReportsModule'
 	    },
 	    {
+		path: 'questions',
+		loadChildren: './questions/questions.module#QuestionsModule'
+	    },
+	    {
 		path: 'dforms',
 		loadChildren: './dforms/dforms.module#DformsModule'
 	    },
