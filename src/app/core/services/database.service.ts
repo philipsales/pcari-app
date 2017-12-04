@@ -12,6 +12,9 @@ export class DatabaseService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
 
+  private databaseUrlVersion = 'v1';
+  private databaseUrl = environment.API_ENDPOINT + '/databases'; 
+
   constructor(private http: Http) {
   }//--constructor
 
@@ -24,6 +27,18 @@ export class DatabaseService {
                     .then(response => response.json().data as Database[])
                     .catch(this.handleError);
   }//--getAll
+
+  downloadFileJSON() {
+    const url = `${this.databaseUrl}`;
+
+    return this.http
+               .get(url)
+               .map((res) => {
+                 console.info("BODY: ", res['_body']);
+                 console.info("BODY: ", JSON.stringify(res['_body'].data));
+                 return new Blob([JSON.stringify(res['_body'].data)], {type: 'application/json'});
+               });
+  }
 
   private handleError(error: any): Promise<any> {
     console.log('An error occured');
