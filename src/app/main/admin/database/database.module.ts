@@ -8,9 +8,9 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DatabaseDummyApiResponse } from 'app/core/services-dummy';
 
 import { DatabaseRoutingModule } from './database-routing.module';
-import { DatabaseListComponent } from './database-list.component';
-
 import { DatabaseService } from 'app/core/services';
+
+import { DatabaseListComponent } from './database-list.component';
 import { DatabaseCreateComponent } from './database-create.component';
 import { DatabaseRestoreComponent } from './database-restore.component';
 

@@ -6,13 +6,13 @@ export class Role {
     is_active: boolean;
 
     constructor(
-	name: string,
-	description: string,
-	is_active: boolean	
+      name: string,
+      description: string,
+      is_active: boolean	
     ) {
-	this.name = name;
-	this.description = description;
-	this.is_active = is_active;
+      this.name = name;
+      this.description = description;
+      this.is_active = is_active;
     }
 
     toJSON(): RoleJSON {

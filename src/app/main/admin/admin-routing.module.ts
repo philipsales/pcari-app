@@ -18,8 +18,11 @@ const routes: Routes = [
           path: 'database',
           loadChildren: './database/database.module#DatabaseModule'
         },
-        { path: '', redirectTo: 'users' }
-      ]
+        {
+          path: 'consent',
+          loadChildren: './consent/consent.module#ConsentModule'
+        },
+        { path: '', redirectTo: 'users' } ]
   }
 ];
 @NgModule({
