@@ -8,7 +8,7 @@ const routes: Routes = [
 	children: [
 	    {
 		path: 'reports',
-		loadChildren: './reports/reports.module#ReportsModule'
+		loadChildren: './reports/reports-biobanking.module#ReportsBiobankingModule'
 	    },
 	    {
 		path: 'questions',

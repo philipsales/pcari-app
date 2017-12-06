@@ -1,0 +1,74 @@
+<div id="side_menu"
+     class="col-md-3">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div id="side_menu-title">
+	<a aria-disabled="false"
+	   href="#" role="menuitem">
+	  <span class="hUKbS">
+	    <div class="bOUELZ">
+	      <div class="wtrXs">
+		<div class="eXAevj">
+		  <span class="iQFpEi">
+		    <span aria-label="Allied World Healthcare" class="dsxBCn"
+			  role="img"
+			  title="Administration">
+		      <i class="fa fa-flask"></i>
+		    </span>
+		  </span>
+		</div>
+	      </div>
+	    </div>
+	  </span>
+	  <span class="cYQurp">
+	    <span class="icVecj">
+	      <span class="bgdPDV">
+		Biobanking Registry
+	      </span>
+	    </span>
+	  </span>
+	</a>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="sidebar">
+      <ul class="nav nav-sidebar" style="">
+	<li routerLinkActive="active">
+	  <a  [routerLink]="['./users']">
+	    <i class="fa fa-stethoscope"></i>
+	    Cases
+	  </a>
+	</li>
+<<<<<<< HEAD
+	<li routerLinkActive="active">
+	  <a  [routerLink]="['./reports']">
+	    <i class="fa fa-area-chart"></i>
+	    Reports
+	  </a>
+	</li>
+=======
+>>>>>>> feature/reports.03
+	<li routerLinkActive="active">
+	  <a  [routerLink]="['./questions']">
+	    <i class="fa fa-clone"></i>
+	    Questions
+	  </a>
+	</li>
+	<li routerLinkActive="active">
+	  <a  [routerLink]="['./dforms']">
+	    <i class="fa fa-clone"></i>
+	    Forms
+	  </a>
+	</li>
+      </ul>
+    </div>
+  </div> <!-- row -->
+</div>
+
+
+<router-outlet></router-outlet>

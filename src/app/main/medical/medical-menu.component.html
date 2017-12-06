@@ -2,7 +2,7 @@
      class="col-md-3">
   <div class="row">
     <div class="col-md-12">
-      <app-admin-menu-title></app-admin-menu-title>
+      <app-medical-menu-title></app-medical-menu-title>
     </div>
   </div>
 
@@ -10,21 +10,21 @@
     <div class="sidebar">
       <ul class="nav nav-sidebar" style="">
         <li routerLinkActive="active">
-          <a  [routerLink]="['./users']">
-            <i class="fa fa-user"></i>
-            Users
+          <a  [routerLink]="['./cases']">
+            <i class="fa fa-stethoscope"></i>
+            Cases 
           </a>
         </li>
         <li routerLinkActive="active">
-          <a  [routerLink]="['./roles']">
-            <i class="fa fa-group"></i>
-            Roles
+          <a  [routerLink]="['./forms']">
+            <i class="fa fa-clone"></i>
+            Forms 
           </a>
         </li>
         <li routerLinkActive="active">
-          <a  [routerLink]="['./database']">
-            <i class="fa fa-database"></i>
-            Database 
+          <a  [routerLink]="['./reports']">
+            <i class="fa fa-area-chart"></i>
+            Reports 
           </a>
         </li>
       </ul>

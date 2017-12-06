@@ -1,0 +1,81 @@
+<div id="page-content"
+     class="col-md-offset-3 col-md-9">
+
+  <header class="app-header row">
+    <div class="app-header--primary">
+      
+      <div class="app-header--context">
+	<div class="app-header--breadcrumbs">
+	  <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
+	    <li>
+	      <a [routerLink]="['./']">Administration</a>
+	    </li>
+	  </ol>
+	</div>
+	<h1 class="app-header--heading">
+	  Database 
+	</h1>
+      </div>
+    </div> <!-- app-header--primary -->
+
+    
+    <div class="app-header--secondary">
+    </div>
+  </header>
+
+  <div class="row">
+
+    <div class="col-md-12 table-nav">
+      <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-left top_search">
+	<div class="input-group">
+	  <input type="text" class="form-control" placeholder="Search for...">
+	  <span class="input-group-btn">
+	    <button class="btn btn-default" type="button">Go!</button>
+	  </span>
+	</div>
+      </div>
+      <a [routerLink]="['/admin/database/create']"
+         class="btn btn-default pull-right">
+        <i class="fa fa-plus"></i> &nbsp; Create Backup 
+      </a>
+    </div>
+    
+    <div class="col-md-12">
+      <table class="table table-striped">
+	<thead>
+	  <tr>
+	    <th>#</th>
+	    <th>Name</th>
+	    <th>Backup Start Date</th>
+	    <th>Backup End Date</th>
+	    <th>Date Created</th>
+	    <th>Created By</th>
+	    <th colspan="2" style="text-align: center">Action</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr  *ngFor="let database of databases; let i = index">
+	    <th scope="row">{{ i + 1 }}</th>
+	    <td>{{ database.name }}</td>
+      <td>{{ database.date_duration_start}} </td>
+      <td>{{ database.date_duration_end}} </td>
+	    <td>{{ database.date_created }}</td>
+	    <td>{{ database.created_by }}</td>
+	    <td>
+        <button class="btn btn-sm btn-success"
+          (click)="downloadJSON()">Download</button>
+	    </td>
+	    <td>
+				<!--<button class="btn btn-sm btn-info"
+          (click)="restore()">Restore</button>-->
+          <button class="btn" [routerLink]="['/admin/database/restore']"
+             class="btn btn-default pull-right">
+             Restore
+          </button>
+	    </td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+  </div>
+</div>

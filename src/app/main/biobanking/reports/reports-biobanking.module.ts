@@ -11,4 +11,4 @@ import { ReportsRoutingModule } from './reports-routing.module';
   ],
   declarations: [ReportsComponent]
 })
-export class ReportsModule { }
+export class ReportsBiobankingModule { }
