@@ -6,3 +6,5 @@ export * from './services/auth.service';
 export * from './services/database.service';
 export * from './services/report.service';
 export * from './services/consent.service';
+export * from './services/case.service';
+export * from './services/form.service';

@@ -10,8 +10,6 @@ import { AuthHttp } from 'angular2-jwt';
 import { Helper }         from '../helper';
 import { Database }       from '../models';
 import { environment }    from 'environments/environment';
-import { Role }           from '../models';
-import { RoleJSON }       from '../interfaces';
 
 @Injectable()
 export class DatabaseService {
@@ -45,7 +43,7 @@ export class DatabaseService {
                     console.log(response.json())
                     //console.log(response.json().data as Database[])
                     console.log(response.json().data as Database[])
-                      return (response.json().data as Database[])
+                    return (response.json().data as Database[])
                     //return response.json().map(Database.fromJSON);
                  })
                  .catch(Helper.handleError);

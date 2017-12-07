@@ -7,6 +7,10 @@ const routes: Routes = [
     {   path: '', component: BiobankingComponent,
 	children: [
 	    {
+		path: 'cases',
+		loadChildren: './cases/case.module#CaseModule'
+	    },
+	    {
 		path: 'reports',
 		loadChildren: './reports/reports-biobanking.module#ReportsBiobankingModule'
 	    },
@@ -18,7 +22,11 @@ const routes: Routes = [
 		path: 'dforms',
 		loadChildren: './dforms/dforms.module#DformsModule'
 	    },
-	    { path: '', redirectTo: 'reports' }
+	    {
+		path: 'forms',
+		loadChildren: './forms/form.module#FormModule'
+	    },
+	    { path: '', redirectTo: 'cases' }
 	]
     }
 ];

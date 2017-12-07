@@ -1,0 +1,71 @@
+<div id="page-content"
+     class="col-md-offset-3 col-md-9">
+
+  <header class="app-header row">
+    <div class="app-header--primary">
+      
+      <div class="app-header--context">
+	<div class="app-header--breadcrumbs">
+	  <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
+	    <li>
+	      <a [routerLink]="['./']">Biobanking Registry</a>
+	    </li>
+	  </ol>
+	</div>
+	<h1 class="app-header--heading">
+	  Cases 
+	</h1>
+      </div>
+    </div> <!-- app-header--primary -->
+
+    
+    <div class="app-header--secondary">
+    </div>
+  </header>
+
+  <div class="row">
+
+    <div class="col-md-12 table-nav">
+      <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-left top_search">
+	<div class="input-group">
+	  <input type="text" class="form-control" placeholder="Search for...">
+	  <span class="input-group-btn">
+	    <button class="btn btn-default" type="button">Go!</button>
+	  </span>
+	</div>
+      </div>
+      <a [routerLink]="['/biobanking/dforms']"
+         class="btn btn-default pull-right">
+        <i class="fa fa-plus"></i> &nbsp; New Case 
+      </a>
+    </div>
+    
+    <div class="col-md-12">
+      <table class="table table-striped">
+	<thead>
+	  <tr>
+	    <th>#</th>
+	    <th>Case Number</th>
+	    <th>Diagnosis</th>
+	    <th>Date Created</th>
+	    <th style="text-align: center">Action</th>
+	  </tr>
+	</thead>
+	<tbody>
+	  <tr  *ngFor="let case of cases; let i = index">
+	    <th scope="row">{{ i + 1 }}</th>
+	    <td>{{ case.case_nbr }}</td>
+	    <td>{{ case.diagnosis }}</td>
+	    <td>{{ case.date_created }}</td>
+	    <td style="text-align: center">
+        <button 
+         class="btn btn-sm btn-success"
+         (click)="downloadJSON()">
+         <i class="fa fa-plus"></i> &nbsp; View</button>
+	    </td>
+	  </tr>
+	</tbody>
+      </table>
+    </div>
+  </div>
+</div>

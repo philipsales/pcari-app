@@ -39,21 +39,18 @@
     <div class="sidebar">
       <ul class="nav nav-sidebar" style="">
 	<li routerLinkActive="active">
-	  <a  [routerLink]="['./users']">
+	  <a  [routerLink]="['./cases']">
 	    <i class="fa fa-stethoscope"></i>
 	    Cases
 	  </a>
 	</li>
-<<<<<<< HEAD
 	<li routerLinkActive="active">
 	  <a  [routerLink]="['./reports']">
 	    <i class="fa fa-area-chart"></i>
 	    Reports
 	  </a>
 	</li>
-=======
->>>>>>> feature/reports.03
-	<li routerLinkActive="active">
+	<!--<li routerLinkActive="active">
 	  <a  [routerLink]="['./questions']">
 	    <i class="fa fa-clone"></i>
 	    Questions
@@ -63,6 +60,12 @@
 	  <a  [routerLink]="['./dforms']">
 	    <i class="fa fa-clone"></i>
 	    Forms
+	  </a>
+	</li>-->
+	<li routerLinkActive="active">
+	  <a  [routerLink]="['./forms']">
+	    <i class="fa fa-clone"></i>
+	    Forms Templates
 	  </a>
 	</li>
       </ul>

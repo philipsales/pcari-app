@@ -6,3 +6,5 @@ export * from './models/organization';
 export * from './models/database';
 export * from './models/report';
 export * from './models/consent';
+export * from './models/case';
+export * from './models/form';

@@ -16,11 +16,11 @@ const routes: Routes = [
         },
         {
           path: 'database',
-          loadChildren: './database/database.module#DatabaseModule'
+          loadChildren: './databases/database.module#DatabaseModule'
         },
         {
           path: 'consent',
-          loadChildren: './consent/consent.module#ConsentModule'
+          loadChildren: './consents/consent.module#ConsentModule'
         },
         { path: '', redirectTo: 'users' } ]
   }
