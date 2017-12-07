@@ -16,6 +16,7 @@ export class Helper {
 	    } else {
 		const body = error.json() || '';
 		const err = body.errors || JSON.stringify(body);
+    console.log(JSON.stringify(body));
 		if(err instanceof Array){
 		    const err_length = err.length;
 		    for(var i=0; i < err_length; ++i){

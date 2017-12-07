@@ -18,7 +18,8 @@ export class DatabaseListComponent implements OnInit {
 
   ngOnInit() {
     console.log("--OnInit--DatabaseList.component--");
-    this.title = "foo";
+    /*
+    //PROMISE
     this.databaseService
         .getAll()
         .then(databases => {
@@ -26,6 +27,18 @@ export class DatabaseListComponent implements OnInit {
           console.log(databases);
           this.databases = databases;
         });
+    */
+
+    this.databaseService
+        .getAll()
+        .subscribe(
+          databases => {
+            this.databases = databases;
+            console.log('--getAll.list.database--');
+            console.log(databases);
+            console.warn(databases);
+          } 
+        );
   }
 
   downloadJSON(): any {

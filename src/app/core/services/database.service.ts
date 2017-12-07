@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch';
+import { AuthHttp } from 'angular2-jwt';
+//import 'rxjs/add/operator/toPromise';
 
 import { Helper }         from '../helper';
 import { Database }       from '../models';
 import { environment }    from 'environments/environment';
+import { Role }           from '../models';
+import { RoleJSON }       from '../interfaces';
 
 @Injectable()
 export class DatabaseService {
@@ -18,6 +24,7 @@ export class DatabaseService {
   constructor(private http: Http) {
   }//--constructor
 
+  /*
   getAll(): Promise<Database[]> {
     const url = environment.API_ENDPOINT + '/databases/';
     console.log("--OnInit--Database.Service--");
@@ -27,6 +34,22 @@ export class DatabaseService {
                     .then(response => response.json().data as Database[])
                     .catch(this.handleError);
   }//--getAll
+  */
+
+  getAll(): Observable<Database[]> {
+    const url = environment.API_ENDPOINT + '/databases/';
+    console.log("--OnInit--Database.Service--");
+    return this.http.get(url)
+                 .map((response: Response) => {
+                    console.log("--response.json--")
+                    console.log(response.json())
+                    //console.log(response.json().data as Database[])
+                    console.log(response.json().data as Database[])
+                      return (response.json().data as Database[])
+                    //return response.json().map(Database.fromJSON);
+                 })
+                 .catch(Helper.handleError);
+  }
 
   downloadFileJSON() {
     const url = `${this.databaseUrl}`;
