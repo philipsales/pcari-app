@@ -1,0 +1,103 @@
+<!-- start section-->
+  <div class="col-md-12 col-sm-12 col-xs-12"> 
+
+    <div class="form_panel col-sm-offset-2 col-sm-8" style="" >
+
+        <br>
+        <!--start form-->
+        <form data-parsley-validate=""
+              class="form-horizontal form-label-left"
+              #questionSaveForm="ngForm" novalidate>
+
+<div *ngFor="let section of sections; let i = index;">
+      <!--container-->
+      <div class="x_content">
+          <!-- Key -->
+          <div class="form-group"
+               [ngClass]="{'has-error': errors?.key || 
+              (input_key.errors && (input_key.dirty || input_key.touched)) }">
+               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_key">
+                   Key <span class="required">*</span>
+               </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" id="input_key" 
+                     [(ngModel)]="questions"
+                     #input_key="ngModel" 
+                     name="input_key-{{i}}"
+                     required="required"
+                     class="form-control col-md-7 col-xs-12">
+                <div class="help-block"
+                     *ngIf="errors?.key">
+                  <span *ngIf="errors?.key">
+                    {{errors?.key}}
+                  </span>
+                </div> <!-- help-block -->
+                <div class="help-block"
+                     *ngIf="(input_key.errors && (input_key.dirty || input_key.touched))">
+                  <span  [hidden]="!(input_key.errors.required)">
+                    Key is required
+                  </span>
+                </div>
+            </div>
+          </div>
+          <!-- end of Key -->
+
+          <!--Insert parts here-->
+
+           <!--Required-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="ln_solid"></div>
+                <span class="form_footer_editor_fxn col-sm-1 pull-right" >
+                  <i class="fa fa-3x fa-trash-o"></i>
+                </span>
+                <span class="form_footer_editor_fxn col-sm-1 pull-right" >
+                  <i class="fa fa-3x fa-clone"></i>
+                </span>
+                <span class="checkbox form_footer_editor_fxn col-sm-3 pull-right" >
+                  <label class="pull-right">
+                    <input type="checkbox" name="input_required"
+                         (click)="onToggleIsRequired()"
+                         [checked]="question.required"
+                         id="input_required"> Is Required?
+                  </label>
+                </span>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+          <!-- end of required -->
+      </div>
+      <!--end container-->
+</div> 
+        </form>
+        <!--end form-->
+    </div>
+
+    <div class="col-sm-1" style="background: pin">
+      <div class="row">
+        <div class="sidebar">
+          <ul class="nav nav-sidebar" style="">
+            <li class="form_side_editor_fxn" 
+                (click)="onAddSection()">
+              <i class="fa fa-3x fa-plus-circle"></i>
+            </li>
+            <li class="form_side_editor_fxn" 
+                (click)="onSaveClick(questions)">
+              <i class="fa fa-3x fa-file-o"></i>
+            </li>
+            <!--<li class="form_side_editor_fxn" 
+                (click)="onSaveClick(question)">
+              <i class="fa fa-3x fa-save"></i>
+            </li>
+            <li class="form_side_editor_fxn" 
+                (click)="onSaveClick(question)">
+              <i class="fa fa-3x fa-th-list"></i>
+            </li>-->
+          </ul>
+        </div>
+      </div>
+
+  </div> 
+<!-- end section -->

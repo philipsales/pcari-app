@@ -1,0 +1,233 @@
+<div id="page-content"
+     class="col-md-offset-3 col-md-9">
+      <header class="app-header row">
+        <div class="app-header--primary">
+          <div class="app-header--context">
+            <div class="app-header--breadcrumbs">
+              <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
+                <li>
+                  <a [routerLink]="['/biobanking/questions']">Biobanking</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/biobanking/questions/list']">Questions List</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/biobanking/questions/create']">Create</a>
+                </li>
+              </ol>
+            </div>
+            <h1 class="app-header--heading"> Questions </h1>
+            </div>
+          </div>  
+        <div class="app-header--secondary"> </div>
+      </header>
+
+
+  <div class="row" id="page-body">
+    
+
+    <!--start reset-->
+    <div class="col-md-12 table-nav">
+      <div class="col-sm-3 reset-wrapper">
+        <button class="btn btn-default pull-left">
+          <i class="fa fa-refresh"></i> &nbsp; Reset
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <div class="alert alert-danger"
+             [hidden]="!has_errors">
+          <strong>
+            <i class="fa fa-warning"></i> Unable to process your request.
+          </strong>
+          <em>Please see details below: </em>
+        </div>
+      </div>
+      <div class="col-sm-3 save-wrapper">
+        <button class="btn btn-success pull-right"
+          [disabled]="!questionSaveForm.form.valid || 
+                is_processing"
+          (click)="onSaveClick(question)">
+          <i class="fa fa-save"></i> &nbsp; Save
+        </button>
+      </div>
+    </div>
+    <!--end reset-->
+
+
+    <!-- start section-->
+    <div class="col-md-12 col-sm-12 col-xs-12"> 
+
+      <div class="x_panel">
+
+        <div class="x_content">
+          <br>
+          <!--start form-->
+          <form data-parsley-validate=""
+                class="form-horizontal form-label-left"
+                #questionSaveForm="ngForm" novalidate>
+
+            <!-- Key -->
+            <div class="form-group"
+                 [ngClass]="{'has-error': errors?.key || 
+                (input_key.errors && (input_key.dirty || input_key.touched)) }">
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_key">
+                     Key <span class="required">*</span>
+                 </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="input_key" 
+                       [(ngModel)]="question.key"
+                       #input_key="ngModel" name="input_key"
+                       required="required"
+                       class="form-control col-md-7 col-xs-12">
+                  <div class="help-block"
+                       *ngIf="errors?.key">
+                    <span *ngIf="errors?.key">
+                      {{errors?.key}}
+                    </span>
+                  </div> <!-- help-block -->
+                  <div class="help-block"
+                       *ngIf="(input_key.errors && (input_key.dirty || input_key.touched))">
+                    <span  [hidden]="!(input_key.errors.required)">
+                      Key is required
+                    </span>
+                  </div>
+              </div>
+            </div>
+            <!-- end of Key -->
+
+            <!-- Label -->
+            <div class="form-group"
+                 [ngClass]="{'has-error': errors?.label || 
+                 (input_label.errors && (input_label.dirty || input_label.touched)) }">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_label">
+                  Label <span class="required">*</span>
+                </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="input_label" 
+                       [(ngModel)]="question.label"
+                       #input_label="ngModel" name="input_label"
+                       required="required"
+                       class="form-control col-md-7 col-xs-12">
+                <div class="help-block"
+                     *ngIf="errors?.label">
+                  <span *ngIf="errors?.label">
+                    {{errors?.label}}
+                  </span>
+                </div> <!-- help-block -->
+                <div class="help-block"
+                     *ngIf="(input_label.errors && (input_label.dirty || input_label.touched))">
+                  <span  [hidden]="!(input_label.errors.required)">
+                    Label is required
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- end of Label -->
+
+            <!-- Type -->
+            <div class="form-group"
+                 [ngClass]="{'has-error': errors?.type || 
+                (input_type.errors && (input_type.dirty || input_type.touched)) }">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_type">
+                  Type  <span class="required">*</span>
+                </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <select class="select2_group form-control"
+                  id="input_type" name="input_type" 
+                  [(ngModel)]="question.type"
+                  required="required"
+                  #input_type="ngModel">
+                  <option value="text">Text</option>
+                  <option value="checkbox">Answerable by yes or no</option>
+                  <option value="email">Email</option>
+                  <option value="password">Confidential</option>
+                  <option value="dropdown">Selection</option>
+                </select>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <!-- end of Type -->
+            
+            <!-- Value -->
+            <div class="form-group"
+                 *ngIf="question.type == 'dropdown'"
+                 [ngClass]="{'has-error': errors?.value || 
+                (input_value.errors && (input_value.dirty || input_value.touched)) }">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_value">
+                Selection separated by '|'   <span class="required">*</span>
+              </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="input_value" 
+                       [(ngModel)]="question.value"
+                  required="required"
+                       #input_value="ngModel" name="input_value"
+                       class="form-control col-md-7 col-xs-12">
+                <div class="help-block"
+                     *ngIf="errors?.value">
+                  <span *ngIf="errors?.value">
+                    {{errors?.value}}
+                  </span>
+                </div> <!-- help-block -->
+                <div class="help-block"
+                     *ngIf="(input_value.errors && (input_value.dirty || input_value.touched))">
+                  <span  [hidden]="!(input_value.errors.required)">
+                    Value is required
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- end of Value -->
+
+            <!-- Order -->
+            <div class="form-group"
+                 [ngClass]="{'has-error': errors?.order || 
+                 (input_order.errors && (input_order.dirty || input_order.touched)) }">
+                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_order">
+                   Order <span class="required">*</span>
+                 </label>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="number" id="input_order" 
+                       [(ngModel)]="question.order"
+                       #input_order="ngModel" name="input_order"
+                       required="required"
+                       class="form-control col-md-7 col-xs-12">
+                <div class="help-block"
+                     *ngIf="errors?.order">
+                  <span *ngIf="errors?.order">
+                    {{errors?.order}}
+                  </span>
+                </div> <!-- help-block -->
+                <div class="help-block"
+                     *ngIf="(input_order.errors && (input_order.dirty || input_order.touched))">
+                  <span  [hidden]="!(input_order.errors.required)">
+                    Order is required
+                  </span>
+                </div>
+              </div>
+            </div>
+            <!-- end of Order -->
+
+            <!-- Required -->
+            <div class="form-group">
+              <div class="checkbox col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-12" >
+                <label>
+                  <input type="checkbox" name="input_required"
+                   (click)="onToggleIsRequired()"
+                   [checked]="question.required"
+                   id="input_required"> Is Required?
+                </label>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <!-- end of required -->
+          </form>
+          <!--end form-->
+        </div>
+      </div>
+
+    </div> 
+    <!-- end section -->
+
+  </div> <!-- page-body -->
+  
+</div> <!-- page-content -->

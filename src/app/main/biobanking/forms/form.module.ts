@@ -12,20 +12,35 @@ import { FormService } from 'app/core/services';
 
 import { FormListComponent } from './form-list.component';
 
+import { QuestionsRoutingModule } from './questions-routing.module';
+import { QuestionsComponent } from './questions.component';
+import { QuestionsCreateComponent } from './questions-create.component';
+//TODO: transfer in core/services
+import { QuestionService } from './question.service';
+
+
+import { QuestionSectionComponent } from './question-section.component';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(FormDummyApiResponse),
-    FormRoutingModule
+    FormRoutingModule,
+    QuestionsRoutingModule
   ],
   declarations: [
-    FormListComponent
+    FormListComponent,
+    QuestionsComponent,
+    QuestionsCreateComponent,
+    QuestionSectionComponent
   ],
   providers: [ 
     FormDummyApiResponse,
-    FormService
+    FormService,
+//TODO: rename to FormQuestionService
+    QuestionService 
   ]
 })
 export class FormModule { }
