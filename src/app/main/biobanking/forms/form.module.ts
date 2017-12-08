@@ -12,14 +12,19 @@ import { FormService } from 'app/core/services';
 
 import { FormListComponent } from './form-list.component';
 
+import { FormQuestionComponent } from './form-question.component';
+import { FormQuestionService } from './form-question.service';
+
+
 import { QuestionsRoutingModule } from './questions-routing.module';
 import { QuestionsComponent } from './questions.component';
 import { QuestionsCreateComponent } from './questions-create.component';
+
 //TODO: transfer in core/services
 import { QuestionService } from './question.service';
 
-
 import { QuestionSectionComponent } from './question-section.component';
+import { FormQuestionDetailComponent } from './form-question-detail.component';
 
 @NgModule({
   imports: [
@@ -34,11 +39,14 @@ import { QuestionSectionComponent } from './question-section.component';
     FormListComponent,
     QuestionsComponent,
     QuestionsCreateComponent,
-    QuestionSectionComponent
+    QuestionSectionComponent,
+    FormQuestionComponent,
+    FormQuestionDetailComponent
   ],
   providers: [ 
     FormDummyApiResponse,
     FormService,
+    FormQuestionService,
 //TODO: rename to FormQuestionService
     QuestionService 
   ]

@@ -35,8 +35,6 @@ export class QuestionSectionComponent implements OnInit {
       this.count = 1;
       this.sections = Array(this.count).fill(2).map((x,i)=>i);
 
-
-
       this.sample1 = new Question('sample1','label1', 'password', 'Foo',false,1);
       this.sample2 = new Question('sample2','label2', 'password', 'Foo',false,1);
       
@@ -83,37 +81,4 @@ export class QuestionSectionComponent implements OnInit {
 
   }
 
-
-  onSaveClick1(input_question: Question){
-      this.errors = {};
-      this.has_errors = false;
-      this.is_processing = true;
-
-      console.warn(input_question, 'TO CREATE');
-
-      
-      this.service
-        //.create(input_question)
-          .create(input_question)
-          .subscribe( created_question => {
-            this.is_processing = false;
-            console.warn(created_question, 'AYUS');
-            this._notificationsService
-                .success( 'New Question : ' + input_question.label,
-                          'Successfully Created.',
-                          {
-                              timeOut: 10000,
-                              showProgressBar: true,
-                              pauseOnHover: false,
-                              clickToClose: false,
-                          }
-                        )
-                    }, errors  => {
-                        this.errors = errors;
-                        this.has_errors = true;
-                        this.is_processing = false;
-                        console.warn('ERROR');
-                        throw errors;
-                    });
-  }//--onSaveClick
 }
