@@ -53,6 +53,14 @@ export const departments: Department[] = [
               value:'value', 
               required: true, 
               order:  1
+            },
+            { 
+              key: 'key22', 
+              label: 'Faternity history', 
+              type: 'password', 
+              value:'value', 
+              required: true, 
+              order:  1
             }
         ]
       },
@@ -76,7 +84,15 @@ export const departments: Department[] = [
               order:  1
             },
             { 
-              key: 'key2', 
+              key: 'key33', 
+              label: 'Present of Family Cancer', 
+              type: 'password', 
+              value:'value', 
+              required: true, 
+              order:  1
+            },
+            { 
+              key: 'key333', 
               label: 'Present of Family Cancer', 
               type: 'password', 
               value:'value', 

@@ -6,6 +6,9 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Question, Department, Section } from './form-question.model';
 import { departments } from './form-question.model';
 
+import { QuestionService } from './question.service';
+import { NotificationsService } from 'angular2-notifications';
+
 
 @Component({
   selector: 'app-question-detail',
@@ -17,7 +20,16 @@ export class FormQuestionDetailComponent implements OnChanges {
 
   private questions: Question;
 
-  constructor() {
+  private errors: any = {};
+  private has_errors = false;
+  private is_processing = false;
+
+  private count: number;
+
+  constructor(
+  private service: QuestionService,
+  private _notificationsService: NotificationsService) {		
+      this.count = 1;
   }
 
   ngOnChanges() {
