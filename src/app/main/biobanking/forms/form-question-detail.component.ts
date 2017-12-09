@@ -38,7 +38,14 @@ export class FormQuestionDetailComponent implements OnChanges {
       console.log('--questionForm--');
       console.log(this.questionForm);
 
-      this.options = [ "text","email","password","checkbox","dropdown" ];
+      this.options = [ 
+          "text",
+          "checkbox",
+          "dropdown",
+          "radiobutton",
+          "date", 
+          "time" 
+      ];
 
   }
 

@@ -30,13 +30,18 @@
                 </label>
               </div>
 
-              <div class="form-group" *ngIf="question.get('type').value=='dropdown'">
-                  <label class="center-block">Value
-                    Selection separated by '|'   <span class="required">*</span>
-                    <input type="text" id="input_value" 
-                           class="form-control" formControlName="options">
-                  </label>
-                </div>
+              <div class="form-group"
+                *ngIf="
+                question.get('type').value=='dropdown' ||
+                question.get('type').value=='checkbox' ||
+                question.get('type').value=='radiobutton' 
+                ">
+                <label class="center-block">Value
+                  Selection separated by '|'   <span class="required">*</span>
+                  <input type="text" id="input_value" 
+                         class="form-control" formControlName="options">
+                </label>
+              </div>
 
 
               <div class="form-group">
