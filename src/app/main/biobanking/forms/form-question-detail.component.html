@@ -87,7 +87,7 @@
       required="required"
       #input_type="ngModel">
       <option value="text">Short answer</option>
-      [><option value="textarea">Paragraph</option><]
+      <option value="textarea">Paragraph</option>
       <option value="checkbox">Answerable by yes or no</option>
       <option value="email">Email</option>
       <option value="password">Password</option>
@@ -188,15 +188,19 @@
 </div> 
         </form>
 
+
         <form [formGroup]="questionForm">
           <div formArrayName="secretLairs">
             <div *ngFor="let question of secretLairs.controls; let x=index"
                formGroupName="{{x}}">
-              X: {{x}}
-              Index: {{index}}
-              Length: {{secretLairs.controls.length}}
 
-              {{i + 1}}
+              Question: {{x + 1}}
+              <div class="form-group">
+                <label class="center-block">Key:
+                  <input class="form-control"
+                         formControlName="key">
+                </label>
+              </div>
               <div class="form-group">
                 <label class="center-block">Label:
                   <input class="form-control"
@@ -204,9 +208,10 @@
                 </label>
               </div>
               <div class="form-group">
-                <label class="center-block">Key:
-                  <input class="form-control"
-                         formControlName="key">
+                <label class="center-block">Type:
+                  <select class="form-control" formControlName="type">
+                    <option *ngFor="let type of types" [value]="type">{{type}}</option>
+                  </select>
                 </label>
               </div>
               <div class="form-group">

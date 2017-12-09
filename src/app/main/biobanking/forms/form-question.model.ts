@@ -19,6 +19,22 @@ export class Question {
   required?    : boolean;
   order?       : number;
   options?    : string[];
+
+  constructor(
+    key         : string,
+    label       : string,
+    type        : string,
+    value       : string,
+    required    : boolean,
+    order       : number	
+  ){
+    this.key = key;
+    this.label = label;
+    this.type = type;
+    this.value = value;
+    this.required = required;
+    this.order = order;
+  }
 }
 
 export const departments: Department[] = [

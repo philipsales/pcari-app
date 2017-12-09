@@ -23,6 +23,7 @@ export class FormQuestionDetailComponent implements OnChanges {
   private errors: any = {};
   private has_errors = false;
   private is_processing = false;
+  private types: string[];
 
 
   constructor(
@@ -34,6 +35,9 @@ export class FormQuestionDetailComponent implements OnChanges {
       this.createForm();
       console.log('--questionForm--');
       console.log(this.questionForm);
+
+      this.types = [ "text","email","password","checkbox","dropdown" ];
+
   }
 
   ngOnChanges() {
@@ -74,14 +78,8 @@ export class FormQuestionDetailComponent implements OnChanges {
   };
 
   createQuestion(): FormGroup {
-    return this.fb.group({
-      key         : '',
-      label       : '',
-      type        : '',
-      value       : '',
-      required    : false, 
-      order       : this.secretLairs.controls.length + 1 
-    });
+    let order = this.secretLairs.controls.length + 1;
+    return this.fb.group(new Question('','','','',false,order));
   }
 
   onAddLair() {
