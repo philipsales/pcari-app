@@ -4,6 +4,8 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Question, Department, Section } from './form-question.model';
 import { departments } from './form-question.model';
 
+import { QuestionJSON } from './questionjson';
+
 import { NotificationsService } from 'angular2-notifications';
 import { FormQuestionService } from './form-question.service';
 
@@ -23,7 +25,7 @@ export class FormQuestionDetailComponent implements OnChanges {
   private errors: any = {};
   private has_errors = false;
   private is_processing = false;
-  private types: string[];
+  private options: string[];
 
 
   constructor(
@@ -36,7 +38,7 @@ export class FormQuestionDetailComponent implements OnChanges {
       console.log('--questionForm--');
       console.log(this.questionForm);
 
-      this.types = [ "text","email","password","checkbox","dropdown" ];
+      this.options = [ "text","email","password","checkbox","dropdown" ];
 
   }
 
@@ -74,12 +76,14 @@ export class FormQuestionDetailComponent implements OnChanges {
   }
 
   get secretLairs(): FormArray {
+      console.log('--getSecret--');
+      console.log(this.questionForm.controls.secretLairs.value[0]);
       return this.questionForm.get('secretLairs') as FormArray;
   };
 
   createQuestion(): FormGroup {
     let order = this.secretLairs.controls.length + 1;
-    return this.fb.group(new Question('','','','',false,order));
+    return this.fb.group(new Question('','','','',false,order,[]));
   }
 
   onAddLair() {
@@ -100,10 +104,44 @@ export class FormQuestionDetailComponent implements OnChanges {
       console.log('---onAddSection---');
   }
 
-  onSaveClick(input_question: Question[]){
+  ionSaveClick(input_question: Question[]){
       console.log('---onSaveClick---');
-
   }
+
+
+  onSaveClick(input_question: Question){
+      this.errors = {};
+      this.has_errors = false;
+      this.is_processing = true;
+
+      console.warn(input_question, 'TO CREATE');
+
+
+      console.warn(input_question, 'TO CREATE');
+      
+      this.questionService.create(input_question).subscribe(
+          created_question => {
+	      this.is_processing = false;
+	      console.warn(created_question, 'AYUS');
+	      this._notificationsService.success(
+		  'New Question : ' + input_question.label,
+		  'Successfully Created.',
+		  {
+		      timeOut: 10000,
+		      showProgressBar: true,
+		      pauseOnHover: false,
+		      clickToClose: false,
+		  }
+	      )
+          },
+          errors  => {
+	      this.errors = errors;
+	      this.has_errors = true;
+	      this.is_processing = false;
+	      console.warn('ERROR');
+	      throw errors;
+          });
+  }//--onSaveClick
 
 
 }

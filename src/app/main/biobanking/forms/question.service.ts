@@ -29,8 +29,15 @@ export class QuestionService {
     create(question: Question): Observable<Question> {
 	console.log(question);
 	const url = environment.API_ENDPOINT + '/questions/';
-	let question_json = JSON.stringify(question);
-	console.log(question_json);
+
+    console.log('--inside.service.question----');
+    console.log(question);
+
+    let question_json = JSON.stringify(question);
+
+    console.log('--inside.service.question_json----');
+    console.log(question_json);
+
 	let headers = new Headers({ 'Content-Type': 'application/json' });
 	let options = new RequestOptions({ headers: headers });
 	return this.authHttp.post(url, question_json)

@@ -16,8 +16,8 @@ export class Question {
   label       : string;
   type        : string;
   value       : string;
-  required?    : boolean;
-  order?       : number;
+  required    : boolean;
+  order       : number;
   options?    : string[];
 
   constructor(
@@ -26,7 +26,8 @@ export class Question {
     type        : string,
     value       : string,
     required    : boolean,
-    order       : number	
+    order       : number,	
+    options     : string[] 
   ){
     this.key = key;
     this.label = label;
@@ -34,6 +35,7 @@ export class Question {
     this.value = value;
     this.required = required;
     this.order = order;
+    this.options = options;
   }
 }
 
@@ -59,7 +61,8 @@ export const departments: Department[] = [
               type: 'password', 
               value:'value', 
               required: true, 
-              order:  1
+              order:  1,
+              options:  [] 
             },
             { 
               key: 'key22', 
@@ -67,7 +70,8 @@ export const departments: Department[] = [
               type: 'password', 
               value:'value', 
               required: true, 
-              order:  1
+              order:  1,
+              options:  [] 
             }
         ]
       },
@@ -88,7 +92,8 @@ export const departments: Department[] = [
               type: 'password', 
               value:'value', 
               required: true, 
-              order:  1
+              order:  1,
+              options:  [] 
             },
             { 
               key: 'key33', 
@@ -96,7 +101,8 @@ export const departments: Department[] = [
               type: 'password', 
               value:'value', 
               required: true, 
-              order:  1
+              order:  1,
+              options:  [] 
             },
             { 
               key: 'key333', 
@@ -104,7 +110,8 @@ export const departments: Department[] = [
               type: 'password', 
               value:'value', 
               required: true, 
-              order:  1
+              order:  1,
+              options:  [] 
             }
         ]
       },
@@ -119,7 +126,8 @@ export const departments: Department[] = [
               type: 'password', 
               value:'value', 
               required: true, 
-              order:  1
+              order:  1,
+              options:  [] 
             },
             { 
               key: 'key2', 
@@ -127,7 +135,8 @@ export const departments: Department[] = [
               type: 'password', 
               value:'value', 
               required: true, 
-              order:  1
+              order:  1,
+              options:  [] 
             }
         ]
       },
