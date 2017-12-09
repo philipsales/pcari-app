@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 import { Question, Department, Section } from './form-question.model';
 import { departments } from './form-question.model';
@@ -19,10 +20,13 @@ export class FormQuestionComponent implements OnInit {
 
   private dept_count: number;
 
-  constructor() { }
+  constructor() { 
+    console.log('--form-question.constructor--');
+  }
 
 
   ngOnInit() {
+    console.log('--OnInit--');
     this.departments = departments;
     this.dept_count = this.departments.length;
   }

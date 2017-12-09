@@ -28,18 +28,9 @@ export const departments: Department[] = [
     sections: [
       {
         key: "key1",
-        name: "History Section",
+        name: "Surgery History Section",
         order: 1,
-        questions: [
-            { 
-              key: 'key2', 
-              label: 'Maternity history', 
-              type: 'password', 
-              value:'value', 
-              required: true, 
-              order:  1
-            }
-        ]
+        questions: []
       },
       {
         key: "key2",

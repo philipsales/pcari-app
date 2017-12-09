@@ -50,17 +50,17 @@ export class QuestionSectionComponent implements OnInit {
       this.question.required = !this.question.required;
   }
 
+  /*
   onAddSection() {
       console.log('---Add-Section.comopnent---');
       this.sections = Array(++this.count).fill(this.count).map((x,i)=>i);
   }
 
   onSaveClick(input_question: Question[]){
-  //onSaveClick(input_question: string[]){
       console.warn(input_question, '--onSaveClick--');
 
       console.warn(this.samples, '--this.samples--');
-      /*
+
       this.samples.push(
         new Question({
           key      : input_question.key,
@@ -77,8 +77,7 @@ export class QuestionSectionComponent implements OnInit {
       );
 
 
-      */
-
   }
+  */
 
 }
