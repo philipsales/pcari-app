@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
 import { FormQuestionService } from './../forms/form-question.service';
 
-import { Question, Template, Section } from './../forms/form-question.model';
+import { Question, Form, Section } from './../forms/form-question.model';
 
 
 @Component({
