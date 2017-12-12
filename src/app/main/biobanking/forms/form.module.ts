@@ -12,7 +12,7 @@ import { FormService } from 'app/core/services';
 
 import { FormListComponent } from './form-list.component';
 
-import { FormQuestionComponent } from './form-question.component';
+import { QuestionCreateComponent } from './question-create.component';
 import { FormQuestionService } from './form-question.service';
 
 
@@ -29,7 +29,7 @@ import { FormQuestionDetailComponent } from './form-question-detail.component';
   ],
   declarations: [
     FormListComponent,
-    FormQuestionComponent,
+    QuestionCreateComponent,
     FormQuestionDetailComponent
   ],
   providers: [ 

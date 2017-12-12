@@ -6,10 +6,9 @@ import { templates } from './form-question.model';
 
 @Component({
   selector: 'app-form-question',
-  templateUrl: './form-question.component.html',
-  styleUrls: ['./form-question.component.css']
-})
-export class FormQuestionComponent implements OnInit {
+  templateUrl: './question-create.component.html',
+  styleUrls: ['./question-create.component.css']
+}) export class QuestionCreateComponent implements OnInit {
 
   private templates: Template[] = [];
   private selected_sections: Section[];

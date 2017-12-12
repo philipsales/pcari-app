@@ -5,7 +5,7 @@ import { FormListComponent } from './form-list.component';
 //TODO: rename to FormQuestionsCreateComponent
 //import { QuestionsCreateComponent } from './questions-create.component';
 
-import { FormQuestionComponent } from './form-question.component';
+import { QuestionCreateComponent } from './question-create.component';
 
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
     },
     { 
       path: 'create', 
-      component: FormQuestionComponent
+      component: QuestionCreateComponent
     },
     {path: '', redirectTo: 'list'}
 ];

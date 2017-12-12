@@ -27,45 +27,13 @@ export class FormQuestionService {
 
   create(question: Question): Observable<Question> {
     console.log(question);
-    //const url = environment.API_QUESTION_HOST + environment.API_QUESTION_ENDPOINT + '/questions/';
+    const url = environment.API_QUESTION_HOST + '/questions';
 
     console.log('--inside.service.question----');
     console.log(question);
 
     let question_json = JSON.stringify(question);
 
-    //const url = environment.API_ENDPOINT + '/questions/';
-    let question_json3 = 
-      { 
-        "key": "sdbatmansi",
-        "label": "name3",
-        "type": "name3",
-        "required": true,
-        "value": "",
-        "order": 1
-    };
-
-    //const url = environment.API_QUESTION_HOST + '/questions/';
-    const url = 'http://127.0.0.1:8888' + '/questions';
-    let question_json1 = 
-    [
-      { 
-        "key": "name3",
-        "label": "name3",
-        "type": "name3",
-        "required": true,
-        "value": "",
-        "order": 1
-      },
-      { 
-        "key": "name3",
-        "label": "name3",
-        "type": "name3",
-        "required": true,
-        "value": "",
-        "order": 1
-      }
-    ];
 
     console.log('--inside.service.question_json----');
     console.log(question_json);
@@ -76,7 +44,6 @@ export class FormQuestionService {
     headers.append('Allow', 'GET,POST,HEAD,OPTIONS');
     headers.append('Access-Control-Allow-Origin', '*');
     let options = new RequestOptions({ headers: headers });
-
 
     return this.authHttp
                .post(url, question_json, options)
