@@ -19,7 +19,7 @@ const routes: Routes = [
           loadChildren: './questions/questions.module#QuestionsModule'
         },
         {
-          path: 'dforms',
+          path: 'preview',
           loadChildren: './dforms/dforms.module#DformsModule'
         },
         {

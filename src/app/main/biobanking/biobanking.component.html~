@@ -50,16 +50,16 @@
 	    Reports
 	  </a>
 	</li>
-	<!--<li routerLinkActive="active">
+	<li routerLinkActive="active">
 	  <a  [routerLink]="['./questions']">
 	    <i class="fa fa-clone"></i>
 	    Questions
 	  </a>
 	</li>
-	<li routerLinkActive="active">
-	  <a  [routerLink]="['./dforms']">
+	<!--<li routerLinkActive="active">
+	  <a  [routerLink]="['./preview']">
 	    <i class="fa fa-clone"></i>
-	    Forms
+	     Preview
 	  </a>
 	</li>-->
 	<li routerLinkActive="active">

@@ -10,13 +10,12 @@ import { FormDummyApiResponse } from 'app/core/services-dummy';
 import { FormRoutingModule } from './form-routing.module';
 import { FormService } from 'app/core/services';
 
-import { FormListComponent } from './form-list.component';
+import { TemplateListComponent } from './template-list.component';
 
+import { QuestionDetailComponent } from './question-detail.component';
 import { QuestionCreateComponent } from './question-create.component';
 import { FormQuestionService } from './form-question.service';
 
-
-import { FormQuestionDetailComponent } from './form-question-detail.component';
 
 @NgModule({
   imports: [
@@ -28,9 +27,9 @@ import { FormQuestionDetailComponent } from './form-question-detail.component';
     FormRoutingModule
   ],
   declarations: [
-    FormListComponent,
+    TemplateListComponent,
     QuestionCreateComponent,
-    FormQuestionDetailComponent
+    QuestionDetailComponent
   ],
   providers: [ 
     FormDummyApiResponse,

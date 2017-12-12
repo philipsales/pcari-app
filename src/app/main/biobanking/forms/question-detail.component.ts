@@ -9,11 +9,11 @@ import { FormQuestionService } from './form-question.service';
 
 
 @Component({
-  selector: 'form-question-detail',
-  templateUrl: './form-question-detail.component.html',
-  styleUrls: ['./form-question-detail.component.css']
+  selector: 'question-detail',
+  templateUrl: './question-detail.component.html',
+  styleUrls: ['./question-detail.component.css']
 })
-export class FormQuestionDetailComponent implements OnChanges {
+export class QuestionDetailComponent implements OnChanges {
   @Input() question: Question[];
 
   private questionForm: FormGroup;

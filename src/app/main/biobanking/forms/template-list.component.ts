@@ -5,10 +5,10 @@ import { Form } from 'app/core/models';
 
 @Component({
   selector: 'app-form-list',
-  templateUrl: './form-list.component.html',
-  styleUrls: ['./form-list.component.css']
+  templateUrl: './template-list.component.html',
+  styleUrls: ['./template-list.component.css']
 })
-export class FormListComponent implements OnInit {
+export class TemplateListComponent implements OnInit {
 
   private forms: Form[];
 

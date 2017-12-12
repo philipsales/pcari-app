@@ -95,19 +95,24 @@
           <ul class="nav nav-sidebar" style="">
             <li class="form_side_editor_fxn" 
                 (click)="onAddLair()">
-              <i class="fa fa-3x fa-save"></i>
+                <a  [routerLink]="['.']">
+                  <i class="fa fa-3x fa-plus-circle"></i>
+                </a>
             </li>
-            <li class="form_side_editor_fxn" 
-                (click)="onAddSection()">
-              <i class="fa fa-3x fa-plus-circle"></i>
+            <li class="form_side_editor_fxn" >
+              <a  [routerLink]="['../../preview']">
+                <i class="fa fa-3x fa-eye"></i>
+              </a>
             </li>
             <li class="form_side_editor_fxn" 
                 (click)="onSaveClick(questionForm.value.secretLairs)">
-              <i class="fa fa-3x fa-file-o"></i>
+                <a  [routerLink]="['.']">
+                  <i class="fa fa-3x fa-save"></i>
+                </a>
             </li>
             <!--<li class="form_side_editor_fxn" 
                 (click)="onSaveClick(question)">
-              <i class="fa fa-3x fa-save"></i>
+              <i class="fa fa-3x fa-file-o"></i>
             </li>
             <li class="form_side_editor_fxn" 
                 (click)="onSaveClick(question)">

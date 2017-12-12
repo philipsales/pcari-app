@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { FormListComponent } from './form-list.component';
-//TODO: rename to FormQuestionsCreateComponent
-//import { QuestionsCreateComponent } from './questions-create.component';
-
+import { TemplateListComponent } from './template-list.component';
 import { QuestionCreateComponent } from './question-create.component';
 
 
 const routes: Routes = [
     { 
       path: 'list', 
-      component: FormListComponent
+      component: TemplateListComponent
     },
     { 
       path: 'create', 
