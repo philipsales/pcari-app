@@ -13,39 +13,27 @@ import { Question, Template, Section } from './../forms/form-question.model';
   styleUrls: ['./question-section.component.css']
 })
 export class QuestionSectionComponent implements OnChanges {
-  @Input() number: number;
-  @Input() selectedTemplate: Section[];
-  @Output() SectionSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Input() inputSelectedSection: Section[];
+  @Output() outputSelectedQuestions: EventEmitter<any> = new EventEmitter<any>();
 
 
-  private questions: any;
-
-  private sections: Section[];
-  private selectedQuestion: Question;
+  private questions: Question[]=[];
+  private selectedQuestion: Question[]=[];
+  private sections: Section[]=[];
 
   constructor() {
   }
 
   ngOnChanges () {
-
-    console.log('--this.selectedTemplate--');
-
-    this.sections=this.selectedTemplate;
-    console.log(this.selectedTemplate);
-
-    console.log('--emit.number--');
-    this.SectionSelected.emit(this.questions);
+    this.sections=this.inputSelectedSection;
   }
 
-  selectSection(index: number): void {
-    console.log('--section.this.number--');
-    console.log(index);
-    console.log(this.selectedTemplate[index]);
-    this.questions = this.selectedTemplate[index];
-    console.log(this.questions);
+  onSelectSection(index: number): void {
+    this.questions = this.inputSelectedSection[index].questions;
+    this.selectedQuestion = this.questions;
 
-    console.log('--section.number--');
-    this.SectionSelected.emit(this.questions);
+    console.log('--emit.number--', this.selectedQuestion);
+    this.outputSelectedQuestions.emit(this.selectedQuestion);
   }
 
 }

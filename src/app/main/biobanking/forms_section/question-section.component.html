@@ -1,14 +1,9 @@
-<h1>
-  question-section works!
-</h1>
-            <div class="row">
-              <div class="sidebar">
-                <ul class="nav nav-sidebar" style="">
-                    <li *ngFor="let section of sections; let i = index;">
-                      <!--<a (click)="selectSection($event.target.selectedIndex)" >{{section.name}}</a>-->
-                      <!--<a (click)="selectSection($event.target.selectedIndex)" >{{section.name}}</a>-->
-                      <a (click)="selectSection(i)" >{{section.name}}</a>
-                    </li>
-                </ul>
-              </div>
-            </div>
+<div class="row">
+  <div class="sidebar">
+    <ul class="nav nav-sidebar" style="">
+        <li *ngFor="let section of sections; let i = index;">
+          <a (click)="onSelectSection(i)" >{{section.name}}</a>
+        </li>
+    </ul>
+  </div>
+</div>
