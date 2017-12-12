@@ -83,7 +83,6 @@ export class FormQuestionDetailComponent implements OnChanges {
   }
 
   get secretLairs(): FormArray {
-      console.log('--getSecret--');
       return this.questionForm.get('secretLairs') as FormArray;
   };
 

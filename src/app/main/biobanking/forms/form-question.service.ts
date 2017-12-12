@@ -32,10 +32,10 @@ export class FormQuestionService {
     console.log('--inside.service.question----');
     console.log(question);
 
-    //let question_json = JSON.stringify(question);
+    let question_json = JSON.stringify(question);
 
-    const url = environment.API_ENDPOINT + '/questions/';
-    let question_json = 
+    //const url = environment.API_ENDPOINT + '/questions/';
+    let question_json3 = 
       { 
         "key": "sdbatmansi",
         "label": "name3",
@@ -45,8 +45,8 @@ export class FormQuestionService {
         "order": 1
     };
 
-    //const url1 = environment.API_QUESTION_HOST + '/questions/';
-    const url1 = 'http://127.0.0.1:8888' + '/questions';
+    //const url = environment.API_QUESTION_HOST + '/questions/';
+    const url = 'http://127.0.0.1:8888' + '/questions';
     let question_json1 = 
     [
       { 
@@ -76,14 +76,10 @@ export class FormQuestionService {
     headers.append('Allow', 'GET,POST,HEAD,OPTIONS');
     headers.append('Access-Control-Allow-Origin', '*');
     let options = new RequestOptions({ headers: headers });
-    console.log(options)
 
-    //return this.authHttp
-    //.post(url, question_json, options)
-    // .post(url, question_json )
 
     return this.authHttp
-               .post(url1, question_json1, { headers: headers })
+               .post(url, question_json, options)
                .map((response: Response) => {
                   console.warn(response,'--RESPONSE--');
                   return new Question('','','','',false,1,[]);
