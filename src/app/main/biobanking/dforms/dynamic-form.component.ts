@@ -7,6 +7,7 @@ import { QuestionService } from './question.service';
 import { TextboxQuestion }  from './question-textbox';
 import { CheckboxQuestion }  from './question-checkbox';
 import { DropdownQuestion }  from './question-dropdown';
+import { RadiobuttonQuestion }  from './question-radiobutton';
 
 @Component({
     selector: 'dynamic-form',
@@ -77,8 +78,19 @@ export class DynamicFormComponent implements OnInit {
 			  order    : my_question.order
 		      })
 		  );
+	      } else if(my_question.type == 'radiobutton'){
+		  this.questions.push(
+		      new DropdownQuestion({
+			  key      : my_question.key,
+			  label    : my_question.label,
+			  type     : my_question.type,
+			  value    : my_question.value,
+			  order    : my_question.order
+		      })
+		  );
 	      } else {
 		  alert('Not yet supported ' + my_question.type);
+
 	      } 
 	  }//--for
 	  console.log(this.questions);

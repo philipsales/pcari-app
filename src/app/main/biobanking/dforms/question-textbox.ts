@@ -5,9 +5,11 @@ export class TextboxQuestion extends QuestionBase<string> {
     type : string;
 
     constructor(
-	options: {} = {}
+      options: {} = {}
     ) {
-	super(options);
-	this.type = options['type'] || '';
+    super(options);
+
+    this.type = options['type'] || '';
+
     }//--constructor
 }//--TextboxQuestion

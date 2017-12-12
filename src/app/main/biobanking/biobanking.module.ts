@@ -9,6 +9,6 @@ import { BiobankingComponent } from './biobanking.component';
     CommonModule,
     BiobankingRoutingModule
   ],
-  declarations: [BiobankingComponent]
+  declarations: [BiobankingComponent, QuestionSectionComponent]
 })
 export class BiobankingModule { }
