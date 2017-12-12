@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
-import { Question, Department, Section } from './form-question.model';
-import { departments } from './form-question.model';
+import { Question, Template, Section } from './form-question.model';
+import { templates } from './form-question.model';
 
 @Component({
   selector: 'app-form-question',
@@ -11,7 +11,7 @@ import { departments } from './form-question.model';
 })
 export class FormQuestionComponent implements OnInit {
 
-  private departments: Department[] = [];
+  private templates: Template[] = [];
   private selected_sections: Section[];
   private selected_questions: Question[];
   private questions: Question[]=[];
@@ -27,13 +27,14 @@ export class FormQuestionComponent implements OnInit {
 
   ngOnInit() {
     console.log('--OnInit--');
-    this.departments = departments;
-    this.dept_count = this.departments.length;
+
+    this.templates = templates;
+    this.dept_count = this.templates.length;
   }
 
-  selectDepartment(selected_department: number) {
-    console.log(this.departments[selected_department].sections);
-    this.selected_sections = (this.departments[selected_department].sections);
+  selectTemplate(selected_template: number) {
+    console.log(this.templates[selected_template].sections);
+    this.selected_sections = (this.templates[selected_template].sections);
   }
 
   selectSection(index: number) {

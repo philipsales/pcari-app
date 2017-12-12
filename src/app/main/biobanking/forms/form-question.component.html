@@ -12,9 +12,9 @@
             </div>
             <h1 class="app-header--heading"> Reactive Forms </h1>
             <select [selectedIndex]="dept_count - 1" 
-                    (change)="selectDepartment($event.target.selectedIndex)" >
-              <option *ngFor="let department of departments"> 
-                {{ department.name }}
+                    (change)="selectTemplate($event.target.selectedIndex)" >
+              <option *ngFor="let template of templates"> 
+                {{ template.name }}
               </option>
             </select>
 

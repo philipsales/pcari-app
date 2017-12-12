@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
-import { Question, Department, Section } from './form-question.model';
-import { departments } from './form-question.model';
+import { Question, Template, Section } from './form-question.model';
+import { templates } from './form-question.model';
 
 import { QuestionJSON } from './questionjson';
 

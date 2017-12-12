@@ -17,11 +17,6 @@ const routes: Routes = [
       path: 'create', 
       component: FormQuestionComponent
     },
-    {
-      path: 'created',
-      //TODO: rename to FormQuestionsCreateComponent
-      component: QuestionsCreateComponent 
-    },
     {path: '', redirectTo: 'list'}
 ];
 

@@ -1,4 +1,4 @@
-export class Department {
+export class Template {
   id = 0;
   name = '';
   sections: Section[];
@@ -39,10 +39,10 @@ export class Question {
   }
 }
 
-export const departments: Department[] = [
+export const templates: Template[] = [
   {
     id: 1,
-    name: "Surgery Department",
+    name: "Surgery Template",
     sections: [
       {
         key: "key1",
@@ -79,7 +79,7 @@ export const departments: Department[] = [
   },
   {
     id: 2,
-    name: "Obstetrics Department",
+    name: "Obstetrics Template",
     sections: [
       {
         key: "key3",

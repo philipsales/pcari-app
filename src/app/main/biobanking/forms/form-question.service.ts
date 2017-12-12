@@ -8,8 +8,8 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 import { AuthHttp } from 'angular2-jwt';
 
-import { Department }         from './form-question.model';
-import { departments }         from './form-question.model';
+import { Template }         from './form-question.model';
+import { templates }         from './form-question.model';
 import { environment }      from 'environments/environment';
 
 import { Question }         from './form-question.model';
@@ -21,8 +21,8 @@ export class FormQuestionService {
   constructor(private http: Http, public authHttp: AuthHttp) {
   }//--constructor
 
-  getQuestions(): Observable<Department[]> {
-    return of(departments);
+  getQuestions(): Observable<Template[]> {
+    return of(templates);
   }
 
   create(question: Question): Observable<Question> {
