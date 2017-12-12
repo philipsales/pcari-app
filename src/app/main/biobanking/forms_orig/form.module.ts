@@ -16,6 +16,11 @@ import { FormQuestionComponent } from './form-question.component';
 import { FormQuestionService } from './form-question.service';
 
 
+import { QuestionsRoutingModule } from './questions-routing.module';
+import { QuestionsComponent } from './questions.component';
+//import { QuestionsCreateComponent } from './questions-create.component';
+
+import { QuestionSectionComponent } from './question-section.component';
 import { FormQuestionDetailComponent } from './form-question-detail.component';
 
 @NgModule({
@@ -25,10 +30,14 @@ import { FormQuestionDetailComponent } from './form-question-detail.component';
     ReactiveFormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(FormDummyApiResponse),
-    FormRoutingModule
+    FormRoutingModule,
+    QuestionsRoutingModule
   ],
   declarations: [
     FormListComponent,
+    QuestionsComponent,
+    //    QuestionsCreateComponent,
+    QuestionSectionComponent,
     FormQuestionComponent,
     FormQuestionDetailComponent
   ],
