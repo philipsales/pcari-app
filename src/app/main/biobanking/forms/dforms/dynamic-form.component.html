@@ -1,0 +1,52 @@
+<div>
+  <form *ngIf="form"
+	[formGroup]="form"
+	(ngSubmit)="onSubmit()"
+	style="margin-top: 20px;">
+
+    <div class="ln_solid"></div>
+    
+    <div class="form-group">
+      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+	     for="case">Case Number</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="text" class="form-control" type="text">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="ln_solid"></div>
+    
+      <div class="col-md-12 col-sm-12 col-xs-12"> 
+        <div class="row">
+          <div class="col-sm-3"> 
+              <div class="side-section" >
+                <question-section [inputSelectedSection]="sections" ></question-section>
+                <div *ngFor="let section of sections">
+                  {{section.name}}
+                  </div>
+
+              </div>
+          </div>
+          <div class="col-sm-9"> 
+
+            <div *ngFor="let question of questions" class="form-row">
+              <df-question [question]="question" [form]="form"></df-question>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    <div class="form-row col-sm-10">
+      <button type="submit" [disabled]="!form.valid" class="btn btn-success pull-right">
+          Save Form
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+</div>

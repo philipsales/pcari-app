@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { TemplateListComponent } from './template-list.component';
-import { QuestionCreateComponent } from './question-create.component';
-import { QuestionViewComponent } from './question-view.component';
-
+import { FormListComponent }   from './form-list.component';
+import { QuestionCreateComponent }   from './forms_detail/question-create.component';
+import { QuestionViewComponent }   from './forms_detail/question-view.component';
+import { QuestionSectionComponent }   from './forms_section/question-section.component';
 
 const routes: Routes = [
     { 
       path: 'list', 
-      component: TemplateListComponent
+      component: FormListComponent
     },
     { 
       path: 'create', 
-      component: QuestionCreateComponent
+      component: QuestionCreateComponent 
     },
     { 
       path: 'view/:id', 

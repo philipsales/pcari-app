@@ -8,16 +8,15 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormDummyApiResponse } from 'app/core/services-dummy';
 
 import { FormRoutingModule } from './form-routing.module';
+import { FormListComponent } from './form-list.component';
 import { FormService } from 'app/core/services';
+import { FormQuestionService } from './forms_detail/form-question.service';
+ 
 
-import { TemplateListComponent } from './template-list.component';
-
-import { QuestionDetailComponent } from './question-detail.component';
-import { QuestionCreateComponent } from './question-create.component';
-import { QuestionViewComponent } from './question-view.component';
-import { QuestionSectionComponent} from './../forms_section/question-section.component';
-import { FormQuestionService } from './form-question.service';
-
+import { QuestionDetailComponent }  from './forms_detail/question-detail.component';
+import { QuestionCreateComponent }  from './forms_detail/question-create.component';
+import { QuestionViewComponent }    from './forms_detail/question-view.component';
+import { QuestionSectionComponent}  from './forms_section/question-section.component';
 
 @NgModule({
   imports: [
@@ -29,7 +28,7 @@ import { FormQuestionService } from './form-question.service';
     FormRoutingModule
   ],
   declarations: [
-    TemplateListComponent,
+    FormListComponent,
     QuestionCreateComponent,
     QuestionViewComponent,
     QuestionDetailComponent,
@@ -41,4 +40,4 @@ import { FormQuestionService } from './form-question.service';
     FormQuestionService
   ]
 })
-export class FormModule { }
+export class FormListModule { }
