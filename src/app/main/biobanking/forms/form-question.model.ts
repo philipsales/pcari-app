@@ -1,8 +1,11 @@
-export class Template {
-  id = 0;
-  name = '';
-  department? = '';
-  sections: Section[];
+export class Form {
+  id            : number;
+  name          : string;
+  department?   : string;
+  status?       : string;
+  created_by?   : string;
+  is_deleted?   : boolean;
+  sections      : Section[];
 }
 
 export class Section {
@@ -40,7 +43,7 @@ export class Question {
   }
 }
 
-export const templates: Template[] = [
+export const forms: Form[] = [
   {
     id: 1,
     name: "Surgery Template",
@@ -48,12 +51,6 @@ export const templates: Template[] = [
       {
         key: "key1",
         name: "Surgery History Section",
-        order: 1,
-        questions: []
-      },
-      {
-        key: "key2",
-        name: "History Section",
         order: 1,
         questions: [
             { 
@@ -75,6 +72,12 @@ export const templates: Template[] = [
               options:  [] 
             }
         ]
+      },
+      {
+        key: "key2",
+        name: "History Section",
+        order: 1,
+        questions: []
       },
     ]
   },

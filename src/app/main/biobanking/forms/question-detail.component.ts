@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
-import { Question, Template, Section } from './form-question.model';
-import { templates } from './form-question.model';
+//import { Question, Form, Section } from './form-question.model';
+import { Question, Form, Section } from 'app/core/models';
+import { forms } from './form-question.model';
 
 import { NotificationsService } from 'angular2-notifications';
 import { FormQuestionService } from './form-question.service';
@@ -14,7 +15,7 @@ import { FormQuestionService } from './form-question.service';
   styleUrls: ['./question-detail.component.css']
 })
 export class QuestionDetailComponent implements OnChanges {
-  @Input() question: Question[];
+  @Input() inputSelectedQuestions: Question[];
 
   private questionForm: FormGroup;
 
@@ -31,9 +32,7 @@ export class QuestionDetailComponent implements OnChanges {
     private fb: FormBuilder,
     private questionService: FormQuestionService
   ) {		
-      console.log('--form-question-detial.constructor--');
       this.createForm();
-      console.log('--questionForm--');
       console.log(this.questionForm);
 
       this.options = [ 
@@ -48,11 +47,8 @@ export class QuestionDetailComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    console.log('--Onchanges--');
-    console.log(this.question);
 
-    this.questions = this.question;
-
+    this.questions = this.inputSelectedQuestions;
     this.setQuestions(this.questions);
 
   }
@@ -63,21 +59,12 @@ export class QuestionDetailComponent implements OnChanges {
       secretLairs: this.fb.array([])
     });
 
-    console.log(this.questionForm);
   }
 
   setQuestions(questions: Question[]){
-    console.log('--setQuestions--');
-    console.log(questions);
     const questionFGs = questions.map(question => this.fb.group(question));
-    
-    console.log('--FormGroups--');
-    console.log(questionFGs);
-
     const questionFormArray = this.fb.array(questionFGs);
-    console.log('--setQuestions.FormArray--');
     this.questionForm.setControl('secretLairs', questionFormArray);
-    console.log(this.questionForm);
   }
 
   get secretLairs(): FormArray {

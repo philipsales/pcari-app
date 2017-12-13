@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule,ReactiveFormsModule }  from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 
 //InMemory modules
 import { HttpModule } from '@angular/http';
@@ -14,6 +14,8 @@ import { TemplateListComponent } from './template-list.component';
 
 import { QuestionDetailComponent } from './question-detail.component';
 import { QuestionCreateComponent } from './question-create.component';
+import { QuestionViewComponent } from './question-view.component';
+import { QuestionSectionComponent} from './../forms_section/question-section.component';
 import { FormQuestionService } from './form-question.service';
 
 
@@ -29,7 +31,9 @@ import { FormQuestionService } from './form-question.service';
   declarations: [
     TemplateListComponent,
     QuestionCreateComponent,
-    QuestionDetailComponent
+    QuestionViewComponent,
+    QuestionDetailComponent,
+    QuestionSectionComponent
   ],
   providers: [ 
     FormDummyApiResponse,

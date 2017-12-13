@@ -8,3 +8,5 @@ export * from './models/report';
 export * from './models/consent';
 export * from './models/case';
 export * from './models/form';
+export * from './models/section';
+export * from './models/question';

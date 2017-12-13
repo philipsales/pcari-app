@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
 import { Question, Form, Section } from './form-question.model';
 
 import { forms } from './form-question.model';
@@ -11,7 +13,7 @@ import { forms } from './form-question.model';
   styleUrls: ['./question-create.component.css']
 }) 
 
-export class QuestionCreateComponent implements OnInit {
+export class QuestionViewComponent implements OnInit {
 
   private forms: Form[] = [];
 
@@ -24,16 +26,19 @@ export class QuestionCreateComponent implements OnInit {
   private questions: Question[]=[];
 
 
-  constructor() { 
+  constructor(
+  private route: ActivatedRoute
+  ) { 
   }
 
   ngOnInit() {
-    this.forms = this.initForms();
+    this.initForms();
     this.departmentCount = this.forms.length;
   }
 
-  initForms(): Form[] {
-    return forms 
+  initForms(): Section[] {
+    let index = this.route.snapshot.paramMap.get('id');
+    return this.sections = forms[index].sections;
   }
 
   onSelectForm(index: number) {

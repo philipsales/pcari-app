@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormService } from 'app/core/services';
-import { Form } from 'app/core/models';
+import { Form }        from 'app/core/models';
 
 @Component({
   selector: 'app-form-list',
@@ -16,13 +16,14 @@ export class TemplateListComponent implements OnInit {
 
   ngOnInit() {
     this.formService
-        .getAll()
+        .getForms()
         .subscribe(
           forms => {
             this.forms = forms;
           }
         );
-
   }
+
+  
 
 }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TemplateListComponent } from './template-list.component';
 import { QuestionCreateComponent } from './question-create.component';
+import { QuestionViewComponent } from './question-view.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
     { 
       path: 'create', 
       component: QuestionCreateComponent
+    },
+    { 
+      path: 'view/:id', 
+      component: QuestionViewComponent
     },
     {path: '', redirectTo: 'list'}
 ];

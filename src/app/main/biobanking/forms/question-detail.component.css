@@ -217,16 +217,20 @@ form {
   transition: all .2s ease; 
 }
 
-.form_editor_panel {
+.form-editor-panel {
   margin-bottom: 10px;
   padding: 10px 17px;
 }
 
-.form_side_editor_fxn {
+.form-side-editor-fxn {
   margin-bottom: 10px;
   padding: 10px 17px;
 }
 
-.form_footer_editor_fxn {
+.form-side-editor-main {
+  position: fixed;
+} 
+
+.form-footer-editor-fxn {
   margin: 5px;
 }

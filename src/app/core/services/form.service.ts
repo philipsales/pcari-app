@@ -21,13 +21,14 @@ export class FormService {
   constructor(private http: Http) {
   }//--constructor
 
-  getAll(): Observable<Form[]> {
+  getForms(): Observable<Form[]> {
     const url = environment.API_ENDPOINT + '/forms/';
 
     console.log("--OnInit--form.Service--");
 
-    return this.http.get(url)
-                 .map((response: Response) => {
+    return this.http
+               .get(url)
+               .map((response: Response) => {
                     console.log("--response.json--")
                     console.log(response.json().data as Form[])
                     return (response.json().data as Form[])
