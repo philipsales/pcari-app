@@ -9,6 +9,8 @@ import { CheckboxQuestion }  from './question-checkbox';
 import { DropdownQuestion }  from './question-dropdown';
 import { RadiobuttonQuestion }  from './question-radiobutton';
 
+import { Section } from 'app/core/models';
+
 @Component({
     selector: 'dynamic-form',
     templateUrl: './dynamic-form.component.html',
@@ -19,36 +21,67 @@ export class DynamicFormComponent implements OnInit {
     questions: QuestionBase<any>[] = [];
     form : FormGroup;
     payLoad = '';
+    private section: string[];
+    private sections: Section[];
 
     constructor(
       private service: QuestionService,
       private qcs: QuestionControlService
     ) {
+
+    //dummy only
+      this.sections = [ 
+        {
+          "key"   : "12", 
+          "name"  : "Surgery",
+          "order" : 1,
+          "questions" : []
+        },
+        {
+          "key"   : "2", 
+          "name"  : "Chemotheraphy",
+          "order" : 1,
+          "questions" : []
+        },
+        {
+          "key"   : "3", 
+          "name"  : "Radiotheraphy",
+          "order" : 1,
+          "questions" : []
+        },
+        {
+          "key"   : "4", 
+          "name"  : "Immunotheraphy",
+          "order" : 1,
+          "questions" : []
+        },
+      ];
     }//--constructor
 
     ngOnInit() {
       this.service.getQuestions().subscribe(response => {
         for (let my_question of response) {
             console.log(my_question);
-            if(my_question.type == 'text'){
-              this.questions.push(
-                  new TextboxQuestion({
-                    key      : my_question.key,
-                    label    : my_question.label,
-                    value    : my_question.value,
-                    required : my_question.required ? true : false,
-                    order    : my_question.order
-                })
+
+          if(my_question.type == 'text'){
+            this.questions.push(
+              new TextboxQuestion({
+                key      : my_question.key,
+                label    : my_question.label,
+                value    : my_question.value,
+                required : my_question.required ? true : false,
+                order    : my_question.order
+              })
             );
           } 
           else if(my_question.type == 'email'){
-              this.questions.push(
-                  new TextboxQuestion({
-                    key      : my_question.key,
-                    label    : my_question.label,
-                    type     : my_question.type,
-                    order    : my_question.order
-                })
+            this.questions.push(
+              new TextboxQuestion({
+                key      : my_question.key,
+                label    : my_question.label,
+                type     : my_question.type,
+                order    : my_question.order
+              })
             );
           } 
           else if(my_question.type == 'password'){
@@ -84,6 +117,17 @@ export class DynamicFormComponent implements OnInit {
             );
           } 
           else if(my_question.type == 'radiobutton'){
+            this.questions.push(
+              new DropdownQuestion({
+                key      : my_question.key,
+                label    : my_question.label,
+                type     : my_question.type,
+                value    : my_question.value,
+                order    : my_question.order
+              })
+            );
+          } 
+          else if(my_question.type == 'date'){
             this.questions.push(
               new DropdownQuestion({
                 key      : my_question.key,

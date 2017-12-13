@@ -22,7 +22,9 @@ export class QuestionService {
     // Todo: get from a remote source of question metadata
     // Todo: make asynchronous
     getQuestions() : Observable<Question[]>  {
+
       //const url = environment.API_ENDPOINT + '/questions/';
+
     const url = 'http://127.0.0.1:8888' + '/questions';
 
     return this.authHttp
