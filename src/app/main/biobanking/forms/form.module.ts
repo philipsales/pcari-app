@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
+import { DatePickerModule } from 'angular-io-datepicker';
+import { OverlayModule } from 'angular-io-overlay';
 
 //InMemory modules
 import { HttpModule } from '@angular/http';
@@ -34,6 +36,8 @@ import { QuestionService }         from './forms_dforms/question.service';
     CommonModule,
     FormsModule, 
     ReactiveFormsModule,
+    OverlayModule,
+    DatePickerModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(FormDummyApiResponse),
     FormRoutingModule

@@ -17,26 +17,73 @@
     <div *ngSwitchCase="'dropdown'" class="form-group">
       <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
 	     [attr.for]="question.key">{{question.label}}</label>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <select class="select2_group form-control"
-          [id]="question.key" [formControlName]="question.key">
-          <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
-        </select>
-      </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <select class="select2_group form-control"
+                  [id]="question.key" [formControlName]="question.key">
+            <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+          </select>
+        </div>
       <div class="clearfix"></div>
     </div>
 
 
     <div *ngSwitchCase="'checkbox'" class="form-group">
-      <div class="checkbox col-md-offset-4 col-md-6 col-sm-offset-4 col-sm-6 col-xs-12" >
-        <label>
-          <input type="checkbox" [formControlName]="question.key"
-           [id]="question.key"> {{question.label}}
-        </label>
-      </div>
+      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+	     [attr.for]="question.key">{{question.label}}</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div *ngFor="let opt of question.options" class="select2_group form_control checkbox"  >
+            <input type="checkbox" 
+                   [formControlName]="question.key"
+                   [id]="opt.index" 
+                   [value]=opt.value> {{opt.value}}
+          </div>
+        </div>
       <div class="clearfix"></div>
     </div>
+
+    <div *ngSwitchCase="'radiobutton'" class="form-group">
+      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+	     [attr.for]="question.key">{{question.label}}</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <div *ngFor="let opt of question.options" class="radio-inline"  >
+            <input type="radio" 
+                   [formControlName]="question.key"
+                   [id]="opt.index" 
+                   [value]="opt.value"> {{opt.value}}
+          </div>
+        </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div *ngSwitchCase="'datepicker'" class="form-group">
+      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+	     [attr.for]="question.key">{{question.label}}</label>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <date-picker class=""
+                 [formControlName]="question.key"
+                 [showClearButton]="false"
+                 [id]="question.key" ></date-picker>
+        </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div *ngSwitchCase="'textarea'" class="form-group">
+      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+	     [attr.for]="question.key">{{question.label}}</label>
+
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <textarea class="form-control"
+                   [formControlName]="question.key"
+                  [id]="question.key" ></textarea>
+          </div>
+      <div class="clearfix"></div>
+    </div>
+
+
   </div><!-- ngSwitch -->
+
+
 
   <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
 </div>

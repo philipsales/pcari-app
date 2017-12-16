@@ -1,7 +1,7 @@
 import { QuestionBase } from './question-base';
 
-export class DropdownQuestion extends QuestionBase<string> {
-    controlType = 'dropdown';
+export class DatepickerQuestion extends QuestionBase<string> {
+    controlType = 'datepicker';
     options: {
       key   : string,
       value : string
@@ -13,7 +13,7 @@ export class DropdownQuestion extends QuestionBase<string> {
     {
       super(options);
 
-      console.log('dropdown');
+      console.log('datepicker');
       console.log(this.value);
 
       if(this.value){

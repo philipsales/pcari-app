@@ -24,7 +24,7 @@ export class QuestionDetailComponent implements OnChanges {
   private errors: any = {};
   private has_errors = false;
   private is_processing = false;
-  private options: string[];
+  private options: any[];
 
 
   constructor(
@@ -36,12 +36,12 @@ export class QuestionDetailComponent implements OnChanges {
       console.log(this.questionForm);
 
       this.options = [ 
-          "text",
-          "checkbox",
-          "dropdown",
-          "radiobutton",
-          "date", 
-          "time" 
+        { "value": "textbox",     "label": "text" },
+        { "value": "textarea",    "label": "paragraph" },
+        { "value": "dropdown",    "label": "dropdown" },
+        { "value": "checkbox",    "label": "checkbox" },
+        { "value": "radiobutton", "label": "radio" },
+        { "value": "datepicker",  "label": "date" }
       ];
 
   }

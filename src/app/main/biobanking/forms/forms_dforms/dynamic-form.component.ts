@@ -5,9 +5,11 @@ import { QuestionBase }              from './question-base';
 import { QuestionControlService }    from './question-control.service';
 import { QuestionService } from './question.service';
 import { TextboxQuestion }  from './question-textbox';
+import { TextareaQuestion }  from './question-textarea';
 import { CheckboxQuestion }  from './question-checkbox';
 import { DropdownQuestion }  from './question-dropdown';
 import { RadiobuttonQuestion }  from './question-radiobutton';
+import { DatepickerQuestion }  from './question-datepicker';
 
 import { Section } from 'app/core/models';
 
@@ -59,17 +61,31 @@ export class DynamicFormComponent implements OnInit {
     }//--constructor
 
     ngOnInit() {
-      this.service.getQuestions().subscribe(response => {
-        for (let my_question of response) {
-            console.log(my_question);
 
-          if(my_question.type == 'text'){
+      this.service
+          .getQuestions()
+          .subscribe(response => {
+          for (let my_question of response) {
+
+          console.log(my_question);
+
+          if(my_question.type == 'textbox'){
             this.questions.push(
               new TextboxQuestion({
                 key      : my_question.key,
                 label    : my_question.label,
                 value    : my_question.value,
                 required : my_question.required ? true : false,
+                order    : my_question.order
+              })
+            );
+          } 
+          else if(my_question.type == 'textarea'){
+            this.questions.push(
+              new TextareaQuestion({
+                key      : my_question.key,
+                label    : my_question.label,
+                type     : my_question.type,
                 order    : my_question.order
               })
             );
@@ -118,7 +134,7 @@ export class DynamicFormComponent implements OnInit {
           } 
           else if(my_question.type == 'radiobutton'){
             this.questions.push(
-              new DropdownQuestion({
+              new RadiobuttonQuestion({
                 key      : my_question.key,
                 label    : my_question.label,
                 type     : my_question.type,
@@ -127,9 +143,9 @@ export class DynamicFormComponent implements OnInit {
               })
             );
           } 
-          else if(my_question.type == 'date'){
+          else if(my_question.type == 'datepicker'){
             this.questions.push(
-              new DropdownQuestion({
+              new DatepickerQuestion({
                 key      : my_question.key,
                 label    : my_question.label,
                 type     : my_question.type,

@@ -22,7 +22,8 @@
             <div class="form-group">
               <label class="center-block">Type:
                 <select class="form-control" formControlName="type">
-                  <option *ngFor="let option of options" [value]="option">{{option}}</option>
+                  <option *ngFor="let option of options"
+                  [value]="option.value">{{option.label}}</option>
                 </select>
               </label>
             </div>
@@ -36,7 +37,7 @@
               <label class="center-block">Value
                 Selection separated by '|'   <span class="required">*</span>
                 <input type="text" id="input_value" 
-                       class="form-control" formControlName="options">
+                       class="form-control" formControlName="value">
               </label>
             </div>
 
