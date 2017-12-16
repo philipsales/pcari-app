@@ -9,7 +9,7 @@ import { DynamicFormQuestionComponent } from './dynamic-form-question.component'
 
 import { QuestionControlService }  from './question-control.service';
 import { QuestionService }         from './question.service';
-//import { QuestionSectionComponent} from './../forms_section/question-section.component';
+import { QuestionSectionComponent} from './../forms_section/question-section.component';
 
 
 @NgModule({
@@ -20,9 +20,9 @@ import { QuestionService }         from './question.service';
   ],
   declarations: [
     DformsComponent, 
+    //QuestionSectionComponent,
     DynamicFormComponent, 
     DynamicFormQuestionComponent
-    //   QuestionSectionComponent
   ],
   providers: [
     QuestionService,

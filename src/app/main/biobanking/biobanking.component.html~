@@ -56,12 +56,18 @@
 	    Questions
 	  </a>
 	</li>
-	<!--<li routerLinkActive="active">
-	  <a  [routerLink]="['./preview']">
-	    <i class="fa fa-clone"></i>
-	     Preview
-	  </a>
-	</li>-->
+  <li routerLinkActive="active">
+    <a  [routerLink]="['./preview']">
+      <i class="fa fa-clone"></i>
+       Preview
+    </a>
+  </li>
+  <li routerLinkActive="active">
+    <a  [routerLink]="['./forms/preview',0]">
+      <i class="fa fa-clone"></i>
+       Preview Questions
+    </a>
+  </li>
 	<li routerLinkActive="active">
 	  <a  [routerLink]="['./forms']">
 	    <i class="fa fa-clone"></i>

@@ -5,7 +5,6 @@ import { NotificationsService } from 'angular2-notifications';
 
 import { Question, Section }        from 'app/core/models';
 
-
 @Component({
   selector: 'question-section',
   templateUrl: './question-section.component.html',

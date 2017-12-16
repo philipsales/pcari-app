@@ -7,8 +7,11 @@ import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormDummyApiResponse } from 'app/core/services-dummy';
 
+
 import { FormRoutingModule } from './form-routing.module';
 import { FormListComponent } from './form-list.component';
+
+
 import { FormService } from 'app/core/services';
 import { FormQuestionService } from './forms_detail/form-question.service';
  
@@ -17,6 +20,14 @@ import { QuestionDetailComponent }  from './forms_detail/question-detail.compone
 import { QuestionCreateComponent }  from './forms_detail/question-create.component';
 import { QuestionViewComponent }    from './forms_detail/question-view.component';
 import { QuestionSectionComponent}  from './forms_section/question-section.component';
+
+//DFORMS
+import { DformsComponent } from './forms_dforms/dforms.component';
+import { DynamicFormComponent } from './forms_dforms/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './forms_dforms/dynamic-form-question.component';
+
+import { QuestionControlService }  from './forms_dforms/question-control.service';
+import { QuestionService }         from './forms_dforms/question.service';
 
 @NgModule({
   imports: [
@@ -29,15 +40,24 @@ import { QuestionSectionComponent}  from './forms_section/question-section.compo
   ],
   declarations: [
     FormListComponent,
+    QuestionSectionComponent,
     QuestionCreateComponent,
     QuestionViewComponent,
     QuestionDetailComponent,
-    QuestionSectionComponent
+
+//Dforms
+    DformsComponent, 
+    DynamicFormComponent, 
+    DynamicFormQuestionComponent
   ],
   providers: [ 
     FormDummyApiResponse,
     FormService,
-    FormQuestionService
+    FormQuestionService,
+
+//Dforms
+    QuestionService,
+    QuestionControlService
   ]
 })
-export class FormListModule { }
+export class FormModule { }

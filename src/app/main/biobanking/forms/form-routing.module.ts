@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormListComponent }   from './form-list.component';
 import { QuestionCreateComponent }   from './forms_detail/question-create.component';
 import { QuestionViewComponent }   from './forms_detail/question-view.component';
-import { QuestionSectionComponent }   from './forms_section/question-section.component';
+
+import { DformsComponent } from './forms_dforms/dforms.component';
 
 const routes: Routes = [
     { 
@@ -14,6 +15,10 @@ const routes: Routes = [
     { 
       path: 'create', 
       component: QuestionCreateComponent 
+    },
+    { 
+      path: 'preview/:id', 
+      component: DformsComponent 
     },
     { 
       path: 'view/:id', 

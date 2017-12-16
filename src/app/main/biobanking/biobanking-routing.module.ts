@@ -19,12 +19,12 @@ const routes: Routes = [
           loadChildren: './questions/questions.module#QuestionsModule'
         },
         {
-          path: 'preview',
-          loadChildren: './dforms/dforms.module#DformsModule'
-        },
-        {
           path: 'forms',
           loadChildren: './forms/form.module#FormModule'
+        },
+        {
+          path: 'preview',
+          loadChildren: './dforms/dforms.module#DformsModule'
         },
         { path: '', redirectTo: 'cases' }
       ]

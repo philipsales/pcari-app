@@ -22,16 +22,7 @@
           <div class="col-sm-3"> 
 
               <div class="side-section" style="background:red">
-                <h2>Section</h2>
-                <div class="row">
-                  <div class="sidebar">
-                    <ul class="nav nav-sidebar" style="">
-                        <li *ngFor="let section of sections; let i = index;">
-                          <a (click)="onSelectSection(i)" >{{section.name}}</a>
-                        </li>
-                    </ul>
-                  </div>
-                </div>
+                <question-section [inputSelectedSection]="sections" ></question-section>
               </div>
 
           </div>

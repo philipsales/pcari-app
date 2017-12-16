@@ -37,16 +37,12 @@ export class DatabaseService {
   getAll(): Observable<Database[]> {
     const url = environment.API_ENDPOINT + '/databases/';
     console.log("--OnInit--Database.Service--");
-    return this.http.get(url)
-                 .map((response: Response) => {
-                    console.log("--response.json--")
-                    console.log(response.json())
-                    //console.log(response.json().data as Database[])
-                    console.log(response.json().data as Database[])
+    return this.http
+               .get(url)
+               .map((response: Response) => {
                     return (response.json().data as Database[])
-                    //return response.json().map(Database.fromJSON);
-                 })
-                 .catch(Helper.handleError);
+               })
+               .catch(Helper.handleError);
   }
 
   downloadFileJSON() {

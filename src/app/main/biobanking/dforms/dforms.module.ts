@@ -20,9 +20,9 @@ import { QuestionService }         from './question.service';
   ],
   declarations: [
     DformsComponent, 
+    //QuestionSectionComponent,
     DynamicFormComponent, 
     DynamicFormQuestionComponent
-    //   QuestionSectionComponent
   ],
   providers: [
     QuestionService,

@@ -34,9 +34,6 @@ export class DatabaseListComponent implements OnInit {
         .subscribe(
           databases => {
             this.databases = databases;
-            console.log('--getAll.list.database--');
-            console.log(databases);
-            console.warn(databases);
           } 
         );
   }
