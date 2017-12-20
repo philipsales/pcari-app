@@ -28,6 +28,7 @@ export class QuestionCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('question-create-init');
     this.forms = this.initForms();
     this.departmentCount = this.forms.length;
   }

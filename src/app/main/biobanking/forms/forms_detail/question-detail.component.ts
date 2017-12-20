@@ -26,6 +26,8 @@ export class QuestionDetailComponent implements OnChanges {
   private is_processing = false;
   private options: any[];
 
+  sort_order = 1;
+
 
   constructor(
     private _notificationsService: NotificationsService,
@@ -49,8 +51,14 @@ export class QuestionDetailComponent implements OnChanges {
   ngOnChanges() {
 
     this.questions = this.inputSelectedQuestions;
+
     this.setQuestions(this.questions);
 
+    this.ngInitForm();
+  }
+
+  ngInitForm() {
+    this.secretLairs.push(this.createQuestion());
   }
 
   createForm() {
@@ -71,37 +79,55 @@ export class QuestionDetailComponent implements OnChanges {
       return this.questionForm.get('secretLairs') as FormArray;
   };
 
+  //TODO: Refractor
   createQuestion(): FormGroup {
+
     let order = this.secretLairs.controls.length + 1;
     return this.fb.group(new Question('','','','',false,order,[]));
   }
 
-  onAddLair() {
-    console.log('---onAddLair---');
-    console.log('---before--');
-    console.log(this.secretLairs);
-    console.log(this.secretLairs.length);
-
+  onAddQuestion() {
     //this.secretLairs.push(this.fb.group(new Question()));
-
     this.secretLairs.push(this.createQuestion());
-
-    console.log('----after--');
-    console.log(this.secretLairs);
   }
 
+  onDeleteQuestion(index:number) {
+    this.secretLairs.removeAt(index);
+  }
+
+  //TODO: Refractor
+  onCloneQuestion(question: FormGroup, index:number){
+
+    console.log('question', question);
+    console.log('question', question.controls.key.value);
+    console.log('clone-index', index);
+
+
+    let questionClone = new Question(
+       question.controls.key.value,
+       question.controls.label.value,
+       question.controls.type.value,
+       question.controls.value.value,
+       question.controls.required.value,
+       index+1,
+       question.controls.options.value
+    );
+
+
+    console.log('--lairs before---',this.secretLairs);
+    this.secretLairs.push(this.fb.group(questionClone));
+    console.log('--lairs after---',this.secretLairs);
+  }
+
+
+
   onAddSection() {
-      console.log('---onAddSection---');
   }
 
   ionSaveClick(input_question: Question[]){
       console.log('---onSaveClick---');
   }
 
-  onToggleIsRequired(){
-      //console.log(this.question.required);
-      //    this.question.required = !this.question.required;
-  }
 
   onSaveClick(input_question: Question){
       this.errors = {};

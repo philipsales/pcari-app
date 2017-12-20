@@ -47,6 +47,7 @@
             <div class="form-group">
               <label class="center-block">Order:
                 <input class="form-control"
+                       value="{{x+1}}"
                        formControlName="order">
               </label>
             </div>
@@ -57,17 +58,18 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <div class="ln_solid"></div>
-                  <span class="form-footer-editor-fxn col-sm-1 pull-right" >
+                  <span class="form-footer-editor-fxn col-sm-1 pull-right" 
+                      (click)="onDeleteQuestion(x)">
                     <i class="fa fa-3x fa-trash-o"></i>
                   </span>
-                  <span class="form-footer-editor-fxn col-sm-1 pull-right" >
+                  <span class="form-footer-editor-fxn col-sm-1 pull-right" 
+                      (click)="onCloneQuestion(question,x)">
                     <i class="fa fa-3x fa-clone"></i>
                   </span>
                   <span class="checkbox form-footer-editor-fxn col-sm-3 pull-right" >
                     <label class="pull-right">
                       <input type="checkbox" name="input_required"
                            formControlName="required"
-                           (click)="onToggleIsRequired()"
                            [checked]="question.required"
                            id="input_required"> Is Required?
                     </label>
@@ -95,7 +97,7 @@
       <div class="sidebar">
         <ul class="nav nav-sidebar form-side-editor-main" style="">
           <li class="form-side-editor-fxn" 
-              (click)="onAddLair()">
+              (click)="onAddQuestion()">
               <a  [routerLink]="['.']">
                 <i class="fa fa-3x fa-plus-circle"></i>
               </a>
