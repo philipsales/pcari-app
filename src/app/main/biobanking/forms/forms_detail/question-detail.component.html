@@ -1,32 +1,46 @@
 <!-- start section-->
 <div class="col-md-12 col-sm-12 col-xs-12"> 
   <div class="form_panel col-sm-8" style="" >
+
       <form [formGroup]="questionForm">
-        <div formArrayName="secretLairs">
-          <div *ngFor="let question of secretLairs.controls; let x=index"
+        <div formArrayName="secretLairs" [dragula]='"bag-one"'>
+          <div *ngFor="let question of secretLairs.controls; let x=index;
+             trackBy: trackByFn"
              formGroupName="{{x}}">
 
             Question: {{x + 1}}
-            <div class="form-group">
-              <label class="center-block">Key:
+            <br/>
+            <div class="form-group" >
+                <!--hidden key input -->
                 <input class="form-control"
+                       type="hidden"
                        formControlName="key">
-              </label>
             </div>
-            <div class="form-group">
-              <label class="center-block">Label:
-                <input class="form-control"
-                       formControlName="label">
-              </label>
+
+            <div class="row">
+              <div class="form-group">
+                <div class="col-sm-6">
+
+                  <!--question label input -->
+                  <label class="center-block">Question:
+                    <input class="form-control"
+                           placeholder="Untitled question"
+                           formControlName="label">
+                  </label>
+                </div>
+                <div class="col-sm-6">
+
+                  <!--question type input -->
+                  <label class="center-block">Type:
+                    <select class="form-control" formControlName="type">
+                      <option *ngFor="let option of options"
+                      [value]="option.value">{{option.label}}</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-              <label class="center-block">Type:
-                <select class="form-control" formControlName="type">
-                  <option *ngFor="let option of options"
-                  [value]="option.value">{{option.label}}</option>
-                </select>
-              </label>
-            </div>
+
 
             <div class="form-group"
               *ngIf="
@@ -85,10 +99,10 @@
         </div>
         </form>
 
-        <pre>
+        <!--<pre>
         <p>questionForm Value: {{ questionForm.value.secretLairs | json }}</p>
         </pre>
-
+-->
       <!--end form-->
   </div>
 

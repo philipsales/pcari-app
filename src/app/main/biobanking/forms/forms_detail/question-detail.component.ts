@@ -7,12 +7,16 @@ import { forms } from './form-question.model';
 
 import { NotificationsService } from 'angular2-notifications';
 import { FormQuestionService } from './form-question.service';
+import { DragulaService } from 'ng2-dragula';
 
 
 @Component({
   selector: 'question-detail',
   templateUrl: './question-detail.component.html',
-  styleUrls: ['./question-detail.component.css']
+  styleUrls: [
+  './question-detail.component.css', 
+  './question-detail-dragula.component.css'
+  ]
 })
 export class QuestionDetailComponent implements OnChanges {
   @Input() inputSelectedQuestions: Question[];
@@ -23,17 +27,19 @@ export class QuestionDetailComponent implements OnChanges {
 
   private errors: any = {};
   private has_errors = false;
+  private hide_key = true ;
   private is_processing = false;
   private options: any[];
 
-  sort_order = 1;
 
 
   constructor(
     private _notificationsService: NotificationsService,
     private fb: FormBuilder,
-    private questionService: FormQuestionService
-  ) {		
+    private questionService: FormQuestionService,
+    private dragulaService: DragulaService
+  ) 
+  {		
       this.createForm();
       console.log(this.questionForm);
 
@@ -46,6 +52,17 @@ export class QuestionDetailComponent implements OnChanges {
         { "value": "datepicker",  "label": "date" }
       ];
 
+
+      dragulaService.drop.subscribe((value) => {
+        console.log(`drop: ${value[0]}`);
+      });
+
+  }
+
+
+  trackByFn(index, item){
+    console.log('--trackByFn--',index );
+    return index;
   }
 
   ngOnChanges() {
@@ -55,6 +72,7 @@ export class QuestionDetailComponent implements OnChanges {
     this.setQuestions(this.questions);
 
     this.ngInitForm();
+    console.log('--ngOnChanges--');
   }
 
   ngInitForm() {
@@ -71,7 +89,14 @@ export class QuestionDetailComponent implements OnChanges {
 
   setQuestions(questions: Question[]){
     const questionFGs = questions.map(question => this.fb.group(question));
+
+    console.log('---FGS--', questionFGs);
+
     const questionFormArray = this.fb.array(questionFGs);
+
+    console.log('---FormArray--', questionFormArray);
+
+
     this.questionForm.setControl('secretLairs', questionFormArray);
   }
 
@@ -83,11 +108,13 @@ export class QuestionDetailComponent implements OnChanges {
   createQuestion(): FormGroup {
 
     let order = this.secretLairs.controls.length + 1;
-    return this.fb.group(new Question('','','','',false,order,[]));
+
+    let key = this.setHashKey();
+
+    return this.fb.group(new Question(key,'','','',false,order,[]));
   }
 
   onAddQuestion() {
-    //this.secretLairs.push(this.fb.group(new Question()));
     this.secretLairs.push(this.createQuestion());
   }
 
@@ -101,10 +128,13 @@ export class QuestionDetailComponent implements OnChanges {
     console.log('question', question);
     console.log('question', question.controls.key.value);
     console.log('clone-index', index);
+    console.log('secretLaris', this.secretLairs);
+    console.log('questionForm', this.questionForm);
 
+    let key = this.setHashKey();
 
     let questionClone = new Question(
-       question.controls.key.value,
+       key,
        question.controls.label.value,
        question.controls.type.value,
        question.controls.value.value,
@@ -113,12 +143,17 @@ export class QuestionDetailComponent implements OnChanges {
        question.controls.options.value
     );
 
+    //this.secretLairs.push(this.fb.group(questionClone));
+    this.secretLairs.insert(index+1,this.fb.group(questionClone));
 
-    console.log('--lairs before---',this.secretLairs);
-    this.secretLairs.push(this.fb.group(questionClone));
-    console.log('--lairs after---',this.secretLairs);
   }
 
+
+  setHashKey(): string {
+    let max = 111111;
+    let min = 1111;
+    return ''+ Math.floor(Math.random() * (max - min  + 1)) + min;
+  }
 
 
   onAddSection() {

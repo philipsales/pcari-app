@@ -35,25 +35,25 @@ export class DynamicFormComponent implements OnInit {
       this.sections = [ 
         {
           "key"   : "12", 
-          "name"  : "Surgery",
+          "name"  : "Household Information",
           "order" : 1,
           "questions" : []
         },
         {
           "key"   : "2", 
-          "name"  : "Chemotheraphy",
+          "name"  : "Family Planning",
           "order" : 1,
           "questions" : []
         },
         {
           "key"   : "3", 
-          "name"  : "Radiotheraphy",
+          "name"  : "Maternal and Child",
           "order" : 1,
           "questions" : []
         },
         {
           "key"   : "4", 
-          "name"  : "Immunotheraphy",
+          "name"  : "Infant",
           "order" : 1,
           "questions" : []
         },

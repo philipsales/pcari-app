@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 import { DatePickerModule } from 'angular-io-datepicker';
 import { OverlayModule } from 'angular-io-overlay';
 
+import { DragulaModule, DragulaService } from 'ng2-dragula';
+
 //InMemory modules
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -36,6 +38,7 @@ import { QuestionService }         from './forms_dforms/question.service';
     CommonModule,
     FormsModule, 
     ReactiveFormsModule,
+    DragulaModule,
     OverlayModule,
     DatePickerModule,
     HttpModule,
@@ -61,7 +64,9 @@ import { QuestionService }         from './forms_dforms/question.service';
 
 //Dforms
     QuestionService,
-    QuestionControlService
+    QuestionControlService,
+//Dragula
+    DragulaService 
   ]
 })
 export class FormModule { }
