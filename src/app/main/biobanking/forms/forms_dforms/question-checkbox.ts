@@ -14,9 +14,10 @@ export class CheckboxQuestion extends QuestionBase<string> {
     ) 
     {
       super(options);
+      console.warn('--CHECKBOX--', options);
 
-      if(this.value){
-          let arrvalue = this.value.split('|');
+      if(options['options']){
+          let arrvalue = options['options'].split('|');
           let index = 0;
 
           for(var curvalue of arrvalue){
@@ -28,9 +29,7 @@ export class CheckboxQuestion extends QuestionBase<string> {
           }
 	    }
 
-
       this.type = 'checkbox';
-
 
     }//--constructor
 }//--TextboxQuestion

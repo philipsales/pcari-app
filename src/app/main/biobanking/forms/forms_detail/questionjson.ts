@@ -5,4 +5,5 @@ export interface QuestionJSON {
     value       : string;
     required    : boolean;
     order       : number;
+    options     : string;
 }

@@ -80,12 +80,64 @@ export class DynamicFormComponent implements OnInit {
               })
             );
           } 
+          else if(my_question.type == 'dropdown'){
+            this.questions.push(
+              new DropdownQuestion({
+                key      : my_question.key,
+                label    : my_question.label,
+                type     : my_question.type,
+                value    : my_question.value,
+                order    : my_question.order,
+                required : my_question.required ? true : false,
+                options  : my_question.options
+              })
+            );
+          } 
+          else if(my_question.type == 'checkbox'){
+            this.questions.push(
+              new CheckboxQuestion({
+                key      : my_question.key,
+                label    : my_question.label,
+                type     : my_question.type,
+                value    : my_question.value,
+                order    : my_question.order,
+                required : my_question.required ? true : false,
+                options  : my_question.options
+              })
+            );
+          } 
+          else if(my_question.type == 'radiobutton'){
+            this.questions.push(
+              new RadiobuttonQuestion({
+                key      : my_question.key,
+                label    : my_question.label,
+                type     : my_question.type,
+                value    : my_question.value,
+                order    : my_question.order,
+                required : my_question.required ? true : false,
+                options  : my_question.options
+              })
+            );
+          } 
+          else if(my_question.type == 'datepicker'){
+            this.questions.push(
+              new DatepickerQuestion({
+                key      : my_question.key,
+                label    : my_question.label,
+                type     : my_question.type,
+                value    : my_question.value,
+                required : my_question.required ? true : false,
+                order    : my_question.order
+              })
+            );
+          } 
           else if(my_question.type == 'textarea'){
             this.questions.push(
               new TextareaQuestion({
                 key      : my_question.key,
                 label    : my_question.label,
                 type     : my_question.type,
+                required : my_question.required ? true : false,
                 order    : my_question.order
               })
             );
@@ -106,50 +158,6 @@ export class DynamicFormComponent implements OnInit {
                 key      : my_question.key,
                 label    : my_question.label,
                 type     : my_question.type,
-                order    : my_question.order
-              })
-            );
-          } 
-          else if(my_question.type == 'checkbox'){
-            this.questions.push(
-              new CheckboxQuestion({
-                key      : my_question.key,
-                label    : my_question.label,
-                type     : my_question.type,
-                value    : my_question.value,
-                order    : my_question.order
-              })
-            );
-          } 
-          else if(my_question.type == 'dropdown'){
-            this.questions.push(
-              new DropdownQuestion({
-                key      : my_question.key,
-                label    : my_question.label,
-                type     : my_question.type,
-                value    : my_question.value,
-                order    : my_question.order
-              })
-            );
-          } 
-          else if(my_question.type == 'radiobutton'){
-            this.questions.push(
-              new RadiobuttonQuestion({
-                key      : my_question.key,
-                label    : my_question.label,
-                type     : my_question.type,
-                value    : my_question.value,
-                order    : my_question.order
-              })
-            );
-          } 
-          else if(my_question.type == 'datepicker'){
-            this.questions.push(
-              new DatepickerQuestion({
-                key      : my_question.key,
-                label    : my_question.label,
-                type     : my_question.type,
-                value    : my_question.value,
                 order    : my_question.order
               })
             );

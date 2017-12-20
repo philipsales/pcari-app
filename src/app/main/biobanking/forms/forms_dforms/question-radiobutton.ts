@@ -15,8 +15,8 @@ export class RadiobuttonQuestion extends QuestionBase<string> {
     {
       super(options);
 
-      if(this.value){
-          let arrvalue = this.value.split('|');
+      if(options['options']){
+          let arrvalue = options['options'].split('|');
           let index = 0;
 
           for(var curvalue of arrvalue){
@@ -25,9 +25,7 @@ export class RadiobuttonQuestion extends QuestionBase<string> {
               index: index,
               value: curvalue
             });
-            index++;
           }
-
 	    }
 
       this.type = 'radiobutton';

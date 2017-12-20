@@ -4,6 +4,7 @@ export class DropdownQuestion extends QuestionBase<string> {
     controlType = 'dropdown';
     options: {
       key   : string,
+      index : number,
       value : string
     }[] = [];
 
@@ -13,18 +14,20 @@ export class DropdownQuestion extends QuestionBase<string> {
     {
       super(options);
 
-      console.log('dropdown');
-      console.log(this.value);
+      if(options['options']){
+        let arrvalue = options['options'].split('|');
+        let index = 0;
 
-      if(this.value){
-        let arrvalue = this.value.split('|');
         for(var curvalue of arrvalue){
           this.options.push({
             key: this.key,
+            index: index,
             value: curvalue
         });
 	    }
+
 	    console.log(curvalue);
+
     }
   }//--constructor
 }//--DropdownQuestion

@@ -63,7 +63,7 @@ export class DynamicFormComponent implements OnInit {
         for (let my_question of response) {
             console.log(my_question);
 
-          if(my_question.type == 'text'){
+          if(my_question.type == 'textbox'){
             this.questions.push(
               new TextboxQuestion({
                 key      : my_question.key,

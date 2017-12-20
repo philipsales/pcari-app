@@ -36,8 +36,10 @@
               ">
               <label class="center-block">Value
                 Selection separated by '|'   <span class="required">*</span>
-                <input type="text" id="input_value" 
-                       class="form-control" formControlName="value">
+                <!--<input type="text" id="input_value" 
+                       class="form-control" formControlName="value">-->
+                <input type="text" id="input_options" 
+                       class="form-control" formControlName="options">
               </label>
             </div>
 
@@ -64,6 +66,7 @@
                   <span class="checkbox form-footer-editor-fxn col-sm-3 pull-right" >
                     <label class="pull-right">
                       <input type="checkbox" name="input_required"
+                           formControlName="required"
                            (click)="onToggleIsRequired()"
                            [checked]="question.required"
                            id="input_required"> Is Required?

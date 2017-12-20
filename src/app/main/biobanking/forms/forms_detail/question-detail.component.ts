@@ -98,6 +98,10 @@ export class QuestionDetailComponent implements OnChanges {
       console.log('---onSaveClick---');
   }
 
+  onToggleIsRequired(){
+      //console.log(this.question.required);
+      //    this.question.required = !this.question.required;
+  }
 
   onSaveClick(input_question: Question){
       this.errors = {};

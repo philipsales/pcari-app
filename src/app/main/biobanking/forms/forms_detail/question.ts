@@ -7,7 +7,7 @@ export class Question {
     value       : string;
     required    : boolean;
     order       : number;
-    options     : string[];
+    options     : string;
 
     constructor(
       key         : string,
@@ -15,7 +15,8 @@ export class Question {
       type        : string,
       value       : string,
       required    : boolean,
-      order       : number	
+      order       : number,	
+      options     : string
     ) {
       this.key = key;
       this.label = label;
@@ -23,6 +24,7 @@ export class Question {
       this.value = value;
       this.required = required;
       this.order = order;
+      this.options = options;
     }
 
     toJSON(): QuestionJSON {
@@ -32,7 +34,8 @@ export class Question {
           type: this.type,
           value: this.value,
           required: this.required,
-          order: this.order
+          order: this.order,
+          options: this.options
       });
     }
 
@@ -53,7 +56,8 @@ export class Question {
         type: json.type,
         value: json.value,
         required: json.required,
-        order: json.order
+        order: json.order,
+        options: json.options
           });
       }
     }
