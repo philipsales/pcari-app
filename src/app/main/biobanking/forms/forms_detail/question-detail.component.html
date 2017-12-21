@@ -2,8 +2,22 @@
 <div class="col-md-12 col-sm-12 col-xs-12"> 
   <div class="form_panel col-sm-8" style="" >
 
-      <form [formGroup]="questionForm">
+      <form [formGroup]="questionFormGroup">
+
+
+          <div class="form-group" >
+            <label class="center-block">Section:
+              <input class="form-control"
+                     placeholder="Untitled Section"
+                     formControlName="name">
+              </label>
+          </div>
+
+    <br/>
+    <br/>
+
         <div formArrayName="secretLairs" [dragula]='"bag-one"'>
+
           <div *ngFor="let question of secretLairs.controls; let x=index;
              trackBy: trackByFn"
              formGroupName="{{x}}">
@@ -100,7 +114,7 @@
         </form>
 
         <!--<pre>
-        <p>questionForm Value: {{ questionForm.value.secretLairs | json }}</p>
+        <p>questionForm Value: {{ questionFormGroup.value.secretLairs | json }}</p>
         </pre>
 -->
       <!--end form-->
@@ -116,13 +130,19 @@
                 <i class="fa fa-3x fa-plus-circle"></i>
               </a>
           </li>
+          <li class="form-side-editor-fxn" 
+              (click)="onAddSection()">
+              <a  [routerLink]="['.']">
+                <i class="fa fa-3x fa-th-list"></i>
+              </a>
+          </li>
           <li class="form-side-editor-fxn" >
             <a  [routerLink]="['../../preview',0]">
               <i class="fa fa-3x fa-eye"></i>
             </a>
           </li>
           <li class="form-side-editor-fxn" 
-              (click)="onSaveClick(questionForm.value.secretLairs)">
+              (click)="onSaveClick(questionFormGroup.value.secretLairs)">
               <a  [routerLink]="['.']">
                 <i class="fa fa-3x fa-save"></i>
               </a>

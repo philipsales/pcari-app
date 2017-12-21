@@ -21,7 +21,7 @@ import { DragulaService } from 'ng2-dragula';
 export class QuestionDetailComponent implements OnChanges {
   @Input() inputSelectedQuestions: Question[];
 
-  private questionForm: FormGroup;
+  private questionFormGroup: FormGroup;
 
   private questions: Question[];
 
@@ -41,7 +41,6 @@ export class QuestionDetailComponent implements OnChanges {
   ) 
   {		
       this.createForm();
-      console.log(this.questionForm);
 
       this.options = [ 
         { "value": "textbox",     "label": "text" },
@@ -60,10 +59,6 @@ export class QuestionDetailComponent implements OnChanges {
   }
 
 
-  trackByFn(index, item){
-    console.log('--trackByFn--',index );
-    return index;
-  }
 
   ngOnChanges() {
 
@@ -72,7 +67,6 @@ export class QuestionDetailComponent implements OnChanges {
     this.setQuestions(this.questions);
 
     this.ngInitForm();
-    console.log('--ngOnChanges--');
   }
 
   ngInitForm() {
@@ -80,7 +74,7 @@ export class QuestionDetailComponent implements OnChanges {
   }
 
   createForm() {
-    this.questionForm = this.fb.group({
+    this.questionFormGroup = this.fb.group({
       name: '',
       secretLairs: this.fb.array([])
     });
@@ -90,18 +84,16 @@ export class QuestionDetailComponent implements OnChanges {
   setQuestions(questions: Question[]){
     const questionFGs = questions.map(question => this.fb.group(question));
 
-    console.log('---FGS--', questionFGs);
 
     const questionFormArray = this.fb.array(questionFGs);
 
-    console.log('---FormArray--', questionFormArray);
 
 
-    this.questionForm.setControl('secretLairs', questionFormArray);
+    this.questionFormGroup.setControl('secretLairs', questionFormArray);
   }
 
   get secretLairs(): FormArray {
-      return this.questionForm.get('secretLairs') as FormArray;
+      return this.questionFormGroup.get('secretLairs') as FormArray;
   };
 
   //TODO: Refractor
@@ -125,11 +117,6 @@ export class QuestionDetailComponent implements OnChanges {
   //TODO: Refractor
   onCloneQuestion(question: FormGroup, index:number){
 
-    console.log('question', question);
-    console.log('question', question.controls.key.value);
-    console.log('clone-index', index);
-    console.log('secretLaris', this.secretLairs);
-    console.log('questionForm', this.questionForm);
 
     let key = this.setHashKey();
 
@@ -157,10 +144,10 @@ export class QuestionDetailComponent implements OnChanges {
 
 
   onAddSection() {
+    
   }
 
   ionSaveClick(input_question: Question[]){
-      console.log('---onSaveClick---');
   }
 
 
@@ -169,11 +156,6 @@ export class QuestionDetailComponent implements OnChanges {
       this.has_errors = false;
       this.is_processing = true;
 
-      console.warn(input_question, 'TO CREATE');
-
-
-      console.warn(input_question, 'TO CREATE');
-      
       this.questionService.create(input_question).subscribe(
           created_question => {
 	      this.is_processing = false;
