@@ -11,27 +11,70 @@ import { Question, Section }        from 'app/core/models';
   styleUrls: ['./question-section.component.css']
 })
 export class QuestionSectionComponent implements OnChanges {
-  @Input() inputSelectedSection: Section[];
-  @Output() outputSelectedQuestions: EventEmitter<any> = new EventEmitter<any>();
+
+  @Input()  selectedSection: Section[];
+  @Output() selectedQuestions: EventEmitter<any> = new EventEmitter<any>();
 
 
   private questions: Question[]=[];
   private selectedQuestion: Question[]=[];
+
   private sections: Section[]=[];
+  private new_sections: Section[]=[];
+
+  private empty_question: Question[]=[];
 
   constructor() {
   }
 
   ngOnChanges () {
-    this.sections=this.inputSelectedSection;
+    console.log('--inpt--', this.selectedSection);
+
+    //initialize section for preivew
+    if(this.selectedSection) {
+      this.sections = this.selectedSection;
+    }
   }
 
   onSelectSection(index: number): void {
-    this.questions = this.inputSelectedSection[index].questions;
-    this.selectedQuestion = this.questions;
+    console.log('--emit.number--', this.selectedSection);
 
-    console.log('--emit.number--', this.selectedQuestion);
-    this.outputSelectedQuestions.emit(this.selectedQuestion);
+    //initialize section for preivew
+
+    if(this.selectedSection){
+      this.questions = this.selectedSection[index].questions;
+      this.selectedQuestion = this.questions;
+      this.selectedQuestions.emit(this.selectedQuestion);
+    }
+    else {
+      this.selectedQuestions.emit(this.empty_question);
+    }
+
+  }
+
+  //REFRACTOR MAKE into service
+  setHashKey(): string {
+    let max = 111111;
+    let min = 1111;
+    return ''+ Math.floor(Math.random() * (max - min  + 1)) + min;
+  }
+
+  onAddSection(name: string){
+
+    console.log('-delete--jl',name);
+
+    let order = this.sections.length+1;
+
+    let sec = new Section(this.setHashKey(),name,order); 
+
+    this.new_sections.push(sec);
+
+    this.sections.push(sec);
+  }
+
+  onDeleteSection(key){
+    console.log('--delete--',this.sections.filter(section => section.key !== key));
+    this.sections = this.sections.filter(section => section.key !== key);
   }
 
 }

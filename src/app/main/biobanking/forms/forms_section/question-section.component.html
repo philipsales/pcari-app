@@ -1,10 +1,25 @@
 <h2>Section</h2>
 <div class="row">
   <div class="sidebar">
-    <ul class="nav nav-sidebar" style="">
+    <ul class="nav nav-sidebar" style="" class="row">
         <li *ngFor="let section of sections; let i = index;">
           <a (click)="onSelectSection(i)" >{{section.name}}</a>
+
+          <a class="delete" 
+                  (click)="onDeleteSection(section.key);
+                  $event.stopPropagation()">{{section.key}} x</a>
+
         </li>
+        <br/>
     </ul>
+
+    <br/>
+    <span>
+        <br/>
+        <input placeholder="Untitled section" value="Untitled section" 
+               #sectionName>
+        <button (click)="onAddSection(sectionName.value);
+        sectionName.value='Untitled section'">Add</button>
+    </span>
   </div>
 </div>

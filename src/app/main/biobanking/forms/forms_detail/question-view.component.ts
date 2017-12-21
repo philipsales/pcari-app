@@ -46,15 +46,24 @@ export class QuestionViewComponent implements OnInit {
   }
 
   onSelectSection(index: number) {
+    console.log('--onSelectionSection--', this.sections);
+
     this.questions = this.sections[index].questions;
     this.selectedQuestion = this.questions;
     this.selectedDepartment=index;
+
   }
 
   public onSelectQuestion(question: any): void {
-    console.log('--sectionHander',question);
-    console.log(typeof question);
-    this.questions = question;
+    console.log('--onselectQuestion--', question);
+
+
+    if(question){
+      console.log('--sectionHander',question);
+      console.log(typeof question);
+
+      this.questions = question;
+    }
   }
 
 

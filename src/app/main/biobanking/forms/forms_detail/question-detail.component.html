@@ -3,19 +3,6 @@
   <div class="form_panel col-sm-8" style="" >
 
       <form [formGroup]="questionFormGroup">
-
-
-          <div class="form-group" >
-            <label class="center-block">Section:
-              <input class="form-control"
-                     placeholder="Untitled Section"
-                     formControlName="name">
-              </label>
-          </div>
-
-    <br/>
-    <br/>
-
         <div formArrayName="secretLairs" [dragula]='"bag-one"'>
 
           <div *ngFor="let question of secretLairs.controls; let x=index;

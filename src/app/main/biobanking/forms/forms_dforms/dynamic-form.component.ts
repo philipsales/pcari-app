@@ -16,6 +16,7 @@ import { Section } from 'app/core/models';
 @Component({
     selector: 'dynamic-form',
     templateUrl: './dynamic-form.component.html',
+    styleUrls: [ './dynamic-form.component.css' ],
     providers: [ QuestionControlService ]
 })
 export class DynamicFormComponent implements OnInit {
