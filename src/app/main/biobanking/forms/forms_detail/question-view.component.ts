@@ -45,6 +45,7 @@ export class QuestionViewComponent implements OnInit {
     this.sections = this.forms[index].sections;
   }
 
+
   onSelectSection(index: number) {
     console.log('--onSelectionSection--', this.sections);
 

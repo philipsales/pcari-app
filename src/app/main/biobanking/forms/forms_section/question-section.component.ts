@@ -30,10 +30,15 @@ export class QuestionSectionComponent implements OnChanges {
   ngOnChanges () {
     console.log('--inpt--', this.selectedSection);
 
-    //initialize section for preivew
     if(this.selectedSection) {
+    //initialize section for preivew
       this.sections = this.selectedSection;
+    } 
+    else {
+    //instantiate Untitled Section 
+      this.sections.push(new Section(this.setHashKey(),"Untitled Section",0)); 
     }
+
   }
 
   onSelectSection(index: number): void {
@@ -73,8 +78,10 @@ export class QuestionSectionComponent implements OnChanges {
   }
 
   onDeleteSection(key){
-    console.log('--delete--',this.sections.filter(section => section.key !== key));
     this.sections = this.sections.filter(section => section.key !== key);
+  }
+
+  onEditSection(key){
   }
 
 }

@@ -6,14 +6,16 @@
           <a (click)="onSelectSection(i)" >{{section.name}}</a>
 
           <a class="delete" 
+                  (click)="onEditSection(section.key);
+                  $event.stopPropagation()">
+                  <i class="fa fa-2x fa-pencil"></i></a>
+          <a class="edit" 
                   (click)="onDeleteSection(section.key);
-                  $event.stopPropagation()">{{section.key}} x</a>
+                  $event.stopPropagation()"> 
+                  <i class="fa fa-2x fa-trash-o"></i></a>
 
         </li>
-        <br/>
     </ul>
-
-    <br/>
     <span>
         <br/>
         <input placeholder="Untitled section" value="Untitled section" 
