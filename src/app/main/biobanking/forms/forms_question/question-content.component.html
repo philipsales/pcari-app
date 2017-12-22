@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span> Question {{ index + 1 }}</span>
+    <span class="glyphicon glyphicon-remove pull-right" 
+          (click)="removed.emit()">
+    </span>
+  </div>
+
+  <div class="panel-body">
+    <div [formGroup]="questionGroup">
+      <div class="form-group">
+        <label>Key</label>
+        <input type="text" class="form-control"
+               formControlName="key">
+        <label>Label</label>
+        <input type="text" class="form-control"
+                formControlName="label">
+        <label>Type</label>
+        <input type="text" class="form-control"
+                formControlName="type">
+        <label>Order</label>
+        <input type="text" class="form-control"
+                formControlName="order">
+        <label>Required</label>
+        <input type="text" class="form-control"
+                formControlName="required">
+      </div>
+
+    </div>
+  </div>
+</div>

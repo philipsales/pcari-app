@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span> Qusetion Array</span>
+  </div>
+  <div class="panel-body">
+
+    <div [formGroup]="parentForm">
+      <div formArrayName="questions">
+        <div *ngFor="let question of questions; let i = index;">
+           {{question.label}}
+        </div>
+        <!--<form-section *ngFor="let section of sections; let i = index;"
+           [formArray]="parentForm.controls.sections" 
+           [section]="section" 
+           (removed)="removeSection(i)" >
+        </form-section>-->
+        <question-content *ngFor="let question of questions"
+           [formArray]="parentForm.controls.questions"
+           [question]="question"
+           >
+
+
+        </question-content>
+      </div>
+
+      <div class="row">
+         <button class="btn btn-primary" (click)="addQuestion()">
+           Add Question+
+         </button>
+      </div>
+    </div>
+
+  </div>
+</div>
