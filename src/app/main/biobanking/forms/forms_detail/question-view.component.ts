@@ -9,8 +9,8 @@ import { forms } from './form-question.model';
 
 @Component({
   selector: 'app-form-question',
-  templateUrl: './question-create.component.html',
-  styleUrls: ['./question-create.component.css']
+  templateUrl: './form-create.component.html',
+  styleUrls: ['./form-create.component.css']
 }) 
 
 export class QuestionViewComponent implements OnInit {

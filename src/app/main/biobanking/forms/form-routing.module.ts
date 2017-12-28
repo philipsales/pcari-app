@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { FormListComponent }   from './form-list.component';
-import { QuestionCreateComponent }   from './forms_detail/question-create.component';
+import { FormCreateComponent }   from './forms_detail/form-create.component';
 import { QuestionViewComponent }   from './forms_detail/question-view.component';
 
 import { DformsComponent } from './forms_dforms/dforms.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
     },
     { 
       path: 'create', 
-      component: QuestionCreateComponent 
+      component: FormCreateComponent 
     },
     { 
       path: 'preview/:id', 

@@ -10,3 +10,4 @@ export * from './models/case';
 export * from './models/form';
 export * from './models/section';
 export * from './models/question';
+export * from './models/option';

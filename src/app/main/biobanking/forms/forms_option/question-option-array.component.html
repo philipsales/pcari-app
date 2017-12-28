@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span> Option Array </span>
+  </div>
+
+  <div class="panel-body">
+    <div [formGroup]="parentForm">
+      <question-option *ngFor="let option of options"
+         [formArray]="parentForm.controls.options" 
+         [option]="option" 
+         (removed)="removeOption(i)" >
+        </question-option>
+    </div>
+    <div class="row">
+       <button class="btn btn-primary" (click)="addOption()">
+         Add Option+
+       </button>
+    </div>
+  </div>
+</div>

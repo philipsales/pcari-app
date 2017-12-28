@@ -10,16 +10,28 @@ import { Question, Form, Section } from './../forms_detail/form-question.model';
 })
 export class QuestionContentArrayComponent implements OnInit {
 
-  @Input() questions: Question[]; 
   @Input() parentForm: FormGroup;
+  @Input() questions: Question[]; 
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    console.log('--content--aray--', this.questions);
-    console.log('--content----', this.parentForm);
-
+    this.initQuestion();
     this.parentForm.addControl('questions', new FormArray([]));
+  }
+
+  initQuestion(){
+    if(this.questions.length == 0){
+      this.questions.push({
+        key        : '',
+        label      : '',
+        type       : '',
+        value      : '',
+        required   : false,
+        order      : 0,
+        options    : []
+      });
+    }
   }
 
   addQuestion(){
@@ -34,8 +46,11 @@ export class QuestionContentArrayComponent implements OnInit {
     })
   }
 
-  deleteQuestion(){
-    
+  removeQuestion(index: number){
+    console.log('--content-array-index', index);
+
+    this.questions.splice(index,1);
+    (<FormArray>this.parentForm.get('questions')).removeAt(index);
   }
 
 }

@@ -1,0 +1,69 @@
+<div id="page-content"
+     class="col-md-offset-3 col-md-9">
+      <header class="app-header row">
+        <div class="app-header--primary">
+          <div class="app-header--context">
+
+            <div class="app-header--breadcrumbs">
+              <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
+                <li>
+                  <a [routerLink]="['/biobanking/forms']">Biobanking Registry</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/biobanking/forms/list']">Forms List</a>
+                </li>
+                <li>
+                  <a [routerLink]="['/biobanking/forms/create']">Create</a>
+                </li>
+              </ol>
+            </div>
+            <h1 class="app-header--heading">
+              Forms
+            </h1>
+          </div>
+        </div>
+      </header>
+      <br/> <br/>
+
+      <div class="col-md-12 col-sm-12 col-xs-12"> 
+        <div class="row">
+          <div class="col-sm-3"> 
+              <!--<div class="side-section" >
+              </div>-->
+          </div>
+
+
+          <h3>templateForm</h3>
+          <form [formGroup]="templateForm">
+             <div class="form-group">
+                <label> Department</label>
+                <input type="text" class="form-control"
+                       placeholder="id"
+                       formControlName="id">
+                <input type="text" class="form-control"
+                       placeholder="name"
+                       formControlName="name">
+             </div>
+            <div class="col-sm-9" style="background: eal" > 
+              <!--<question-detail [selectedQuestions]="questions"> </question-detail>-->
+              <form-section-array
+                [parentForm]="templateForm"
+                [sections]="data?.sections" > 
+              </form-section-array>
+
+             <button class="btn btn-primary" 
+                    (click)="onSaveClick(templateForm.value)">
+                  <i class="fa fa-2x fa-save"></i> Save  
+             </button>
+
+            </div>
+          </form>
+
+
+
+
+
+
+        </div>
+      </div>
+</div>

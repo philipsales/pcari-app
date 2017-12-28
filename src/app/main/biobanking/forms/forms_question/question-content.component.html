@@ -16,14 +16,29 @@
         <input type="text" class="form-control"
                 formControlName="label">
         <label>Type</label>
-        <input type="text" class="form-control"
-                formControlName="type">
+        <select formControlName="type" 
+                class="form-control">
+            <option *ngFor="let type of questionTypes"
+                    [value]="type.value">{{type.label}}</option>
+        </select>
         <label>Order</label>
         <input type="text" class="form-control"
                 formControlName="order">
         <label>Required</label>
         <input type="text" class="form-control"
                 formControlName="required">
+
+        <div class="form-group"
+           *ngIf="questionGroup.get('type').value =='dropdown' ||
+                  questionGroup.get('type').value =='checkbox' ||
+                  questionGroup.get('type').value =='radiobutton'" >
+          
+          <question-option-array
+             [parentForm]="questionGroup"
+             [options]="question?.options" >
+          </question-option-array>
+        </div>
+
       </div>
 
     </div>

@@ -6,20 +6,11 @@
 
     <div [formGroup]="parentForm">
       <div formArrayName="questions">
-        <div *ngFor="let question of questions; let i = index;">
-           {{question.label}}
-        </div>
-        <!--<form-section *ngFor="let section of sections; let i = index;"
-           [formArray]="parentForm.controls.sections" 
-           [section]="section" 
-           (removed)="removeSection(i)" >
-        </form-section>-->
-        <question-content *ngFor="let question of questions"
+        <question-content *ngFor="let question of questions; let i = index;"
            [formArray]="parentForm.controls.questions"
-           [question]="question"
+           [question]="question" 
+           (removed)="removeQuestion(i)" 
            >
-
-
         </question-content>
       </div>
 

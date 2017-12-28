@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <span> Section {{ index + 1 }}</span>
+    <span class="glyphicon glyphicon-remove pull-right" 
+          (click)="removed.emit()">
+    </span>
+  </div>
+
+  <div class="panel-body">
+    <div [formGroup]="sectionGroup">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control"
+                formControlName="name">
+        <label>Key</label>
+        <input type="text" class="form-control"
+                formControlName="key">
+        <question-content-array 
+                [parentForm]="sectionGroup"
+                [questions]="section?.questions"
+        ></question-content-array>
+      </div>
+
+    </div>
+  </div>
+</div>

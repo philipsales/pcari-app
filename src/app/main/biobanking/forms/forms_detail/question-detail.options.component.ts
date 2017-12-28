@@ -2,7 +2,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 //import { Question, Form, Section } from './form-question.model';
-import { Form, Section, Question, Option } from 'app/core/models';
+import { Question, Form, Section } from 'app/core/models';
 import { forms } from './form-question.model';
 
 import { NotificationsService } from 'angular2-notifications';

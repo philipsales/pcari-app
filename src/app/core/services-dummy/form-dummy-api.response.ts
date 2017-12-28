@@ -3,31 +3,6 @@ export class FormDummyApiResponse implements InMemoryDbService {
 
   createDb() {
 
-  /*
-    let forms = [
-      { 
-        id: 0, 
-        name: "Breast Cancer Registry Template 1", 
-        department: "General Surgery Department", 
-        approval: "Pending", 
-        status: "Not Active", 
-        created_by: "Dr. Apple", 
-        date_created: "10/10/2017", 
-        is_deleted: "FALSE" 
-      },
-      { 
-        id: 1, 
-        name: "Breast Cancer Registry Template 2", 
-        department: "General Surgery Department", 
-        approval: "Approve", 
-        status: "Active", 
-        created_by: "Dr. Anthony", 
-        date_created: "11/10/2017", 
-        is_deleted: "FALSE" 
-      }
-    ];
- */
-
   let forms = [
     {
       id: 0, 
@@ -41,110 +16,139 @@ export class FormDummyApiResponse implements InMemoryDbService {
       sections: [
         {
           key: "key1",
-          name: "Surgery History Section",
+          name: "Demographic History",
           order: 1,
           questions: [
               { 
                 key: 'key2', 
-                label: 'Last hospitallization', 
-                type: 'password', 
-                value:'value', 
+                label: 'What is your gender', 
+                type: 'dropdown', 
+                value: 'value', 
                 required: true, 
                 order:  1,
-                options:  [] 
+                options: [
+                  {
+                    id: 123123,
+                    name: "male"
+                  },
+                  {
+                    id: 1231323,
+                    name: "female"
+                  }
+                ] 
               },
               { 
-                key: 'key22', 
-                label: 'Faternity history', 
-                type: 'password', 
-                value:'value', 
+                key: 'key333',
+                label: 'What is your civil status', 
+                type:  'dropdown', 
+                value: '', 
                 required: true, 
-                order:  1,
-                options:  [] 
-              }
+                order:  2,
+                options: [
+                  {
+                    id: 23,
+                    name: "married"
+                  },
+                  {
+                    id: 12,
+                    name: "single"
+                  }
+                ] 
+              },
           ]
         },
         {
           key: "key2",
-          name: "History Section",
-          order: 1,
-          questions: []
+          name: "Family Health Illness History",
+          order: 2,
+          questions: [
+              { 
+                key: 'key1122', 
+                label: 'Family History of Disease', 
+                type:   'checkbox', 
+                value:  'value', 
+                required: true, 
+                order:  1,
+                options: [
+                  {
+                    id: 8584,
+                    name: "Diabetes"
+                  },
+                  {
+                    id: 1223,
+                    name: "Hypertension"
+                  }
+                ] 
+              },
+          ]
         },
+
       ]
     },
     {
       id: 1, 
-      name: "Thyroid Cancer Registry Template 2", 
-      department: "General Surgery Department", 
-      approval: "Approve", 
-      status: "Active", 
-      created_by: "Dr. Anthony", 
-      date_created: "11/10/2017", 
-      is_deleted: false, 
+      name: "Cancer Registry Template 2", 
+      department: "Obstetric Surgery Department", 
+      approval: "Pending", 
+      status: "Not Active", 
+      created_by: "Dr. Apple", 
+      date_created: "10/10/2017", 
+      is_deleted: false,
       sections: [
         {
-          key: "key3",
-          name: "Family History",
+          key: "key1",
+          name: "Demographic History",
           order: 1,
           questions: [
               { 
-                key: 'key2', 
-                label: 'Present of Family Ilness', 
-                type: 'password', 
-                value:'value', 
+                key: 'key333',
+                label: 'What is your civil status', 
+                type:  'dropdown', 
+                value: '', 
                 required: true, 
-                order:  1,
-                options:  [] 
+                order:  2,
+                options: [
+                  {
+                    id: 23,
+                    name: "married"
+                  },
+                  {
+                    id: 12,
+                    name: "single"
+                  }
+                ] 
               },
-              { 
-                key: 'key33', 
-                label: 'Present of Family Cancer', 
-                type: 'password', 
-                value:'value', 
-                required: true, 
-                order:  1,
-                options:  [] 
-              },
-              { 
-                key: 'key333', 
-                label: 'Present of Family Cancer', 
-                type: 'password', 
-                value:'value', 
-                required: true, 
-                order:  1,
-                options:  [] 
-              }
           ]
         },
         {
-          key: "key4",
-          name: "Treatment",
-          order: 1,
+          key: "key2",
+          name: "Family Health Illness History",
+          order: 2,
           questions: [
               { 
-                key: 'key2', 
-                label: 'Last Cancer Treatment', 
-                type: 'password', 
-                value:'value', 
+                key: 'key1122', 
+                label: 'Family History of Disease', 
+                type:   'checkbox', 
+                value:  'value', 
                 required: true, 
                 order:  1,
-                options:  [] 
+                options: [
+                  {
+                    id: 8584,
+                    name: "Diabetes"
+                  },
+                  {
+                    id: 1223,
+                    name: "Hypertension"
+                  }
+                ] 
               },
-              { 
-                key: 'key2', 
-                label: 'Last Brain Surgery Treatment', 
-                type: 'password', 
-                value:'value', 
-                required: true, 
-                order:  1,
-                options:  [] 
-              }
-          ]
-        },
+            ]
+          }
       ]
     }
   ]
 
-  return {forms};
+    return {forms};
   }
 }

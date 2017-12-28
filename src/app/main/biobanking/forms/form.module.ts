@@ -21,17 +21,29 @@ import { FormQuestionService } from './forms_detail/form-question.service';
  
 
 import { QuestionDetailComponent }  from './forms_detail/question-detail.component';
-import { QuestionCreateComponent }  from './forms_detail/question-create.component';
 import { QuestionViewComponent }    from './forms_detail/question-view.component';
-import { QuestionSectionComponent}  from './forms_section/question-section.component';
+
 
 //DFORMS
 import { DformsComponent } from './forms_dforms/dforms.component';
 import { DynamicFormComponent } from './forms_dforms/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './forms_dforms/dynamic-form-question.component';
 
+//FORM services
 import { QuestionControlService }  from './forms_dforms/question-control.service';
 import { QuestionService }         from './forms_dforms/question.service';
+
+//NESTED DFORMS
+import { FormCreateComponent }       from './forms_detail/form-create.component';
+
+import { FormSectionArrayComponent } from './forms_section/form-section-array.component';
+import { FormSectionComponent }      from './forms_section/form-section.component';
+
+import { QuestionContentArrayComponent } from './forms_question/question-content-array.component';
+import { QuestionContentComponent } from './forms_question/question-content.component';
+
+import { QuestionOptionArrayComponent } from './forms_option/question-option-array.component';
+import { QuestionOptionComponent } from './forms_option/question-option.component';
 
 @NgModule({
   imports: [
@@ -46,16 +58,26 @@ import { QuestionService }         from './forms_dforms/question.service';
     FormRoutingModule
   ],
   declarations: [
+//Editor
     FormListComponent,
-    QuestionSectionComponent,
-    QuestionCreateComponent,
     QuestionViewComponent,
     QuestionDetailComponent,
 
 //Dforms
     DformsComponent, 
     DynamicFormComponent, 
-    DynamicFormQuestionComponent
+    DynamicFormQuestionComponent, 
+
+//Nested Dforms
+    FormCreateComponent,
+    FormSectionArrayComponent, 
+    FormSectionComponent,
+
+    QuestionContentArrayComponent, 
+    QuestionContentComponent,
+
+    QuestionOptionArrayComponent,
+    QuestionOptionComponent
   ],
   providers: [ 
     FormDummyApiResponse,
