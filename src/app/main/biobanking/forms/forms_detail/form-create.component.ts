@@ -51,7 +51,6 @@ export class FormCreateComponent implements OnInit {
 
   ngOnInit() {
     let index = this.route.snapshot.paramMap.get('id');
-   console.log('INDEX---', index);
 
     if(index == '0'){
       //create

@@ -22,10 +22,6 @@ const routes: Routes = [
           path: 'forms',
           loadChildren: './forms/form.module#FormModule'
         },
-        {
-          path: 'preview',
-          loadChildren: './dforms/dforms.module#DformsModule'
-        },
         { path: '', redirectTo: 'cases' }
       ]
     }
