@@ -14,7 +14,7 @@ export class FormDummyApiResponse implements InMemoryDbService {
       is_deleted: false,
       sections: [
         {
-          key: "key1",
+          key: '32423de449-efdf-6162-88ed-3d6c743423c', 
           name: "Demographic History",
           order: 0,
           questions: [
@@ -27,11 +27,11 @@ export class FormDummyApiResponse implements InMemoryDbService {
                 order:  0,
                 options: [
                   {
-                    key: '123123',
+                    key: '32xse449-efdf-6162-88ed-3d6c7442343c', 
                     name: "male"
                   },
                   {
-                    key: '1231323',
+                    key: '332aa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "female"
                   }
                 ] 
@@ -45,11 +45,11 @@ export class FormDummyApiResponse implements InMemoryDbService {
                 order:  1,
                 options: [
                   {
-                    key: '234ll23',
+                    key: 'aqeaa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "married"
                   },
                   {
-                    key: '23424',
+                    key: 'axxeaa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "single"
                   }
                 ] 
@@ -57,12 +57,12 @@ export class FormDummyApiResponse implements InMemoryDbService {
           ]
         },
         {
-          key: "key2",
+          key: '43ede449-efdf-6162-88ed-3d6c743423c', 
           name: "Family Health Illness History",
           order: 1,
           questions: [
               { 
-              key: '43ede449-efdf-6162-88ed-3d6c744f8c', 
+                key: '43ede449-efdf-6162-88ed-3d6c744f8c', 
                 label: 'Family History of Disease', 
                 type:   'checkbox', 
                 value:  'value', 
@@ -70,11 +70,11 @@ export class FormDummyApiResponse implements InMemoryDbService {
                 order:  0,
                 options: [
                   {
-                    key: '8584343',
+                    key: 'bxseeaa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "Diabetes"
                   },
                   {
-                    key: '341223',
+                    key: 'xseeawaa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "Hypertension"
                   }
                 ] 
@@ -85,16 +85,16 @@ export class FormDummyApiResponse implements InMemoryDbService {
       ]
     },
     {
-      id: 2342, 
+      id: 1342, 
       name: "Cancer Registry Template 2", 
-      department: "Obstetric Department", 
+      department: "Obstetric Surgery Department", 
       approval: "Pending", 
       status: "Not Active", 
       created_by: "Dr. Apple", 
       is_deleted: false,
       sections: [
         {
-          key: "key1",
+          key: '32423de449-efdf-6162-88ed-3d6c743423c', 
           name: "Demographic History",
           order: 0,
           questions: [
@@ -107,11 +107,11 @@ export class FormDummyApiResponse implements InMemoryDbService {
                 order:  0,
                 options: [
                   {
-                    key: '123123',
+                    key: '32xse449-efdf-6162-88ed-3d6c7442343c', 
                     name: "male"
                   },
                   {
-                    key: '1231323',
+                    key: '332aa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "female"
                   }
                 ] 
@@ -125,11 +125,11 @@ export class FormDummyApiResponse implements InMemoryDbService {
                 order:  1,
                 options: [
                   {
-                    key: '234ll23',
+                    key: 'aqeaa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "married"
                   },
                   {
-                    key: '23424',
+                    key: 'axxeaa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "single"
                   }
                 ] 
@@ -137,12 +137,12 @@ export class FormDummyApiResponse implements InMemoryDbService {
           ]
         },
         {
-          key: "key2",
+          key: '43ede449-efdf-6162-88ed-3d6c743423c', 
           name: "Family Health Illness History",
           order: 1,
           questions: [
               { 
-              key: '43ede449-efdf-6162-88ed-3d6c744f8c', 
+                key: '43ede449-efdf-6162-88ed-3d6c744f8c', 
                 label: 'Family History of Disease', 
                 type:   'checkbox', 
                 value:  'value', 
@@ -150,11 +150,11 @@ export class FormDummyApiResponse implements InMemoryDbService {
                 order:  0,
                 options: [
                   {
-                    key: '8584343',
+                    key: 'bxseeaa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "Diabetes"
                   },
                   {
-                    key: '341223',
+                    key: 'xseeawaa449-efdf-6162-88ed-3d6c7442343c', 
                     name: "Hypertension"
                   }
                 ] 
