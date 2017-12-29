@@ -18,7 +18,7 @@ import { DragulaService } from 'ng2-dragula';
   './question-detail-dragula.component.css'
   ]
 })
-export class QuestionDetailComponent implements OnChanges {
+export class QuestionDetailComponent implements OnInit{
   @Input() selectedQuestions: Question[];
 
   private questionFormGroup: FormGroup;
@@ -67,7 +67,7 @@ export class QuestionDetailComponent implements OnChanges {
 
 
 
-  ngOnChanges() {
+  ngOnInit() {
 
     this.questions = this.selectedQuestions;
 

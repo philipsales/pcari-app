@@ -15,6 +15,7 @@ export class FormSectionComponent implements OnInit {
 
   @Input() formArray: FormArray;
   @Input() section: Section; 
+  @Input() sectionLength: number; 
 
   @Output() removed = new EventEmitter();
 
@@ -23,13 +24,13 @@ export class FormSectionComponent implements OnInit {
 
   constructor( 
     private fb: FormBuilder,
-    private cdRef: ChangeDetectorRef
   ) { 
     this.formArray = new FormArray([]); 
   }
 
   ngOnInit() {
     console.log('--form-section.this.section--', this.section);
+    console.log('--form-section.this.length--', this.sectionLength);
     this.sectionGroup = this.toFormGroup(this.section); 
 
     this.index = this.formArray.length;

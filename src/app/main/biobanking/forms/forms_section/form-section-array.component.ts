@@ -17,7 +17,7 @@ export class FormSectionArrayComponent implements OnInit {
 
   ngOnInit() {
     this.initSection();
-    console.log('--sections--', this.sections);
+
     this.parentForm.addControl('sections', new FormArray([]));
   }
 
@@ -30,7 +30,7 @@ export class FormSectionArrayComponent implements OnInit {
     }
   }
 
-  addSection(index: number){
+  addSection(){
     this.sections.push({
       key: '',
       name: '',
@@ -39,11 +39,8 @@ export class FormSectionArrayComponent implements OnInit {
   }
 
   removeSection(index: number){
-    console.log('--section-array-index', index);
-    console.log('---parentForm.section', this.parentForm.get('sections'));
-
-      this.sections.splice(index,1);
-      (<FormArray>this.parentForm.get('sections')).removeAt(index);
+    this.sections.splice(index,1);
+    (<FormArray>this.parentForm.get('sections')).removeAt(index);
   }
 
 

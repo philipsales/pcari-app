@@ -7,6 +7,7 @@ import { FormQuestionService } from './form-question.service';
 import { forms } from './form-question.model';
 
 import { NotificationsService } from 'angular2-notifications';
+import { KeyGeneratorService } from 'app/core/services';
 
 @Component({
   selector: 'app-form-question',
@@ -35,25 +36,43 @@ export class FormCreateComponent implements OnInit {
   private hide_key = true ;
   private is_processing = false;
 
+  private lengthOfSection: number;
+
   constructor(
     private fb: FormBuilder,
     private cdRef: ChangeDetectorRef,
     private questionService: FormQuestionService,
-    private _notificationsService: NotificationsService
+    private _notificationsService: NotificationsService,
+    private keyGenerator: KeyGeneratorService
   ) { 
   }
 
   ngOnInit() {
     console.log('question-create-init');
-
     this.data = forms;
+
+    this.lengthOfSection = this.data.sections.length;
+    console.log('---form-create--sections', this.data.sections);
     this.templateForm = this.toFormGroup(this.data);
-
-
     this.departmentCount = 0;
   }
 
-  onSaveClick(input_form: Form){
+  toFormGroup(data: Form){
+    return this.fb.group({
+      id: data.id, 
+      name: data.name 
+    });
+  }
+
+  onAddSection(){
+    this.data.sections.push({
+      key: this.keyGenerator.create(),
+      name: 'Untitled section',
+      questions: []
+    });
+  }
+
+  onSaveForm(input_form: Form){
 
     this.errors = {};
     this.has_errors = false;
@@ -67,8 +86,8 @@ export class FormCreateComponent implements OnInit {
 
           this._notificationsService
               .success(
-                'New Question: ' + input_form.name,
-                'Successfully Created.', 
+                'Form: ' + input_form.name,
+                'Successfully Saved.', 
                 {
                   timeOut: 10000,
                   showProgressBar: true,
@@ -88,12 +107,6 @@ export class FormCreateComponent implements OnInit {
     console.log('--tempalteForm--',input_form);
   }
 
-  toFormGroup(data: Form){
-    return this.fb.group({
-      id: data.id, 
-      name: data.name 
-    });
-  }
 
   onSelectForm(index: number) {
     this.sections = this.forms[index].sections;

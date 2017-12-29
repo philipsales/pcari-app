@@ -1,4 +1,5 @@
-<div class="panel panel-default">
+<!--Old template-->
+<!--<div class="panel panel-default">
   <div class="panel-heading">
     <span> Section Array</span>
   </div>
@@ -15,6 +16,21 @@
          <button class="btn btn-primary" (click)="addSection()">
            Add Section+
          </button>
+      </div>
+    </div>
+  </div>
+</div>-->
+<!--end Old template-->
+
+<div class="" >
+  <div class="">
+    <div [formGroup]="parentForm">
+      <div formArrayName="sections">
+        <form-section *ngFor="let section of sections; let i = index;"
+           [formArray]="parentForm.controls.sections" 
+           [section]="section" 
+           (removed)="removeSection(i)" >
+        </form-section>
       </div>
     </div>
   </div>

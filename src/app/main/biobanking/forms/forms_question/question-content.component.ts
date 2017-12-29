@@ -5,19 +5,17 @@ import { Question, Form, Section } from './../forms_detail/form-question.model';
 
 import 'rxjs/add/operator/toPromise';
 
-const resolvedPromise = Promise.resolve(undefined);
-
 @Component({
   selector: 'question-content',
-  templateUrl: './question-content.component.html',
-  styleUrls: ['./question-content.component.css']
+  templateUrl: './question-content.component.html', styleUrls: ['./question-content.component.css']
 })
-export class QuestionContentComponent implements OnInit {
+export class QuestionContentComponent implements OnChanges {
 
   @Input() formArray: FormArray;
   @Input() question: Question;
 
   @Output() removed = new EventEmitter();
+  @Output() clone = new EventEmitter();
 
   questionGroup: FormGroup;
   index: number;
@@ -30,7 +28,7 @@ export class QuestionContentComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnChanges() {
 
     console.log('--question-content--', this.formArray);
     this.questionGroup = this.toFormGroup(this.question);
@@ -40,12 +38,36 @@ export class QuestionContentComponent implements OnInit {
 
     //Make into questionTypeService
     this.questionTypes = [ 
-      { "value": "textbox",     "label": "text" },
-      { "value": "textarea",    "label": "paragraph" },
-      { "value": "dropdown",    "label": "dropdown" },
-      { "value": "checkbox",    "label": "checkbox" },
-      { "value": "radiobutton", "label": "radio" },
-      { "value": "datepicker",  "label": "date" }
+      { 
+      "value": "textbox",     
+      "label": "text",
+      "icon" : "fa-square-o"
+      },
+      { 
+      "value": "textarea",    
+      "label": "paragraph",
+      "icon" : "fa-square-o"
+      },
+      { 
+      "value": "dropdown",    
+      "label": "dropdown",
+      "icon" : "fa-square-o"
+      },
+      { 
+      "value": "checkbox",
+      "label": "checkbox",
+      "icon" : "fa-square-o"
+      },
+      { 
+      "value": "radiobutton", 
+      "label": "radio",
+      "icon" : "fa-square-o"
+      },
+      { 
+      "value": "datepicker",  
+      "label": "date",
+      "icon" : "fa-square-o"
+      }
     ];
   }
 
@@ -59,7 +81,6 @@ export class QuestionContentComponent implements OnInit {
         order      : question.order
     });
   }
-
 
 
 }

@@ -1,9 +1,9 @@
-<div class="panel panel-default">
+<!--start old template-->
+<!--<div class="panel panel-default">
   <div class="panel-heading">
     <span> Qusetion Array</span>
   </div>
   <div class="panel-body">
-
     <div [formGroup]="parentForm">
       <div formArrayName="questions">
         <question-content *ngFor="let question of questions; let i = index;"
@@ -13,13 +13,42 @@
            >
         </question-content>
       </div>
-
       <div class="row">
          <button class="btn btn-primary" (click)="addQuestion()">
            Add Question+
          </button>
       </div>
     </div>
+  </div>
+</div>-->
+<!--end old template-->
 
+<div [formGroup]="parentForm">
+  <div formArrayName="questions">
+    <div *ngFor="let question of questions; let i = index;">
+      <br/>
+      <div class="panel panel-default">
+        <h4>Question {{i}}</h4>
+        <question-content
+           [formArray]="parentForm.controls.questions"
+           [question]="question" 
+           (clone)="cloneQuestion(question,i)"
+           (removed)="removeQuestion(i)" >
+        </question-content>
+      </div>
+    </div>
+    <!--<question-content *ngFor="let question of questions; let i = index;"
+       [formArray]="parentForm.controls.questions"
+       [question]="question" 
+       (clone)="cloneQuestion(question,i)"
+       (removed)="removeQuestion(i)" >
+    </question-content>-->
+  </div>
+
+  <div class="row">
+     <button class="btn btn-primary" (click)="addQuestion()">
+       Add Question+
+     </button>
   </div>
 </div>
+

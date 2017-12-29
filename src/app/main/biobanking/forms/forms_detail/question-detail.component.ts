@@ -10,6 +10,7 @@ import { FormQuestionService } from './form-question.service';
 import { DragulaService } from 'ng2-dragula';
 
 
+
 @Component({
   selector: 'question-detail',
   templateUrl: './question-detail.component.html',

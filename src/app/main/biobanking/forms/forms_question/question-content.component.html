@@ -1,43 +1,74 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <span> Question {{ index + 1 }}</span>
+<div class="">
+  <!--<div class="panel-heading">
+    <span> Question</span>
     <span class="glyphicon glyphicon-remove pull-right" 
           (click)="removed.emit()">
     </span>
-  </div>
+  </div>-->
 
   <div class="panel-body">
     <div [formGroup]="questionGroup">
       <div class="form-group">
-        <label>Key</label>
-        <input type="text" class="form-control"
+        <input type="hidden" class="form-control"
                formControlName="key">
-        <label>Label</label>
-        <input type="text" class="form-control"
-                formControlName="label">
-        <label>Type</label>
-        <select formControlName="type" 
-                class="form-control">
-            <option *ngFor="let type of questionTypes"
-                    [value]="type.value">{{type.label}}</option>
-        </select>
-        <label>Order</label>
-        <input type="text" class="form-control"
-                formControlName="order">
-        <label>Required</label>
-        <input type="text" class="form-control"
-                formControlName="required">
-
-        <div class="form-group"
-           *ngIf="questionGroup.get('type').value =='dropdown' ||
-                  questionGroup.get('type').value =='checkbox' ||
-                  questionGroup.get('type').value =='radiobutton'" >
-          
-          <question-option-array
-             [parentForm]="questionGroup"
-             [options]="question?.options" >
-          </question-option-array>
+        <div class="row">
+          <div class="col-sm-9">
+            <!--<label>Question</label>-->
+            <label>&nbsp;</label>
+            <input type="text" class="form-control"
+                   placeholder="Untitled question"
+                   formControlName="label">
+          </div>
+          <div class="col-sm-3">
+            <label>Type</label>
+            <select formControlName="type" 
+                    class="form-control">
+                <option *ngFor="let type of questionTypes"
+                        [selected]="type.label=='textbox'"
+                        [value]="type.value"> {{type.label}}</option>
+            </select>
+          </div>
         </div>
+        <!--<label>Order</label>-->
+        <label>&nbsp;</label>
+        <input type="hidden" 
+               class="form-control"
+               formControlName="order">
+
+        <div class="row">
+          <div class="form-group"
+             *ngIf="questionGroup.get('type').value =='dropdown' ||
+                    questionGroup.get('type').value =='checkbox' ||
+                    questionGroup.get('type').value =='radiobutton'" >
+            
+            <question-option-array
+               [parentForm]="questionGroup"
+               [options]="question?.options" >
+            </question-option-array>
+          </div>
+        </div>
+
+        <div class="ln_solid"></div>
+        <span class="form-footer-editor-fxn col-sm-1 pull-right" 
+            (click)="removed.emit()">
+          <i class="fa fa-3x fa-trash-o"></i>
+        </span>
+        <!--<span class="form-footer-editor-fxn col-sm-1 pull-right" 
+            (click)="clone.emit()">
+          <i class="fa fa-3x fa-clone"></i>
+        </span>-->
+        <!--<span class="form-footer-editor-fxn col-sm-1 pull-right" 
+            (click)="cloneQuestion(questionGroup,index)">
+          <i class="fa fa-3x fa-clone"></i>
+        </span>-->
+        <span class="checkbox form-footer-editor-fxn col-sm-3 pull-right" >
+          <label class="pull-right">
+            <input type="checkbox" name="input_required"
+                 formControlName="required"
+                 [checked]="question.required"
+                 id="input_required"> Is Required?
+          </label>
+        </span>
 
       </div>
 

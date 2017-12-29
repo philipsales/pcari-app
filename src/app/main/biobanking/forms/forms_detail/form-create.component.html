@@ -33,31 +33,71 @@
           </div>
 
 
-          <h3>templateForm</h3>
+          <!--start templateForm-->
           <form [formGroup]="templateForm">
-             <div class="form-group">
-                <label> Department</label>
-                <input type="text" class="form-control"
-                       placeholder="id"
-                       formControlName="id">
-                <input type="text" class="form-control"
-                       placeholder="name"
-                       formControlName="name">
-             </div>
-            <div class="col-sm-9" style="background: eal" > 
-              <!--<question-detail [selectedQuestions]="questions"> </question-detail>-->
-              <form-section-array
-                [parentForm]="templateForm"
-                [sections]="data?.sections" > 
-              </form-section-array>
+            <div class="row">
+              <div class="col-sm-10" style="background: eal" > 
+                 <div class="form-group">
+                    <!--<label>Id</label>-->
+                    <input type="hidden" class="form-control"
+                           placeholder="id"
+                           formControlName="id">
+                    <!--<label>Label</label>-->
+                    <input type="text" class="form-control"
+                           placeholder="name"
+                           formControlName="name">
+                    <small>Form Name</small>
+                 </div>
+               </div>
+               <br/>
+            </div>
 
-             <button class="btn btn-primary" 
-                    (click)="onSaveClick(templateForm.value)">
-                  <i class="fa fa-2x fa-save"></i> Save  
-             </button>
+            <div class="row">
+              <div class="col-sm-10" style="background: eal" > 
+                <form-section-array
+                  [parentForm]="templateForm"
+                  [sections]="data?.sections" > 
+                </form-section-array>
+              </div>
+              <div class="col-sm-1" style="background: eal" > 
 
+                <div class="col-sm-1" >
+                  <div class="row">
+                    <div class="sidebar">
+                      <ul class="nav nav-sidebar form-side-editor-main" style="">
+                        <li title="Add Section" 
+                            class="form-side-editor-fxn" 
+                            (click)="onAddSection()">
+                            <a [routerLink]="['.']">
+                              <i class="fa fa-3x fa-plus-circle"></i>
+                            </a>
+                        </li>
+                        <li title="Preview Template" class="form-side-editor-fxn" >
+                          <a  [routerLink]="['../../preview',0]">
+                            <i class="fa fa-3x fa-eye"></i>
+                          </a>
+                        </li>
+                        <!--<li class="form-side-editor-fxn" 
+                            (click)="onSaveClick(questionFormGroup.value.secretLairs)">-->
+                        <li title="Save Template" 
+                            class="form-side-editor-fxn" 
+                            (click)="onSaveForm(templateForm.value)">
+                            <a  [routerLink]="['.']">
+                              <i class="fa fa-3x fa-save"></i>
+                            </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+              </div> 
+              <!-- end section -->
+
+
+
+              </div>
             </div>
           </form>
+          <!--end templateForm-->
 
 
 

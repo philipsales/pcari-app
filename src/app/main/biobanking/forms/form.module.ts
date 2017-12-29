@@ -11,18 +11,14 @@ import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormDummyApiResponse } from 'app/core/services-dummy';
 
-
 import { FormRoutingModule } from './form-routing.module';
 import { FormListComponent } from './form-list.component';
 
-
 import { FormService } from 'app/core/services';
 import { FormQuestionService } from './forms_detail/form-question.service';
- 
 
 import { QuestionDetailComponent }  from './forms_detail/question-detail.component';
 import { QuestionViewComponent }    from './forms_detail/question-view.component';
-
 
 //DFORMS
 import { DformsComponent } from './forms_dforms/dforms.component';
@@ -32,6 +28,8 @@ import { DynamicFormQuestionComponent } from './forms_dforms/dynamic-form-questi
 //FORM services
 import { QuestionControlService }  from './forms_dforms/question-control.service';
 import { QuestionService }         from './forms_dforms/question.service';
+
+import { KeyGeneratorService } from 'app/core/services';
 
 //NESTED DFORMS
 import { FormCreateComponent }       from './forms_detail/form-create.component';
@@ -87,8 +85,12 @@ import { QuestionOptionComponent } from './forms_option/question-option.componen
 //Dforms
     QuestionService,
     QuestionControlService,
+
 //Dragula
-    DragulaService 
+    DragulaService, 
+
+//KeyGenerator
+    KeyGeneratorService
   ]
 })
 export class FormModule { }

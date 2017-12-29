@@ -14,12 +14,13 @@ export class QuestionOptionComponent implements OnInit {
 
   @Input() formArray: FormArray;
   @Input() option: Option;
+  @Input() optionType: String[];
+
 
   @Output() removed = new EventEmitter();
 
   optionGroup: FormGroup;
   index: number;
-
 
   constructor(
    private fb: FormBuilder
@@ -27,6 +28,9 @@ export class QuestionOptionComponent implements OnInit {
 
   ngOnInit() {
     this.optionGroup = this.toFormGroup(this.option);
+    console.log('--this.opitonGroup--',this.optionGroup);
+    console.log('--this.opitonArray--',this.formArray);
+    console.log('--this.opitonType--',this.optionType);
 
     this.index = this.formArray.length;
     this.formArray.push(this.optionGroup);
