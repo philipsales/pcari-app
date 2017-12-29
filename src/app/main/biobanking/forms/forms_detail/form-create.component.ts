@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, Input, EventEmitter, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
 import { Question, Form, Section } from './form-question.model';
 
 import { FormQuestionService } from './form-question.service';
@@ -42,13 +44,26 @@ export class FormCreateComponent implements OnInit {
     private cdRef: ChangeDetectorRef,
     private questionService: FormQuestionService,
     private _notificationsService: NotificationsService,
+    private route: ActivatedRoute,
     private keyGenerator: KeyGeneratorService
   ) { 
   }
 
   ngOnInit() {
-    this.data = this.initForm();
-    this.templateForm = this.toFormGroup(this.data);
+    let index = this.route.snapshot.paramMap.get('id');
+   console.log('INDEX---', index);
+
+    if(index == '0'){
+      //create
+      this.data = this.initEmptyForm();
+      this.templateForm = this.toFormGroup(this.data);
+    }
+    else {
+      //update
+      this.data = this.initForm();
+      this.templateForm = this.toFormGroup(this.data);
+    }
+
   }
 
   toFormGroup(data: Form){
@@ -59,6 +74,10 @@ export class FormCreateComponent implements OnInit {
   }
 
   initForm(): Form {
+    return forms;
+  }
+
+  initEmptyForm(): Form {
     const form: Form = 
     {
       id: 0, 

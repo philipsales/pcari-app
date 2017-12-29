@@ -5,52 +5,51 @@ export class FormDummyApiResponse implements InMemoryDbService {
 
   let forms = [
     {
-      id: 0, 
+      id: 2342, 
       name: "Cancer Registry Template 1", 
       department: "General Surgery Department", 
       approval: "Pending", 
       status: "Not Active", 
       created_by: "Dr. Apple", 
-      date_created: "10/10/2017", 
       is_deleted: false,
       sections: [
         {
           key: "key1",
           name: "Demographic History",
-          order: 1,
+          order: 0,
           questions: [
               { 
-                key: 'key2', 
+                key: '43ede449-efdf-6162-88ed-3d6c7442343c', 
                 label: 'What is your gender', 
-                type: 'dropdown', 
+                type: 'radiobutton', 
                 value: 'value', 
                 required: true, 
-                order:  1,
+                order:  0,
                 options: [
                   {
-                    id: 123123,
+                    key: '123123',
                     name: "male"
                   },
                   {
-                    id: 1231323,
+                    key: '1231323',
                     name: "female"
                   }
                 ] 
               },
               { 
-                key: 'key333',
+                key: '43ede449-efdf-6162-88ed-23423234', 
                 label: 'What is your civil status', 
                 type:  'dropdown', 
                 value: '', 
                 required: true, 
-                order:  2,
+                order:  1,
                 options: [
                   {
-                    id: 23,
+                    key: '234ll23',
                     name: "married"
                   },
                   {
-                    id: 12,
+                    key: '23424',
                     name: "single"
                   }
                 ] 
@@ -60,22 +59,22 @@ export class FormDummyApiResponse implements InMemoryDbService {
         {
           key: "key2",
           name: "Family Health Illness History",
-          order: 2,
+          order: 1,
           questions: [
               { 
-                key: 'key1122', 
+              key: '43ede449-efdf-6162-88ed-3d6c744f8c', 
                 label: 'Family History of Disease', 
                 type:   'checkbox', 
                 value:  'value', 
-                required: true, 
-                order:  1,
+                required: false, 
+                order:  0,
                 options: [
                   {
-                    id: 8584,
+                    key: '8584343',
                     name: "Diabetes"
                   },
                   {
-                    id: 1223,
+                    key: '341223',
                     name: "Hypertension"
                   }
                 ] 
@@ -86,34 +85,51 @@ export class FormDummyApiResponse implements InMemoryDbService {
       ]
     },
     {
-      id: 1, 
+      id: 2342, 
       name: "Cancer Registry Template 2", 
-      department: "Obstetric Surgery Department", 
+      department: "Obstetric Department", 
       approval: "Pending", 
       status: "Not Active", 
       created_by: "Dr. Apple", 
-      date_created: "10/10/2017", 
       is_deleted: false,
       sections: [
         {
           key: "key1",
           name: "Demographic History",
-          order: 1,
+          order: 0,
           questions: [
               { 
-                key: 'key333',
+                key: '43ede449-efdf-6162-88ed-3d6c7442343c', 
+                label: 'What is your gender', 
+                type: 'radiobutton', 
+                value: 'value', 
+                required: true, 
+                order:  0,
+                options: [
+                  {
+                    key: '123123',
+                    name: "male"
+                  },
+                  {
+                    key: '1231323',
+                    name: "female"
+                  }
+                ] 
+              },
+              { 
+                key: '43ede449-efdf-6162-88ed-23423234', 
                 label: 'What is your civil status', 
                 type:  'dropdown', 
                 value: '', 
                 required: true, 
-                order:  2,
+                order:  1,
                 options: [
                   {
-                    id: 23,
+                    key: '234ll23',
                     name: "married"
                   },
                   {
-                    id: 12,
+                    key: '23424',
                     name: "single"
                   }
                 ] 
@@ -123,28 +139,29 @@ export class FormDummyApiResponse implements InMemoryDbService {
         {
           key: "key2",
           name: "Family Health Illness History",
-          order: 2,
+          order: 1,
           questions: [
               { 
-                key: 'key1122', 
+              key: '43ede449-efdf-6162-88ed-3d6c744f8c', 
                 label: 'Family History of Disease', 
                 type:   'checkbox', 
                 value:  'value', 
-                required: true, 
-                order:  1,
+                required: false, 
+                order:  0,
                 options: [
                   {
-                    id: 8584,
+                    key: '8584343',
                     name: "Diabetes"
                   },
                   {
-                    id: 1223,
+                    key: '341223',
                     name: "Hypertension"
                   }
                 ] 
               },
-            ]
-          }
+          ]
+        },
+
       ]
     }
   ]

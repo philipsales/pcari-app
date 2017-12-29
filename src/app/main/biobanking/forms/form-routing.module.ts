@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FormListComponent }   from './form-list.component';
 import { FormCreateComponent }   from './forms_detail/form-create.component';
-import { QuestionViewComponent }   from './forms_detail/question-view.component';
 
 import { DformsComponent } from './forms_dforms/dforms.component';
 
@@ -13,7 +12,7 @@ const routes: Routes = [
       component: FormListComponent
     },
     { 
-      path: 'create', 
+      path: 'create/:id', 
       component: FormCreateComponent 
     },
     { 
@@ -21,8 +20,8 @@ const routes: Routes = [
       component: DformsComponent 
     },
     { 
-      path: 'view/:id', 
-      component: QuestionViewComponent
+      path: 'update/:id', 
+      component: FormCreateComponent 
     },
     {path: '', redirectTo: 'list'}
 ];

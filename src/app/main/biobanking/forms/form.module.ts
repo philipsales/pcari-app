@@ -18,7 +18,6 @@ import { FormService } from 'app/core/services';
 import { FormQuestionService } from './forms_detail/form-question.service';
 
 import { QuestionDetailComponent }  from './forms_detail/question-detail.component';
-import { QuestionViewComponent }    from './forms_detail/question-view.component';
 
 //DFORMS
 import { DformsComponent } from './forms_dforms/dforms.component';
@@ -58,7 +57,6 @@ import { QuestionOptionComponent } from './forms_option/question-option.componen
   declarations: [
 //Editor
     FormListComponent,
-    QuestionViewComponent,
     QuestionDetailComponent,
 
 //Dforms

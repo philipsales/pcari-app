@@ -35,7 +35,7 @@
 	</div>
       </div>
       <!--<a [routerLink]="['/biobanking/questions/create']"-->
-      <a [routerLink]="['/biobanking/forms/create']"
+      <a [routerLink]="['/biobanking/forms/create',0]"
          class="btn btn-default pull-right">
         <i class="fa fa-plus"></i> &nbsp; New Form 
       </a>
@@ -69,8 +69,8 @@
 	    <td style="text-align: center">
         <button 
          class="btn btn-sm btn-success"
-         [routerLink]="['/biobanking/forms/view',form.id]">
-         <i class="fa fa-plus"></i> &nbsp; View</button>
+         [routerLink]="['/biobanking/forms/update',form.id]">
+         <i class="fa fa-plus"></i> &nbsp; Update</button>
 	    </td>
 	  </tr>
 	</tbody>
