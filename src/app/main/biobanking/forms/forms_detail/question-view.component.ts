@@ -25,46 +25,27 @@ export class QuestionViewComponent implements OnInit {
   private selectedQuestion: Question[]=[];
   private questions: Question[]=[];
 
+  private data: Form;
+  private templateForm: FormGroup;
 
   constructor(
+  private fb: FormBuilder,
   private route: ActivatedRoute
   ) { 
   }
 
   ngOnInit() {
-    this.initForms();
-    this.departmentCount = this.forms.length;
-  }
-
-  initForms(): Section[] {
+    //REFRACTOR TO DUMMY-SERVICE
     let index = this.route.snapshot.paramMap.get('id');
-    return this.sections = forms[index].sections;
+    this.data = forms;
+    this.templateForm = this.toFormGroup(this.data);
   }
 
-  onSelectForm(index: number) {
-    this.sections = this.forms[index].sections;
-  }
-
-
-  onSelectSection(index: number) {
-    console.log('--onSelectionSection--', this.sections);
-
-    this.questions = this.sections[index].questions;
-    this.selectedQuestion = this.questions;
-    this.selectedDepartment=index;
-
-  }
-
-  public onSelectQuestion(question: any): void {
-    console.log('--onselectQuestion--', question);
-
-
-    if(question){
-      console.log('--sectionHander',question);
-      console.log(typeof question);
-
-      this.questions = question;
-    }
+  toFormGroup(data: Form){
+    return this.fb.group({
+      id: data.id, 
+      name: data.name 
+    });
   }
 
 

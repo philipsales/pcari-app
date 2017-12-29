@@ -36,7 +36,6 @@ export class FormCreateComponent implements OnInit {
   private hide_key = true ;
   private is_processing = false;
 
-  private lengthOfSection: number;
 
   constructor(
     private fb: FormBuilder,
@@ -48,13 +47,8 @@ export class FormCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('question-create-init');
-    this.data = forms;
-
-    this.lengthOfSection = this.data.sections.length;
-    console.log('---form-create--sections', this.data.sections);
+    this.data = this.initForm();
     this.templateForm = this.toFormGroup(this.data);
-    this.departmentCount = 0;
   }
 
   toFormGroup(data: Form){
@@ -62,6 +56,23 @@ export class FormCreateComponent implements OnInit {
       id: data.id, 
       name: data.name 
     });
+  }
+
+  initForm(): Form {
+    const form: Form = 
+    {
+      id: 0, 
+      name: "Untitled Form",
+      sections: [
+        {
+          key: "",
+          name: "Untitled section",
+          order: 0,
+          questions: []
+        }
+      ]
+    };
+    return form;
   }
 
   onAddSection(){

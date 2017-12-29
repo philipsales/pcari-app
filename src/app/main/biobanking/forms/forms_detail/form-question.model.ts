@@ -8,6 +8,12 @@ export class Form {
   date_created? : Date;
   is_deleted?   : boolean;
   sections?     : Section[];
+
+  constructor(
+    name: string,
+  ){
+    this.name = name;
+  }
 }
 
 export class Section {
