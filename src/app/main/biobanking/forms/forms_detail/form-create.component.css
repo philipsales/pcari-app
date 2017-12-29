@@ -234,3 +234,12 @@ form {
 .form-footer-editor-fxn {
   margin: 5px;
 }
+
+.form-wrapper{
+  text-align: center
+}
+.form-editor-body {
+   width: 900px !important;
+   max-width: 900px;
+   display: inline-block
+}

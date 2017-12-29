@@ -28,13 +28,13 @@
     <div *ngFor="let question of questions; let i = index;">
       <br/>
       <div class="panel panel-default">
-        <h4>Question {{i}}</h4>
-        <question-content
-           [formArray]="parentForm.controls.questions"
-           [question]="question" 
-           (clone)="cloneQuestion(question,i)"
-           (removed)="removeQuestion(i)" >
-        </question-content>
+          <h4>Question {{i}}</h4>
+          <question-content
+             [formArray]="parentForm.controls.questions"
+             [question]="question" 
+             (clone)="cloneQuestion(question,i)"
+             (removed)="removeQuestion(i)" >
+          </question-content>
       </div>
     </div>
     <!--<question-content *ngFor="let question of questions; let i = index;"
@@ -46,9 +46,12 @@
   </div>
 
   <div class="row">
-     <button class="btn btn-primary" (click)="addQuestion()">
-       Add Question+
-     </button>
+    <span class="col-sm-3 pull-right">
+       <a class="question_button" 
+          (click)="addQuestion()">
+         <h4>Add question</h4>
+       </a>
+    </span>
   </div>
 </div>
 
