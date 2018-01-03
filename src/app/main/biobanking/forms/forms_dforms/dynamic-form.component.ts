@@ -11,7 +11,7 @@ import { DropdownQuestion }  from './question-dropdown';
 import { RadiobuttonQuestion }  from './question-radiobutton';
 import { DatepickerQuestion }  from './question-datepicker';
 
-import { Section } from 'app/core/models';
+import { Form,Section } from 'app/core/models';
 
 @Component({
     selector: 'dynamic-form',
@@ -61,14 +61,76 @@ export class DynamicFormComponent implements OnInit {
       ];
     }//--constructor
 
+
+    private questions_test: QuestionBase<any>[] = [];
+    private form_test : FormGroup;
+    private sections_test: Section;
+    private sections_array: Section[]=[];
+
     ngOnInit() {
+
+      this.service
+          .getForms()
+          .subscribe(forms => {
+            console.log('-1.FORMS.FROM SERVICE--',forms);
+            //this.forms = forms;
+
+            for (let form of forms) {
+
+              for (let section of form.sections) {
+              this.sections_test = section;
+
+                console.log('--this.sections_test--', this.sections_test);
+                
+                console.log('--section.name--', section.name);
+                console.log('--section--', section);
+
+                for (let question of section.questions) {
+                console.log('--question--', question);
+
+                  if(question.type == 'dropdown'){
+                    this.questions_test.push(
+                      new DropdownQuestion({
+                        key      : question.key,
+                        label    : question.label,
+                        type     : question.type,
+                        value    : question.value,
+                        order    : question.order,
+                        required : question.required ? true : false,
+                        options  : "Male|Female"
+
+                      })
+                    );
+                  } 
+                }
+              }
+            }
+
+          console.log('--4.THIS.QUESTIONS_TEST--',this.questions_test);
+          console.log('--THIS.SECTION_TEST--', this.sections_test);
+
+          this.questions_test = this.questions_test.sort((a, b) => a.order - b.order);
+          this.form_test = this.qcs.toFormGroup(this.questions_test);
+
+          this.questions = this.questions_test.sort((a, b) => a.order - b.order);
+          
+          console.log('--THIS.SECTIONS_ARRAY--', this.sections_array);
+
+          this.form = this.qcs.toFormGroup(this.questions_test);
+
+          console.log('--5.THIS.FORM_test--',this.form_test);
+
+          });
 
       this.service
           .getQuestions()
           .subscribe(response => {
+
+          console.log('-2.RESPONSE--',response);
+
           for (let my_question of response) {
 
-          console.log(my_question);
+            console.log('-3.MY_QUESTIONS--',my_question);
 
           if(my_question.type == 'textbox'){
             this.questions.push(
@@ -168,10 +230,14 @@ export class DynamicFormComponent implements OnInit {
           } 
       }//--for
 
-      console.log(this.questions);
-      this.questions = this.questions.sort((a, b) => a.order - b.order);
-      this.form = this.qcs.toFormGroup(this.questions);
+      console.log('--4.THIS.QUESTION--',this.questions);
+
+      //this.questions = this.questions.sort((a, b) => a.order - b.order);
+      //this.form = this.qcs.toFormGroup(this.questions);
+
+      console.log('--5.THIS.FORM--',this.form);
       });//--getQuestions
+
     }//--onInit
 
     onSubmit() {

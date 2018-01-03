@@ -104,7 +104,7 @@ export class FormQuestionService {
       "order": 0,
       "required": true,
       "type": "dropdown",
-      "value": "mandotory"
+      "value": ""
       },
       {
       "id": "1233",
@@ -114,7 +114,7 @@ export class FormQuestionService {
       "order": 0,
       "required": true,
       "type": "dropdown",
-      "value": "mandotory"
+      "value": ""
       }
     ];
 

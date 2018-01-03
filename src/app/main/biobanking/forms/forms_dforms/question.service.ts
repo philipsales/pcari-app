@@ -12,6 +12,9 @@ import { QuestionBase }     from './question-base';
 import { TextboxQuestion }  from './question-textbox';
 import { environment }    from 'environments/environment';
 
+import { Form }           from 'app/core/models';
+import { Helper }         from 'app/core/helper';
+
 @Injectable()
 export class QuestionService {
 
@@ -34,4 +37,20 @@ export class QuestionService {
                   return response.json().map(Question.fromJSON);	
               });
     }//--getQuestions
+
+
+    getForms(): Observable<Form[]> {
+      const url = environment.API_ENDPOINT + '/forms/';
+
+      console.log("--OnInit--form.Service--");
+
+      return this.http
+                 .get(url)
+                 .map((response: Response) => {
+                      console.log("--response.json getForms--",response.json().data as Form[]);
+                      return (response.json().data as Form[])
+                   })
+                   .catch(Helper.handleError);
+    }
+
 }//--QuestionService
