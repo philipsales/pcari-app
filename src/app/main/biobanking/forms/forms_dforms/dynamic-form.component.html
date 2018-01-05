@@ -1,6 +1,7 @@
   <form *ngIf="form"
-	[formGroup]="form"
-	(ngSubmit)="onSubmit()" style="margin-top: 20px;">
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()" 
+        style="margin-top: 20px;">
 
     <div class="form-group">
       <label class="question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
@@ -24,17 +25,14 @@
                   <h3>{{sections.get('name').value}}</h3> 
                 </span>
               </div>
+
               <div class="row">
                 <div *ngFor="let questions of sections.get('questionsType').controls">
                       <df-question [question]="questions.value" [form]="form"></df-question>
                 </div>
               </div>
+
             </div>
-            <!--<div *ngFor="let question of questions" class="form-row">
-              <df-question [question]="question" [form]="form"></df-question>
-            </div>-->
-
-
           </div>
         </div>
       </div>
@@ -46,6 +44,7 @@
           Save Form
       </button>
     </div>
+
   </form>
 
   <div *ngIf="payLoad" class="form-row">

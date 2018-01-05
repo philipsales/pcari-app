@@ -10,7 +10,7 @@ import { forms }
   from './../forms_detail/form-question.model';
 
 import { NotificationsService } from 'angular2-notifications';
-import { KeyGeneratorService } from 'app/core/services';
+import { KeyGenerator } from 'app/core/utils';
 
 @Component({
   selector: 'app-dforms',
@@ -28,7 +28,7 @@ export class DformsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private keyGenerator: KeyGeneratorService
+    private keyGenerator: KeyGenerator
   ) { }
 
   ngOnInit() {

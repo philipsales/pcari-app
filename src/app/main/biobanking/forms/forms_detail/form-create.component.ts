@@ -1,15 +1,13 @@
-import { Component, OnInit, Output, Input, EventEmitter, OnChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
-
+import { KeyGenerator } from 'app/core/utils';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Question, Form, Section } from './form-question.model';
-
-import { FormQuestionService } from './form-question.service';
-import { forms } from './form-question.model';
-
 import { NotificationsService } from 'angular2-notifications';
-import { KeyGeneratorService } from 'app/core/services';
+import { FormQuestionService } from './form-question.service';
+
+import { Question, Form, Section } from './form-question.model';
+import { forms } from './form-question.model';
 
 @Component({
   selector: 'app-form-question',
@@ -45,7 +43,7 @@ export class FormCreateComponent implements OnInit {
     private questionService: FormQuestionService,
     private _notificationsService: NotificationsService,
     private route: ActivatedRoute,
-    private keyGenerator: KeyGeneratorService
+    private keyGenerator: KeyGenerator
   ) { 
   }
 

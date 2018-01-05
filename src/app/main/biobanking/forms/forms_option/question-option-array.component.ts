@@ -3,7 +3,7 @@ import { Component, OnInit, OnChanges, Output, Input  } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { Question, Form, Section, Option } from './../forms_detail/form-question.model';
 
-import { KeyGeneratorService } from 'app/core/services';
+import { KeyGenerator } from 'app/core/utils';
 
 @Component({
   selector: 'question-option-array',
@@ -18,7 +18,7 @@ export class QuestionOptionArrayComponent implements OnInit {
 
   constructor( 
     private fb: FormBuilder,
-    private keyGenerator: KeyGeneratorService
+    private keyGenerator: KeyGenerator
   ) { 
   }
 

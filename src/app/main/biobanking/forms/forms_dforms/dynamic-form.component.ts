@@ -105,11 +105,7 @@ export class DynamicFormComponent implements OnInit {
               })
             );
           } 
-
           else if(my_question.type == 'dropdown'){
-
-          console.log('-DROPDOWN.OPTIONS---', my_question.options);
-
             this.questions.push(
               new DropdownQuestion({
                 key      : my_question.key,
@@ -195,14 +191,11 @@ export class DynamicFormComponent implements OnInit {
             console.log('Not yet supported ' , my_question.type);
           } 
 
-          console.warn('THIS.QUESTIONS', this.questions);
-
           (<FormArray>this.sectionGroupTest
                           .get('questionsType'))
                           .push(this.qcs
                                     .toFormGroupQuestionType(this.questions));
 
-          console.log('--sectionGroupTest--ITERATE-', this.sectionGroupTest);
         }//--for
 
       }//--for
@@ -210,7 +203,6 @@ export class DynamicFormComponent implements OnInit {
 
       //this.questions = this.questions.sort((a, b) => a.order - b.order);
 
-      //(<FormArray>this.sectionGroupTest.get('questionsBase')).push(this.qcs.toFormGroup(this.questions));
 
       this.sectionGroupTest.controls.questionsBase = this.qcs.toFormGroup(this.questions);
 

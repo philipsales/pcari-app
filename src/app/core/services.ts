@@ -8,4 +8,3 @@ export * from './services/report.service';
 export * from './services/consent.service';
 export * from './services/case.service';
 export * from './services/form.service';
-export * from './services/key-generator.service';
