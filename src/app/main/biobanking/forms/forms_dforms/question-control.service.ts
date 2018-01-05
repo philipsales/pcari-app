@@ -44,9 +44,8 @@ export class QuestionControlService {
           required   : group['required'],
           order      : group['order'],
           controlType: group['controlType'],
-          //type       : group['type'],
           options    : new FormControl(group['options']),
-          type       : 'dropdown'
+          type       : group['type']
       });
 
   }//--toFormGroup

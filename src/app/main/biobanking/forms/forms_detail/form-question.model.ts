@@ -99,9 +99,18 @@ export const forms: Form =
           order: 0,
           questions: [
               { 
+                key: '43yyaa449-efdf-6162-88ed-3d6c7442343c', 
+                label: 'What is your name', 
+                type: 'textbox', 
+                value: '', 
+                required: true, 
+                order:  0,
+                options: []
+              },
+              { 
                 key: '43ex31a449-efdf-6162-88ed-3d6c7442343c', 
                 label: 'What is your gender', 
-                type: 'dropdown', 
+                type: 'radiobutton', 
                 value: 'value', 
                 required: true, 
                 order:  0,
@@ -146,8 +155,26 @@ export const forms: Form =
           order: 1,
           questions: [
               { 
+                key: '31za323fdf-6162-88ed-3d6c744f8c', 
+                label: 'What are your Past Present History', 
+                type:   'textarea', 
+                value:  '', 
+                required: false, 
+                order:  0,
+                options: [] 
+              },
+              { 
+                key: '31zae449-efdf-6162-88ed-3d6c744f8c', 
+                label: 'What are your Admission Date', 
+                type:   'datepicker', 
+                value:  '', 
+                required: true, 
+                order:  0,
+                options: [] 
+              },
+              { 
                 key: '43ede449-efdf-6162-88ed-3d6c744f8c', 
-                label: 'Family History of Disease', 
+                label: 'What are your Family History of Disease', 
                 type:   'checkbox', 
                 value:  'value', 
                 required: false, 

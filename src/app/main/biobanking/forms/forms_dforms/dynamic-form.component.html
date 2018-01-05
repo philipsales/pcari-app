@@ -1,15 +1,12 @@
-<div>
   <form *ngIf="form"
 	[formGroup]="form"
-	(ngSubmit)="onSubmit()"
-	style="margin-top: 20px;">
+	(ngSubmit)="onSubmit()" style="margin-top: 20px;">
 
-    <div class="ln_solid"></div>
-    
     <div class="form-group">
-      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
-             for="case">Case Number</label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
+      <label class="question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
+             for="case">Case Number </label>
+
+        <div class="col-md-5 col-sm-5 col-xs-12">
           <input type="text" class="form-control" type="text">
         </div>
         <div class="clearfix"></div>
@@ -54,4 +51,3 @@
   <div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong><br>{{payLoad}}
   </div>
-</div>

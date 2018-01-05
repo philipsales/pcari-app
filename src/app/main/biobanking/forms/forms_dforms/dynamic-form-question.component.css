@@ -201,3 +201,7 @@ form {
 .input-group-btn > button{
     border-left: 0px;
 }
+
+.question-label {
+    text-align: left;
+}

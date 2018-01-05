@@ -2,12 +2,12 @@
 <div [formGroup]="form">
   <div [ngSwitch]="question.controlType">
     <div *ngSwitchCase="'textbox'" class="form-group">
-      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+      <label class="question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
              [attr.for]="question.key">{{question.label}}
               <!--<span *ngIf="question.required" class="required">*</span>-->
               <span *ngIf="!isValid" class="required">*</span>
       </label>
-      <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="col-md-5 col-sm-5 col-xs-12">
         <input type="text" class="form-control"
                [formControlName]="question.key"
                [id]="question.key" 
@@ -18,11 +18,11 @@
 
 
     <div *ngSwitchCase="'dropdown'" class="form-group">
-      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
 	     [attr.for]="question.key">{{question.label}}
               <span *ngIf="!isValid" class="required">*</span>
         </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-5 col-sm-5 col-xs-12">
           <select class="select2_group form-control"
                   [formControlName]="question.key" >
             <option *ngFor="let opt of question.options" 
@@ -35,11 +35,11 @@
 
 
     <div *ngSwitchCase="'checkbox'" class="form-group">
-      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
 	     [attr.for]="question.key">{{question.label}}
               <span *ngIf="!isValid" class="required">*</span>
       </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-5 col-sm-5 col-xs-12">
           <div *ngFor="let opt of question.options" 
                 class="select2_group form_control checkbox"  >
             <input 
@@ -53,11 +53,11 @@
     </div>
 
     <div *ngSwitchCase="'radiobutton'" class="form-group">
-      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
              [attr.for]="question.key">{{question.label}}
               <span *ngIf="!isValid" class="required">*</span>
       </label>
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-5 col-sm-5 col-xs-12">
           <div *ngFor="let opt of question.options" class="radio-inline"  >
             <input type="radio" 
                    [formControlName]="question.key"
@@ -69,12 +69,12 @@
     </div>
 
     <div *ngSwitchCase="'datepicker'" class="form-group">
-      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
 	     [attr.for]="question.key">{{question.label}}
               <span *ngIf="!isValid" class="required">*</span>
       </label>
 
-        <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="col-md-5 col-sm-5 col-xs-12">
           <date-picker class=""
                  [formControlName]="question.key"
                  [showClearButton]="false"
@@ -84,12 +84,12 @@
     </div>
 
     <div *ngSwitchCase="'textarea'" class="form-group">
-      <label class="control-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-3 col-xs-12" 
+      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
              [attr.for]="question.key">{{question.label}}
              <span *ngIf="!isValid" class="required">*</span>
       </label>
 
-          <div class="col-md-6 col-sm-6 col-xs-12">
+          <div class="col-md-5 col-sm-5 col-xs-12">
             <textarea class="form-control"
                    [formControlName]="question.key"
                   [id]="question.key" ></textarea>
