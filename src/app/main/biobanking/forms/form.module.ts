@@ -21,7 +21,6 @@ import { FormRoutingModule } from './form-routing.module';
 import { FormListComponent } from './form-list.component';
 
 import { FormService }         from 'app/core/services';
-import { FormQuestionService } from './forms_detail/form-question.service';
 
 
 //DFORMS
@@ -31,7 +30,7 @@ import { DynamicFormQuestionComponent } from './forms_dforms/dynamic-form-questi
 
 //FORM services
 import { QuestionControlService }  from './forms_dforms/question-control.service';
-import { QuestionService }         from './forms_dforms/question.service';
+//import { QuestionService }         from './forms_dforms/question.service';
 
 
 //NESTED DFORMS
@@ -85,10 +84,9 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
   providers: [ 
     FormDummyApiResponse,
     FormService,
-    FormQuestionService,
 
 //Dforms
-    QuestionService,
+    //QuestionService,
     QuestionControlService,
 
 //DragnDrop

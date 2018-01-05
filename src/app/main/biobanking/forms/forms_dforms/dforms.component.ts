@@ -1,16 +1,15 @@
 import { Component, OnInit, Output, Input, EventEmitter, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { Location } from '@angular/common';
 
-import { Question, Form, Section } 
-  from './../forms_detail/form-question.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { FormQuestionService } 
-  from './../forms_detail/form-question.service';
-import { forms } 
-  from './../forms_detail/form-question.model';
+import { KeyGenerator } from 'app/core/utils';
+
+import { Question, Form, Section } from 'app/core/models';
+import { FormService } from 'app/core/services';
 
 import { NotificationsService } from 'angular2-notifications';
-import { KeyGenerator } from 'app/core/utils';
 
 @Component({
   selector: 'app-dforms',
@@ -19,8 +18,6 @@ import { KeyGenerator } from 'app/core/utils';
 })
 export class DformsComponent implements OnInit {
 
-
-  private answerTemplateForm: FormGroup;
   private templateForm: FormGroup;
   private data: Form;
   private forms: Form;
@@ -28,20 +25,35 @@ export class DformsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private formService: FormService,
+    private route: ActivatedRoute,
+    private location: Location,
     private keyGenerator: KeyGenerator
   ) { }
 
   ngOnInit() {
-    this.data = this.initForm();
-    this.templateForm = this.toFormGroup(this.data);
-    console.log('TEMPLATEFORM', this.templateForm);
-    this.answerTemplateForm =  this.templateForm;
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    console.log('PREVIEW',id);
+    this.initPreviewForm(id);
+
+    //TODO: IF new creation
+    //this.data = this.initForm();
+    //this.templateForm = this.toFormGroup(this.data);
   }
 
-  onSaveForm(form:Form){
-    console.warn('templateForm', form);
+  initPreviewForm(id: number): void {
 
+    //SERVICE with get index
+    this.formService
+        .getForm(id)
+        .subscribe(
+          existingForm => {
+            console.log('-ACTUALservice',existingForm);
+            this.data = existingForm;
+          }
+        );
   }
+
 
   toFormGroup(data: Form){
     return this.fb.group({
@@ -50,13 +62,13 @@ export class DformsComponent implements OnInit {
     });
   }
 
-  initForm(): Form {
-    return forms;
-  }
-
   onSubmit() {
     this.payLoad = JSON.stringify(this.templateForm.value);
   }//--onSubmit
+
+  onBack() {
+    this.location.back();
+  }
 
 
 }

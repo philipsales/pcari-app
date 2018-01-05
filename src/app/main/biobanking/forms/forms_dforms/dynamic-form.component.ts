@@ -3,15 +3,14 @@ import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
 import { QuestionBase }              from './question-base';
 import { QuestionControlService }    from './question-control.service';
-import { QuestionService } from './question.service';
-import { TextboxQuestion }  from './question-textbox';
-import { TextareaQuestion }  from './question-textarea';
-import { CheckboxQuestion }  from './question-checkbox';
-import { DropdownQuestion }  from './question-dropdown';
-import { RadiobuttonQuestion }  from './question-radiobutton';
-import { DatepickerQuestion }  from './question-datepicker';
+import { TextboxQuestion }           from './question-textbox';
+import { TextareaQuestion }          from './question-textarea';
+import { CheckboxQuestion }          from './question-checkbox';
+import { DropdownQuestion }          from './question-dropdown';
+import { RadiobuttonQuestion }       from './question-radiobutton';
+import { DatepickerQuestion }        from './question-datepicker';
 
-import { Form, Section, Question } from 'app/core/models';
+import { Form, Section, Question }   from 'app/core/models';
 
 
 @Component({
@@ -33,37 +32,8 @@ export class DynamicFormComponent implements OnInit {
     private sections: Section[];
 
     constructor(
-      private service: QuestionService,
       private qcs: QuestionControlService
     ) {
-
-    //dummy only
-      this.sections = [ 
-        {
-          "key"   : "12", 
-          "name"  : "Household Information",
-          "order" : 1,
-          "questions" : []
-        },
-        {
-          "key"   : "2", 
-          "name"  : "Family Planning",
-          "order" : 1,
-          "questions" : []
-        },
-        {
-          "key"   : "3", 
-          "name"  : "Maternal and Child",
-          "order" : 1,
-          "questions" : []
-        },
-        {
-          "key"   : "4", 
-          "name"  : "Infant",
-          "order" : 1,
-          "questions" : []
-        },
-      ];
     }//--constructor
 
 
@@ -79,16 +49,12 @@ export class DynamicFormComponent implements OnInit {
 
     this.formArrayTest = new FormArray([]); 
 
-    //this.service.getQuestions().subscribe(response => {
-
-
           for (let my_section of this.sectionz) {
 
               this.sectionGroupTest = this.qcs.toFormGroupSection(my_section);
               this.formArrayTest.push(this.sectionGroupTest);
               this.sectionGroupTest.addControl('questions', new FormArray([]));
               this.sectionGroupTest.addControl('questionsType', new FormArray([]));
-              this.sectionGroupTest.addControl('questionsBase', new FormArray([]));
 
           for (let my_question of my_section.questions) {
 
@@ -203,9 +169,6 @@ export class DynamicFormComponent implements OnInit {
 
       //this.questions = this.questions.sort((a, b) => a.order - b.order);
 
-
-      this.sectionGroupTest.controls.questionsBase = this.qcs.toFormGroup(this.questions);
-
       this.form = this.qcs.toFormGroup(this.questions);
 
       console.log('--formARrayTest--', this.formArrayTest);
@@ -213,7 +176,6 @@ export class DynamicFormComponent implements OnInit {
       console.log('--this.form--', this.form);
 
 
-      //});//--getQuestions
 
     }//--onInit
 

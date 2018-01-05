@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter, OnChanges } from '@angular/core';
 
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
-import { Option } from './../forms_detail/form-question.model';
+import { Option } from 'app/core/models';
 
 import 'rxjs/add/operator/toPromise';
 

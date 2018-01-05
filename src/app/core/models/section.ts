@@ -9,13 +9,12 @@ export class Section {
   constructor(
     key         : string,
     name        : string,
-    order?      : number,
+    order?      : number,	
     questions?  : Question[]
   ){
     this.key = key;
     this.name = name;
     this.order = order;
-    this.questions = questions;
+    this.questions= questions;
   }
-
 }

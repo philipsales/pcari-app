@@ -5,13 +5,11 @@ import { FormControl, FormGroup, Validators, FormBuilder }  from '@angular/forms
 //custom
 import { QuestionBase } from './question-base';
 
-import { Question, Form, Section } from './../forms_detail/form-question.model';
+import { Question, Form, Section } from 'app/core/models';
 
 @Injectable()
 export class QuestionControlService {
   
-
-
   constructor(
     private fb: FormBuilder
   ) { }//--constructor
@@ -68,14 +66,6 @@ export class QuestionControlService {
     });
   }
 
-  /*
-  toFormGroupOption(option: Option) {
-    return this.fb.group( {
-        key  : option.key,
-        name : option.name
-    });
-  }
-  */
 
   toFormGroupSection(section: Section) {
     return this.fb.group( {

@@ -25,10 +25,13 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <!--<dynamic-form></dynamic-form>-->
 
-    <dynamic-form
-      [questionz]="data?.sections" 
-      [sectionz]="data?.sections" >
-    </dynamic-form>
+    <div *ngIf="data">
+      <button (click)="onBack()">Back</button>
+      <dynamic-form
+        [questionz]="data?.sections" 
+        [sectionz]="data?.sections" >
+      </dynamic-form>
+    </div>
 
     <!--<form [formGroup]="answerTemplateForm">
     <form-section-array

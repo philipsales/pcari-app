@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 
-import { Question, Form, Section } from './../forms_detail/form-question.model';
+import { Question, Form, Section } from 'app/core/models';
 
 @Component({
   selector: 'form-section-array',

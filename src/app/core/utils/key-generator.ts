@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 
 @Injectable()
-export class KeyGenerator{
+export class KeyGenerator {
 
   constructor() { }
 

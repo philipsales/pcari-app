@@ -1,4 +1,4 @@
-import { QuestionJSON } from './questionjson';
+import { QuestionJSON } from 'app/core/interfaces';
 
 export class Question {
     key         : string;

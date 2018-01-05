@@ -1,13 +1,13 @@
-import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { KeyGenerator } from 'app/core/utils';
+
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { NotificationsService } from 'angular2-notifications';
-import { FormQuestionService } from './form-question.service';
+import { Question, Form, Section } from 'app/core/models';
 
-import { Question, Form, Section } from './form-question.model';
-import { forms } from './form-question.model';
+import { FormService } from 'app/core/services';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-form-question',
@@ -16,8 +16,6 @@ import { forms } from './form-question.model';
 }) 
 
 export class FormCreateComponent implements OnInit {
-
-  //private forms: Form[] = [];
   private forms: Form;
 
   private selectedDepartment: number;
@@ -31,16 +29,16 @@ export class FormCreateComponent implements OnInit {
   private data: Form;
   private templateForm: FormGroup;
 
+  private formId: number;
+
   private errors: any = {};
   private has_errors = false;
   private hide_key = true ;
   private is_processing = false;
 
-
   constructor(
     private fb: FormBuilder,
-    private cdRef: ChangeDetectorRef,
-    private questionService: FormQuestionService,
+    private formService: FormService,
     private _notificationsService: NotificationsService,
     private route: ActivatedRoute,
     private keyGenerator: KeyGenerator
@@ -48,34 +46,27 @@ export class FormCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    let index = this.route.snapshot.paramMap.get('id');
+    this.formId = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.initForm(this.formId);
+  }
 
-    if(index == '0'){
+  initForm(id:number) {
+
+    if(id == 0){
       //create
-      this.data = this.initEmptyForm();
-      this.templateForm = this.toFormGroup(this.data);
+      this.initCreateForm();
     }
     else {
       //update
-      this.data = this.initForm();
-      this.templateForm = this.toFormGroup(this.data);
+      this.initUpdateForm(id);
     }
-
   }
 
-  toFormGroup(data: Form){
-    return this.fb.group({
-      id: data.id, 
-      name: data.name 
-    });
-  }
+  initCreateForm(): void {
 
-  initForm(): Form {
-    return forms;
-  }
+    //TODO: generate ID
 
-  initEmptyForm(): Form {
-    const form: Form = 
+    const newForm: Form = 
     {
       id: 0, 
       name: "Untitled Form",
@@ -88,7 +79,34 @@ export class FormCreateComponent implements OnInit {
         }
       ]
     };
-    return form;
+
+    this.data = newForm;
+    this.initTemplateFormGroup();
+  }
+
+  initUpdateForm(id: number): void {
+
+    //SERVICE with get index
+    this.formService
+        .getForm(id)
+        .subscribe(
+          existingForm => {
+            console.log('-actual service',existingForm);
+            this.data = existingForm;
+            this.initTemplateFormGroup();
+          }
+        );
+  }
+
+  initTemplateFormGroup() {
+    this.templateForm = this.toFormGroup(this.data);
+  }
+
+  toFormGroup(data: Form){
+    return this.fb.group({
+      id: data.id, 
+      name: data.name 
+    });
   }
 
   onAddSection(){
@@ -105,7 +123,7 @@ export class FormCreateComponent implements OnInit {
     this.has_errors = false;
     this.is_processing = true;
   
-    this.questionService
+    this.formService
         .submitForm(input_form)
         .subscribe(created_question => {
           this.is_processing = false;
@@ -132,23 +150,6 @@ export class FormCreateComponent implements OnInit {
         });
 
     console.log('--tempalteForm--',input_form);
-  }
-
-
-  onSelectForm(index: number) {
-    this.sections = this.forms[index].sections;
-  }
-
-  onSelectSection(index: number) {
-    this.questions = this.sections[index].questions;
-    this.selectedQuestion = this.questions;
-    this.selectedDepartment=index;
-  }
-
-  public onSelectQuestion(question: any): void {
-    console.log('--sectionHander',question);
-    console.log(typeof question);
-    this.questions = question;
   }
 
 
