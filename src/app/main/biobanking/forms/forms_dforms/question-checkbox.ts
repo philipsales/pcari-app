@@ -14,7 +14,6 @@ export class CheckboxQuestion extends QuestionBase<string> {
     ) 
     {
       super(options);
-      console.warn('--CHECKBOX--', options);
 
         if(options['options']){
 

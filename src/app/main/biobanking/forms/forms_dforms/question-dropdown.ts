@@ -14,7 +14,6 @@ export class DropdownQuestion extends QuestionBase<string> {
     ) 
     {
       super(options);
-      console.warn('--DROPDOWN-ts--', options);
 
         if(options['options']){
 

@@ -29,7 +29,12 @@ export class QuestionControlService {
         group['controlType'] = question.controlType;
         group['label'] = question.label;
         group['value'] = question.value;
-        group['options'] = { key: '32432432', value: 'male'};
+        group['options'] = 
+        [ 
+          { "key": "32xse449-efdf-6162-88ed-3d6c7442343c", "value": "transgender" }, 
+          { "key": "332aa449-efdf-6162-88ed-3d6c7442343c", "value": "homosexual" } 
+        ];
+
     });
 
       return this.fb.group({
@@ -39,8 +44,9 @@ export class QuestionControlService {
           required   : group['required'],
           order      : group['order'],
           controlType: group['controlType'],
-          type       : group['type'],
-          options    : group['options']
+          //type       : group['type'],
+          options    : new FormControl(group['options']),
+          type       : 'dropdown'
       });
 
   }//--toFormGroup

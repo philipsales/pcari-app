@@ -21,19 +21,21 @@
         <div class="form-editor-body">
           <div class="col-sm-12"> 
             <!--insert form Array here-->
-            <h2>Section</h2>
             <div *ngFor="let sections of formArrayTest.controls">
-              <label>{{sections.get('name').value}}</label>
-              <div *ngFor="let questions of sections.get('questionsType').controls">
-                  <!--<df-question [question]="questions.value" 
-                               [form]="form"></df-question>-->
+              <div class="row">
+                <span class="pull-left">
+                  <h3>{{sections.get('name').value}}</h3> 
+                </span>
+              </div>
+              <div class="row">
+                <div *ngFor="let questions of sections.get('questionsType').controls">
+                      <df-question [question]="questions.value" [form]="form"></df-question>
                 </div>
+              </div>
             </div>
-
-
-            <div *ngFor="let question of questions" class="form-row">
+            <!--<div *ngFor="let question of questions" class="form-row">
               <df-question [question]="question" [form]="form"></df-question>
-            </div>
+            </div>-->
 
 
           </div>

@@ -92,9 +92,7 @@ export class DynamicFormComponent implements OnInit {
 
           for (let my_question of my_section.questions) {
 
-            (<FormArray>this.sectionGroupTest.get('questions')).push(this.qcs.toFormGroupQuestion(my_question));
-
-            console.log('-3.MY_QUESTIONS--',my_question);
+          (<FormArray>this.sectionGroupTest.get('questions')).push(this.qcs.toFormGroupQuestion(my_question));
 
           if(my_question.type == 'textbox'){
             this.questions.push(
@@ -197,11 +195,14 @@ export class DynamicFormComponent implements OnInit {
             console.log('Not yet supported ' , my_question.type);
           } 
 
+          console.warn('THIS.QUESTIONS', this.questions);
+
           (<FormArray>this.sectionGroupTest
                           .get('questionsType'))
                           .push(this.qcs
                                     .toFormGroupQuestionType(this.questions));
 
+          console.log('--sectionGroupTest--ITERATE-', this.sectionGroupTest);
         }//--for
 
       }//--for
@@ -209,15 +210,14 @@ export class DynamicFormComponent implements OnInit {
 
       //this.questions = this.questions.sort((a, b) => a.order - b.order);
 
-      console.warn('THIS.QUESTIONS', this.questions);
-
       //(<FormArray>this.sectionGroupTest.get('questionsBase')).push(this.qcs.toFormGroup(this.questions));
 
       this.sectionGroupTest.controls.questionsBase = this.qcs.toFormGroup(this.questions);
 
       this.form = this.qcs.toFormGroup(this.questions);
 
-      console.log('--toformARrayTest--', this.formArrayTest);
+      console.log('--formARrayTest--', this.formArrayTest);
+      console.log('--sectionGroupTest--FINAL-', this.sectionGroupTest);
       console.log('--this.form--', this.form);
 
 
