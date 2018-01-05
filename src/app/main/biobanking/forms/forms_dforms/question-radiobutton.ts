@@ -15,21 +15,20 @@ export class RadiobuttonQuestion extends QuestionBase<string> {
     {
       super(options);
 
-      if(options['options']){
-          let arrvalue = options['options'].split('|');
-          let index = 0;
+        if(options['options']){
 
-          for(var curvalue of arrvalue){
+          let arrvalue = options['options'];
+
+          arrvalue.forEach((value,index)=> {
+
             this.options.push({
-              key: this.key,
-              index: index,
-              value: curvalue
+              key: value.key,
+              index: value.index,
+              value: value.name 
             });
-          }
-	    }
 
-      this.type = 'radiobutton';
-
-
+          });
+        this.type = 'radiobutton';
+      }
     }//--constructor
-}//--
+}//--RadiobuttonQuestion

@@ -16,6 +16,7 @@ export class FormSectionComponent implements OnInit {
   @Input() formArray: FormArray;
   @Input() section: Section; 
   @Input() sectionLength: number; 
+  @Input() viewState: string; 
 
   @Output() removed = new EventEmitter();
 

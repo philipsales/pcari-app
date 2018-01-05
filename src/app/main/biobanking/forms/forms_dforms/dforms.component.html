@@ -23,6 +23,27 @@
 
 
   <div class="col-md-12 col-sm-12 col-xs-12">
-    <dynamic-form></dynamic-form>
+    <!--<dynamic-form></dynamic-form>-->
+
+    <dynamic-form
+      [questionz]="data?.sections" 
+      [sectionz]="data?.sections" >
+    </dynamic-form>
+
+    <!--<form [formGroup]="answerTemplateForm">
+    <form-section-array
+      [parentForm]="templateForm"
+      [sections]="data?.sections" 
+      [viewState]="'preview'" > 
+    </form-section-array>
+    <li title="Save Template" 
+        class="form-side-editor-fxn" 
+        (click)="onSaveForm(answerTemplateForm.value)">
+        <a  [routerLink]="['.']">
+          <i class="fa fa-3x fa-save"></i>
+        </a>
+    </li>
+    </form>-->
+
   </div>
 </div>

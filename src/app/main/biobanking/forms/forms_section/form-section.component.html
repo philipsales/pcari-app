@@ -1,45 +1,60 @@
 <div class="col-md-12 col-sm-12 col-xs-12 panel panel-default">
+  <h3>form-section: {{viewState}} </h3>
 <div [formGroup]="sectionGroup">
     <div class="panel-heading">
       <div class="row">
-        <div class="col-sm-11">
-          <input type="text" class="form-control"
-                 placeholder="Untitled section"
-                 formControlName="name">
-          <input type="hidden" class="form-control"
-                 formControlName="key">
-          <small>Section name</small>
-        </div>
 
-        <div class="col-sm-1">
-          <ul class="nav navbar-right panel_toolbox">
-            <li class="dropdown">
-              <a href="#" 
-                 class="dropdown-toggle" 
-                 data-toggle="dropdown" 
-                 role="button" 
-                 aria-expanded="false">
-                <i class="fa fa-2x fa-ellipsis-v pull-right"></i>
-              </a>
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                      <a (click)="removed.emit()"> 
-                        Delete Section
-                      </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+        <!--start preivew viewstate-->
+        <!--<div *ngIf="viewState=='preview'">
+          <div class="col-sm-11">
+            <label>{{sectionGroup.get('name').value}}</label>
+          </div>
+        </div>-->
+        <!--end preivew viewstate-->
+
+        <!--start create viewstate-->
+        <div *ngIf="viewState =='create' || viewState=='preview'">
+          <div class="col-sm-11">
+            <input type="text" class="form-control"
+                   placeholder="Untitled section"
+                   formControlName="name">
+            <input type="hidden" class="form-control"
+                   formControlName="key">
+            <small>Section name</small>
+          </div>
+
+          <div class="col-sm-1">
+            <ul class="nav navbar-right panel_toolbox">
+              <li class="dropdown">
+                <a href="#" 
+                   class="dropdown-toggle" 
+                   data-toggle="dropdown" 
+                   role="button" 
+                   aria-expanded="false">
+                  <i class="fa fa-2x fa-ellipsis-v pull-right"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                        <a (click)="removed.emit()"> 
+                          Delete Section
+                        </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div> <!--end of delete button-->
+      </div>
+      <!--end create viewState-->
 
       </div>
   </div>
   <!--end panel-heading-->
   <div class="x_content">
-    <question-content-array 
-            [parentForm]="sectionGroup"
-            [questions]="section?.questions">
-    </question-content-array>
+      <question-content-array 
+              [parentForm]="sectionGroup"
+              [questions]="section?.questions"
+              [viewState]="viewState"  >
+      </question-content-array>
   </div>
 </div>
 </div>

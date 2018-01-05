@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, Input, EventEmitter, OnChanges } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+import { Component, Input, OnInit }  from '@angular/core';
+import { FormGroup }                 from '@angular/forms';
 
 import { QuestionBase }              from './question-base';
 import { QuestionControlService }    from './question-control.service';
@@ -11,8 +11,7 @@ import { DropdownQuestion }  from './question-dropdown';
 import { RadiobuttonQuestion }  from './question-radiobutton';
 import { DatepickerQuestion }  from './question-datepicker';
 
-import { Form, Section, Question } from 'app/core/models';
-
+import { Form,Section } from 'app/core/models';
 
 @Component({
     selector: 'dynamic-form',
@@ -21,10 +20,6 @@ import { Form, Section, Question } from 'app/core/models';
     providers: [ QuestionControlService ]
 })
 export class DynamicFormComponent implements OnInit {
-
-    @Input() formArray: FormArray;
-    @Input() questionz: Question[];
-    @Input() sectionz: Section[];
 
     questions: QuestionBase<any>[] = [];
     form : FormGroup;
@@ -72,27 +67,68 @@ export class DynamicFormComponent implements OnInit {
     private sections_test: Section;
     private sections_array: Section[]=[];
 
-    sectionGroupTest: FormGroup;
-    formArrayTest: FormArray;
-
     ngOnInit() {
 
-    this.formArrayTest = new FormArray([]); 
+      this.service
+          .getForms()
+          .subscribe(forms => {
+            console.log('-1.FORMS.FROM SERVICE--',forms);
+            //this.forms = forms;
 
-    //this.service.getQuestions().subscribe(response => {
+            for (let form of forms) {
 
+              for (let section of form.sections) {
+              this.sections_test = section;
 
-          for (let my_section of this.sectionz) {
+                console.log('--this.sections_test--', this.sections_test);
+                
+                console.log('--section.name--', section.name);
+                console.log('--section--', section);
 
-              this.sectionGroupTest = this.qcs.toFormGroupSection(my_section);
-              this.formArrayTest.push(this.sectionGroupTest);
-              this.sectionGroupTest.addControl('questions', new FormArray([]));
-              this.sectionGroupTest.addControl('questionsType', new FormArray([]));
-              this.sectionGroupTest.addControl('questionsBase', new FormArray([]));
+                for (let question of section.questions) {
+                console.log('--question--', question);
 
-          for (let my_question of my_section.questions) {
+                  if(question.type == 'dropdown'){
+                    this.questions_test.push(
+                      new DropdownQuestion({
+                        key      : question.key,
+                        label    : question.label,
+                        type     : question.type,
+                        value    : question.value,
+                        order    : question.order,
+                        required : question.required ? true : false,
+                        options  : "Male|Female"
 
-            (<FormArray>this.sectionGroupTest.get('questions')).push(this.qcs.toFormGroupQuestion(my_question));
+                      })
+                    );
+                  } 
+                }
+              }
+            }
+
+          console.log('--4.THIS.QUESTIONS_TEST--',this.questions_test);
+          console.log('--THIS.SECTION_TEST--', this.sections_test);
+
+          this.questions_test = this.questions_test.sort((a, b) => a.order - b.order);
+          this.form_test = this.qcs.toFormGroup(this.questions_test);
+
+          this.questions = this.questions_test.sort((a, b) => a.order - b.order);
+          
+          console.log('--THIS.SECTIONS_ARRAY--', this.sections_array);
+
+          this.form = this.qcs.toFormGroup(this.questions_test);
+
+          console.log('--5.THIS.FORM_test--',this.form_test);
+
+          });
+
+      this.service
+          .getQuestions()
+          .subscribe(response => {
+
+          console.log('-2.RESPONSE--',response);
+
+          for (let my_question of response) {
 
             console.log('-3.MY_QUESTIONS--',my_question);
 
@@ -107,11 +143,7 @@ export class DynamicFormComponent implements OnInit {
               })
             );
           } 
-
           else if(my_question.type == 'dropdown'){
-
-          console.log('-DROPDOWN.OPTIONS---', my_question.options);
-
             this.questions.push(
               new DropdownQuestion({
                 key      : my_question.key,
@@ -194,34 +226,17 @@ export class DynamicFormComponent implements OnInit {
             );
           } 
           else {
-            console.log('Not yet supported ' , my_question.type);
+            alert('Not yet supported ' + my_question.type);
           } 
-
-          (<FormArray>this.sectionGroupTest
-                          .get('questionsType'))
-                          .push(this.qcs
-                                    .toFormGroupQuestionType(this.questions));
-
-        }//--for
-
       }//--for
 
+      console.log('--4.THIS.QUESTION--',this.questions);
 
       //this.questions = this.questions.sort((a, b) => a.order - b.order);
+      //this.form = this.qcs.toFormGroup(this.questions);
 
-      console.warn('THIS.QUESTIONS', this.questions);
-
-      //(<FormArray>this.sectionGroupTest.get('questionsBase')).push(this.qcs.toFormGroup(this.questions));
-
-      this.sectionGroupTest.controls.questionsBase = this.qcs.toFormGroup(this.questions);
-
-      this.form = this.qcs.toFormGroup(this.questions);
-
-      console.log('--toformARrayTest--', this.formArrayTest);
-      console.log('--this.form--', this.form);
-
-
-      //});//--getQuestions
+      console.log('--5.THIS.FORM--',this.form);
+      });//--getQuestions
 
     }//--onInit
 

@@ -14,6 +14,7 @@ export class QuestionOptionArrayComponent implements OnInit {
 
   @Input() parentForm: FormGroup;
   @Input() options: Option[];
+  @Input() viewState: string;
 
   constructor( 
     private fb: FormBuilder,

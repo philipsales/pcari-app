@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 import { DatePickerModule } from 'angular-io-datepicker';
 import { OverlayModule } from 'angular-io-overlay';
+import { Pipe, PipeTransform } from '@angular/core';
 
 import { DragulaModule, DragulaService } from 'ng2-dragula';
 
@@ -42,6 +43,15 @@ import { QuestionContentComponent } from './forms_question/question-content.comp
 import { QuestionOptionArrayComponent } from './forms_option/question-option-array.component';
 import { QuestionOptionComponent } from './forms_option/question-option.component';
 
+
+@Pipe({ name: 'keys', pure: false})
+export class KeysPipe implements PipeTransform {
+  transform(value: any, args: any[]=null): any {
+  //return Object.keys(value)
+   return Object.values(value)
+  }
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -55,6 +65,8 @@ import { QuestionOptionComponent } from './forms_option/question-option.componen
     FormRoutingModule
   ],
   declarations: [
+    KeysPipe,
+
 //Editor
     FormListComponent,
     QuestionDetailComponent,

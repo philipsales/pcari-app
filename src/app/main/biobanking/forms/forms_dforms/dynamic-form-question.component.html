@@ -24,7 +24,7 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
           <select class="select2_group form-control"
                   [formControlName]="question.key" >
-            <option *ngFor="let opt of question.options" 
+            <option *ngFor="let opt of question.options | keys" 
                   [id]="question.key" 
                   [value]="opt.value">{{opt.value}}</option>
           </select>

@@ -13,6 +13,7 @@ export class QuestionContentComponent implements OnChanges {
 
   @Input() formArray: FormArray;
   @Input() question: Question;
+  @Input() viewState: string;
 
   @Output() removed = new EventEmitter();
   @Output() clone = new EventEmitter();

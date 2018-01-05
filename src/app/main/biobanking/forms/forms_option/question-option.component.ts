@@ -14,6 +14,7 @@ export class QuestionOptionComponent implements OnInit {
 
   @Input() formArray: FormArray;
   @Input() option: Option;
+  @Input() viewState: string;
   @Input() optionType: String[];
 
 
@@ -28,10 +29,6 @@ export class QuestionOptionComponent implements OnInit {
 
   ngOnInit() {
     this.optionGroup = this.toFormGroup(this.option);
-    console.log('--this.opitonGroup--',this.optionGroup);
-    console.log('--this.opitonArray--',this.formArray);
-    console.log('--this.opitonType--',this.optionType);
-
     this.index = this.formArray.length;
     this.formArray.push(this.optionGroup);
   }

@@ -14,6 +14,7 @@ export class QuestionContentArrayComponent implements OnInit {
 
   @Input() parentForm: FormGroup;
   @Input() questions: Question[]; 
+  @Input() viewState: string; 
 
   questionGroup: FormGroup;
 

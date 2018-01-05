@@ -32,7 +32,7 @@ export class FormDummyApiResponse implements InMemoryDbService {
                   },
                   {
                     key: '332aa449-efdf-6162-88ed-3d6c7442343c', 
-                    name: "female"
+                    name: "girl"
                   }
                 ] 
               },
@@ -100,7 +100,7 @@ export class FormDummyApiResponse implements InMemoryDbService {
           questions: [
               { 
                 key: '43ede449-efdf-6162-88ed-3d6c7442343c', 
-                label: 'What is your gender', 
+                label: 'What is your genders', 
                 type: 'radiobutton', 
                 value: 'value', 
                 required: true, 
@@ -112,7 +112,7 @@ export class FormDummyApiResponse implements InMemoryDbService {
                   },
                   {
                     key: '332aa449-efdf-6162-88ed-3d6c7442343c', 
-                    name: "female"
+                    name: "girl"
                   }
                 ] 
               },

@@ -2,6 +2,7 @@ import { QuestionBase } from './question-base';
 
 export class DropdownQuestion extends QuestionBase<string> {
     controlType = 'dropdown';
+    type : string;
     options: {
       key   : string,
       index : number,
@@ -13,21 +14,25 @@ export class DropdownQuestion extends QuestionBase<string> {
     ) 
     {
       super(options);
+      console.warn('--DROPDOWN-ts--', options);
 
-      if(options['options']){
-        let arrvalue = options['options'].split('|');
-        let index = 0;
+        if(options['options']){
 
-        for(var curvalue of arrvalue){
-          this.options.push({
-            key: this.key,
-            index: index,
-            value: curvalue
-        });
-	    }
+          //let arrvalue = options['options'].split('|');
+          //let arrvalue_test = ["male","vaginismi"];
 
-	    console.log(curvalue);
+          let arrvalue = options['options'];
 
-    }
-  }//--constructor
+          arrvalue.forEach((value,index)=> {
+
+            this.options.push({
+              key: value.key,
+              index: value.index,
+              value: value.name 
+            });
+
+          });
+        this.type = 'dropdown';
+      }
+    }//--constructor
 }//--DropdownQuestion

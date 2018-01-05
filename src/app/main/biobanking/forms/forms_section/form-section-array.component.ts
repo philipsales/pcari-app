@@ -12,12 +12,12 @@ export class FormSectionArrayComponent implements OnInit {
 
   @Input() parentForm: FormGroup;
   @Input() sections: Section[];
+  @Input() viewState: string; 
 
   constructor( private fb: FormBuilder) { }
 
   ngOnInit() {
     this.initSection();
-
     this.parentForm.addControl('sections', new FormArray([]));
   }
 

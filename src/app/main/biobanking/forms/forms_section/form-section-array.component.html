@@ -26,11 +26,25 @@
   <div class="">
     <div [formGroup]="parentForm">
       <div formArrayName="sections">
-        <form-section *ngFor="let section of sections; let i = index;"
-           [formArray]="parentForm.controls.sections" 
-           [section]="section" 
-           (removed)="removeSection(i)" >
-        </form-section>
+        <div *ngFor="let section of sections; let i = index;">
+
+          <div *ngIf="viewState=='create'">
+            <form-section
+               [formArray]="parentForm.controls.sections" 
+               [section]="section" 
+               [viewState]="viewState"  
+               (removed)="removeSection(i)" >
+            </form-section>
+          </div>
+          <div *ngIf="viewState=='preview'">
+            <form-section
+               [formArray]="parentForm.controls.sections" 
+               [section]="section" 
+               [viewState]="viewState"  
+               (removed)="removeSection(i)" >
+            </form-section>
+          </div>
+        <div>
       </div>
     </div>
   </div>
