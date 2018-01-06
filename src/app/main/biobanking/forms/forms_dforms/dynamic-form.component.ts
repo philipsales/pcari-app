@@ -49,14 +49,14 @@ export class DynamicFormComponent implements OnInit {
 
     this.formArrayTest = new FormArray([]); 
 
-          for (let my_section of this.sectionz) {
+    for (let my_section of this.sectionz) {
 
-              this.sectionGroupTest = this.qcs.toFormGroupSection(my_section);
-              this.formArrayTest.push(this.sectionGroupTest);
-              this.sectionGroupTest.addControl('questions', new FormArray([]));
-              this.sectionGroupTest.addControl('questionsType', new FormArray([]));
+      this.sectionGroupTest = this.qcs.toFormGroupSection(my_section);
+      this.formArrayTest.push(this.sectionGroupTest);
+      this.sectionGroupTest.addControl('questions', new FormArray([]));
+      this.sectionGroupTest.addControl('questionsType', new FormArray([]));
 
-          for (let my_question of my_section.questions) {
+        for (let my_question of my_section.questions) {
 
           (<FormArray>this.sectionGroupTest.get('questions')).push(this.qcs.toFormGroupQuestion(my_question));
 
@@ -161,22 +161,16 @@ export class DynamicFormComponent implements OnInit {
                           .get('questionsType'))
                           .push(this.qcs
                                     .toFormGroupQuestionType(this.questions));
-
         }//--for
 
       }//--for
 
 
       //this.questions = this.questions.sort((a, b) => a.order - b.order);
-
       this.form = this.qcs.toFormGroup(this.questions);
 
       console.log('--formARrayTest--', this.formArrayTest);
-      console.log('--sectionGroupTest--FINAL-', this.sectionGroupTest);
       console.log('--this.form--', this.form);
-
-
-
     }//--onInit
 
     onSubmit() {

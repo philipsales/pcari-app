@@ -71,7 +71,7 @@ export class FormService {
 
     console.log('--submitForm.form.service--:',form);
 
-    //DUMMY FOR API PURPOSES
+    //TODO: DUMMY REQUESTION, replace FORM object when API done 
     let question = 
     [
       {
@@ -100,7 +100,7 @@ export class FormService {
 
     let question_json = JSON.stringify(question);
 
-    //TODO: Refractor headers
+    //TODO: Refractor headers to allow cors
     let headers = new Headers({ 'Content-Type': 'application/json' });
     headers.append('Accept', 'application/json');
     headers.append('Allow', 'GET,POST,HEAD,OPTIONS');
@@ -111,6 +111,9 @@ export class FormService {
                .post(url, question_json, options)
                .map((response: Response) => {
                   console.warn('--respons.json()--',response.json());
+
+                  //TODO: temporary API not done
+                  console.warn('--TEMPORARY FAKE RESPONSE---');
                   return new Question('','','','',false,1,[]);
 
                   //TODO: SHOUD return Object Form instead of Question
