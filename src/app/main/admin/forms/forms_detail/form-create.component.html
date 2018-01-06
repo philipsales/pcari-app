@@ -45,19 +45,21 @@
                     </select>
                     <small>Registry Type</small>
                  </div>
-                  <input type="text" class="form-control"
+                  <!--<input type="text" class="form-control"
                          placeholder="organization"
                          formControlName="organization">
-                  <small>Organization</small>
-                 <div *ngIf="organization" 
+                  <small>Organization</small>-->
+
+                 <div *ngIf="organizations" 
                       class="form-group">
                     <select formControlName="organization" 
                             class="form-control">
                         <option *ngFor="let org of organizations"
-                                [value]="dept.name"> {{dept.name}}</option>
+                                [value]="org.name"> {{org.name}}</option>
                     </select>
-                    <small>Department </small>
+                    <small>Organizations</small>
                  </div>
+
                  <div *ngIf="departments" 
                       class="form-group">
                     <select formControlName="department" 

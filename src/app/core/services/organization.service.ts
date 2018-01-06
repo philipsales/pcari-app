@@ -20,13 +20,14 @@ export class OrganizationService {
     }//--constructor
 
     getAll(): Observable<Organization[]> {
-	const url = environment.API_ENDPOINT + '/organizations/';
-	return this.http.get(url)
-	    .map((response: Response) => {
-		console.log(response.json())
-		return response.json().map(Organization.fromJSON);
-            })
-	    .catch(Helper.handleError);
+      const url = environment.API_ENDPOINT + '/organizations/';
+      return this.http
+                 .get(url)
+                 .map((response: Response) => {
+                    console.log(response.json())
+                    return response.json().map(Organization.fromJSON);
+                 })
+                 .catch(Helper.handleError);
     }//--getAll
 
     getOrganizations(): Observable<Organization[]> {
@@ -34,7 +35,11 @@ export class OrganizationService {
       return this.http
                  .get(url)
                  .map((response: Response) => {
-                    return response.json().map(Organization.fromJSON);
+                    console.log('--Organization--', response);
+                    console.log('--Organization.json()--', response.json());
+                    console.log('--Organization.json().as--', response.json() as Organization[]);
+                    //NOTE without .data for Kristhian' API
+                    return (response.json() as Organization[]);
                  })
                  .catch(Helper.handleError);
     }//--getAll

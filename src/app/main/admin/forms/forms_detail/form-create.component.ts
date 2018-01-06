@@ -60,7 +60,7 @@ export class FormCreateComponent implements OnInit {
 
     this.getRegistryTypes();
     this.getDepartments();
-    //this.getOrganizations();
+    this.getOrganizations();
 
     this.formId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.initForm(this.formId);
@@ -171,7 +171,9 @@ export class FormCreateComponent implements OnInit {
         .getOrganizations()
         .subscribe(
           organizations => {
+            console.log('--form_CREATE--', organizations);
             this.organizations = organizations;
+            console.log('--this.organizations--', this.organizations);
           }
         );
   }

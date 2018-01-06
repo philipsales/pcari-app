@@ -59,7 +59,9 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
     OverlayModule,
     DatePickerModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(FormDummyApiResponse),
+    InMemoryWebApiModule.forRoot(FormDummyApiResponse, { 
+      passThruUnknownUrl: true, delay: 1000
+    }),
     FormRoutingModule
   ],
   declarations: [
@@ -86,10 +88,10 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
     QuestionOptionComponent
   ],
   providers: [ 
+    OrganizationService,
     FormDummyApiResponse,
     FormService,
     SharedDataService,
-    OrganizationService,
     DepartmentService,
     RegTypeService,
 
