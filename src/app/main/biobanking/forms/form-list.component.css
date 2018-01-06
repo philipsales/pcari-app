@@ -83,3 +83,12 @@ li {
     width: 70px;
     padding: 5px;
 }
+
+.form_name {
+  display: inline-block;
+  cursor:  pointer;
+}
+
+.form_name:hover {
+  text-decoration: underline;
+}

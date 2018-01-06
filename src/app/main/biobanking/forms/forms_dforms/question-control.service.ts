@@ -27,10 +27,11 @@ export class QuestionControlService {
         group['controlType'] = question.controlType;
         group['label'] = question.label;
         group['value'] = question.value;
+        //TODO: get actual options value
         group['options'] = 
         [ 
-          { "key": "32xse449-efdf-6162-88ed-3d6c7442343c", "value": "transgender" }, 
-          { "key": "332aa449-efdf-6162-88ed-3d6c7442343c", "value": "homosexual" } 
+          { "key": "32xse449-efdf-6162-88ed-3d6c7442343c", "value": "male" }, 
+          { "key": "332aa449-efdf-6162-88ed-3d6c7442343c", "value": "female" } 
         ];
 
     });

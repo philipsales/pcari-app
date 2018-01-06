@@ -10,7 +10,9 @@ export class ConsentDummyApiResponse implements InMemoryDbService {
         number: "Form 123", 
         description: "Consent for admission", 
         date_created: "10-10-2017", 
-        is_deleted: "TRUE" 
+        file_dir: "", 
+        date_updated: '',
+        is_deleted: false 
       },
       { 
         id: 1, 
@@ -18,7 +20,9 @@ export class ConsentDummyApiResponse implements InMemoryDbService {
         number: "Form 31", 
         description: "Consent for registry registration", 
         date_created: "10-10-2017", 
-        is_deleted: "TRUE" 
+        file_dir: "", 
+        date_updated: '',
+        is_deleted: false 
       }
     ];
 
