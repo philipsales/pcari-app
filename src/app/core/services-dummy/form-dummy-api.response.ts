@@ -1,5 +1,9 @@
+import { tumorRegistryTemplate } from '../data/template-tumor-form';
+import { survivalDataTemplate } from '../data/template-survival-form';
+
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class FormDummyApiResponse implements InMemoryDbService {
+
 
   createDb() {
 
@@ -285,38 +289,41 @@ export class FormDummyApiResponse implements InMemoryDbService {
     }
   ];
 
-  let registryTypes = [
-    { 
-      id: 0, 
-      name: "Biobanking Repository", 
-      date_created: "10-10-2017", 
-      date_updated: '',
-      is_deleted: false
-    },
-    { 
-      id: 1, 
-      name: "Patient Repository", 
-      date_created: "10-10-2017", 
-      date_updated: '',
-      is_deleted: false
-    }
-  ];
 
-  let departments = [
-    { 
-      id: 0, 
-      name: "General Surgery Department" 
-    },
-    { 
-      id: 1, 
-      name: "Obstetric Gynecology Department" 
-    }
-  ];
+    let registryTypes = [
+      { 
+        id: 0, 
+        name: "Biobanking Repository", 
+        date_created: "10-10-2017", 
+        date_updated: '',
+        is_deleted: false
+      },
+      { 
+        id: 1, 
+        name: "Patient Repository", 
+        date_created: "10-10-2017", 
+        date_updated: '',
+        is_deleted: false
+      }
+    ];
 
-  return { 
-    forms         : forms, 
-    registrytypes : registryTypes,
-    departments   : departments 
-  };
+    let departments = [
+      { 
+        id: 0, 
+        name: "General Surgery Department" 
+      },
+      { 
+        id: 1, 
+        name: "Obstetric Gynecology Department" 
+      }
+    ];
+
+    return { 
+      //forms         : forms, 
+      forms         : forms.concat(tumorRegistryTemplate)
+                           .concat(survivalDataTemplate), 
+      registrytypes : registryTypes,
+      departments   : departments 
+    };
   }
 }

@@ -23,7 +23,6 @@
   <div class="form-group">
     <div [formGroup]="parentForm" class="col-sm-12">
       <h3> Question-option: {{viewState}}</h3>
-      <div *ngIf="viewState=='create' ">
         <question-option *ngFor="let option of options"
            [formArray]="parentForm.controls.options" 
            [optionType]="parentForm.get('type').value" 
@@ -31,7 +30,6 @@
            (removed)="removeOption(i)" 
            [viewState]="viewState" >
         </question-option>
-      </div>
     </div>
     <div class="col-sm-12">
        <a class="option_button" 
