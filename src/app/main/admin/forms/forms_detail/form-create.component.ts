@@ -105,7 +105,9 @@ export class FormCreateComponent implements OnInit {
   toFormGroup(data: Form){
     return this.fb.group({
       id: data.id, 
-      name: data.name 
+      name: data.name,
+      type: data.type,
+      department: data.department
     });
   }
 

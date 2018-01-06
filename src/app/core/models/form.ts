@@ -4,6 +4,7 @@ export class Form {
   id            : number;
   name          : string;
   department?   : string;
+  type?         : string;
   approval?     : string;
   status?       : string;
   created_by?   : string;

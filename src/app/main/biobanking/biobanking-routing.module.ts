@@ -18,10 +18,6 @@ const routes: Routes = [
           path: 'questions',
           loadChildren: './questions/questions.module#QuestionsModule'
         },
-        {
-          path: 'forms',
-          loadChildren: './forms/form.module#FormModule'
-        },
         { path: '', redirectTo: 'cases' }
       ]
     }

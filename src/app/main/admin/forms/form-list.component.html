@@ -8,7 +8,7 @@
 	<div class="app-header--breadcrumbs">
 	  <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
 	    <li>
-	      <a [routerLink]="['./']">Biobanking Registry</a>
+	      <a [routerLink]="['./']">Administration</a>
 	    </li>
 	  </ol>
 	</div>
@@ -35,7 +35,7 @@
 	</div>
       </div>
       <!--<a [routerLink]="['/biobanking/questions/create']"-->
-      <a [routerLink]="['/biobanking/forms/create',0]"
+      <a [routerLink]="['/admin/forms/create',0]"
          class="btn btn-default pull-right">
         <i class="fa fa-plus"></i> &nbsp; New Form 
       </a>
@@ -48,6 +48,7 @@
 	    <th>#</th>
 	    <th>Form Name</th>
 	    <th>Department</th>
+	    <th>Type</th>
 	    <th>Approval</th>
 	    <th>Created by</th>
 			<!--<th style="text-align: center">Action</th>-->
@@ -59,10 +60,11 @@
 	    <th scope="row">{{ i + 1 }}</th>
 	    <td>
         <a class="form_name" 
-           [routerLink]="['/biobanking/forms/update',form.id]" >
+           [routerLink]="['/admin/forms/update',form.id]" >
           {{ form.name }}
         </a>
       </td>
+	    <td>{{ form.type }}</td>
 	    <td>{{ form.department }}</td>
 	    <td>{{ form.approval }}</td>
 	    <td>{{ form.created_by }}</td>

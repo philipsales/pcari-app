@@ -6,8 +6,9 @@ export class FormDummyApiResponse implements InMemoryDbService {
   let forms = [
     {
       id: 2342, 
-      name: "Cancer Registry Template v.2", 
+      name: "Breast Cancer Form v.2", 
       department: "General Surgery Department", 
+      type: "Patient Repository", 
       approval: "Approved", 
       status: "Primary", 
       created_by: "Dr. Apple", 
@@ -120,8 +121,9 @@ export class FormDummyApiResponse implements InMemoryDbService {
 
     {
       id: 323423432, 
-      name: "Cancer Registry Template v.1", 
+      name: "Breast Cancer Form v.1", 
       department: "General Surgery Department", 
+      type: "Patient Repository", 
       approval: "Approved", 
       status: "Not Active", 
       created_by: "Dr. Apple", 
@@ -233,8 +235,9 @@ export class FormDummyApiResponse implements InMemoryDbService {
     //insert new array
     {
       id: 111, 
-      name: "Cervical Cancer Registry Template v.1", 
+      name: "Cervical Cancer Form v.1", 
       department: "OBGYN Surgery Department", 
+      type: "Biobanking Repository", 
       approval: "Pending", 
       status: "Not Active", 
       created_by: "Dr. Apple", 

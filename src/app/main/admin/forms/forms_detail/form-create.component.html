@@ -7,13 +7,10 @@
             <div class="app-header--breadcrumbs">
               <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
                 <li>
-                  <a [routerLink]="['/biobanking/forms']">Biobanking Registry</a>
+                  <a [routerLink]="['/admin/forms']">Administration</a>
                 </li>
                 <li>
-                  <a [routerLink]="['/biobanking/forms/list']">Forms List</a>
-                </li>
-                <li>
-                  <a [routerLink]="['/biobanking/forms/create']">Create</a>
+                  <a [routerLink]="['/admin/forms/list']">Forms List</a>
                 </li>
               </ol>
             </div>
@@ -41,6 +38,18 @@
                            placeholder="name"
                            formControlName="name">
                     <small>Form Name</small>
+                 </div>
+                 <div class="form-group">
+                    <input type="text" class="form-control"
+                           placeholder="Untitled type"
+                           formControlName="type">
+                    <small>Registry Type</small>
+                 </div>
+                 <div class="form-group">
+                    <input type="text" class="form-control"
+                           placeholder="Untitled department"
+                           formControlName="department">
+                    <small>Department </small>
                  </div>
                </div>
                <br/>
