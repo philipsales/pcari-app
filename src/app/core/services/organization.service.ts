@@ -29,4 +29,14 @@ export class OrganizationService {
 	    .catch(Helper.handleError);
     }//--getAll
 
+    getOrganizations(): Observable<Organization[]> {
+      const url = environment.API_ENDPOINT + '/organizations/';
+      return this.http
+                 .get(url)
+                 .map((response: Response) => {
+                    return response.json().map(Organization.fromJSON);
+                 })
+                 .catch(Helper.handleError);
+    }//--getAll
+
 }

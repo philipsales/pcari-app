@@ -11,6 +11,7 @@ export class FormDummyApiResponse implements InMemoryDbService {
     {
       id: 2342, 
       name: "Breast Cancer Form v.2", 
+      organization: "University of the Philippines - Philippine General Hospital", 
       department: "General Surgery Department", 
       type: "Patient Repository", 
       approval: "Approved", 
@@ -126,6 +127,7 @@ export class FormDummyApiResponse implements InMemoryDbService {
     {
       id: 323423432, 
       name: "Breast Cancer Form v.1", 
+      organization: "University of the Philippines - Philippine General Hospital", 
       department: "General Surgery Department", 
       type: "Patient Repository", 
       approval: "Approved", 
@@ -240,7 +242,8 @@ export class FormDummyApiResponse implements InMemoryDbService {
     {
       id: 111, 
       name: "Cervical Cancer Form v.1", 
-      department: "Obstetric Gynecology Department", 
+      organization: "University of the Philippines - Diliman", 
+      department: "Institute of Biology", 
       type: "Biobanking Repository", 
       approval: "Pending", 
       status: "Not Active", 
@@ -315,6 +318,10 @@ export class FormDummyApiResponse implements InMemoryDbService {
       { 
         id: 1, 
         name: "Obstetric Gynecology Department" 
+      },
+      { 
+        id: 1, 
+        name: "Institute of Biology" 
       }
     ];
 

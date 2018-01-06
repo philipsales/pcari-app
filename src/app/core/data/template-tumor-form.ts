@@ -1,7 +1,8 @@
 export const tumorRegistryTemplate = 
     {
       id: 9342, 
-      name: "GS1 Tumor Registry v.2", 
+      name: "GS1 Tumor Registry v.1", 
+      organization: "University of the Philippines - Philippine General Hospital", 
       department: "General Surgery Department", 
       type: "Patient Repository", 
       approval: "Approved", 

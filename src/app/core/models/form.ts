@@ -3,6 +3,7 @@ import { Section } from './section';
 export class Form {
   id            : number;
   name          : string;
+  organization  : string;
   department    : string;
   type          : string;
   approval?     : string;

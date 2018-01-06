@@ -8,11 +8,13 @@ import {
   Question, 
   Form, 
   Section,
-  RegType,
-  Department 
+  Organization, 
+  Department,
+  RegType
   } from 'app/core/models';
 
 import { FormService }          from 'app/core/services';
+import { OrganizationService }  from 'app/core/services';
 import { RegTypeService }       from 'app/core/services';
 import { DepartmentService }    from 'app/core/services';
 import { SharedDataService }    from 'app/core/services';
@@ -31,6 +33,7 @@ export class FormCreateComponent implements OnInit {
 
   private registryTypes: RegType[];
   private departments: Department[];
+  private organizations: Organization[];
 
   private formId: number;
 
@@ -44,6 +47,7 @@ export class FormCreateComponent implements OnInit {
     private formService: FormService,
     private regTypeService: RegTypeService,
     private departmentService: DepartmentService,
+    private organizationService: OrganizationService,
     private notificationsService: NotificationsService,
     private route: ActivatedRoute,
     private router: Router,
@@ -56,6 +60,7 @@ export class FormCreateComponent implements OnInit {
 
     this.getRegistryTypes();
     this.getDepartments();
+    //this.getOrganizations();
 
     this.formId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.initForm(this.formId);
@@ -85,6 +90,7 @@ export class FormCreateComponent implements OnInit {
         id: 0, 
         name: "Untitled form",
         type: "Patient Repository", 
+        organization: "University of the Philippines - Philippine General Hospital", 
         department: "General Surgery Department",
         sections: [
           {
@@ -132,6 +138,7 @@ export class FormCreateComponent implements OnInit {
       id: data.id, 
       name: data.name,
       type: data.type,
+      organization : data.organization,
       department: data.department
     });
   }
@@ -154,6 +161,17 @@ export class FormCreateComponent implements OnInit {
         .subscribe(
           departments => {
             this.departments = departments;
+          }
+        );
+  }
+
+  getOrganizations(){
+
+    this.organizationService
+        .getOrganizations()
+        .subscribe(
+          organizations => {
+            this.organizations = organizations;
           }
         );
   }

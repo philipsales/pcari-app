@@ -30,8 +30,6 @@ export class QuestionContentComponent implements OnChanges {
   }
 
   ngOnChanges() {
-
-    console.log('--question-content--', this.formArray);
     this.questionGroup = this.toFormGroup(this.question);
 
     this.index = this.formArray.length;

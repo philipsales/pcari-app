@@ -1,37 +1,36 @@
 import { QuestionBase } from './question-base';
 
 export class DropdownQuestion extends QuestionBase<string> {
-    controlType = 'dropdown';
-    type : string;
-    options: {
-      key   : string,
-      index : number,
-      value : string
-    }[] = [];
+  controlType = 'dropdown';
+  type : string;
+  options: {
+    key   : string,
+    index : number,
+    value : string
+  }[] = [];
 
-    constructor(
-      options: {} = {}
-    ) 
-    {
-      super(options);
+  constructor(
+    options: {} = {}
+  ) 
+  {
+    super(options);
+      
+    if(options['options']){
 
-        if(options['options']){
+      let arrvalue = options['options'];
 
-          //let arrvalue = options['options'].split('|');
-          //let arrvalue_test = ["male","vaginismi"];
+      arrvalue.forEach((value,index)=> {
 
-          let arrvalue = options['options'];
+        this.options.push({
+          key: value.key,
+          index: value.index,
+          value: value.name 
+        });
 
-          arrvalue.forEach((value,index)=> {
+      });
+      this.type = 'dropdown';
+    }
 
-            this.options.push({
-              key: value.key,
-              index: value.index,
-              value: value.name 
-            });
 
-          });
-        this.type = 'dropdown';
-      }
-    }//--constructor
+  }//--constructor
 }//--DropdownQuestion

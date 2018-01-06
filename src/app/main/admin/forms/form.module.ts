@@ -18,6 +18,7 @@ import { FormService }         from 'app/core/services';
 import { SharedDataService }   from 'app/core/services';
 import { RegTypeService }      from 'app/core/services';
 import { DepartmentService }   from 'app/core/services';
+import { OrganizationService } from 'app/core/services';
 
 //Utils
 import { KeysPipe } from 'app/core/utils';
@@ -88,6 +89,7 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
     FormDummyApiResponse,
     FormService,
     SharedDataService,
+    OrganizationService,
     DepartmentService,
     RegTypeService,
 
