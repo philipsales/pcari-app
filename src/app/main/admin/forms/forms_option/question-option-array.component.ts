@@ -44,8 +44,14 @@ export class QuestionOptionArrayComponent implements OnInit {
   }
 
   removeOption(index: number){
-    this.options.splice(index,1);
-    (<FormArray>this.parentForm.get('options')).removeAt(index);
+
+    if(this.options.length > 1){
+      this.options.splice(index,1);
+
+      (<FormArray>this.parentForm
+                      .get('options'))
+                      .removeAt(index);
+    }
   }
 
 

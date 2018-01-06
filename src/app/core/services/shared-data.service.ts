@@ -13,6 +13,10 @@ export class SharedDataService {
      return this.storage;
   }
 
+  clearStorage() {
+    this.storage = "";
+  }
+
   constructor() { }
 
 }

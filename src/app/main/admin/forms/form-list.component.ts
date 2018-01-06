@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormService } from 'app/core/services';
+import { SharedDataService }    from 'app/core/services';
 import { Form }        from 'app/core/models';
 
 @Component({
@@ -12,9 +13,14 @@ export class FormListComponent implements OnInit {
 
   private forms: Form[];
 
-  constructor(private formService: FormService) { }
+  constructor(
+    private sharedData: SharedDataService,
+    private formService: FormService) { }
 
   ngOnInit() {
+
+    this.sharedData.clearStorage();
+
     this.formService
         .getForms()
         .subscribe(
@@ -22,6 +28,7 @@ export class FormListComponent implements OnInit {
             this.forms = forms;
           }
         );
+
   }
 
   

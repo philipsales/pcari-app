@@ -207,13 +207,9 @@ export class FormCreateComponent implements OnInit {
   onPreviewForm(previewForm : Form, id: string){
      console.log('--ONPREVIEW--', previewForm);
 
-     let params = {
-         "id": id, 
-         "form": previewForm
-     }
+     let params = { "form": previewForm }
 
      this.sharedData.setStorage(params);
-
      this.router.navigate([`./forms/preview/${id}`]);
   }
 }

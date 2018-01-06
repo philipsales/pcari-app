@@ -39,8 +39,15 @@ export class FormSectionArrayComponent implements OnInit {
   }
 
   removeSection(index: number){
-    this.sections.splice(index,1);
-    (<FormArray>this.parentForm.get('sections')).removeAt(index);
+
+    if(this.sections.length > 1){
+      this.sections.splice(index,1);
+
+      (<FormArray>this.parentForm
+                      .get('sections'))
+                      .removeAt(index);
+    }
+
   }
 
 

@@ -114,8 +114,13 @@ export class QuestionContentArrayComponent implements OnInit {
   removeQuestion(index: number){
     console.log('--content-array-index', index);
 
-    this.questions.splice(index,1);
-    (<FormArray>this.parentForm.get('questions')).removeAt(index);
+    if(this.questions.length > 1){
+      this.questions.splice(index,1);
+
+      (<FormArray>this.parentForm
+                      .get('questions'))
+                      .removeAt(index);
+    }
 
     const ctrl = <FormArray>this.parentForm.controls['questions'];
     ctrl.controls.forEach( (x,indexes) => {

@@ -37,39 +37,17 @@ export class DformsComponent implements OnInit {
     private nonSave: Form;
 
   ngOnInit() {
+    //TODO: catch IF new creation
+
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log('PREVIEW',id);
-
-    console.log('SHARED',this.sharedData.storage);
-    console.log('form',this.sharedData.storage.form);
    
-    this.initPreviewForm(id);
+    this.initPreviewForm();
 
-    //TODO: catch IF new creation
-    //this.data = this.initForm();
-    //this.templateForm = this.toFormGroup(this.data);
   }
 
-  initPreviewForm(id: number): void {
-
-  /*
-    if(id != 0){
-    this.formService
-        .getForm(id)
-        .subscribe(
-          existingForm => {
-            console.log('-ACTUALservice',existingForm);
-            this.data = existingForm;
-          }
-        );
-    }
-    else {
-      console.log('--SHARED--',this.sharedData.getStorage().form);
-      this.data = this.sharedData.storage.form;
-    }
-  */
-  this.data = this.sharedData.storage.form;
-
+  initPreviewForm(): void {
+    this.data = this.sharedData.storage.form;
   }
 
 
