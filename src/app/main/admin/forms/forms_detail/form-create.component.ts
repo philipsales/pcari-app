@@ -2,7 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { KeyGenerator } from 'app/core/utils';
 
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { 
   Question, 
@@ -15,6 +15,7 @@ import {
 import { FormService }          from 'app/core/services';
 import { RegTypeService }       from 'app/core/services';
 import { DepartmentService }    from 'app/core/services';
+import { SharedDataService }    from 'app/core/services';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -47,16 +48,20 @@ export class FormCreateComponent implements OnInit {
     private departmentService: DepartmentService,
     private _notificationsService: NotificationsService,
     private route: ActivatedRoute,
+    private router: Router,
+    private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
   ) { 
   }
 
   ngOnInit() {
+    console.log('-----FORM-create.init---');
+    this.getRegistryTypes();
+    this.getDepartments();
+
     this.formId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.initForm(this.formId);
 
-    this.getRegistryTypes();
-    this.getDepartments();
   }
 
   initForm(id:number) {
@@ -70,7 +75,16 @@ export class FormCreateComponent implements OnInit {
 
   //TODO: Refractor default declaration
   initCreateForm(): void {
-    const newForm: Form = 
+
+  let newForm: Form; 
+
+
+  if(this.sharedData.getStorage()){
+    newForm = this.sharedData.getStorage().form;
+  }
+  else {
+
+    newForm = 
     {
       id: 0, 
       name: "Untitled form",
@@ -85,11 +99,22 @@ export class FormCreateComponent implements OnInit {
         }
       ]
     };
+
+  }
+
     this.data = newForm ;
     this.initTemplateFormGroup();
+
   }
 
   initUpdateForm(id: number): void {
+
+    if(this.sharedData.getStorage()){
+      this.data = this.sharedData.getStorage().form;
+      this.initTemplateFormGroup();
+    }
+    else {
+
     this.formService
         .getForm(id)
         .subscribe(
@@ -98,10 +123,12 @@ export class FormCreateComponent implements OnInit {
             this.initTemplateFormGroup();
           }
         );
+    }
   }
 
   initTemplateFormGroup() {
     this.templateForm = this.toFormGroup(this.data);
+    console.log('--TEMPLAETFORM--', this.templateForm);
   }
 
   //TODO: Refractor default declaration
@@ -142,21 +169,21 @@ export class FormCreateComponent implements OnInit {
     });
   }
 
-  onSaveForm(input_form: Form){
+  onSaveForm(inputForm: Form){
 
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
   
     this.formService
-        .submitForm(input_form)
+        .submitForm(inputForm)
         .subscribe(created_question => {
           this.is_processing = false;
           console.warn(created_question, 'AYUS');
 
           this._notificationsService
               .success(
-                'Form: ' + input_form.name,
+                'Form: ' + inputForm.name,
                 'Successfully Saved.', 
                 {
                   timeOut: 10000,
@@ -174,6 +201,19 @@ export class FormCreateComponent implements OnInit {
           throw errors
         });
 
-    console.log('--tempalteForm--',input_form);
+    console.log('--tempalteForm--',inputForm);
+  }
+
+  onPreviewForm(previewForm : Form, id: string){
+     console.log('--ONPREVIEW--', previewForm);
+
+     let params = {
+         "id": id, 
+         "form": previewForm
+     }
+
+     this.sharedData.setStorage(params);
+
+     this.router.navigate([`./forms/preview/${id}`]);
   }
 }

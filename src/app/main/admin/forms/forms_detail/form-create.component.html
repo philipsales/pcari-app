@@ -47,7 +47,8 @@
                     </select>
                     <small>Registry Type</small>
                  </div>
-                 <div *ngIf="departments" class="form-group">
+                 <div *ngIf="departments" 
+                      class="form-group">
                     <select formControlName="department" 
                             class="form-control">
                         <option *ngFor="let dept of departments"
@@ -86,7 +87,10 @@
                             </a>
                         </li>
                         <li title="Preview Template" class="form-side-editor-fxn" >
-                          <a  [routerLink]="['../../preview',formId]">
+                          <a  [routerLink]="['../../preview',formId]" >
+                            <i class="fa fa-3x fa-plus"></i>
+                          </a>
+                          <a (click)="onPreviewForm(templateForm.value,formId)" >
                             <i class="fa fa-3x fa-eye"></i>
                           </a>
                         </li>
@@ -94,7 +98,7 @@
                             (click)="onSaveClick(questionFormGroup.value.secretLairs)">-->
                         <li title="Save Template" 
                             class="form-side-editor-fxn" 
-                            (click)="onSaveForm(templateForm.value)">
+                            (click)="onSaveForm(templateForm.value)" >
                             <a  [routerLink]="['.']">
                               <i class="fa fa-3x fa-save"></i>
                             </a>
@@ -107,6 +111,9 @@
               </div>
             </div>
           </form>
+          <pre *ngIf="templateForm">
+          {{templateForm.value | json}}
+          </pre>
           <!--end templateForm-->
       </div>
       <!--end of row-->

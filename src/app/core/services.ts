@@ -10,3 +10,4 @@ export * from './services/case.service';
 export * from './services/form.service';
 export * from './services/regtype.service';
 export * from './services/department.service';
+export * from './services/shared-data.service';

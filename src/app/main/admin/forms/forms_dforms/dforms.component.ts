@@ -7,7 +7,9 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { KeyGenerator } from 'app/core/utils';
 
 import { Question, Form, Section } from 'app/core/models';
-import { FormService } from 'app/core/services';
+
+import { FormService }       from 'app/core/services';
+import { SharedDataService } from 'app/core/services';
 
 import { NotificationsService } from 'angular2-notifications';
 
@@ -28,12 +30,19 @@ export class DformsComponent implements OnInit {
     private formService: FormService,
     private route: ActivatedRoute,
     private location: Location,
+    private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
   ) { }
+
+    private nonSave: Form;
 
   ngOnInit() {
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     console.log('PREVIEW',id);
+
+    console.log('SHARED',this.sharedData.storage);
+    console.log('form',this.sharedData.storage.form);
+   
     this.initPreviewForm(id);
 
     //TODO: catch IF new creation
@@ -43,7 +52,8 @@ export class DformsComponent implements OnInit {
 
   initPreviewForm(id: number): void {
 
-    //SERVICE with get index
+  /*
+    if(id != 0){
     this.formService
         .getForm(id)
         .subscribe(
@@ -52,6 +62,14 @@ export class DformsComponent implements OnInit {
             this.data = existingForm;
           }
         );
+    }
+    else {
+      console.log('--SHARED--',this.sharedData.getStorage().form);
+      this.data = this.sharedData.storage.form;
+    }
+  */
+  this.data = this.sharedData.storage.form;
+
   }
 
 
@@ -64,7 +82,7 @@ export class DformsComponent implements OnInit {
 
   onSubmit() {
     this.payLoad = JSON.stringify(this.templateForm.value);
-  }//--onSubmit
+  }
 
   onBack() {
     this.location.back();

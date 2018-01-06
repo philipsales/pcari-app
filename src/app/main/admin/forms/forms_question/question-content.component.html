@@ -16,7 +16,6 @@
             <select formControlName="type" 
                     class="form-control">
                 <option *ngFor="let type of questionTypes"
-                        [selected]="type.label=='textbox'"
                         [value]="type.value"> {{type.label}}</option>
             </select>
           </div>
@@ -29,10 +28,9 @@
 
         <div class="row">
           <div class="form-group"
-             *ngIf="questionGroup.get('type').value =='dropdown' ||
-                    questionGroup.get('type').value =='checkbox' ||
-                    questionGroup.get('type').value =='radiobutton'" >
-            
+               [hidden]="questionGroup.get('type').value=='textbox'  ||
+                         questionGroup.get('type').value=='textarea' ||
+                         questionGroup.get('type').value=='datepicker'">
             <question-option-array
                [parentForm]="questionGroup"
                [options]="question?.options" 
