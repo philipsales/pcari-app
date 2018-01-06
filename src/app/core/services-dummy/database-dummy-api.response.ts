@@ -12,7 +12,8 @@ export class DatabaseDummyApiResponse implements InMemoryDbService {
         date_duration_end: "09-30-2017", 
         created_by: "Dr. Anthony",
         date_updated: '',
-        is_deleted: false 
+        is_deleted: false,
+        data: []
       },
       { 
         id: 1, 
@@ -22,7 +23,8 @@ export class DatabaseDummyApiResponse implements InMemoryDbService {
         date_duration_end: "10-30-2017", 
         created_by: "Dr. Anthony" ,
         date_updated: '',
-        is_deleted: false 
+        is_deleted: false,
+        data: []
       },
       { 
         id: 2, 
@@ -32,7 +34,8 @@ export class DatabaseDummyApiResponse implements InMemoryDbService {
         date_duration_end: "11-30-2017", 
         created_by: "Dr. Anthony" ,
         date_updated: '',
-        is_deleted: false 
+        is_deleted: false,
+        data: []
       }
     ];
 

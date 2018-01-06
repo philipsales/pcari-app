@@ -11,7 +11,8 @@ export class ReportDummyApiResponse implements InMemoryDbService {
         date_created: "10-10-2017", 
         date_duration_start: "01-01-2017", 
         date_duration_end: "03-30-2017", 
-        created_by: "Dr. Anthony" 
+        created_by: "Dr. Anthony",
+        data: []
       },
       { 
         id: 1, 
@@ -19,7 +20,8 @@ export class ReportDummyApiResponse implements InMemoryDbService {
         date_created: "11-10-2017", 
         date_duration_start: "04-01-2017", 
         date_duration_end: "06-30-2017", 
-        created_by: "Dr. Anthony" 
+        created_by: "Dr. Anthony",
+        data: []
       }
     ];
 
