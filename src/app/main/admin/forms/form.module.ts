@@ -13,14 +13,17 @@ import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FormDummyApiResponse } from 'app/core/services-dummy';
 
+//Services
+import { FormService }         from 'app/core/services';
+import { RegTypeService }      from 'app/core/services';
+import { DepartmentService }      from 'app/core/services';
+
 //Utils
 import { KeysPipe } from 'app/core/utils';
 import { KeyGenerator } from 'app/core/utils';
 
 import { FormRoutingModule } from './form-routing.module';
 import { FormListComponent } from './form-list.component';
-
-import { FormService }         from 'app/core/services';
 
 
 //DFORMS
@@ -30,7 +33,6 @@ import { DynamicFormQuestionComponent } from './forms_dforms/dynamic-form-questi
 
 //FORM services
 import { QuestionControlService }  from './forms_dforms/question-control.service';
-//import { QuestionService }         from './forms_dforms/question.service';
 
 
 //NESTED DFORMS
@@ -84,9 +86,10 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
   providers: [ 
     FormDummyApiResponse,
     FormService,
+    DepartmentService,
+    RegTypeService,
 
 //Dforms
-    //QuestionService,
     QuestionControlService,
 
 //DragnDrop

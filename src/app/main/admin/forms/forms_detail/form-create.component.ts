@@ -4,9 +4,17 @@ import { KeyGenerator } from 'app/core/utils';
 
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Question, Form, Section } from 'app/core/models';
+import { 
+  Question, 
+  Form, 
+  Section,
+  RegType,
+  Department 
+  } from 'app/core/models';
 
-import { FormService } from 'app/core/services';
+import { FormService }          from 'app/core/services';
+import { RegTypeService }       from 'app/core/services';
+import { DepartmentService }    from 'app/core/services';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -16,15 +24,11 @@ import { NotificationsService } from 'angular2-notifications';
 }) 
 
 export class FormCreateComponent implements OnInit {
+
   private forms: Form;
 
-  private selectedDepartment: number;
-  private departmentCount: number;
-
-  private sections: Section[];
-
-  private selectedQuestion: Question[]=[];
-  private questions: Question[]=[];
+  private registryTypes: RegType[];
+  private departments: Department[];
 
   private data: Form;
   private templateForm: FormGroup;
@@ -39,6 +43,8 @@ export class FormCreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private formService: FormService,
+    private regTypeService: RegTypeService,
+    private departmentService: DepartmentService,
     private _notificationsService: NotificationsService,
     private route: ActivatedRoute,
     private keyGenerator: KeyGenerator
@@ -48,50 +54,46 @@ export class FormCreateComponent implements OnInit {
   ngOnInit() {
     this.formId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.initForm(this.formId);
+
+    this.getRegistryTypes();
+    this.getDepartments();
   }
 
   initForm(id:number) {
-
     if(id == 0){
-      //create
       this.initCreateForm();
     }
     else {
-      //update
       this.initUpdateForm(id);
     }
   }
 
+  //TODO: Refractor default declaration
   initCreateForm(): void {
-
-    //TODO: generate ID
-
     const newForm: Form = 
     {
       id: 0, 
-      name: "Untitled Form",
+      name: "Untitled form",
+      type: "Patient Repository", 
+      department: "General Surgery Department",
       sections: [
         {
-          key: "",
+          key: this.keyGenerator.create(),
           name: "Untitled section",
           order: 0,
           questions: []
         }
       ]
     };
-
-    this.data = newForm;
+    this.data = newForm ;
     this.initTemplateFormGroup();
   }
 
   initUpdateForm(id: number): void {
-
-    //SERVICE with get index
     this.formService
         .getForm(id)
         .subscribe(
           existingForm => {
-            console.log('-actual service',existingForm);
             this.data = existingForm;
             this.initTemplateFormGroup();
           }
@@ -102,6 +104,7 @@ export class FormCreateComponent implements OnInit {
     this.templateForm = this.toFormGroup(this.data);
   }
 
+  //TODO: Refractor default declaration
   toFormGroup(data: Form){
     return this.fb.group({
       id: data.id, 
@@ -109,6 +112,26 @@ export class FormCreateComponent implements OnInit {
       type: data.type,
       department: data.department
     });
+  }
+
+  getRegistryTypes(){
+    this.regTypeService
+        .getRegTypes()
+        .subscribe(
+          regType => {
+            this.registryTypes= regType;
+          }
+        );
+  }
+
+  getDepartments(){
+    this.departmentService
+        .getDepartments()
+        .subscribe(
+          departments => {
+            this.departments = departments;
+          }
+        );
   }
 
   onAddSection(){
@@ -153,10 +176,4 @@ export class FormCreateComponent implements OnInit {
 
     console.log('--tempalteForm--',input_form);
   }
-
-
-
-
-  
-
 }

@@ -11,3 +11,5 @@ export * from './models/form';
 export * from './models/section';
 export * from './models/question';
 export * from './models/option';
+export * from './models/regtype';
+export * from './models/department';

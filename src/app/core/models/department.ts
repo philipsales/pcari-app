@@ -1,7 +1,6 @@
-
-export class Option {
-  id?   : number;
-  type  : string;
-  text  : string;
-  code? : string;
+export class Department {
+  id            : number;
+  name          : string;
+  code?         : string;
+  organization? : string;
 }

@@ -236,7 +236,7 @@ export class FormDummyApiResponse implements InMemoryDbService {
     {
       id: 111, 
       name: "Cervical Cancer Form v.1", 
-      department: "OBGYN Surgery Department", 
+      department: "Obstetric Gynecology Department", 
       type: "Biobanking Repository", 
       approval: "Pending", 
       status: "Not Active", 
@@ -283,11 +283,40 @@ export class FormDummyApiResponse implements InMemoryDbService {
         }
       ]
     }
+  ];
 
+  let registryTypes = [
+    { 
+      id: 0, 
+      name: "Biobanking Repository", 
+      date_created: "10-10-2017", 
+      date_updated: '',
+      is_deleted: false
+    },
+    { 
+      id: 1, 
+      name: "Patient Repository", 
+      date_created: "10-10-2017", 
+      date_updated: '',
+      is_deleted: false
+    }
+  ];
 
+  let departments = [
+    { 
+      id: 0, 
+      name: "General Surgery Department" 
+    },
+    { 
+      id: 1, 
+      name: "Obstetric Gynecology Department" 
+    }
+  ];
 
-  ]
-
-    return {forms};
+  return { 
+    forms         : forms, 
+    registrytypes : registryTypes,
+    departments   : departments 
+  };
   }
 }
