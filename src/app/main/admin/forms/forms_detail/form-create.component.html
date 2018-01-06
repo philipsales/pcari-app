@@ -29,11 +29,9 @@
             <div class="row">
               <div class="col-sm-10" style="background: yellow" > 
                  <div class="form-group">
-                    <!--<label>Id</label>-->
                     <input type="hidden" class="form-control"
                            placeholder="id"
                            formControlName="id">
-                    <!--<label>Label</label>-->
                     <input type="text" class="form-control"
                            placeholder="name"
                            formControlName="name">
@@ -54,9 +52,6 @@
                         <option *ngFor="let dept of departments"
                                 [value]="dept.name"> {{dept.name}}</option>
                     </select>
-                    <!--<input type="text" class="form-control"
-                           placeholder="Untitled department"
-                           formControlName="department">-->
                     <small>Department </small>
                  </div>
                </div>
@@ -94,8 +89,6 @@
                             <i class="fa fa-3x fa-eye"></i>
                           </a>
                         </li>
-                        <!--<li class="form-side-editor-fxn" 
-                            (click)="onSaveClick(questionFormGroup.value.secretLairs)">-->
                         <li title="Save Template" 
                             class="form-side-editor-fxn" 
                             (click)="onSaveForm(templateForm.value)" >
@@ -111,9 +104,6 @@
               </div>
             </div>
           </form>
-          <pre *ngIf="templateForm">
-          {{templateForm.value | json}}
-          </pre>
           <!--end templateForm-->
       </div>
       <!--end of row-->

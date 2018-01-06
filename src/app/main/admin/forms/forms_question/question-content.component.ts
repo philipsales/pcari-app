@@ -41,33 +41,27 @@ export class QuestionContentComponent implements OnChanges {
     this.questionTypes = [ 
       { 
       "value": "textbox",     
-      "label": "text",
-      "icon" : "fa-square-o"
+      "label": "text"
       },
       { 
       "value": "textarea",    
-      "label": "paragraph",
-      "icon" : "fa-square-o"
+      "label": "paragraph"
       },
       { 
       "value": "dropdown",    
-      "label": "dropdown",
-      "icon" : "fa-square-o"
+      "label": "dropdown"
       },
       { 
       "value": "checkbox",
-      "label": "checkbox",
-      "icon" : "fa-square-o"
+      "label": "checkbox"
       },
       { 
       "value": "radiobutton", 
-      "label": "radio",
-      "icon" : "fa-square-o"
+      "label": "radio"
       },
       { 
       "value": "datepicker",  
-      "label": "date",
-      "icon" : "fa-square-o"
+      "label": "date"
       }
     ];
   }

@@ -30,17 +30,12 @@ export class FormSectionComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('--form-section.this.section--', this.section);
-    console.log('--form-section.this.length--', this.sectionLength);
     this.sectionGroup = this.toFormGroup(this.section); 
-
     this.index = this.formArray.length;
     this.formArray.push(this.sectionGroup);
-    console.log('-SHIT--formARray-SECTION', this.formArray);
   }
 
   toFormGroup(section: Section) {
-    console.log('question--', section.questions);
     return this.fb.group( {
         key  : section.key,
         name : section.name

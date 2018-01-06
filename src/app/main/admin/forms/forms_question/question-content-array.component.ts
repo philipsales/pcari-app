@@ -78,31 +78,18 @@ export class QuestionContentArrayComponent implements OnInit {
       this.parentForm.controls['questions'].value[index].options
     )
 
-    //this.questions.splice(question.order+1,0,questionClone);
-    //this.questions.push(question);
     this.questions.splice(index+1,0,questionClone);
-    //(<FormArray>this.parentForm.get('questions')).push(this.toFormGroup(question));
     this.refreshOrder();
 
-    console.log('==LAST-parentFormARray-',(<FormArray>this.parentForm.controls.questions));
-    console.log('--LAST-parentFOrm.controls.questions-',(this.parentForm.controls.questions));
 
-    //(<FormArray>this.parentForm.get('questions')).insert(index+1,question);
-    //(<FormArray>this.parentForm.get('questions')).insert(index+1,questionClone);
   }
 
   refreshOrder(){
     const ctrl = <FormArray>this.parentForm.controls['questions'];
     console.log('-CTRL--',ctrl);
     ctrl.controls.forEach( (x,indexes) => {
-      console.log('x.get--INDEX--', indexes);
-      console.log('x.get--OLD----', x.get('order').value);
       x.patchValue({order: indexes});
-      console.log('x.get--PATCH--', x.get('order').value);
     });
-   //(<FormArray>this.parentForm.controls.questions).at(foo+1).patchValue({order: order});
-   //(<FormArray>this.parentForm.controls.questions).at(foo).reset({order: order});
-
   }
 
   patchValues(){
@@ -112,7 +99,6 @@ export class QuestionContentArrayComponent implements OnInit {
   }
 
   removeQuestion(index: number){
-    console.log('--content-array-index', index);
 
     if(this.questions.length > 1){
       this.questions.splice(index,1);
@@ -124,10 +110,7 @@ export class QuestionContentArrayComponent implements OnInit {
 
     const ctrl = <FormArray>this.parentForm.controls['questions'];
     ctrl.controls.forEach( (x,indexes) => {
-      console.log('x.get--INDEX--', indexes);
-      console.log('x.get--OLD----', x.get('order').value);
       x.patchValue({order: indexes});
-      console.log('x.get--PATCH--', x.get('order').value);
     });
   }
 

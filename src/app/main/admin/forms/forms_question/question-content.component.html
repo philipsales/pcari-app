@@ -44,14 +44,11 @@
             (click)="removed.emit()">
           <i class="fa fa-3x fa-trash-o"></i>
         </span>
-        <!--<span class="form-footer-editor-fxn col-sm-1 pull-right" 
-            (click)="clone.emit()">
+        <span [hidden]="true"
+              class="form-footer-editor-fxn col-sm-1 pull-right" 
+              (click)="clone.emit()">
           <i class="fa fa-3x fa-clone"></i>
-        </span>-->
-        <!--<span class="form-footer-editor-fxn col-sm-1 pull-right" 
-            (click)="cloneQuestion(questionGroup,index)">
-          <i class="fa fa-3x fa-clone"></i>
-        </span>-->
+        </span>
         <span class="checkbox form-footer-editor-fxn col-sm-3 pull-right" >
           <label class="pull-right">
             <input type="checkbox" name="input_required"

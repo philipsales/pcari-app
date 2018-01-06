@@ -26,13 +26,11 @@ import { NotificationsService } from 'angular2-notifications';
 
 export class FormCreateComponent implements OnInit {
 
-  private forms: Form;
+  private templateForm: FormGroup;
+  private data: Form;
 
   private registryTypes: RegType[];
   private departments: Department[];
-
-  private data: Form;
-  private templateForm: FormGroup;
 
   private formId: number;
 
@@ -46,7 +44,7 @@ export class FormCreateComponent implements OnInit {
     private formService: FormService,
     private regTypeService: RegTypeService,
     private departmentService: DepartmentService,
-    private _notificationsService: NotificationsService,
+    private notificationsService: NotificationsService,
     private route: ActivatedRoute,
     private router: Router,
     private sharedData: SharedDataService,
@@ -55,16 +53,16 @@ export class FormCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('-----FORM-create.init---');
+
     this.getRegistryTypes();
     this.getDepartments();
 
     this.formId = parseInt(this.route.snapshot.paramMap.get('id'));
     this.initForm(this.formId);
-
   }
 
   initForm(id:number) {
+
     if(id == 0){
       this.initCreateForm();
     }
@@ -75,32 +73,29 @@ export class FormCreateComponent implements OnInit {
 
   //TODO: Refractor default declaration
   initCreateForm(): void {
+    let newForm: Form; 
 
-  let newForm: Form; 
+    if(this.sharedData.getStorage()){
+      newForm = this.sharedData.getStorage().form;
+    }
+    else {
 
-
-  if(this.sharedData.getStorage()){
-    newForm = this.sharedData.getStorage().form;
-  }
-  else {
-
-    newForm = 
-    {
-      id: 0, 
-      name: "Untitled form",
-      type: "Patient Repository", 
-      department: "General Surgery Department",
-      sections: [
-        {
-          key: this.keyGenerator.create(),
-          name: "Untitled section",
-          order: 0,
-          questions: []
-        }
-      ]
-    };
-
-  }
+      newForm = 
+      {
+        id: 0, 
+        name: "Untitled form",
+        type: "Patient Repository", 
+        department: "General Surgery Department",
+        sections: [
+          {
+            key: this.keyGenerator.create(),
+            name: "Untitled section",
+            order: 0,
+            questions: []
+          }
+        ]
+      };
+    }
 
     this.data = newForm ;
     this.initTemplateFormGroup();
@@ -114,25 +109,25 @@ export class FormCreateComponent implements OnInit {
       this.initTemplateFormGroup();
     }
     else {
-
-    this.formService
-        .getForm(id)
-        .subscribe(
-          existingForm => {
-            this.data = existingForm;
-            this.initTemplateFormGroup();
-          }
-        );
+      this.formService
+          .getForm(id)
+          .subscribe(
+            existingForm => {
+              this.data = existingForm;
+              this.initTemplateFormGroup();
+            }
+          );
     }
   }
 
   initTemplateFormGroup() {
+
     this.templateForm = this.toFormGroup(this.data);
-    console.log('--TEMPLAETFORM--', this.templateForm);
   }
 
   //TODO: Refractor default declaration
   toFormGroup(data: Form){
+
     return this.fb.group({
       id: data.id, 
       name: data.name,
@@ -142,6 +137,7 @@ export class FormCreateComponent implements OnInit {
   }
 
   getRegistryTypes(){
+
     this.regTypeService
         .getRegTypes()
         .subscribe(
@@ -152,6 +148,7 @@ export class FormCreateComponent implements OnInit {
   }
 
   getDepartments(){
+
     this.departmentService
         .getDepartments()
         .subscribe(
@@ -162,6 +159,7 @@ export class FormCreateComponent implements OnInit {
   }
 
   onAddSection(){
+
     this.data.sections.push({
       key: this.keyGenerator.create(),
       name: 'Untitled section',
@@ -170,7 +168,6 @@ export class FormCreateComponent implements OnInit {
   }
 
   onSaveForm(inputForm: Form){
-
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
@@ -181,7 +178,7 @@ export class FormCreateComponent implements OnInit {
           this.is_processing = false;
           console.warn(created_question, 'AYUS');
 
-          this._notificationsService
+          this.notificationsService
               .success(
                 'Form: ' + inputForm.name,
                 'Successfully Saved.', 
@@ -201,12 +198,9 @@ export class FormCreateComponent implements OnInit {
           throw errors
         });
 
-    console.log('--tempalteForm--',inputForm);
   }
 
   onPreviewForm(previewForm : Form, id: string){
-     console.log('--ONPREVIEW--', previewForm);
-
      let params = { "form": previewForm }
 
      this.sharedData.setStorage(params);

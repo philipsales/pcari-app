@@ -25,18 +25,7 @@
 
 <div [formGroup]="parentForm">
   <div formArrayName="questions">
-
-    <!--start preview viewstate-->
-    <!--<div *ngIf="viewState=='preview'">
-        <dynamic-form
-           [formArray]="parentForm.controls.questions"
-           [questionz]="questions" >
-        </dynamic-form>
-    </div>-->
-    <!--end preview viewstate-->
-
     <!--start create viewstate-->
-    <div *ngIf="viewState=='create' || viewState=='preview'">
       <div *ngFor="let question of questions; let i = index;">
         <br/>
         <div class="panel panel-default">
@@ -59,7 +48,6 @@
            </a>
         </span>
       </div>
-    </div>
     <!--end create viewstate-->
   </div>
 
