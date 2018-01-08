@@ -119,6 +119,7 @@ export class FormCreateComponent implements OnInit {
           .getForm(id)
           .subscribe(
             existingForm => {
+              console.log('UPDAE---', existingForm);
               this.data = existingForm;
               this.initTemplateFormGroup();
             }

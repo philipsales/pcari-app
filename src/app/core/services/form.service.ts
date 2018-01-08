@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+//import { Observable } from 'rxjs/Observable';
+//import { map, catch } from 'rxjs/operators';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 
-import { AuthHttp } from 'angular2-jwt';
+//import { AuthHttp } from 'angular2-jwt';
 
 import { Helper }         from '../helper';
 import { Form, Question }           from '../models';
@@ -21,8 +23,9 @@ export class FormService {
   private formUrl = environment.API_ENDPOINT + '/forms'; 
 
   constructor(
-    private http: Http, 
-    public authHttp: AuthHttp) {
+    private http: Http
+    //public authHttp: AuthHttp
+    ) {
   }//--constructor
 
   getQuestions() : Observable<Question[]>  {
@@ -31,7 +34,8 @@ export class FormService {
 
   const url = 'http://127.0.0.1:8888' + '/questions';
 
-  return this.authHttp
+  //return this.authHttp
+  return this.http
              .get(url)
              .map((response: Response) => {
                 console.warn(response, 'OUTTTTTTTTTTTTTT');
@@ -46,8 +50,9 @@ export class FormService {
     return this.http
                .get(url)
                .map((response: Response) => {
-                    console.warn('--response.json---',response.json().data as Form[])
-                    return (response.json().data as Form[])
+                    console.warn('--response.json---',response.json() as Form[]);
+                    //return (response.json().data as Form[])
+                    return (response.json()as Form[])
                  })
                  .catch(Helper.handleError);
   }
@@ -60,7 +65,8 @@ export class FormService {
                .get(url)
                .map((response: Response) => {
                     console.warn('--response.json---',response.json().data as Form)
-                    return (response.json().data as Form)
+                    //return (response.json().data as Form)
+                    return (response.json() as Form)
                  })
                  .catch(Helper.handleError);
   }
@@ -106,14 +112,16 @@ export class FormService {
     headers.append('Access-Control-Allow-Origin', '*');
     let options = new RequestOptions({ headers: headers });
 
-    return this.authHttp
-               .post(url, question_json, options)
+    //return this.authHttp
+
+    return this.http.post(url, question_json, options)
                .map((response: Response) => {
                   console.warn('--respons.json()--',response.json());
 
                   //TODO: temporary API not done
                   console.warn('--TEMPORARY FAKE RESPONSE---');
-                  return new Question('','','','',false,1,[]);
+                  //return new Question('','','','',false,1,[]);
+                  return (response.json().data as Question);
 
                   //TODO: SHOUD return Object Form instead of Question
                   //return Question.fromJSON(response.json());

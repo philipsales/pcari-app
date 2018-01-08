@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+//import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+//import { map, catch } from 'rxjs/operators';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 
-import { AuthHttp } from 'angular2-jwt';
+//import { AuthHttp } from 'angular2-jwt';
 
 import { Helper }         from '../helper';
 import { CurrentUser }    from '../models';
@@ -15,8 +17,9 @@ export class AuthService {
   public token: string;    
   public current_user: CurrentUser;
 
-  constructor(private http: Http,
-              public authHttp: AuthHttp) {
+  constructor(private http: Http
+  // public authHttp: AuthHttp
+  ) {
     // set token if saved in local storage
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;

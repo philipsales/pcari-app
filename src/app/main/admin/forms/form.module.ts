@@ -2,11 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 
-import { DatePickerModule } from 'angular-io-datepicker';
+//import { DatePickerModule } from 'angular-io-datepicker';
 
-//DragnDrop
-import { OverlayModule } from 'angular-io-overlay';
-import { DragulaModule, DragulaService } from 'ng2-dragula';
 
 //InMemory modules
 import { HttpModule } from '@angular/http';
@@ -55,9 +52,7 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
     CommonModule,
     FormsModule, 
     ReactiveFormsModule,
-    DragulaModule,
-    OverlayModule,
-    DatePickerModule,
+    //DatePickerModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(FormDummyApiResponse, { 
       passThruUnknownUrl: true, delay: 1000
@@ -98,8 +93,6 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
 //Dforms
     QuestionControlService,
 
-//DragnDrop
-    DragulaService,
 
 //KeyGeneratorUtil
     KeyGenerator

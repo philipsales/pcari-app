@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import 'rxjs/add/operator/toPromise';
+//import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch';
 
 import { Helper }         from '../helper';
 import { Consent }       from '../models';
@@ -24,7 +27,7 @@ export class ConsentService {
     console.log(url);
     return this.http.get(url)
                     .toPromise()
-                    .then(response => response.json().data as Consent[])
+                    .then(response => response.json() as Consent[])
                     .catch(this.handleError);
   }//--getAll
 

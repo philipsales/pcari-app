@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+//import { map, catch } from 'rxjs/operators';
+//import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
-import { AuthHttp } from 'angular2-jwt';
+//import { AuthHttp } from 'angular2-jwt';
 
 import { Helper }         from '../helper';
 import { User }           from '../models';
@@ -15,13 +17,16 @@ import { environment }    from 'environments/environment';
 export class UserService {
 
     constructor(
-	private http: Http,
-	public authHttp: AuthHttp) {
+	private http: Http
+  //	public authHttp: AuthHttp
+  ) {
     }//--constructor
 
     getAll(): Observable<User[]> {
 	const url = environment.API_ENDPOINT + '/users-via-email/';
-	return this.authHttp.get(url).map((response: Response) => {
+  //return this.authHttp
+  return this.http
+             .get(url).map((response: Response) => {
             return response.json().map(User.fromJSON);
         })
 	.catch(Helper.handleError);
@@ -35,7 +40,9 @@ export class UserService {
 	console.log(user_json);
 	let headers = new Headers({ 'Content-Type': 'application/json' });
 	let options = new RequestOptions({ headers: headers });
-	return this.authHttp.post(url, user_json)
+  //return this.authHttp
+  return this.http
+            .post(url, user_json)
             .map((response: Response) => {
 		return User.fromJSON(response.json());
             })

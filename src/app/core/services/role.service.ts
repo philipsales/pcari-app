@@ -4,7 +4,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
-import { AuthHttp } from 'angular2-jwt';
+//import { AuthHttp } from 'angular2-jwt';
 
 import { Helper }         from '../helper';
 import { Role }           from '../models';
@@ -15,8 +15,10 @@ import { environment }    from 'environments/environment';
 export class RoleService {
 
     constructor(
-	private http: Http,
-	public authHttp: AuthHttp) {
+	private http: Http
+  //public authHttp: AuthHttp
+  ) {
+
     }//--constructor
 
     getAll(): Observable<Role[]> {

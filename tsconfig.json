@@ -11,6 +11,12 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "@angular/*": [
+        "node_modules/@angular/*",
+        "node_modules/angular-io-datepicker/"
+      ]
+    },
     "lib": [
       "es2017",
       "dom"

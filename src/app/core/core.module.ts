@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HttpModule, Http, RequestOptions } from '@angular/http';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
+//import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 import {
     UserService,
     RoleService,
     PositionService,
-    OrganizationService,
-    AuthService
+    OrganizationService
+    //   AuthService
 } from './services';
 
+/*
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
     tokenName: 'token',
@@ -22,24 +23,27 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     globalHeaders: [{'Content-Type': 'application/json'}],
   }), http, options);
 }
+*/
 
 @NgModule({
     imports: [
 	CommonModule,
 	HttpModule,
     ],
-    providers: [
+  providers: [
+  /*
 	{
-	    provide: AuthHttp,
-	    useFactory: authHttpServiceFactory,
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
 	    deps: [Http, RequestOptions]
 	},
+  */
 	UserService,
 	RoleService,
 	PositionService,
-	OrganizationService,
-	AuthService
-    ],
+	OrganizationService
+  //AuthService
+  ],
     declarations: [],
 })
 export class CoreModule { }

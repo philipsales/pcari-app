@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+//import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+//import { map, catch } from 'rxjs/operators';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
 
-import { AuthHttp } from 'angular2-jwt';
+//import { AuthHttp } from 'angular2-jwt';
 
 import { Helper }         from '../helper';
 import { Department }        from '../models';
@@ -22,8 +24,9 @@ export class DepartmentService {
   private formUrl = environment.API_ENDPOINT + '/departments'; 
 
   constructor(
-    private http: Http, 
-    public authHttp: AuthHttp) {
+    private http: Http
+    //public authHttp: AuthHttp
+    ) {
   }//--constructor
 
   getDepartments(): Observable<Department[]> {
@@ -35,7 +38,8 @@ export class DepartmentService {
                     console.log('--DEPARTMENT--', response);
                     console.log('--DEPARTMENT.json()---', response.json());
                     console.log('--DEPARTMENT.json().data---', response.json().data);
-                    return (response.json().data as Department[])
+                    //return (response.json().data as Department[])
+                    return (response.json() as Department[])
                  })
                  .catch(Helper.handleError);
   }
