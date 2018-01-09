@@ -1,7 +1,7 @@
 export const survivalDataTemplate = 
     {
       id: 412432342, 
-      name: "GS1 Survival Data Registry v.1", 
+      name: "GS1 Survival Data Form v.1", 
       organization: "University of the Philippines - Philippine General Hospital", 
       department: "General Surgery Department", 
       type: "Patient Repository", 
