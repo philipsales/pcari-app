@@ -42,8 +42,42 @@ export class Form {
   }
 
   constructor(
-    name: string
+    name: string,
+    organization: string,
+    department: string,
+    type: string,
+    sections?: Section[]
   ) {
       this.name = name;
+      this.organization = organization;
+      this.department = department;
+      this.type = type;
+      if (sections) {
+        this.sections = sections;
+      }
+  }
+
+  toJSON(): FormJSON {
+    let date_created;
+    let sections;
+    if (this.date_created) {
+      date_created = this.date_created.getTime();
+    }
+    if (this.sections) {
+      sections = this.sections.map((section) => section.toJSON());
+    }
+    return Object.assign({}, this, {
+      _id: this.id,
+      name: this.name,
+      organization: this.organization,
+      department: this.department,
+      type: this.type,
+      approval: this.approval,
+      status: this.status,
+      created_by: this.created_by,
+      date_created: date_created,
+      is_deleted: this.is_deleted,
+      sections: sections
+    });
   }
 }

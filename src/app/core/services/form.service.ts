@@ -20,6 +20,7 @@ import 'rxjs/add/operator/toPromise';
 import { Helper } from '../helper';
 import { Form, Question } from '../models';
 import { environment } from 'environments/environment';
+import { FormJSON } from 'app/core/interfaces';
 
 @Injectable()
 export class FormService {
@@ -65,16 +66,17 @@ export class FormService {
                .get(url)
                .map((response: Response) => {
                     // return (response.json().data as Form)
-                    return (response.json() as Form)
+                    return  (response.json() as Form)
                  })
                  .catch(Helper.handleError);
   }
 
+  /*
   // TODO: SHOUD return Object Form instead of Question
   submitForm(form: Form): Observable<Question> {
 
 
-    // TODO: DUMMY REQUESTION, replace FORM object when API done 
+    // TODO: DUMMY REQUESTION, replace FORM object when API done
     const question = [
       {
       'id': '123',
@@ -126,9 +128,25 @@ export class FormService {
                   console.log('error',error);
                   throw error;
               });
-  }//--create    
+  }// --create
+*/
 
+checkForm(form: Form) {
+  const ewan_json = JSON.stringify(form);
+  const form_json = form.toJSON();
+  console.warn(form_json, 'IN STRING');
+}
 
+  submitForm(form: FormJSON): Observable<Form> {
+    const url = environment.API_ENDPOINT + 'forms/';
+    const form_json = JSON.stringify(form);
+    console.log(form_json);
 
-
+    return this.http.post(url, form).map((response: FormJSON) => {
+      // return (response.json().data as Form[])
+      console.log(response, 'FORM CREATED from /forms');
+      return Form.fromJSON(response);
+    })
+    .catch(Helper.handleError);
+  }
 }

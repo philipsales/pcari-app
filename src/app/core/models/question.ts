@@ -1,5 +1,6 @@
 import { Option } from './option';
 import { QuestionJSON } from '../interfaces';
+import { element } from 'protractor';
 
 export class Question {
   key: string;
@@ -54,5 +55,21 @@ export class Question {
     this.order = order;
     this.options = options;
   }
-}
 
+  toJSON(): QuestionJSON {
+    let stringified_options = '';
+    this.options.forEach((element) => {
+      stringified_options += element.name;
+    });
+
+    return Object.assign({}, this, {
+      key: this.key,
+      label: this.label,
+      type: this.type,
+      value: this.value,
+      required: this.required,
+      order: this.order,
+      options: stringified_options
+    });
+  }
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, OnChanges  } from '@angular/core';
 
 import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
-import { Question, Form, Section } from 'app/core/models';
+import { Question, Form, Section, Option } from 'app/core/models';
 
 import { KeyGenerator } from 'app/core/utils';
 
@@ -29,29 +29,31 @@ export class QuestionContentArrayComponent implements OnInit {
   }
 
   initQuestion(){
-    if(this.questions.length == 0){
-      this.questions.push({
-        key        : this.keyGenerator.create(),
-        label      : 'Untitled question',
-        type       : 'textbox',
-        value      : '',
-        required   : false,
-        order      : 0,
-        options    : []
-      });
+    if (this.questions.length === 0) {
+      let options : Option[] = [];
+      this.questions.push(new Question(
+        this.keyGenerator.create(),
+        'Untitled question',
+        'textbox',
+        '',
+        false,
+        0,
+        options
+      ));
     }
   }
 
   addQuestion(){
-    this.questions.push({
-      key        : this.keyGenerator.create(),
-      label      : 'Untitled question',
-      type       : 'textbox',
-      value      : '',
-      required   : false,
-      order      : (<FormArray>this.parentForm.controls.questions).length,
-      options    : []
-    })
+    let options : Option[] = [];
+    this.questions.push(new Question(
+      this.keyGenerator.create(),
+      'Untitled question',
+      'textbox',
+      '',
+      false,
+      (<FormArray>this.parentForm.controls.questions).length,
+      options
+    ));
   }
 
   toFormGroup(question: Question){

@@ -36,4 +36,17 @@ export class Section {
     this.order = order;
     this.questions = questions;
   }
+
+  toJSON(): SectionJSON {
+    let questions;
+    if (this.questions) {
+      questions = this.questions.map((question) => question.toJSON());
+    }
+    return Object.assign({}, this, {
+      key: this.key,
+      name: this.name,
+      order: this.order,
+      questions: questions
+    });
+  }
 }
