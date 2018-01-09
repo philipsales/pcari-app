@@ -22,8 +22,8 @@ export class RoleService {
       const url = environment.API_ENDPOINT + 'roles/';
       return this.http.get(url)
                  .map((response: Response) => {
-                   console.log(response.data);
-                   return response.data.map(Role.fromJSON);
+                   console.log(response['data']);
+                   return response['data'].map(Role.fromJSON);
                  })
                  .catch(Helper.handleError);
     }// --getAll
@@ -34,9 +34,9 @@ export class RoleService {
       const role_json = JSON.stringify(role);
       console.log(role_json);
       return this.http.post(url, role_json)
-              .map((response: Response) => {
+              .map((response: RoleJSON) => {
                 console.log(response);
-                return Role.fromJSON(response.json());
+                return Role.fromJSON(response);
               })
               .catch(Helper.handleError);
       }// --create

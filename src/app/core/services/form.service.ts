@@ -52,7 +52,7 @@ export class FormService {
     return this.http.get(url).map((response: Response) => {
       // return (response.json().data as Form[])
       console.log(response, 'FORMS from /forms');
-      return response.data.map(Form.fromJSON);
+      return response['data'].map(Form.fromJSON);
     })
     .catch(Helper.handleError);
   }
