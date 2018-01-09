@@ -120,8 +120,8 @@ export class FormService {
 
                   //TODO: temporary API not done
                   console.warn('--TEMPORARY FAKE RESPONSE---');
-                  //return new Question('','','','',false,1,[]);
-                  return (response.json().data as Question);
+                  return new Question('','','','',false,1,[]);
+                  //return (response.json().data as Question);
 
                   //TODO: SHOUD return Object Form instead of Question
                   //return Question.fromJSON(response.json());

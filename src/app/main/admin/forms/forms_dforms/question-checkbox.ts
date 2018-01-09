@@ -17,6 +17,7 @@ export class CheckboxQuestion extends QuestionBase<string> {
 
         if(options['options']){
 
+
           let arrvalue = options['options'];
 
           arrvalue.forEach((value,index)=> {

@@ -4,6 +4,9 @@ import { FormsModule, ReactiveFormsModule }  from '@angular/forms';
 
 //import { DatePickerModule } from 'angular-io-datepicker';
 
+//import 'hammerjs';
+//import { MatCheckboxModule } from '@angular/material';
+import { MaterialModule } from 'app/shared/_material/material.module';
 
 //InMemory modules
 import { HttpModule } from '@angular/http';
@@ -57,6 +60,7 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
     InMemoryWebApiModule.forRoot(FormDummyApiResponse, { 
       passThruUnknownUrl: true, delay: 1000
     }),
+    MaterialModule,
     FormRoutingModule
   ],
   declarations: [

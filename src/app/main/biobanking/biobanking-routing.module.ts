@@ -14,10 +14,6 @@ const routes: Routes = [
           path: 'reports',
           loadChildren: './reports/reports-biobanking.module#ReportsBiobankingModule'
         },
-        {
-          path: 'questions',
-          loadChildren: './questions/questions.module#QuestionsModule'
-        },
         { path: '', redirectTo: 'cases' }
       ]
     }

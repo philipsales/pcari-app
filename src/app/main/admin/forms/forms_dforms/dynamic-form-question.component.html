@@ -35,18 +35,24 @@
 
 
     <div *ngSwitchCase="'checkbox'" class="form-group">
+
       <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
 	     [attr.for]="question.key">{{question.label}}
               <span *ngIf="!isValid" class="required">*</span>
       </label>
         <div class="col-md-5 col-sm-5 col-xs-12">
           <div *ngFor="let opt of question.options" 
-                class="select2_group form_control checkbox"  >
-            <input 
-                   type="checkbox" 
+             class="select2_group form_control checkbox material-section" >
+          <mat-checkbox 
+                  [formControlName]="question.key"
+                  value="{{opt.value}}"
+                  id="{{opt.key}}" 
+                  class="material-checkbox-margin"> {{opt.value}}
+          </mat-checkbox>
+            <!--<input type="checkbox" 
                    [id]="question.key" 
                    [formControlName]="question.key"
-                   [value]="opt.value"> {{opt.value}}
+                   [value]="opt.value"> {{opt.value}}-->
           </div>
         </div>
       <div class="clearfix"></div>
@@ -59,31 +65,54 @@
               <span *ngIf="!isValid" class="required">*</span>
       </label>
         <div class="col-md-5 col-sm-5 col-xs-12">
-          <div *ngFor="let opt of question.options" 
-               class="radio-inline"  >
-            <input type="radio" 
+         <mat-radio-group class="material-radio-group"
+                   [formControlName]="question.key"
+           >
+          <div *ngFor="let opt of question.options"   >
+
+                <mat-radio-button class="material-radio-button"
+                   id="{{opt.key}}" 
+                   value="{{opt.value}}"> {{opt.value}} 
+                </mat-radio-button>
+                <!--<mat-radio-button class="material-radio-button"
+                   id="1" 
+                   value="foo"> foo
+                </mat-radio-button>
+                <mat-radio-button class="material-radio-button"
+                   id="2" 
+                   value="bar">bar 
+                </mat-radio-button>-->
+
+            <!--<input type="radio" 
                    [formControlName]="question.key"
                    [id]="opt.index" 
-                   [value]="opt.value"> {{opt.value}}
+                   [value]="opt.value"> {{opt.value}}-->
           </div>
+         </mat-radio-group>
         </div>
       <div class="clearfix"></div>
     </div>
 
-    <!--<div *ngSwitchCase="'datepicker'" class="form-group">
+    <div *ngSwitchCase="'datepicker'" class="form-group">
       <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
-	     [attr.for]="question.key">{{question.label}}
+       [attr.for]="question.key">{{question.label}}
               <span *ngIf="!isValid" class="required">*</span>
       </label>
 
         <div class="col-md-5 col-sm-5 col-xs-12">
-          <date-picker class=""
+          <mat-form-field>
+            <input matInput [matDatepicker]="i" placeholder="choose a date">
+            <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
+            <mat-datepicker #i></mat-datepicker>
+          </mat-form-field>
+
+          <!--<date-picker class=""
                  [formControlName]="question.key"
                  [showClearButton]="false"
-                 [id]="question.key" ></date-picker>
+                 [id]="question.key" ></date-picker>-->
         </div>
       <div class="clearfix"></div>
-    </div>-->
+    </div>
 
     <div *ngSwitchCase="'textarea'" class="form-group">
       <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
