@@ -2,47 +2,39 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HttpModule, Http, RequestOptions } from '@angular/http';
-//import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
+import { JwtModule } from '@auth0/angular-jwt';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
     UserService,
     RoleService,
     PositionService,
-    OrganizationService
-    //   AuthService
+    OrganizationService,
+    AuthService
 } from './services';
-
-/*
-export function authHttpServiceFactory(http: Http, options: RequestOptions) {
-  return new AuthHttp(new AuthConfig({
-    tokenName: 'token',
-    tokenGetter: (() => {
-      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-      return currentUser && currentUser.token;
-    }),
-    globalHeaders: [{'Content-Type': 'application/json'}],
-  }), http, options);
-}
-*/
 
 @NgModule({
     imports: [
-	CommonModule,
-	HttpModule,
+      CommonModule,
+      HttpModule,
+      HttpClientModule,
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: () => {
+            return localStorage.getItem('access_token');
+          },
+          authScheme: 'JWT',
+          whitelistedDomains: ['localhost:3001']
+        }
+      })
     ],
   providers: [
-  /*
-	{
-      provide: AuthHttp,
-      useFactory: authHttpServiceFactory,
-	    deps: [Http, RequestOptions]
-	},
-  */
-	UserService,
-	RoleService,
-	PositionService,
-	OrganizationService
-  //AuthService
+    UserService,
+    RoleService,
+    PositionService,
+    OrganizationService,
+    AuthService
   ],
     declarations: [],
 })

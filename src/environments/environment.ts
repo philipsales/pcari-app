@@ -7,6 +7,6 @@ export const environment = {
     production: false,
     API_QUESTION_HOST: 'http://localhost:8888',
     API_QUESTION_ENDPOINT: 'http://localhost:8888/default',    
-    API_HOST: 'http://localhost:8889',
-    API_ENDPOINT: 'http://localhost:8889/api',    
+    API_HOST: 'http://localhost:3001',
+    API_ENDPOINT: 'http://localhost:3001/',    
 };
