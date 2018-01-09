@@ -1,5 +1,6 @@
 import { tumorRegistryTemplate } from '../data/template-tumor-form';
 import { survivalDataTemplate } from '../data/template-survival-form';
+import { mendelimsTemplate } from '../data/template-mendelims-form';
 
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class FormDummyApiResponse implements InMemoryDbService {
@@ -126,7 +127,7 @@ export class FormDummyApiResponse implements InMemoryDbService {
 
     {
       id: 323423432, 
-      name: "Breast Cancer Form v.1", 
+      name: "Thyroid Cancer Form v.0", 
       organization: "University of the Philippines - Philippine General Hospital", 
       department: "General Surgery Department", 
       type: "Patient Repository", 
@@ -328,7 +329,8 @@ export class FormDummyApiResponse implements InMemoryDbService {
     return { 
       //forms         : forms, 
       forms         : forms.concat(tumorRegistryTemplate)
-                           .concat(survivalDataTemplate), 
+                           .concat(survivalDataTemplate)
+                           .concat(mendelimsTemplate),
       registrytypes : registryTypes,
       departments   : departments 
     };
