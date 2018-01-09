@@ -24,30 +24,22 @@
 
 
   <div class="col-md-12 col-sm-12 col-xs-12">
-    <!--<dynamic-form></dynamic-form>-->
-
+    <br/> <br/>
     <div *ngIf="data">
-      <button (click)="onBack()">Back</button>
-      <dynamic-form
-        [questionz]="data?.sections" 
-        [sectionz]="data?.sections" >
-      </dynamic-form>
+      <div class="row">
+        <button mat-raised-button color="primary"
+                class="btn btn-success pull-left"
+                (click)="onBack()">
+            Back
+        </button>
+      </div>
+      <br/> <br/>
+      <div class="row">
+        <dynamic-form
+          [questionz]="data?.sections" 
+          [sectionz]="data?.sections" >
+        </dynamic-form>
+      </div>
     </div>
-
-    <!--<form [formGroup]="answerTemplateForm">
-    <form-section-array
-      [parentForm]="templateForm"
-      [sections]="data?.sections" 
-      [viewState]="'preview'" > 
-    </form-section-array>
-    <li title="Save Template" 
-        class="form-side-editor-fxn" 
-        (click)="onSaveForm(answerTemplateForm.value)">
-        <a  [routerLink]="['.']">
-          <i class="fa fa-3x fa-save"></i>
-        </a>
-    </li>
-    </form>-->
-
   </div>
 </div>

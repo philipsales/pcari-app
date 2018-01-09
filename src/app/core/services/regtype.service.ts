@@ -32,7 +32,6 @@ export class RegTypeService {
   getRegTypes(): Observable<RegType[]> {
 
     const url = environment.API_ENDPOINT + '/registrytypes/';
-    console.log("--OnInit-RegistryTye.Service--");
     return this.http
                .get(url)
                .map((response: Response) => {

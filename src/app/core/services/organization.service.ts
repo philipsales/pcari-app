@@ -27,7 +27,6 @@ export class OrganizationService {
       return this.http
                  .get(url)
                  .map((response: Response) => {
-                    console.log(response.json())
                     return response.json().map(Organization.fromJSON);
                  })
                  .catch(Helper.handleError);
@@ -38,9 +37,6 @@ export class OrganizationService {
       return this.http
                  .get(url)
                  .map((response: Response) => {
-                    console.log('--Organization--', response);
-                    console.log('--Organization.json()--', response.json());
-                    console.log('--Organization.json().as--', response.json() as Organization[]);
                     //NOTE without .data for Kristhian' API
                     return (response.json() as Organization[]);
                  })

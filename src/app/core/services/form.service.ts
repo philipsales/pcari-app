@@ -50,7 +50,6 @@ export class FormService {
     return this.http
                .get(url)
                .map((response: Response) => {
-                    console.warn('--response.json---',response.json() as Form[]);
                     //return (response.json().data as Form[])
                     return (response.json()as Form[])
                  })
@@ -64,7 +63,6 @@ export class FormService {
     return this.http
                .get(url)
                .map((response: Response) => {
-                    console.warn('--response.json---',response.json().data as Form)
                     //return (response.json().data as Form)
                     return (response.json() as Form)
                  })
@@ -74,7 +72,6 @@ export class FormService {
   //TODO: SHOUD return Object Form instead of Question
   submitForm(form: Form): Observable<Question> {
 
-    console.log('--submitForm.form.service--:',form);
 
     //TODO: DUMMY REQUESTION, replace FORM object when API done 
     let question = 
@@ -116,7 +113,6 @@ export class FormService {
 
     return this.http.post(url, question_json, options)
                .map((response: Response) => {
-                  console.warn('--respons.json()--',response.json());
 
                   //TODO: temporary API not done
                   console.warn('--TEMPORARY FAKE RESPONSE---');

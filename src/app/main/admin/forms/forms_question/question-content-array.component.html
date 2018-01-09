@@ -1,34 +1,7 @@
-<!--start old template-->
-<!--<div class="panel panel-default">
-  <div class="panel-heading">
-    <span> Qusetion Array</span>
-  </div>
-  <div class="panel-body">
-    <div [formGroup]="parentForm">
-      <div formArrayName="questions">
-        <question-content *ngFor="let question of questions; let i = index;"
-           [formArray]="parentForm.controls.questions"
-           [question]="question" 
-           (removed)="removeQuestion(i)" 
-           >
-        </question-content>
-      </div>
-      <div class="row">
-         <button class="btn btn-primary" (click)="addQuestion()">
-           Add Question+
-         </button>
-      </div>
-    </div>
-  </div>
-</div>-->
-<!--end old template-->
-
 <div [formGroup]="parentForm">
   <div formArrayName="questions">
-    <!--start create viewstate-->
       <div *ngFor="let question of questions; let i = index;">
         <div class="panel panel-default">
-          <br/>
             <question-content
                [formArray]="parentForm.controls.questions"
                [question]="question" 
@@ -48,8 +21,6 @@
           </mat-card-actions>
         </div>
       </div>
-    <!--end create viewstate-->
   </div>
-
 </div>
 

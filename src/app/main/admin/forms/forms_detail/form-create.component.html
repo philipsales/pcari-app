@@ -39,61 +39,44 @@
                                  placeholder="Template Name"
                                  formControlName="name">
                      </mat-form-field>
-                     <mat-form-field class="material-form-control">
-                         <div *ngIf="registryTypes">
-                              <mat-select placeholder="Registry Type"
-                                         formControlName="type" >
-                                <mat-option *ngFor="let type of registryTypes"
-                                         [id]="type.name" 
-                                         [value]="type.name">{{type.name}}
-                                </mat-option>
-                              </mat-select>
-                          </div>
+                     <mat-form-field class="material-form-control" *ngIf="registryTypes">
+                        <mat-select placeholder="Registry Type"
+                                    formControlName="type" >
+                          <mat-option *ngFor="let type of registryTypes"
+                                      [id]="type.name" 
+                                      [value]="type.name">{{type.name}}
+                          </mat-option>
+                        </mat-select>
                       </mat-form-field>
                     </div>
 
                    <div class="material-form-group">
-                     <mat-form-field class="material-form-control">
-                       <div *ngIf="organizations" >
-                          <mat-select placeholder="Organization"
-                                     formControlName="organization" >
-                            <mat-option *ngFor="let org of organizations"
-                                     [id]="org.key" 
-                                     [value]="org.name">{{org.name}}
-                            </mat-option>
-                          </mat-select>
-                       </div>
-                     </mat-form-field>
-                     <mat-form-field class="material-form-control">
-                           <div *ngIf="departments" >
-                              <mat-select placeholder="Department"
-                                         formControlName="department" >
-                                <mat-option *ngFor="let dept of departments"
-                                         [id]="dept.key" 
-                                         [value]="dept.name">{{dept.name}}
-                                </mat-option>
-                              </mat-select>
-                           </div>
+                      <mat-form-field class="material-form-control" *ngIf="organizations" >
+                        <mat-select placeholder="Organization"
+                                    formControlName="organization" >
+                          <mat-option *ngFor="let org of organizations"
+                                      [id]="org.key" 
+                                      [value]="org.name">{{org.name}}
+                          </mat-option>
+                        </mat-select>
                       </mat-form-field>
-
-                           <!--<mat-form-field>
-                            </mat-form-field>-->
+                      <mat-form-field class="material-form-control" *ngIf="departments" >
+                        <mat-select placeholder="Department"
+                                    formControlName="department" >
+                          <mat-option *ngFor="let dept of departments"
+                                      [id]="dept.key" 
+                                      [value]="dept.name">{{dept.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
                      </div>
 
-
-
                  </div>
-                  <!--<input type="text" class="form-control"
-                         placeholder="organization"li
-                         formControlName="organization">
-                  <small>Organization</small>-->
-
                </div>
                <br/>
             </div>
 
             <div class="row">
-
               <div class="col-sm-10" style="background: al" > 
                 <form-section-array
                   [parentForm]="templateForm"
