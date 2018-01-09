@@ -16,24 +16,6 @@ export class Question {
   medical_shortname?: string;
   medical_description?: string;
 
-  constructor(
-    key: string,
-    label: string,
-    type: string,
-    value: string,
-    required: boolean,
-    order: number,
-    options: Option[]
-  ) {
-    this.key = key;
-    this.label = label;
-    this.type = type;
-    this.value = value;
-    this.required = required;
-    this.order = order;
-    this.options = options;
-  }
-
   static fromJSON(json: QuestionJSON): Question {
     if (typeof json === 'string') {
         return JSON.parse(json, Question.reviver);
@@ -53,6 +35,24 @@ export class Question {
 
   static reviver(key: string, value: any): any {
     return key === '' ? Question.fromJSON(value) : value;
+  }
+
+  constructor(
+    key: string,
+    label: string,
+    type: string,
+    value: string,
+    required: boolean,
+    order: number,
+    options: Option[]
+  ) {
+    this.key = key;
+    this.label = label;
+    this.type = type;
+    this.value = value;
+    this.required = required;
+    this.order = order;
+    this.options = options;
   }
 }
 

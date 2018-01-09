@@ -50,9 +50,11 @@
       </div>
 
 
-    <div class="form-row col-sm-10">
+    <div class="form-row col-sm-12 pull-right">
       {{form.valid}}
-      <button type="submit" [disabled]="!form.valid" class="btn btn-success pull-right">
+      <button mat-raised-button color="primary"
+              [disabled]="!form.valid" class="btn btn-success pull-right"
+              (click)="onSubmit()">
           Save Form
       </button>
     </div>

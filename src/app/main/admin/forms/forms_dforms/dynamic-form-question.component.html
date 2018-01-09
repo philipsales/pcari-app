@@ -1,137 +1,113 @@
 
 <div [formGroup]="form">
   <div [ngSwitch]="question.controlType">
-    <div *ngSwitchCase="'textbox'" class="form-group">
-      <label class="question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
+    <div class="">
+      <label class="material-question-label 
+             col-md-offset-2
+             col-sm-offset-2
+             col-md-10 col-sm-10 col-xs-10" 
              [attr.for]="question.key">{{question.label}}
               <!--<span *ngIf="question.required" class="required">*</span>-->
               <span *ngIf="!isValid" class="required">*</span>
       </label>
-      <div class="col-md-5 col-sm-5 col-xs-12">
-        <input type="text" class="form-control"
-               [formControlName]="question.key"
-               [id]="question.key" 
-               [type]="question.type">
+
+    <div class="col-md-8 col-sm-8 col-xs-8
+                col-md-offset-4
+                col-sm-offset-4">
+      <div *ngSwitchCase="'textbox'" class="">
+          <mat-form-field class="material-input-full-width">
+            <input matInput 
+                   [formControlName]="question.key"
+                   [id]="question.key" 
+                   [type]="question.type"
+                    placeholder="Type your answer" value="">
+          </mat-form-field>
+        </div>
+        <div class="clearfix"></div>
+
+
+      <div *ngSwitchCase="'dropdown'" class="">
+          <mat-select placeholder="Select your option"
+                      class="material-input-full-width"
+                     [formControlName]="question.key" >
+            <mat-option *ngFor="let opt of question.options"
+                class="pull-left material-input-full-width"
+                [id]="opt.key" 
+                [value]="opt.value">{{opt.value}}
+            </mat-option>
+          </mat-select>
       </div>
       <div class="clearfix"></div>
-    </div>
 
 
-    <div *ngSwitchCase="'dropdown'" class="form-group">
-      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
-	     [attr.for]="question.key">{{question.label}}
-              <span *ngIf="!isValid" class="required">*</span>
-        </label>
-        <div class="col-md-5 col-sm-5 col-xs-12">
-          <select class="select2_group form-control"
-                  [formControlName]="question.key" >
-            <option *ngFor="let opt of question.options" 
-                  [id]="question.key" 
-                  [value]="opt.value">{{opt.value}}</option>
-          </select>
-        </div>
-      <div class="clearfix"></div>
-    </div>
-
-
-    <div *ngSwitchCase="'checkbox'" class="form-group">
-
-      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
-	     [attr.for]="question.key">{{question.label}}
-              <span *ngIf="!isValid" class="required">*</span>
-      </label>
-        <div class="col-md-5 col-sm-5 col-xs-12">
+      <div *ngSwitchCase="'checkbox'" class="">
           <div *ngFor="let opt of question.options" 
-             class="select2_group form_control checkbox material-section" >
-          <mat-checkbox 
-                  [formControlName]="question.key"
-                  value="{{opt.value}}"
-                  id="{{opt.key}}" 
-                  class="material-checkbox-margin"> {{opt.value}}
-          </mat-checkbox>
+             class="" >
+            <mat-checkbox 
+                    [formControlName]="question.key"
+                    value="{{opt.value}}"
+                    id="{{opt.key}}" 
+                    class="material-checkbox-margin"> {{opt.value}}
+            </mat-checkbox>
             <!--<input type="checkbox" 
                    [id]="question.key" 
                    [formControlName]="question.key"
                    [value]="opt.value"> {{opt.value}}-->
           </div>
-        </div>
+      </div>
       <div class="clearfix"></div>
-    </div>
 
 
-    <div *ngSwitchCase="'radiobutton'" class="form-group">
-      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
-             [attr.for]="question.key">{{question.label}}
-              <span *ngIf="!isValid" class="required">*</span>
-      </label>
-        <div class="col-md-5 col-sm-5 col-xs-12">
-         <mat-radio-group class="material-radio-group"
-                   [formControlName]="question.key"
-           >
-          <div *ngFor="let opt of question.options"   >
+      <div *ngSwitchCase="'radiobutton'" class="">
+           <mat-radio-group class="material-radio-group"
+                     [formControlName]="question.key" >
+            <div *ngFor="let opt of question.options"   >
+                  <mat-radio-button class=""
+                     id="{{opt.key}}" 
+                     value="{{opt.value}}"> {{opt.value}} 
+                  </mat-radio-button>
+                  <!--<mat-radio-button class="material-radio-button"
+                     id="2" 
+                     value="bar">bar 
+                  </mat-radio-button>-->
 
-                <mat-radio-button class="material-radio-button"
-                   id="{{opt.key}}" 
-                   value="{{opt.value}}"> {{opt.value}} 
-                </mat-radio-button>
-                <!--<mat-radio-button class="material-radio-button"
-                   id="1" 
-                   value="foo"> foo
-                </mat-radio-button>
-                <mat-radio-button class="material-radio-button"
-                   id="2" 
-                   value="bar">bar 
-                </mat-radio-button>-->
-
-            <!--<input type="radio" 
-                   [formControlName]="question.key"
-                   [id]="opt.index" 
-                   [value]="opt.value"> {{opt.value}}-->
-          </div>
-         </mat-radio-group>
-        </div>
+              <!--<input type="radio" 
+                     [formControlName]="question.key"
+                     [id]="opt.index" 
+                     [value]="opt.value"> {{opt.value}}-->
+            </div>
+           </mat-radio-group>
+      </div>
       <div class="clearfix"></div>
-    </div>
 
-    <div *ngSwitchCase="'datepicker'" class="form-group">
-      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
-       [attr.for]="question.key">{{question.label}}
-              <span *ngIf="!isValid" class="required">*</span>
-      </label>
+      <div *ngSwitchCase="'datepicker'" class="">
+            <mat-form-field class="material-input-full-width">
+              <input [formControlName]="question.key" 
+                      matInput [matDatepicker]="i" 
+                      placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
+              <mat-datepicker #i></mat-datepicker>
+            </mat-form-field>
+      </div>
+      <div class="clearfix"></div>
 
-        <div class="col-md-5 col-sm-5 col-xs-12">
-          <mat-form-field>
-            <input matInput [matDatepicker]="i" placeholder="choose a date">
-            <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
-            <mat-datepicker #i></mat-datepicker>
+      <div *ngSwitchCase="'textarea'" class="">
+          <mat-form-field class="material-input-full-width">
+            <textarea matInput 
+                   [formControlName]="question.key"
+                   [id]="question.key" 
+                   [type]="question.type"
+                    placeholder="Type your answer" value="">
+            </textarea>
           </mat-form-field>
-
-          <!--<date-picker class=""
-                 [formControlName]="question.key"
-                 [showClearButton]="false"
-                 [id]="question.key" ></date-picker>-->
-        </div>
+              <!--<textarea class="form-control"
+                     [formControlName]="question.key"
+                      [id]="question.key" ></textarea>-->
+      </div>
       <div class="clearfix"></div>
-    </div>
 
-    <div *ngSwitchCase="'textarea'" class="form-group">
-      <label class="control-label question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
-             [attr.for]="question.key">{{question.label}}
-             <span *ngIf="!isValid" class="required">*</span>
-      </label>
-
-          <div class="col-md-5 col-sm-5 col-xs-12">
-            <textarea class="form-control"
-                   [formControlName]="question.key"
-                  [id]="question.key" ></textarea>
-          </div>
-      <div class="clearfix"></div>
-    </div>
-
-
+    </div><!-- ngSwitch -->
   </div><!-- ngSwitch -->
-
-
 
   <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
 </div>

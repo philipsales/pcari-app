@@ -32,7 +32,7 @@ export class FormService {
 
   constructor(public http: HttpClient) {
   }// --constructor
-
+/*
   getQuestions(): Observable<Question[]>  {
     const url = environment.API_ENDPOINT + '/questions/';
     // const url = 'http://127.0.0.1:8888' + '/questions';
@@ -40,22 +40,21 @@ export class FormService {
              .get(url)
              .map((response: Response) => {
                 console.warn(response, 'OUTTTTTTTTTTTTTT');
-                response.json().data.map(Question.fromJSON);
+                response.json().data1.map(Question.fromJSON);
                 // return (response.json().data as Question[])
             });
   }// --getQuestions
+*/
 
   getForms(): Observable<Form[]> {
-    const url = environment.API_ENDPOINT + '/forms/';
+    const url = environment.API_ENDPOINT + 'forms/';
 
-    return this.http
-               .get(url)
-               .map((response: Response) => {
-                    console.warn('--response.json---',response.json() as Form[]);
-                    //return (response.json().data as Form[])
-                    return (response.json()as Form[])
-                 })
-                 .catch(Helper.handleError);
+    return this.http.get(url).map((response: Response) => {
+      // return (response.json().data as Form[])
+      console.log(response, 'FORMS from /forms');
+      return response.data.map(Form.fromJSON);
+    })
+    .catch(Helper.handleError);
   }
 
   getForm(id: number): Observable<Form> {
@@ -65,19 +64,17 @@ export class FormService {
     return this.http
                .get(url)
                .map((response: Response) => {
-                    console.warn('--response.json---',response.json().data as Form)
-                    //return (response.json().data as Form)
+                    // return (response.json().data as Form)
                     return (response.json() as Form)
                  })
                  .catch(Helper.handleError);
   }
 
-  //TODO: SHOUD return Object Form instead of Question
+  // TODO: SHOUD return Object Form instead of Question
   submitForm(form: Form): Observable<Question> {
 
-    console.log('--submitForm.form.service--:', form);
 
-    //TODO: DUMMY REQUESTION, replace FORM object when API done 
+    // TODO: DUMMY REQUESTION, replace FORM object when API done 
     const question = [
       {
       'id': '123',
@@ -116,7 +113,6 @@ export class FormService {
 
     return this.http.post(url, question_json, options)
                .map((response: Response) => {
-                  console.warn('--respons.json()--',response.json());
 
                   //TODO: temporary API not done
                   console.warn('--TEMPORARY FAKE RESPONSE---');

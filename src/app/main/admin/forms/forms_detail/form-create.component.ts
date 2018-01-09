@@ -119,7 +119,6 @@ export class FormCreateComponent implements OnInit {
           .getForm(id)
           .subscribe(
             existingForm => {
-              console.log('UPDAE---', existingForm);
               this.data = existingForm;
               this.initTemplateFormGroup();
             }
@@ -172,9 +171,7 @@ export class FormCreateComponent implements OnInit {
         .getOrganizations()
         .subscribe(
           organizations => {
-            console.log('--form_CREATE--', organizations);
             this.organizations = organizations;
-            console.log('--this.organizations--', this.organizations);
           }
         );
   }

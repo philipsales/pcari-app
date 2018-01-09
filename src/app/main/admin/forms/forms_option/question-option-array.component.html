@@ -1,28 +1,6 @@
-<!--old template-->
-<!--<div class="panel panel-default">
-  <div class="panel-heading">
-    <span> Option Array </span>
-  </div>
-  <div class="panel-body">
-    <div [formGroup]="parentForm">
-      <question-option *ngFor="let option of options"
-         [formArray]="parentForm.controls.options" 
-         [option]="option" 
-         (removed)="removeOption(i)" >
-        </question-option>
-    </div>
-    <div class="row">
-       <button class="btn btn-primary" (click)="addOption()">
-         Add Option+
-       </button>
-    </div>
-  </div>
-</div>-->
-<!--end old template-->
 <div class="panel-default">
   <div class="form-group">
     <div [formGroup]="parentForm" class="col-sm-12">
-      <h3> Question-option: {{viewState}}</h3>
         <question-option *ngFor="let option of options"
            [formArray]="parentForm.controls.options" 
            [optionType]="parentForm.get('type').value" 
@@ -32,10 +10,12 @@
         </question-option>
     </div>
     <div class="col-sm-12">
-       <a class="option_button" 
-          (click)="addOption()">
-         <h4>Add option</h4>
-       </a>
+      <br/>
+      <button mat-raised-button color="primary"
+              class="pull-left"
+              (click)="addOption()">
+          Add Option 
+      </button>
     </div>
   </div>
 </div>
