@@ -1,23 +1,22 @@
   <div class="panel-body">
     <div [formGroup]="questionGroup">
-      <div class="form-group">
-        <input type="hidden" class="form-control"
-               formControlName="key">
-        <div class="row">
-          <div class="col-sm-9">
-            <!--<label>Question</label>-->
-            <label>&nbsp;</label>
-            <input type="text" class="form-control"
-                   placeholder="Untitled question"
-                   formControlName="label">
-          </div>
-          <div class="col-sm-3">
-            <label>Type</label>
-            <select formControlName="type" 
-                    class="form-control">
-                <option *ngFor="let type of questionTypes"
-                        [value]="type.value"> {{type.label}}</option>
-            </select>
+      <div class="">
+        <div class="">
+         <div class="material-form-group">
+           <input type="hidden" formControlName="key">
+           <mat-form-field class="col-md-9">
+              <input matInput 
+                     placeholder="Question {{index+1}}"
+                     formControlName="label">
+           </mat-form-field>
+           <mat-form-field class="col-md-3">
+              <mat-select placeholder="Question Type"
+                         formControlName="type" >
+                <mat-option *ngFor="let type of questionTypes"
+                         [value]="type.value">{{type.label}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
         <!--<label>Order</label>-->
@@ -57,8 +56,6 @@
                  id="input_required"> Is Required?
           </label>
         </span>
-
       </div>
-
     </div>
   </div>

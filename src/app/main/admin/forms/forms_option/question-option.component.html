@@ -36,16 +36,26 @@
                  class="fa fa-2x fa-circle-o" ></i>
             </span>
             <span class="col-sm-10" >
-              <input type="text" 
+              <!--<input type="text" 
                      class="form-control"
                      placeholder="Untilted option"
-                     formControlName="name">
+                     formControlName="name">-->
+
+               <div class="material-form-group">
+                 <mat-form-field class="col-md-12">
+                      <input matInput 
+                             placeholder="Options"
+                             formControlName="name">
+                  </mat-form-field>
+               </div>
+
               <input type="hidden" class="form-control"
                      formControlName="key">
             </span>
             <span class="col-sm-1" >
               <a title="Delete Option"
                  (click)="removed.emit()"> 
+                <!--<mat-icon>clear</mat-icon>-->
                 <i class="fa fa-3x fa-times " ></i>
               </a>
             </span>
