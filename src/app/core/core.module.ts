@@ -24,7 +24,7 @@ import {
           tokenGetter: () => {
             return localStorage.getItem('access_token');
           },
-          authScheme: 'JWT',
+          authScheme: 'JWT ',
           whitelistedDomains: ['localhost:3001']
         }
       })

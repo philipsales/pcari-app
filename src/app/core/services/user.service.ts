@@ -1,36 +1,31 @@
 import { Injectable } from '@angular/core';
 
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+// import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-//import { map, catch } from 'rxjs/operators';
-//import { Observable } from 'rxjs';
+// import { map, catch } from 'rxjs/operators';
+// import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
-//import { AuthHttp } from 'angular2-jwt';
 
-import { Helper }         from '../helper';
-import { User }           from '../models';
-import { UserJSON }       from '../interfaces';
-import { environment }    from 'environments/environment';
+import { Helper } from '../helper';
+import { User } from '../models';
+import { UserJSON } from '../interfaces';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class UserService {
-
-    constructor(
-	private http: Http
-  //	public authHttp: AuthHttp
-  ) {
-    }//--constructor
+    constructor(private http: HttpClient) {
+    }// --constructor
 
     getAll(): Observable<User[]> {
-	const url = environment.API_ENDPOINT + '/users-via-email/';
-  //return this.authHttp
-  return this.http
-             .get(url).map((response: Response) => {
-            return response.json().map(User.fromJSON);
+        const url = environment.API_ENDPOINT + 'users/';
+        return this.http.get(url).map((response: Response) => {
+            console.log(response.data, 'OUTPUT GET /users');
+            return response.data.map(User.fromJSON);
         })
-	.catch(Helper.handleError);
-    }//--getAll
+        .catch(Helper.handleError);
+    }// --getAll
 
 
     create(user: User): Observable<User> {
