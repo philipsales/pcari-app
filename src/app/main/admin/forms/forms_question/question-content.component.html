@@ -39,21 +39,36 @@
         </div>
 
         <div class="ln_solid"></div>
-        <span class="form-footer-editor-fxn col-sm-1 pull-right" 
-            (click)="removed.emit()">
-          <i class="fa fa-3x fa-trash-o"></i>
+
+        <span class="form-footer-editor-fxn col-sm-1 pull-right" >
+            <span class="material-delete-icon-btn"
+                  matTooltip="Delete Question"
+                  (click)="removed.emit()">
+              <mat-icon>delete</mat-icon>
+          </span>
         </span>
-        <span [hidden]="true"
-              class="form-footer-editor-fxn col-sm-1 pull-right" 
-              (click)="clone.emit()">
-          <i class="fa fa-3x fa-clone"></i>
-        </span>
-        <span class="checkbox form-footer-editor-fxn col-sm-3 pull-right" >
+
+        <span class="form-footer-editor-fxn col-sm-3 pull-right" >
           <label class="pull-right">
+            <mat-slide-toggle
+                id="input_required" 
+                formControlName="required"
+                color="primary"
+                [checked]="question.required">
+                Is required
+            </mat-slide-toggle>
+
+            <!--<mat-checkbox 
+                    id="input_required" 
+                    formControlName="required"
+                     [checked]="question.required"
+                    class="material-checkbox-margin"> Is Required 
+            </mat-checkbox>
+
             <input type="checkbox" name="input_required"
                  formControlName="required"
                  [checked]="question.required"
-                 id="input_required"> Is Required?
+                 id="input_required"> Is Required?-->
           </label>
         </span>
       </div>

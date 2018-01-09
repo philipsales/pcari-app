@@ -53,3 +53,18 @@ input.material-right-align::-webkit-inner-spin-button {
 input.material-right-align {
   -moz-appearance: textfield;
 }
+.material-option-clear-btn {
+  padding-top: 20px;
+}
+
+.material-option-clear-btn:hover {
+  cursor: pointer;
+}
+
+.material-more-menu-btn:hover {
+  cursor: pointer
+}
+
+.material-delete-icon-btn:hover {
+  cursor: pointer
+}

@@ -38,7 +38,7 @@
                           <input matInput 
                                  placeholder="Template Name"
                                  formControlName="name">
-                      </mat-form-field>
+                     </mat-form-field>
                      <mat-form-field class="material-form-control">
                          <div *ngIf="registryTypes">
                               <mat-select placeholder="Registry Type"
@@ -111,22 +111,26 @@
                         <li title="Add Section" 
                             class="form-side-editor-fxn" 
                             (click)="onAddSection()">
-                            <a [routerLink]="['.']">
+                            <a matTooltip="Add Section"
+                               [routerLink]="['.']">
                               <i class="fa fa-3x fa-plus-circle"></i>
                             </a>
                         </li>
-                        <li title="Preview Template" class="form-side-editor-fxn" >
-                          <a  [routerLink]="['../../preview',formId]" >
+                        <li title="Preview Template" 
+                            class="form-side-editor-fxn" 
+                            (click)="onPreviewForm(templateForm.value,formId)" >
+                          <!--<a  [routerLink]="['../../preview',formId]" >
                             <i class="fa fa-3x fa-plus"></i>
-                          </a>
-                          <a (click)="onPreviewForm(templateForm.value,formId)" >
+                          </a>-->
+                          <a matTooltip="Preview Form"
+                             [routerLink]="['.']">
                             <i class="fa fa-3x fa-eye"></i>
                           </a>
                         </li>
-                        <li title="Save Template" 
-                            class="form-side-editor-fxn" 
+                        <li class="form-side-editor-fxn" 
                             (click)="onSaveForm(templateForm.value)" >
-                            <a  [routerLink]="['.']">
+                            <a matTooltip="Save Form"
+                              [routerLink]="['.']">
                               <i class="fa fa-3x fa-save"></i>
                             </a>
                         </li>

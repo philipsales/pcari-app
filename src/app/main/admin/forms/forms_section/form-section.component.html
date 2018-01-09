@@ -2,13 +2,12 @@
   <mat-card [formGroup]="sectionGroup">
     
       <div class="col-sm-offset-10 pull-right">
-        <span class="pull-right" 
+        <span class="pull-right material-more-menu-btn" 
               mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </span>
          <mat-menu #menu="matMenu">
-            <button (click)="removed.emit()"
-              mat-menu-item>
+            <button (click)="removed.emit()" mat-menu-item>
               <mat-icon>delete</mat-icon>
                Delete Section 
             </button>

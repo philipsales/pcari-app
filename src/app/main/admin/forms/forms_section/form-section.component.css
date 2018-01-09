@@ -1,3 +1,9 @@
+.option_icon {
+  padding-left: 15px;
+  padding-top: 10px;
+  float: left;
+  color: lightgrey;
+}
 
 .material-section {
   dislay: flex; 
@@ -35,4 +41,26 @@
   width: 100%;
 }
 
+.material-right-align {
+  text-align: right;
+}
 
+input.material-right-align::-webkit-outer-spin-button,
+input.material-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.material-right-align {
+  -moz-appearance: textfield;
+}
+.material-option-clear-btn {
+  padding-top: 20px;
+}
+
+.material-option-clear-btn:hover {
+  cursor: pointer;
+}
+
+.material-more-menu-btn:hover {
+  cursor: pointer
+}

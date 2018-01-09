@@ -53,11 +53,11 @@
                      formControlName="key">
             </span>
             <span class="col-sm-1" >
-              <a title="Delete Option"
-                 (click)="removed.emit()"> 
-                <!--<mat-icon>clear</mat-icon>-->
-                <i class="fa fa-3x fa-times " ></i>
-              </a>
+              <span matTooltip="Delete Option"
+                    (click)="removed.emit()"> 
+                <mat-icon class="material-option-clear-btn">clear</mat-icon>
+                <!--<i class="fa fa-3x fa-times " ></i>-->
+              </span>
             </span>
           </div>
       </div>
