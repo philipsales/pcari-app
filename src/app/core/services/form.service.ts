@@ -34,7 +34,7 @@ export class FormService {
   constructor(public http: HttpClient) {
   }// --constructor
 /*
-  getQuestions(): Observable<Question[]>  {
+  getQuestions(): Observable<Question[]>  { 
     const url = environment.API_ENDPOINT + '/questions/';
     // const url = 'http://127.0.0.1:8888' + '/questions';
     return this.http

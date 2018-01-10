@@ -10,7 +10,8 @@ import {
   Section,
   Organization, 
   Department,
-  RegType
+  RegType,
+  Option
   } from 'app/core/models';
 
 import { FormService }          from 'app/core/services';
@@ -81,8 +82,45 @@ export class FormCreateComponent implements OnInit {
 
   //TODO: Refractor default declaration
   initCreateForm(): void {
-    if(this.sharedData.getStorage()){
-      this.newForm = this.sharedData.getStorage().form;
+    if (this.sharedData.getStorage()){
+      let old_form : Form = <Form>this.sharedData.getStorage().form;
+      let sections : Section[] = [];
+      if (old_form.sections) {
+        old_form.sections.forEach((section) => {
+          let questions : Question[] = [];
+          if (section.questions) {
+            section.questions.forEach((question) => {
+              questions.push(new Question(
+                question.key,
+                question.label,
+                question.type,
+                question.value,
+                question.required,
+                question.order,
+                question.options
+              ));
+            });
+          }
+
+          sections.push(new Section(
+            section.key,
+            section.name,
+            section.order,
+            questions
+          ));
+        });
+      }
+
+      this.newForm = new Form(
+        old_form.name,
+        old_form.organization,
+        old_form.department,
+        old_form.department,
+        sections
+      );
+
+      console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
+
     }
     else {
 
@@ -218,15 +256,17 @@ export class FormCreateComponent implements OnInit {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
-  
-    console.warn(inputForm, 'CHECK ME!');
-    console.warn(this.newForm.toJSON(), 'NA-EDIT');
-    console.warn(JSON.stringify(this.newForm.toJSON()), 'NA-EDIT2');
-    //this.formService
+
+    // console.warn(inputForm, 'CHECK ME!');
+    // console.warn(this.newForm.toJSON(), 'NA-EDIT');
+    // console.warn(JSON.stringify(this.newForm.toJSON()), 'NA-EDIT2');
+    // this.formService
     //    .checkForm(inputForm);
-    
+
+    console.log(this.data);
+
     this.formService
-        .submitForm(this.newForm.toJSON())
+        .submitForm(this.data.toJSON())
         .subscribe(created_question => {
           this.is_processing = false;
           console.warn(created_question, 'AYUS');
@@ -252,8 +292,8 @@ export class FormCreateComponent implements OnInit {
         });
   }
 
-  onPreviewForm(previewForm : Form, id: string){
-     let params = { "form": previewForm }
+  onPreviewForm(previewForm: Form, id: string) {
+     let params = { 'form': previewForm };
 
      this.sharedData.setStorage(params);
      this.router.navigate([`./forms/preview/${id}`]);
