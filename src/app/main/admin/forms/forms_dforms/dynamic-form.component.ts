@@ -45,6 +45,7 @@ export class DynamicFormComponent implements OnInit {
     private form_test : FormGroup;
     private sections_test: Section;
     private sections_array: Section[]=[];
+    private casenumber: String = '123';
 
     sectionGroupTest: FormGroup;
     formArrayTest: FormArray;
@@ -177,6 +178,11 @@ export class DynamicFormComponent implements OnInit {
       console.log('--this.form--', this.form);
     }//--onInit
 
+
+    onChange(event){
+      console.log(event.target.value);
+      this.casenumber = event.target.value;
+    }
     onSubmit() {
       this.payLoad = JSON.stringify(this.form.value);
       let answers : Answer[] = [];
@@ -184,8 +190,9 @@ export class DynamicFormComponent implements OnInit {
         answers.push(new Answer(key, this.form.value[key]));
       });
 
+      console.warn(this.casenumber, 'CASE NUMBER');
       console.warn(answers, 'WAAAAAAAAA');
-      let to_save = new Case('123', answers);
+      let to_save = new Case(this.casenumber.toString(), answers);
       this.caseservice.submitForm(to_save.toJSON())
       .subscribe(created_case => {
         console.warn(created_case, 'AYUS');

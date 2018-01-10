@@ -94,7 +94,7 @@ export class FormService {
       'label': 'pcari2',
       'options': 'Male|Female',
       'order': 0,
-      'required': true,
+      'required': true, 
       'type': 'dropdown',
       'value': ''
       }
