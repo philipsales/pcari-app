@@ -36,7 +36,7 @@ export class FormCreateComponent implements OnInit {
   private departments: Department[];
   private organizations: Organization[] = [];
 
-  private formId: number;
+  private formId: string;
 
   private errors: any = {};
   private has_errors = false;
@@ -56,7 +56,7 @@ export class FormCreateComponent implements OnInit {
     private router: Router,
     private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
-  ) { 
+  ) {
   }
 
   ngOnInit() {
@@ -66,16 +66,17 @@ export class FormCreateComponent implements OnInit {
     // TO DO:
     //this.getOrganizations();
     this.organizations.push(new Organization('PGH'));
-    this.formId = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.formId = this.route.snapshot.paramMap.get('id');
     this.initForm(this.formId);
   }
 
-  initForm(id:number) {
+  initForm(id) {
 
-    if(id == 0){
+    console.warn(id, 'xxx');
+    if (id == 0) {
       this.initCreateForm();
-    }
-    else {
+    } else {
+      console.warn(id, 'yo!');
       this.initUpdateForm(id);
     }
   }
@@ -165,7 +166,7 @@ export class FormCreateComponent implements OnInit {
 
   }
 
-  initUpdateForm(id: number): void {
+  initUpdateForm(id: string): void {
 
     if(this.sharedData.getStorage()){
       this.data = this.sharedData.getStorage().form;

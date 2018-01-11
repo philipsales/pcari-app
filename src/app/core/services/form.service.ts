@@ -58,17 +58,14 @@ export class FormService {
     .catch(Helper.handleError);
   }
 
-  getForm(id: number): Observable<Form> {
-
-    const url = environment.API_ENDPOINT + `/forms/${id}`;
-
-    return this.http
-               .get(url)
-               .map((response: Response) => {
-                    // return (response.json().data as Form)
-                    return  (response.json() as Form)
-                 })
-                 .catch(Helper.handleError);
+  getForm(id: string): Observable<Form> {
+    const url = environment.API_ENDPOINT + `forms/${id}`;
+    return this.http.get(url)
+      .map((response: FormJSON) => {
+          // return (response.json().data as Form)
+          return Form.fromJSON(response);
+        })
+        .catch(Helper.handleError);
   }
 
   /*
