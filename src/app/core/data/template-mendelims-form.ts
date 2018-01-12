@@ -87,7 +87,7 @@ export const mendelimsTemplate =
                   key: 'fdf-6162-88ed-3d6c7434211112228888211113', 
                   name: "Asian",
                   order:  3
-                }
+                },
                 {
                   key: 'fdf-6162-88ed-3d6c7434211112228888211114', 
                   name: "American Indian",

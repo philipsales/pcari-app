@@ -55,7 +55,8 @@ export class DatabaseService {
                .map((res) => {
                  console.info("BODY: ", res['_body']);
                  console.info("BODY: ", JSON.stringify(res['_body'].data));
-                 return new Blob([JSON.stringify(res['_body'].data)], {type: 'application/json'});
+                 //return new Blob([JSON.stringify(res['_body'].data)], {type: 'application/json'});
+                 return new Blob([JSON.stringify(res['_body'])], {type: 'application/json'});
                });
   }
 

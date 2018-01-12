@@ -2,6 +2,7 @@
     <div [formGroup]="questionGroup">
       <div class="">
         <div class="">
+         <br/>
          <div class="material-form-group">
            <input type="hidden" formControlName="key">
            <mat-form-field class="col-md-9">
@@ -55,7 +56,7 @@
                 formControlName="required"
                 color="primary"
                 [checked]="question.required">
-                Is required
+                Required
             </mat-slide-toggle>
 
             <!--<mat-checkbox 

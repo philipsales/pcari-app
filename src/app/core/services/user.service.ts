@@ -38,11 +38,13 @@ export class UserService {
 	const url = environment.API_ENDPOINT + '/users-via-email/';
 	let user_json = JSON.stringify(user);
 	console.log(user_json);
-	let headers = new Headers({ 'Content-Type': 'application/json' });
+  let headers = new Headers({ 'Content-Type': 'application/json' });
+  headers.append('Accept', 'application/json');
+
 	let options = new RequestOptions({ headers: headers });
   //return this.authHttp
   return this.http
-            .post(url, user_json)
+            .post(url, user_json,options)
             .map((response: Response) => {
 		return User.fromJSON(response.json());
             })

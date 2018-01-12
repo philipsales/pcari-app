@@ -30,7 +30,7 @@ export class CaseService {
                  .map((response: Response) => {
                     console.log("--response.json--")
                     console.log(response.json().data as Case[])
-                    return (response.json().data as Case[])
+                    return (response.json() as Case[])
                  })
                  .catch(Helper.handleError);
   }
