@@ -26,8 +26,8 @@ export class RolesCreateComponent implements OnInit {
   }
 
 
-  onToggleIsActive(input_is_active: boolean){
-      this.new_role.is_active = input_is_active;
+  onToggleIsActive(input_isActive: boolean){
+      this.new_role.isActive = input_isActive;
   }
     
   onSaveClick(role: Role){
