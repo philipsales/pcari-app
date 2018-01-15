@@ -10,7 +10,8 @@ import {
   Section,
   Organization, 
   Department,
-  RegType
+  RegType,
+  Option
   } from 'app/core/models';
 
 import { FormService }          from 'app/core/services';
@@ -33,14 +34,16 @@ export class FormCreateComponent implements OnInit {
 
   private registryTypes: RegType[];
   private departments: Department[];
-  private organizations: Organization[];
+  private organizations: Organization[] = [];
 
-  private formId: number;
+  private formId: string;
 
   private errors: any = {};
   private has_errors = false;
   private hide_key = true ;
   private is_processing = false;
+
+  private newForm: Form;
 
   constructor(
     private fb: FormBuilder,
@@ -53,40 +56,94 @@ export class FormCreateComponent implements OnInit {
     private router: Router,
     private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
-  ) { 
+  ) {
   }
 
   ngOnInit() {
 
     this.getRegistryTypes();
     this.getDepartments();
-    this.getOrganizations();
-
-    this.formId = parseInt(this.route.snapshot.paramMap.get('id'));
+    // TO DO:
+    //this.getOrganizations();
+    this.organizations.push(new Organization('PGH'));
+    this.formId = this.route.snapshot.paramMap.get('id');
     this.initForm(this.formId);
   }
 
-  initForm(id:number) {
+  initForm(id) {
 
-    if(id == 0){
+    console.warn(id, 'xxx');
+    if (id == 0) {
       this.initCreateForm();
-    }
-    else {
+    } else {
+      console.warn(id, 'yo!');
       this.initUpdateForm(id);
     }
   }
 
   //TODO: Refractor default declaration
   initCreateForm(): void {
-    let newForm: Form; 
+    if (this.sharedData.getStorage()){
+      let old_form : Form = <Form>this.sharedData.getStorage().form;
+      let sections : Section[] = [];
+      if (old_form.sections) {
+        old_form.sections.forEach((section) => {
+          let questions : Question[] = [];
+          if (section.questions) {
+            section.questions.forEach((question) => {
+              questions.push(new Question(
+                question.key,
+                question.label,
+                question.type,
+                question.value,
+                question.required,
+                question.order,
+                question.options
+              ));
+            });
+          }
 
-    if(this.sharedData.getStorage()){
-      newForm = this.sharedData.getStorage().form;
+          sections.push(new Section(
+            section.key,
+            section.name,
+            section.order,
+            questions
+          ));
+        });
+      }
+
+      this.newForm = new Form(
+        old_form.name,
+        old_form.organization,
+        old_form.department,
+        old_form.department,
+        sections
+      );
+
+      console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
+
     }
     else {
 
-      newForm = 
-      {
+      let sections : Section[] = [];
+      let questions : Question[] = [];
+      sections.push(new Section(
+        this.keyGenerator.create(),
+        'Untitled section',
+        0,
+        questions
+      ));
+      this.newForm = new Form(
+        'Untitled form',
+        'University of the Philippines - Philippine General Hospital',
+        'General Surgery Department',
+        'Patient Repository',
+        sections
+      );
+
+      console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
+/*
+      newForm = {
         id: 0, 
         name: "Untitled form",
         type: "Patient Repository", 
@@ -101,14 +158,15 @@ export class FormCreateComponent implements OnInit {
           }
         ]
       };
+      */
     }
 
-    this.data = newForm ;
+    this.data = this.newForm ;
     this.initTemplateFormGroup();
 
   }
 
-  initUpdateForm(id: number): void {
+  initUpdateForm(id: string): void {
 
     if(this.sharedData.getStorage()){
       this.data = this.sharedData.getStorage().form;
@@ -178,20 +236,38 @@ export class FormCreateComponent implements OnInit {
 
   onAddSection(){
 
+    let questions: Question[] = [];
+    this.data.sections.push(new Section(
+        this.keyGenerator.create(),
+        'Untitled section',
+        0,
+        questions
+      ));
+
+    /*
     this.data.sections.push({
       key: this.keyGenerator.create(),
       name: 'Untitled section',
       questions: []
     });
+    */
   }
 
   onSaveForm(inputForm: Form){
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
-  
+
+    // console.warn(inputForm, 'CHECK ME!');
+    // console.warn(this.newForm.toJSON(), 'NA-EDIT');
+    // console.warn(JSON.stringify(this.newForm.toJSON()), 'NA-EDIT2');
+    // this.formService
+    //    .checkForm(inputForm);
+
+    console.log(this.data);
+
     this.formService
-        .submitForm(inputForm)
+        .submitForm(this.data.toJSON())
         .subscribe(created_question => {
           this.is_processing = false;
           console.warn(created_question, 'AYUS');
@@ -215,11 +291,10 @@ export class FormCreateComponent implements OnInit {
           console.warn('errro');
           throw errors
         });
-
   }
 
-  onPreviewForm(previewForm : Form, id: string){
-     let params = { "form": previewForm }
+  onPreviewForm(previewForm: Form, id: string) {
+     let params = { 'form': previewForm };
 
      this.sharedData.setStorage(params);
      this.router.navigate([`./forms/preview/${id}`]);

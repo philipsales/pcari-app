@@ -23,19 +23,21 @@ export class FormSectionArrayComponent implements OnInit {
 
   initSection(){
     if(this.sections.length == 0){
-      this.sections.push({
-        key: '',
-        name: ''
-      });
+      this.sections.push(new Section(
+        '',
+        ''
+      ));
     }
   }
 
   addSection(){
-    this.sections.push({
-      key: '',
-      name: '',
-      questions: []
-    });
+    let questions : Question[] = [];
+    this.sections.push(new Section(
+      '',
+      '',
+      this.sections.length,
+      questions
+    ));
   }
 
   removeSection(index: number){

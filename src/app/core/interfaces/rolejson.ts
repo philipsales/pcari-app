@@ -1,5 +1,5 @@
 export interface RoleJSON {
-    name: string;
+    rolename: string;
     description: string;
-    is_active: string;
+    isActive: boolean;
 }

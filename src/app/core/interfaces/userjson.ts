@@ -1,7 +1,7 @@
 export interface UserJSON {
     username: string;
     password: string;
-    is_active: string;
+    isDeleted: boolean;
     first_name: string;
     last_name: string;
     middle_name: string;

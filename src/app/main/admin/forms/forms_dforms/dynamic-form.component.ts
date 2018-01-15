@@ -9,8 +9,10 @@ import { CheckboxQuestion }          from './question-checkbox';
 import { DropdownQuestion }          from './question-dropdown';
 import { RadiobuttonQuestion }       from './question-radiobutton';
 import { DatepickerQuestion }        from './question-datepicker';
+import { NotificationsService } from 'angular2-notifications';
 
-import { Form, Section, Question }   from 'app/core/models';
+import { Form, Section, Question, Answer, Case } from 'app/core/models';
+import { CaseService } from 'app/core/services';
 
 
 @Component({
@@ -32,7 +34,9 @@ export class DynamicFormComponent implements OnInit {
     private sections: Section[];
 
     constructor(
-      private qcs: QuestionControlService
+      private qcs: QuestionControlService,
+      private caseservice: CaseService,
+      private notificationsService: NotificationsService
     ) {
     }//--constructor
 
@@ -41,6 +45,7 @@ export class DynamicFormComponent implements OnInit {
     private form_test : FormGroup;
     private sections_test: Section;
     private sections_array: Section[]=[];
+    private casenumber: String = '123';
 
     sectionGroupTest: FormGroup;
     formArrayTest: FormArray;
@@ -173,8 +178,39 @@ export class DynamicFormComponent implements OnInit {
       console.log('--this.form--', this.form);
     }//--onInit
 
+
+    onChange(event){
+      console.log(event.target.value);
+      this.casenumber = event.target.value;
+    }
     onSubmit() {
       this.payLoad = JSON.stringify(this.form.value);
-    }//--onSubmit
+      let answers : Answer[] = [];
+      Object.keys(this.form.value).forEach((key) => {
+        answers.push(new Answer(key, this.form.value[key]));
+      });
 
+      console.warn(this.casenumber, 'CASE NUMBER');
+      console.warn(answers, 'WAAAAAAAAA');
+      let to_save = new Case(this.casenumber.toString(), answers);
+      this.caseservice.submitForm(to_save.toJSON())
+      .subscribe(created_case => {
+        console.warn(created_case, 'AYUS');
+        this.notificationsService
+              .success(
+                'Case: ' + created_case['case_number'],
+                'Successfully Saved.',
+                {
+                  timeOut: 10000,
+                  showProgressBar: true,
+                  pauseOnHover: false,
+                  clickToClose: false
+                }
+              );
+      },
+      errors => {
+        console.warn('errors');
+        throw errors;
+      });
+    }//--onSubmit
 }//--DynamicFormComponent
