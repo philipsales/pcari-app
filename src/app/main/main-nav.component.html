@@ -26,19 +26,22 @@
       <div class="menu_section active">
 	<h3>General</h3>
 	<ul class="nav side-menu" style="">
-	  <li  routerLinkActive="active">
+    <li  routerLinkActive="active"
+      *ngIf="roles.indexOf('Biobank Researcher') !== -1">
 	    <a  [routerLink]="['/biobanking']">
 	      <i class="fa fa-flask"></i>
 	      Biobank
 	    </a>
 	  </li>
-	  <li  routerLinkActive="active">
+    <li  routerLinkActive="active"
+      *ngIf="roles.indexOf('Medical Researcher') !== -1">
 	    <a  [routerLink]="['/medical']">
 	      <i class="fa fa-heartbeat"></i>
 	      Medical
 	    </a>
 	  </li>
-	  <li  routerLinkActive="active">
+    <li  routerLinkActive="active"
+      *ngIf="roles.indexOf('Admin') !== -1">
 	    <a  [routerLink]="['/admin']">
 	      <i class="fa fa-tasks"></i>
 	      Admin
