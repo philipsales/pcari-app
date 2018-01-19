@@ -226,7 +226,7 @@ export class FormCreateComponent implements OnInit {
   getOrganizations(){
 
     this.organizationService
-        .getOrganizations()
+        .getAll()
         .subscribe(
           organizations => {
             this.organizations = organizations;

@@ -11,6 +11,7 @@ export class User {
     email: string;
     mobile_number: string;
     verification_status: string;
+    roles: string[];
     organizations: { organization: number, position: number }[];
 
 
@@ -29,7 +30,8 @@ export class User {
                 gender: json.gender,
                 email: json.username,
                 mobile_number: json.mobile_number,
-                verification_status: json.verification_status
+                verification_status: json.verification_status,
+                roles: json.roles
             });
         }
     }
@@ -70,7 +72,8 @@ export class User {
             gender: this.gender,
             email: this.email,
             mobile_number: this.mobile_number,
-            verification_status: this.verification_status
+            verification_status: this.verification_status,
+            roles: this.roles
         });
     }
 }

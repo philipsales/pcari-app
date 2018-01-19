@@ -1,4 +1,4 @@
 export interface OrganizationJSON {
-    id: number;
+    _id: string;
     name: string;
 }

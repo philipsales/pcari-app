@@ -9,4 +9,5 @@ export interface UserJSON {
     email: string;
     mobile_number: string;
     verification_status: string;
+    roles: string[];
 }
