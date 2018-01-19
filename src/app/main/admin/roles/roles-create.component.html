@@ -104,13 +104,20 @@
 				<mat-list-option *ngFor="let permission of permissions"
 					(click)="onPermissionListChanged(permission)"
 					[value]="permission.perm_code">
-					{{permission.module}} - {{permission.description}}
+					<div class="row">
+							<span class="col-md-3">{{permission.application}}</span>
+						<span class="col-md-3">{{permission.module}}</span>
+						<span class="col-md-3">{{permission.description}}</span>
+					</div>
+					
 				</mat-list-option>
 			</mat-selection-list>
 
+
+			<br/>
 			<p>
 				Options selected: {{permission.selectedOptions.selected.length}}
 			</p>
   </div> <!-- page-body -->
-  
+
 </div> <!-- page-content -->
