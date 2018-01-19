@@ -6,11 +6,15 @@ import { RolesRoutingModule } from './roles-routing.module';
 import { RolesListComponent } from './roles-list.component';
 import { RolesCreateComponent } from './roles-create.component';
 
+import { MaterialModule } from 'app/shared/_material/material.module';
+
+
 @NgModule({
   imports: [
       CommonModule,
       FormsModule,
-      RolesRoutingModule
+      RolesRoutingModule,
+      MaterialModule
   ],
   declarations: [
       RolesListComponent,

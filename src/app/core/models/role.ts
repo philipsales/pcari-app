@@ -4,7 +4,7 @@ export class Role {
     name: string;
     description: string;
     isActive: boolean;
-
+    permissions?: string[];
 
     static fromJSON(json: RoleJSON): Role {
         if (typeof json === 'string') {
@@ -15,6 +15,7 @@ export class Role {
             return Object.assign(role, json, {
                 name: json.rolename,
                 description: json.description,
+                permissions: json.permissions,
                 isActive: json.isActive,
             });
         }
@@ -27,18 +28,21 @@ export class Role {
     constructor(
       name: string,
       description: string,
-      isActive: boolean
+      isActive: boolean,
+      permissions?: string[]
     ) {
       this.name = name;
       this.description = description;
       this.isActive = isActive;
+      this.permissions = permissions;
     }
 
     toJSON(): RoleJSON {
         return Object.assign({}, this, {
             rolename: this.name,
             description: this.description,
-            isActive: this.isActive
+            isActive: this.isActive,
+            permissions: this.permissions
         });
     }
 }

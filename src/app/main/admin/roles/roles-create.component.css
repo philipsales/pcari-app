@@ -148,3 +148,13 @@ form {
     border: 0px;
     opacity: 0;
 }
+
+:host /deep/ mat-list-option .mat-list .mat-list-option, .mat-nav-list .mat-list-option, .mat-selection-list .mat-list-option {
+    font-size: 13px;
+    font-weight: 400;
+    color: #73879C;
+}
+
+.x_panel {
+    padding-bottom: 30px;
+}

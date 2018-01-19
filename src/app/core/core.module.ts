@@ -12,7 +12,8 @@ import {
     PositionService,
     OrganizationService,
     AuthService,
-    CaseService
+    CaseService,
+    PermissionService
 } from './services';
 
 @NgModule({
@@ -36,7 +37,8 @@ import {
     PositionService,
     OrganizationService,
     AuthService,
-    CaseService
+    CaseService,
+    PermissionService
   ],
     declarations: [],
 })

@@ -65,87 +65,28 @@
 		#roleCreateForm="ngForm" novalidate>
 	    <div class="row">
 	    </div>
-	    
-	    <div class="form-group"
-		 [ngClass]="{'has-error': errors?.name || 
-			    (input_name.errors && (input_name.dirty || input_name.touched)) }">
-	      <label class="control-label col-md-3 col-sm-3 col-xs-12"
-		     for="rolename">
-		Role Name
-		<span class="required">*</span>
-	      </label>
-	      <div class="col-md-6 col-sm-6 col-xs-12">
-		<input type="text" id="rolename" required="required"
-		       [(ngModel)]="new_role.name"
-		       #input_name="ngModel" name="input_name"
-		       class="form-control col-md-7 col-xs-12">
-		<div class="help-block"
-		     *ngIf="errors?.name">
-		  <span *ngIf="errors?.name">
-		    {{errors?.name}}
-		  </span>
-		</div> <!-- help-block -->
-		<div class="help-block"
-		     *ngIf="(input_name.errors && (input_name.dirty || input_name.touched))">
-		  <span  [hidden]="!(input_name.errors.required)">
-		    Name is required
-		  </span>
-		</div>		
-	      </div>
-	    </div>
+			<div class="material-form-group">
+				<mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+					<input matInput 
+								[(ngModel)]="new_role.name"
+								#input_name="ngModel" name="input_name"
+								placeholder="Role Name">
+				</mat-form-field>	
 
-	    <div class="form-group"
-		 [ngClass]="{'has-error': errors?.description || 
-			    (input_description.errors && (input_description.dirty || input_description.touched)) }">
-	      <label class="control-label col-md-3 col-sm-3 col-xs-12"
-		     for="roledescription">
-		Description
-		<span class="required">*</span>
-	      </label>
-	      <div class="col-md-6 col-sm-6 col-xs-12">
-		<input type="text" id="roledescription" required="required"
-		       [(ngModel)]="new_role.description"
-		       #input_description="ngModel" name="input_description"
-		       name="description"
-		       class="form-control col-md-7 col-xs-12">
-		<div class="help-block"
-		     *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
-		  <span  [hidden]="!(input_description.errors.required)">
-		    Description is required
-		  </span>
-		</div>
-	      </div>
-	    </div>
-	    
-	    <div class="form-group">
-	      <label class="control-label col-md-3 col-sm-3 col-xs-12"
-		     for="status">
-		Status
-		<span class="required">*</span>
-	      </label>
-	      <div *ngIf="new_role.isActive"
-		   (click)="onToggleIsActive(false)"
-		   class="checkbox-wrapper col-md-6 col-sm-6 col-xs-12">
-		<div class="icheckbox_flat-green checked" style="position: relative;">
-		  <input type="checkbox" class="flat"
-			 style="position: absolute; opacity: 0;">
-		  <ins class="iCheck-helper">
-		  </ins>
-		</div> &nbsp; Active
-	      </div>
+				<mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+					<input matInput 
+								[(ngModel)]="new_role.description"
+								#input_description="ngModel" name="input_description"			
+								 placeholder="Description">
+				</mat-form-field>	
 
-	      <div *ngIf="!new_role.isActive"
-		   (click)="onToggleIsActive(true)"
-		   class="checkbox-wrapper col-md-6 col-sm-6 col-xs-12">
-		<div class="icheckbox_flat-green" style="position: relative;">
-		  <input type="checkbox" class="flat"
-			 style="position: absolute; opacity: 0;">
-		  <ins class="iCheck-helper">
-		  </ins>
-		</div> &nbsp; Inactive
-	      </div>
-	    </div>
-	    
+				<mat-slide-toggle class="material-form-control col-md-offset-1 col-md-11 col-sm-12 col-xs-12"
+					[(ngModel)]="new_role.isActive"
+					#input_status="ngModel" 
+					name="input_status">
+					Active
+				</mat-slide-toggle>
+			</div> <br/><br/>
 	  </form>
 	</div>
       </div>      
@@ -157,71 +98,19 @@
 	    <h2>Permissions</h2>
 	    <small class="pull-right">Check permissions for role</small>
 	    <div class="clearfix"></div>
-	  </div>
-	  <div class="x_content">
-	    <table class="table table-hover">
-	      <thead>
-		<tr>
-		  <th style="">Module</th>
-		  <th style="width: 60%;">Permission</th>
-		  <th>Allow</th>
-		</tr>
-	      </thead>
-	      <tbody>
-		<tr>
-		  <td>
-		    Admin
-		  </td>
-		  <td>Can add user</td>
-		  <td>
-		    <input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="background-color: rgb(38, 185, 154); border-color: rgb(38, 185, 154); box-shadow: rgb(38, 185, 154) 0px 0px 0px 11px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;"><small style="left: 12px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;"></small></span>
-		  </td>
-		</tr>
-		<tr>
-		  <td>
-		    Admin
-		  </td>
-		  <td>Can edit user</td>
-		  <td>
-		      <input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="background-color: rgb(38, 185, 154); border-color: rgb(38, 185, 154); box-shadow: rgb(38, 185, 154) 0px 0px 0px 11px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;"><small style="left: 12px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;"></small></span>
-		  </td>
-		</tr>
-		<tr>
-		  <td>Admin</td>
-		  <td>Can add role</td>
-		  <td>
-		    <input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="background-color: rgb(38, 185, 154); border-color: rgb(38, 185, 154); box-shadow: rgb(38, 185, 154) 0px 0px 0px 11px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;"><small style="left: 12px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;"></small></span>
-		  </td>
-		</tr>
-		<tr>
-		  <td>Admin</td>
-		  <td>Can edit role</td>
-		  <td>
-		      <input type="checkbox" class="js-switch" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s, box-shadow 0.4s;"><small style="left: 0px; transition: background-color 0.4s, left 0.2s;"></small></span>
-		  </td>
-		</tr>
-		<tr>
-		  <td>Biolab Registry</td>
-		  <td>Can view reports</td>
-		  <td>
-		      <input type="checkbox" class="js-switch" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s, box-shadow 0.4s;"><small style="left: 0px; transition: background-color 0.4s, left 0.2s;"></small></span>
-		  </td>
-		</tr>
-		<tr>
-		  <td>Medical Registry</td>
-		  <td>Can add questions</td>
-		  <td>
-		    <input type="checkbox" class="js-switch" checked="" data-switchery="true" style="display: none;"><span class="switchery switchery-default" style="background-color: rgb(38, 185, 154); border-color: rgb(38, 185, 154); box-shadow: rgb(38, 185, 154) 0px 0px 0px 11px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;"><small style="left: 12px; background-color: rgb(255, 255, 255); transition: background-color 0.4s, left 0.2s;"></small></span>
-		  </td>
-		</tr>
-	      </tbody>
-	    </table>
+		</div>
+		
+			<mat-selection-list #permission dense>
+				<mat-list-option *ngFor="let permission of permissions"
+					(click)="onPermissionListChanged(permission)"
+					[value]="permission.perm_code">
+					{{permission.module}} - {{permission.description}}
+				</mat-list-option>
+			</mat-selection-list>
 
-	  </div>
-	</div>
-      </div>
-
-    
+			<p>
+				Options selected: {{permission.selectedOptions.selected.length}}
+			</p>
   </div> <!-- page-body -->
   
 </div> <!-- page-content -->

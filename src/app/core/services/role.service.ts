@@ -30,8 +30,8 @@ export class RoleService {
 
     create(role: Role): Observable<Role> {
       console.log(role);
-      const url = environment.API_ENDPOINT + '/roles/';
-      const role_json = JSON.stringify(role);
+      const url = environment.API_ENDPOINT + 'roles/';
+      const role_json = role.toJSON();
       console.log(role_json);
       return this.http.post(url, role_json)
               .map((response: RoleJSON) => {
