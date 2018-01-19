@@ -27,23 +27,12 @@ export class UserService {
 
 
     create(user: User): Observable<User> {
-	console.log(user);
-	const url = environment.API_ENDPOINT + '/users-via-email/';
-	let user_json = JSON.stringify(user);
-	console.log(user_json);
-
-  let headerJson = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  }
-
-  let headers = new HttpHeaders(headerJson);
-
-  return this.http
-            .post(url, user_json)
-            .map((response: Response) => {
-            return User.fromJSON(response.json());
-            })
-            .catch(Helper.handleError);
-    }//--create    
+        console.log(user);
+        const url = environment.API_ENDPOINT + '/users';
+        return this.http.post(url, user)
+                    .map((response: UserJSON) => {
+                        return User.fromJSON(response);
+                    })
+                    .catch(Helper.handleError);
+    }// --create
 }
