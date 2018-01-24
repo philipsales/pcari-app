@@ -1,8 +1,7 @@
-import { NgModule }     from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }  from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
-//InMemory modules
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { CaseDummyApiResponse } from 'app/core/services-dummy';
@@ -23,7 +22,7 @@ import { CaseListComponent } from './case-list.component';
   declarations: [
     CaseListComponent
   ],
-  providers: [ 
+  providers: [
     CaseDummyApiResponse,
     CaseService
   ]
