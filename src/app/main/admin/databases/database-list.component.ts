@@ -12,7 +12,7 @@ import * as FileSaver from 'file-saver';
 })
 export class DatabaseListComponent implements OnInit {
 
-  private databases : Database[];
+  private databases : Database[] = [];
   private title;
   constructor(private databaseService: DatabaseService) { }
 
@@ -33,7 +33,7 @@ export class DatabaseListComponent implements OnInit {
         .getAll()
         .subscribe(
           databases => {
-            this.databases = databases;
+            this.databases = databases['data'];
           } 
         );
   }
