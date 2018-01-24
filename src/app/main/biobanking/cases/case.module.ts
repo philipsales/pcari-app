@@ -10,6 +10,9 @@ import { CaseRoutingModule } from './case-routing.module';
 import { CaseService } from 'app/core/services';
 
 import { CaseListComponent } from './case-list.component';
+import { CaseCreateComponent } from './case-create.component';
+
+import { MaterialModule } from 'app/shared/_material/material.module';
 
 @NgModule({
   imports: [
@@ -17,10 +20,12 @@ import { CaseListComponent } from './case-list.component';
     FormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(CaseDummyApiResponse),
-    CaseRoutingModule
+    CaseRoutingModule,
+    MaterialModule
   ],
   declarations: [
-    CaseListComponent
+    CaseListComponent,
+    CaseCreateComponent
   ],
   providers: [
     CaseDummyApiResponse,
