@@ -12,6 +12,7 @@ import 'rxjs/add/operator/catch';
 import { Helper }         from '../helper';
 import { Database }       from '../models';
 import { environment }    from 'environments/environment';
+import { Data } from '@angular/router/src/config';
 
 @Injectable()
 export class DatabaseService {
@@ -37,12 +38,15 @@ export class DatabaseService {
   */
 
   getAll(): Observable<Database[]> {
-    const url = environment.API_ENDPOINT + '/databases/';
-    console.log("--OnInit--Database.Service--");
+    const url = environment.API_ENDPOINT + 'databases/';
+   
     return this.http
                .get(url)
                .map((response: Response) => {
-                    return (response.json() as Database[])
+                    
+                    return (response.json() as Database[]);
+                    //return (JSON.parse(response['_body']) as Database[]);
+                    //return (response.json() as Database[])
                })
                .catch(Helper.handleError);
   }

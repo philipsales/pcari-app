@@ -14,21 +14,24 @@ import { DatabaseListComponent } from './database-list.component';
 import { DatabaseCreateComponent } from './database-create.component';
 import { DatabaseRestoreComponent } from './database-restore.component';
 
+import { KeysPipe } from 'app/core/utils';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(DatabaseDummyApiResponse),
+   // InMemoryWebApiModule.forRoot(DatabaseDummyApiResponse),
     DatabaseRoutingModule
   ],
   declarations: [
+    KeysPipe,
     DatabaseListComponent,
     DatabaseCreateComponent,
     DatabaseRestoreComponent
   ],
   providers: [ 
-    DatabaseDummyApiResponse,
+    //DatabaseDummyApiResponse,
     DatabaseService
   ]
 })

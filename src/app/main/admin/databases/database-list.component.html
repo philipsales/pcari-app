@@ -46,21 +46,18 @@
 	  <tr>
 	    <th>#</th>
 	    <th>Name</th>
-	    <th>Backup Start Date</th>
-	    <th>Backup End Date</th>
-	    <th>Date Created</th>
+	    <th>Description</th>
 	    <th>Created By</th>
+	    <th>Date Created</th>
 	    <th colspan="2" style="text-align: center">Action</th>
 	  </tr>
 	</thead>
 	<tbody>
-	  <tr  *ngFor="let database of databases; let i = index">
-	    <th scope="row">{{ i + 1 }}</th>
+	  <tr  *ngFor='let database of databases | value:"key":true'>
 	    <td>{{ database.name }}</td>
-      <td>{{ database.date_duration_start}} </td>
-      <td>{{ database.date_duration_end}} </td>
-	    <td>{{ database.date_created }}</td>
-	    <td>{{ database.created_by }}</td>
+	    <td>{{ database.description }}</td>
+	    <td>{{ database.createdBy }}</td>
+	    <td>{{ database.dateCreated }}</td>
 	    <td>
         <button class="btn btn-sm btn-success"
           (click)="downloadJSON()">Download</button>

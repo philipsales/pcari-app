@@ -20,9 +20,11 @@ export class RoleService {
 
     getAll(): Observable<Role[]> {
       const url = environment.API_ENDPOINT + 'roles/';
+      console.log('url: ', url);
       return this.http.get(url)
                  .map((response: Response) => {
                    console.log(response['data']);
+                   console.log(response);
                    return response['data'].map(Role.fromJSON);
                  })
                  .catch(Helper.handleError);

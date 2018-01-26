@@ -19,7 +19,6 @@ import { DepartmentService }   from 'app/core/services';
 import { OrganizationService } from 'app/core/services';
 
 //Utils
-import { KeysPipe } from 'app/core/utils';
 import { KeyGenerator } from 'app/core/utils';
 
 import { FormRoutingModule } from './form-routing.module';
@@ -63,7 +62,6 @@ import { QuestionOptionComponent }       from './forms_option/question-option.co
   ],
   declarations: [
 //Utils
-    KeysPipe,
 
 //Editor
     FormListComponent,
