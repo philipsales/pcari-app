@@ -12,6 +12,7 @@ import { CaseService } from 'app/core/services';
 import { CaseListComponent } from './case-list.component';
 import { CaseCreateComponent } from './case-create.component';
 
+import { SharedModule } from 'app/shared/shared.module';
 import { MaterialModule } from 'app/shared/_material/material.module';
 import { CaseManageComponent } from './case-manage.component';
 import { CaseViewComponent } from './case-view.component';
@@ -22,6 +23,7 @@ import { CaseUpdateComponent } from './case-update.component';
     CommonModule,
     FormsModule,
     HttpModule,
+    SharedModule,
     InMemoryWebApiModule.forRoot(CaseDummyApiResponse),
     CaseRoutingModule,
     MaterialModule

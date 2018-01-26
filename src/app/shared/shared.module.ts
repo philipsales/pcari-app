@@ -6,6 +6,7 @@ import { Ng2CompleterModule } from 'ng2-completer';
 import { UserFormComponent } from './_components/user-form.component';
 
 import { MaterialModule } from 'app/shared/_material/material.module';
+import { EllipsisPipe } from './_pipes/ellipsis.pipe';
 
 @NgModule({
   imports: [
@@ -16,10 +17,12 @@ import { MaterialModule } from 'app/shared/_material/material.module';
     MaterialModule
   ],
   declarations: [
-    UserFormComponent
+    UserFormComponent,
+    EllipsisPipe
   ],
   exports: [
-    UserFormComponent
+    UserFormComponent,
+    EllipsisPipe
   ]
 })
 export class SharedModule { }
