@@ -166,6 +166,11 @@ export class FormCreateComponent implements OnInit {
 
   }
 
+  onChange(event) {
+    console.log(event.target.value);
+    this.data.name = event.target.value;
+  }
+
   initUpdateForm(id: string): void {
 
     if(this.sharedData.getStorage()){

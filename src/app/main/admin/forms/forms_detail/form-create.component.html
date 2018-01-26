@@ -37,7 +37,8 @@
                      <mat-form-field class="material-form-control">
                           <input matInput 
                                  placeholder="Template Names"
-                                 formControlName="name">
+                                 formControlName="name"
+                                 (change)="onChange($event)">
                      </mat-form-field>
                      <mat-form-field class="material-form-control" *ngIf="registryTypes">
                         <mat-select placeholder="Registry Type"
