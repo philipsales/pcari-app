@@ -59,8 +59,8 @@
 	    <td>{{ case.date_created }}</td>
 	    <td style="text-align: center">
         <button 
-         class="btn btn-sm btn-success"
-         (click)="downloadJSON()">
+				 class="btn btn-sm btn-success"
+				 [routerLink]="['/biobanking/cases/view']">
          <i class="fa fa-plus"></i> &nbsp; View</button>
 	    </td>
 	  </tr>

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { CaseListComponent } from './case-list.component';
 import { CaseCreateComponent } from './case-create.component';
+import { CaseViewComponent } from './case-view.component';
 
 const routes: Routes = [
     {
@@ -10,9 +11,13 @@ const routes: Routes = [
       component: CaseListComponent
     },
     {
+        path: 'view',
+        component: CaseViewComponent
+    },
+    {
         path: 'create',
         component: CaseCreateComponent
-      },
+    },
     {path: '', redirectTo: 'list'}
 ];
 
