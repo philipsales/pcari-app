@@ -4,6 +4,9 @@ import {
   Case,
   FormAnswer
 } from 'app/core/models';
+import {CaseJSON} from 'app/core/interfaces';
+
+
 import { CaseService } from 'app/core/services';
 import { NoJWTError } from 'app/core/errors';
 import { NotificationsService } from 'angular2-notifications';
@@ -17,7 +20,15 @@ import { create } from 'domain';
 
 export class CaseManageComponent implements OnInit {
 
-  @Input() case: Case;
+  private _resetcase: CaseJSON;
+  private _case: Case;
+  @Input() set case(value: Case) {
+      this._case = value;
+      this._resetcase = this._case.toJSON();
+      console.warn('HELLO!');
+  }// -- _reinit setter
+
+
   @Input() method: string;
 
   private errors: any = {};
@@ -31,6 +42,11 @@ export class CaseManageComponent implements OnInit {
 
   ngOnInit() {
     console.warn(this.has_errors);
+    console.log(this.method);
+  }
+
+  resetCase() {
+    this._case = Case.fromJSON(this._resetcase);
   }
 
   updateCase() {

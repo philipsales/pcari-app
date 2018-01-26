@@ -1,7 +1,8 @@
 
-<div class="col-md-12 table-nav">
+<div class="col-md-12 table-nav" *ngIf="method == 'CREATE' || method == 'UPDATE'">
   <div class="col-sm-3 reset-wrapper">
-    <button class="btn btn-default pull-left">
+    <button class="btn btn-default pull-left"
+      (click)="resetCase(case)">
       <i class="fa fa-refresh"></i> &nbsp; Reset
     </button>
   </div>
@@ -15,7 +16,7 @@
 
   <div class="col-sm-3 save-wrapper">
     <button class="btn btn-success pull-right"
-      (click)="updateCase()">
+      (click)="updateCase(case)">
       <i class="fa fa-save"></i> &nbsp; Save
     </button>
   </div>
@@ -27,8 +28,9 @@
       <div class="material-form-group">
         <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
           <input matInput 
-                [(ngModel)]="case.case_nbr"
+                [(ngModel)]="_case.case_nbr"
                 #input_name="ngModel" name="input_casenumber"
+                [disabled]="method == 'VIEW'"
                 placeholder="Case Number">
         </mat-form-field>	
       </div>
@@ -40,8 +42,9 @@
     <div class="material-form-group">  
       <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
           <input matInput 
-                [(ngModel)]="case.diagnosis"
-                #input_name="ngModel" name="input_diagnosis"
+                [(ngModel)]="_case.diagnosis"
+                #input_name="ngModel" name="input_casenumber"
+                [disabled]="method == 'VIEW'"
                 placeholder="Diagnosis">
       </mat-form-field>	  
     </div>
@@ -67,7 +70,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr  *ngFor="let form of case.forms; let i = index">
+                <tr  *ngFor="let form of _case.forms; let i = index">
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ form.form_name }}</td>
                   <td>{{ form.date_created | date :'medium' }}</td>

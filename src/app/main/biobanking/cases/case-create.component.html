@@ -27,7 +27,10 @@
     </header>
 
     <div class="row" id="page-body">
-      <app-case-manage [case]="case"></app-case-manage>
+      <app-case-manage 
+        [case]="case" 
+        [method]="'CREATE'">
+      </app-case-manage>
     </div> <!-- page-body -->
     
 </div>  <!-- page-content -->
