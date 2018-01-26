@@ -1,0 +1,68 @@
+
+<div class="col-md-12 table-nav" *ngIf="method == 'CREATE' || method == 'UPDATE'">
+    <div class="col-sm-3 reset-wrapper">
+      <button class="btn btn-default pull-left"
+        (click)="resetCase(case)">
+        <i class="fa fa-refresh"></i> &nbsp; Reset
+      </button>
+    </div>
+    
+    <div class="col-sm-6">
+      <div class="alert alert-danger" [hidden]="!has_errors">
+        <strong> <i class="fa fa-warning"></i> Unable to process your request. </strong>
+        <em>Please see details below: </em>
+      </div>
+    </div>
+  
+    <div class="col-sm-3 save-wrapper">
+      <button class="btn btn-success pull-right"
+        [disabled]="is_adding_forms"
+        (click)="submitCase()">
+        <i class="fa fa-save"></i> &nbsp; Save
+      </button>
+    </div>
+  </div>
+  
+  <div class="col-md-12" style="padding-top: 20px; padding-bottom: 15px;">
+    <!-- Case Identifier -->
+    <div class="col-md-6 col-sm-6 col-xs-12"> 
+        <div class="material-form-group">
+          <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+            <input matInput 
+                  [(ngModel)]="_case.case_nbr"
+                  #input_name="ngModel" name="input_casenumber"
+                  [disabled]="method == 'VIEW'"
+                  placeholder="Case Number">
+          </mat-form-field>	
+        </div>
+    </div> 
+    <!-- Case Identifier -->
+  
+    <!-- Diagnosis -->
+    <div class="col-md-6 col-sm-6 col-xs-12"> 
+      <div class="material-form-group">  
+        <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+            <input matInput 
+                  [(ngModel)]="_case.diagnosis"
+                  #input_name="ngModel" name="input_casenumber"
+                  [disabled]="method == 'VIEW'"
+                  placeholder="Diagnosis">
+        </mat-form-field>	  
+      </div>
+    </div>
+    <!-- Diagnosis -->
+  </div> 
+
+<app-case-form-add
+  (onSaveFormAddTrigger)="onAddSelectedForm($event)"
+  (onCancelFormAddTrigger)="onCancelAddForm()"
+  [show]="!show_selected_forms">
+</app-case-form-add>
+
+
+<app-case-form-manage 
+  (onCallSelectFormTrigger)="onAddForm()"
+  [show]="show_selected_forms"
+  [forms]="_case.forms"
+  [method]="method">
+</app-case-form-manage>

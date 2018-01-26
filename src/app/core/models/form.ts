@@ -3,7 +3,7 @@ import { FormJSON } from './../interfaces';
 
 
 export class Form {
-  id: number;
+  id: string;
   name: string;
   organization: string;
   department: string;
@@ -20,7 +20,7 @@ export class Form {
     if (typeof json === 'string') {
         return JSON.parse(json, Form.reviver);
     } else {
-        const section = Object.create(Section.prototype);
+        const section = Object.create(Form.prototype);
         return Object.assign(section, json, {
           id: json._id,
           name: json.name,
