@@ -30,6 +30,14 @@ export class CaseService {
     }).catch(Helper.handleError);
   }
 
+  get(case_id: string): Observable<Case> {
+    const url = environment.API_ENDPOINT + 'cases/' + case_id;
+    return this.httpclient.get(url).map((response: CaseJSON) => {
+      console.log(response, 'OUTPUT GET /cases');
+      return Case.fromJSON(response);
+    }).catch(Helper.handleError);
+  }
+
   submitForm(mycase: CaseJSON): Observable<Case> {
     const url = environment.API_ENDPOINT + 'cases/';
     const form_json = JSON.stringify(mycase);

@@ -28,5 +28,4 @@ export class CaseListComponent implements OnInit {
       });
 
   }
-
 }

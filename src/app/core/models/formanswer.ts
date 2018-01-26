@@ -20,7 +20,7 @@ export class FormAnswer {
         });
 
         if (json.answers) {
-          output['answers'] =  Answer.fromJSON(json.answers);
+          output['answers'] =  json.answers.map(Answer.fromJSON);
         }
 
         return output;
@@ -28,6 +28,7 @@ export class FormAnswer {
   }
 
   static reviver(key: string, value: any): any {
+    console.warn('yi');
     return key === '' ? FormAnswer.fromJSON(value) : value;
   }
 

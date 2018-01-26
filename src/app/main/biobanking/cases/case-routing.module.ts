@@ -12,7 +12,7 @@ const routes: Routes = [
       component: CaseListComponent
     },
     {
-        path: 'view',
+        path: 'view/:id',
         component: CaseViewComponent
     },
     {

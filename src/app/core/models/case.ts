@@ -23,7 +23,7 @@ export class Case {
         });
         console.log(json.forms);
         if (json.forms) {
-          output['forms'] = FormAnswer.fromJSON(json.forms);
+          output['forms'] = json.forms.map(FormAnswer.fromJSON);
         }
         return output;
     }

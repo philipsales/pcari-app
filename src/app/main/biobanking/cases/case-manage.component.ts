@@ -10,9 +10,11 @@ import {
   templateUrl: './case-manage.component.html',
   styleUrls: ['./case-manage.component.css']
 })
+
 export class CaseManageComponent implements OnInit {
 
   @Input() case: Case;
+  @Input() method: string;
 
   private errors: any = {};
   private has_errors = false;
