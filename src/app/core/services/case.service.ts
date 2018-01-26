@@ -50,4 +50,17 @@ export class CaseService {
         return Case.fromJSON(response);
     }).catch(Helper.handleError);
   }
+
+  update(mycase: Case): Observable<Case> {
+    const url = environment.API_ENDPOINT + 'cases/' + mycase.id;
+    const case_json = mycase.toJSON();
+    console.log(case_json);
+
+    return this.httpclient.patch(url, case_json)
+      .map((response: CaseJSON) => {
+        // return (response.json().data as Form[])
+        console.log(response, 'CASE UPDATED from /cases');
+        return Case.fromJSON(response);
+    }).catch(Helper.handleError);
+  }
 }
