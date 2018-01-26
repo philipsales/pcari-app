@@ -15,6 +15,7 @@ import { CaseCreateComponent } from './case-create.component';
 import { MaterialModule } from 'app/shared/_material/material.module';
 import { CaseManageComponent } from './case-manage.component';
 import { CaseViewComponent } from './case-view.component';
+import { CaseUpdateComponent } from './case-update.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { CaseViewComponent } from './case-view.component';
     CaseListComponent,
     CaseCreateComponent,
     CaseManageComponent,
-    CaseViewComponent
+    CaseViewComponent,
+    CaseUpdateComponent
   ],
   providers: [
     CaseDummyApiResponse,

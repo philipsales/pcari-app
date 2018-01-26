@@ -59,9 +59,13 @@
 	    <td>{{ case.date_created }}</td>
 	    <td style="text-align: center">
         <button 
-				 class="btn btn-sm btn-success"
+				 class="btn btn-sm btn-default"
 				 [routerLink]="['/biobanking/cases/view']">
-         <i class="fa fa-plus"></i> &nbsp; View</button>
+				 <i class="fa fa-eye"></i> View</button>
+				 <button 
+				 class="btn btn-sm btn-warning"
+				 [routerLink]="['/biobanking/cases/update']">
+         <i class="fa fa-edit"></i> Update</button>
 	    </td>
 	  </tr>
 	</tbody>

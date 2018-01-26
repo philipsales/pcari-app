@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CaseListComponent } from './case-list.component';
 import { CaseCreateComponent } from './case-create.component';
 import { CaseViewComponent } from './case-view.component';
+import { CaseUpdateComponent } from './case-update.component';
 
 const routes: Routes = [
     {
@@ -13,6 +14,10 @@ const routes: Routes = [
     {
         path: 'view',
         component: CaseViewComponent
+    },
+    {
+        path: 'update',
+        component: CaseUpdateComponent
     },
     {
         path: 'create',
