@@ -38,16 +38,16 @@ export class CaseService {
     }).catch(Helper.handleError);
   }
 
-  submitForm(mycase: CaseJSON): Observable<Case> {
+  create(mycase: Case): Observable<Case> {
     const url = environment.API_ENDPOINT + 'cases/';
-    const form_json = JSON.stringify(mycase);
-    console.log(form_json);
+    const case_json = mycase.toJSON();
+    console.log(case_json);
 
-    return this.httpclient.post(url, mycase).map((response: CaseJSON) => {
-      // return (response.json().data as Form[])
-      console.log(response, 'CASE CREATED from /cases');
-      return Case.fromJSON(response);
-    })
-    .catch(Helper.handleError);
+    return this.httpclient.post(url, case_json)
+      .map((response: CaseJSON) => {
+        // return (response.json().data as Form[])
+        console.log(response, 'CASE CREATED from /cases');
+        return Case.fromJSON(response);
+    }).catch(Helper.handleError);
   }
 }

@@ -14,7 +14,8 @@
   </div>
 
   <div class="col-sm-3 save-wrapper">
-    <button class="btn btn-success pull-right">
+    <button class="btn btn-success pull-right"
+      (click)="updateCase()">
       <i class="fa fa-save"></i> &nbsp; Save
     </button>
   </div>
@@ -39,8 +40,8 @@
     <div class="material-form-group">  
       <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
           <input matInput 
-                [(ngModel)]="case.case_nbr"
-                #input_name="ngModel" name="input_casenumber"
+                [(ngModel)]="case.diagnosis"
+                #input_name="ngModel" name="input_diagnosis"
                 placeholder="Diagnosis">
       </mat-form-field>	  
     </div>

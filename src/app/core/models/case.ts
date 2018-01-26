@@ -42,14 +42,18 @@ export class Case {
 
   toJSON(): CaseJSON {
     let forms: FormAnswerJSON[] = [];
+    let date_created: number = (new Date).getTime();
     if (this.forms) {
       forms = this.forms.map((form) => form.toJSON());
+    }
+    if (this.date_created) {
+      date_created = this.date_created.getTime();
     }
 
     return Object.assign({}, this, {
       case_number: this.case_nbr,
       diagnosis: this.diagnosis,
-      date_created: this.date_created.getTime(),
+      date_created: date_created,
       forms: forms
     });
   }

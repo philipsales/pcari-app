@@ -196,7 +196,7 @@ export class DynamicFormComponent implements OnInit {
       console.warn(this.casenumber, 'CASE NUMBER');
       console.warn(answers, 'WAAAAAAAAA');
       let to_save = new Case(this.casenumber.toString(), '', forms);
-      this.caseservice.submitForm(to_save.toJSON())
+      this.caseservice.create(to_save)
       .subscribe(created_case => {
         console.warn(created_case, 'AYUS');
         this.notificationsService
