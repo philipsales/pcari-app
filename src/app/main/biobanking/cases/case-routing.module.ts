@@ -16,7 +16,7 @@ const routes: Routes = [
         component: CaseViewComponent
     },
     {
-        path: 'update',
+        path: 'update/:id',
         component: CaseUpdateComponent
     },
     {
