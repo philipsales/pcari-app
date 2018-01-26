@@ -21,7 +21,7 @@ const routes: Routes = [
 		path: 'my-account',
 		loadChildren: './my-account/my-account.module#MyAccountModule'
 	    },
-	    { path: '', redirectTo: 'my-account' }
+	    { path: '', redirectTo: 'admin' }
 	]
     }
 ];
