@@ -13,6 +13,8 @@ export * from './models/question';
 export * from './models/option';
 export * from './models/regtype';
 export * from './models/department';
-export * from './models/answer';
-export * from './models/case';
 export * from './models/permission';
+export * from './models/answer';
+export * from './models/formanswer';
+export * from './models/case';
+

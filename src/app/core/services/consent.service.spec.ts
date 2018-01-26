@@ -10,6 +10,6 @@ describe('ConsentService', () => {
   });
 
   it('should be created', inject([ConsentService], (service: ConsentService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 });

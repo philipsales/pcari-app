@@ -1,23 +1,31 @@
-import {CaseJSON, AnswerJSON} from './../interfaces';
-import {Answer} from './../models';
+import {CaseJSON, FormAnswerJSON} from './../interfaces';
+import {FormAnswer} from './formanswer';
 
 export class Case {
-  id: number;
+  id: string;
   case_nbr: string;
-  is_deleted: boolean;
-  answers?: Answer[];
+  date_created: Date;
   diagnosis?: string;
+  forms?: FormAnswer[];
+  is_deleted: boolean;
 
-  static fromJSON(json: CaseJSON): Case {
+  static fromJSON(json): Case {
     if (typeof json === 'string') {
         return JSON.parse(json, Case.reviver);
     } else {
         const instance = Object.create(Case.prototype);
-        return Object.assign(instance, json, {
+        let output = Object.assign(instance, json, {
+          id: json._id,
           case_nbr: json.case_number,
-          is_deleted: json.isDeleted,
-          answers: json.answers
+          diagnosis: json.diagnosis,
+          date_created: new Date(json.date_created),
+          is_deleted: json.isDeleted
         });
+        console.log(json.forms);
+        if (json.forms) {
+          output['forms'] = FormAnswer.fromJSON(json.forms);
+        }
+        return output;
     }
   }
 
@@ -25,22 +33,24 @@ export class Case {
     return key === '' ? Case.fromJSON(value) : value;
   }
 
-  constructor(case_nbr: string, answers: Answer[]) {
+  constructor(case_nbr: string, diagnosis: string, forms: FormAnswer[]) {
       this.case_nbr = case_nbr;
+      this.diagnosis = diagnosis;
+      this.forms = forms;
       this.is_deleted = false;
-      this.answers = answers;
   }
 
   toJSON(): CaseJSON {
-    let answers : AnswerJSON[] = [];
-    if (this.answers) {
-      answers = this.answers.map((answer) => answer.toJSON());
+    let forms: FormAnswerJSON[] = [];
+    if (this.forms) {
+      forms = this.forms.map((form) => form.toJSON());
     }
 
     return Object.assign({}, this, {
       case_number: this.case_nbr,
-      isDeleted: this.is_deleted,
-      answers: answers
+      diagnosis: this.diagnosis,
+      date_created: this.date_created.getTime(),
+      forms: forms
     });
   }
 }

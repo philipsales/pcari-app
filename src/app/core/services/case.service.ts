@@ -25,10 +25,9 @@ export class CaseService {
   getAll(): Observable<Case[]> {
     const url = environment.API_ENDPOINT + 'cases/';
     return this.httpclient.get(url).map((response: Response) => {
-      console.log(response['data'], 'OUTPUT GET /users');
+      console.log(response['data'], 'OUTPUT GET /cases');
       return response['data'].map(Case.fromJSON);
-    })
-    .catch(Helper.handleError);
+    }).catch(Helper.handleError);
   }
 
   submitForm(mycase: CaseJSON): Observable<Case> {
@@ -38,7 +37,7 @@ export class CaseService {
 
     return this.httpclient.post(url, mycase).map((response: CaseJSON) => {
       // return (response.json().data as Form[])
-      console.log(response, 'CASE CREATED from /forms');
+      console.log(response, 'CASE CREATED from /cases');
       return Case.fromJSON(response);
     })
     .catch(Helper.handleError);

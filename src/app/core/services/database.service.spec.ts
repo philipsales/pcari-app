@@ -10,6 +10,6 @@ describe('DatabaseService', () => {
   });
 
   it('should be created', inject([DatabaseService], (service: DatabaseService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 });

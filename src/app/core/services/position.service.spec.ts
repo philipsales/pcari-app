@@ -10,6 +10,6 @@ describe('PositionService', () => {
   });
 
   it('should be created', inject([PositionService], (service: PositionService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 });

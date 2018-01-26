@@ -8,4 +8,5 @@ export * from './interfaces/formjson';
 export * from './interfaces/answerjson';
 export * from './interfaces/casejson';
 export * from './interfaces/permissionjson';
+export * from './interfaces/formanswerjson';
 

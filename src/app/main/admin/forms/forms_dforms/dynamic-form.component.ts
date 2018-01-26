@@ -11,7 +11,7 @@ import { RadiobuttonQuestion }       from './question-radiobutton';
 import { DatepickerQuestion }        from './question-datepicker';
 import { NotificationsService } from 'angular2-notifications';
 
-import { Form, Section, Question, Answer, Case } from 'app/core/models';
+import { Form, Section, Question, FormAnswer, Answer, Case } from 'app/core/models';
 import { CaseService } from 'app/core/services';
 
 
@@ -185,14 +185,17 @@ export class DynamicFormComponent implements OnInit {
     }
     onSubmit() {
       this.payLoad = JSON.stringify(this.form.value);
-      let answers : Answer[] = [];
+      let answers: Answer[] = [];
       Object.keys(this.form.value).forEach((key) => {
         answers.push(new Answer(key, this.form.value[key]));
       });
+      let forms : FormAnswer[] = [];
+      forms.push(new FormAnswer('', '', answers));
+
 
       console.warn(this.casenumber, 'CASE NUMBER');
       console.warn(answers, 'WAAAAAAAAA');
-      let to_save = new Case(this.casenumber.toString(), answers);
+      let to_save = new Case(this.casenumber.toString(), '', forms);
       this.caseservice.submitForm(to_save.toJSON())
       .subscribe(created_case => {
         console.warn(created_case, 'AYUS');

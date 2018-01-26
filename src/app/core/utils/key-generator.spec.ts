@@ -10,6 +10,6 @@ describe('KeyGenerator', () => {
   });
 
   it('should be created', inject([KeyGenerator], (service: KeyGenerator) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 });

@@ -4,7 +4,7 @@ export class Answer {
     key: string;
     answer: string;
 
-  static fromJSON(json: AnswerJSON): Answer {
+  static fromJSON(json): Answer {
     if (typeof json === 'string') {
         return JSON.parse(json, Answer.reviver);
     } else {

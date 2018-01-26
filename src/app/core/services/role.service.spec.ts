@@ -10,6 +10,6 @@ describe('RoleService', () => {
   });
 
   it('should be created', inject([RoleService], (service: RoleService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 });

@@ -10,6 +10,6 @@ describe('CaseService', () => {
   });
 
   it('should be created', inject([CaseService], (service: CaseService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 });

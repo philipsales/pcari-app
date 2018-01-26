@@ -10,6 +10,6 @@ describe('FormService', () => {
   });
 
   it('should be created', inject([FormService], (service: FormService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 });

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-
 import {
   Case,
-  Answer
+  FormAnswer
 } from 'app/core/models';
 
 @Component({
@@ -14,7 +13,7 @@ import {
 export class CaseCreateComponent implements OnInit {
 
   private case: Case;
-  private answers: Answer[];
+  private answers: FormAnswer[];
 
   private errors: any = {};
   private has_errors = false;
@@ -23,7 +22,7 @@ export class CaseCreateComponent implements OnInit {
 
   constructor() {
     this.answers = [];
-    this.case = new Case('', this.answers);
+    this.case = new Case('', '', this.answers);
   }
 
   ngOnInit() {

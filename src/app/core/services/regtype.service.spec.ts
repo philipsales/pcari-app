@@ -10,6 +10,6 @@ describe('RegTypeService', () => {
   });
 
   it('should be created', inject([RegTypeService], (service: RegTypeService) => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   }));
 });
