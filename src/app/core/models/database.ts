@@ -11,12 +11,10 @@ export class Database {
   dirPath: string;
 
   static fromJSON(json: DatabaseJSON): Database {
-    console.log()
     if (typeof json === 'string') {
       return JSON.parse(json, Database.reviver);
     } else {
       const database = Object.create(Database.prototype);
-      console.log('FROMJSON', json._id);
       return Object.assign(database, json, {
         id: json._id,
         name: json.name,
@@ -41,8 +39,9 @@ export class Database {
     return Object.assign({}, this, {
       _id: this.id,
       name: this.name,
-      description: this.description
-
+      description: this.description,
+      createdBy: "philip",
+      dirPath: this.dirPath
     });
   }
 }

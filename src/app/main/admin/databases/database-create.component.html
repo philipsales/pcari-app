@@ -28,7 +28,8 @@
   <div class="row" id="page-body">
     <div class="col-md-12 table-nav">
       <div class="col-sm-3 reset-wrapper">
-        <button class="btn btn-default pull-left">
+        <button class="btn btn-default pull-left"
+          (click)="onResetClick()">
           <i class="fa fa-refresh"></i> &nbsp; Reset
         </button>
       </div>
@@ -43,11 +44,29 @@
       </div>
 
       <div class="col-sm-3 save-wrapper">
-        <button class="btn btn-success pull-right"
-          [disabled]="!databaseCreateForm.form.valid || is_processing"
-          (click)="onSaveClick(new_database)">
-          <i class="fa fa-save"></i> &nbsp; Save
-        </button>
+        <div class="row">
+          <button class="btn btn-success pull-right"
+            *ngIf="state_view === 'Save'"
+            [disabled]="!databaseCreateForm.form.valid || is_processing"
+            (click)="onSaveClick(new_database)">
+            <i class="fa fa-save"></i> &nbsp; Save
+          </button>
+          <button class="btn btn-success pull-right"
+            *ngIf="state_view === 'Update'"
+            [hidden]="state_view !== 'update'"
+            [disabled]="!databaseCreateForm.form.valid || is_processing"
+            (click)="onUpdateClick(new_database)">
+            <i class="fa fa-edit"></i> &nbsp; Update 
+          </button>
+          <button class="btn btn-danger pull-right"
+            *ngIf="state_view === 'Update'"
+            [hidden]="state_view !== 'update'"
+            [disabled]="!databaseCreateForm.form.valid || is_processing"
+            (click)="onRestoreClick(new_database._id)">
+            <i class="fa fa-database"></i> &nbsp; Restore 
+          </button>
+        </div>
+
       </div>
     </div>
 
@@ -117,22 +136,22 @@
               </div>
 
               <div class="form-group"
-                   [ngClass]="{'has-error': errors?.template|| 
-                   (input_template.errors && (input_template.dirty || input_template.touched)) }">
+                   [ngClass]="{'has-error': errors?.dirPath|| 
+                   (input_dirPath.errors && (input_dirPath.dirty || input_dirPath.touched)) }">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                 for="databasetemplate">
+                 for="databasedirPath">
                     Template 
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="databasetemplate" required="required"
-                      [(ngModel)]="new_database.template"
-                      #input_template="ngModel" name="input_template"
-                      name="template"
+                <input type="text" id="databasedirPath" required="required"
+                      [(ngModel)]="new_database.dirPath"
+                      #input_dirPath="ngModel" name="input_dirPath"
+                      name="dirPath"
                       class="form-control col-md-7 col-xs-12">
                   <div class="help-block"
-                      *ngIf="(input_template.errors && (input_template.dirty || input_template.touched))">
-                    <span  [hidden]="!(input_template.errors.required)">
+                      *ngIf="(input_dirPath.errors && (input_dirPath.dirty || input_dirPath.touched))">
+                    <span  [hidden]="!(input_dirPath.errors.required)">
                       Template is required
                     </span>
                   </div>
@@ -144,6 +163,42 @@
     </div>      
   </div> <!-- DatabaseName -->
 
+  <div class="col-md-12 col-sm-12 col-xs-12"> 
+    <div class="x_panel">
+      <div class="x_content">
+        <br>
+        <form data-parsley-validate=""
+              class="form-horizontal form-label-left"
+              #databaseRestoreForm="ngForm" novalidate>
+          <div class="form-group" >
+            <div class="col-sm-6 col-sm-offset-3">
+              <div class="alert alert-danger" >
+                <strong>
+                  <i class="fa fa-warning"></i> Are you sure to restore the database
+                  using this backup.
+                </strong>
+                <em>All records in the database will be overwritten once submitted</em>
+                <br/> <br/>
+                <div class="row text-center">
+                  <button class="btn btn-danger"
+                      [disabled]="is_processing"
+                      (click)="onRestoreClick(new_database._id)" >
+                    <i class="fa fa-check"></i> &nbsp; Yes 
+                  </button>
+                  <button class="btn btn-success">
+                    <i class="fa fa-times"></i> &nbsp; No 
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>      
+  </div> <!-- DatabaseName -->
 
     
   </div> <!-- page-body -->

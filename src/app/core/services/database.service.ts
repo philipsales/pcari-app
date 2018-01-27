@@ -72,6 +72,52 @@ export class DatabaseService {
       .catch(Helper.handleError);
   }
 
+  create(database: Database): Observable<Database> {
+    const url = environment.API_ENDPOINT + `databases/backup`;
+
+    console.log('url', url);
+    console.log('databsae', database);
+    const database_json = database.toJSON();
+    console.log('database_json', database_json);
+
+    return this.http
+      .post(url, database_json)
+      .map((response: DatabaseJSON) => {
+        console.log(response);
+        return Database.fromJSON(response);
+      })
+      .catch(Helper.handleError);
+  }
+
+  update(id: string, database: Database): Observable<Database> {
+    const url = environment.API_ENDPOINT + `databases/backup/${id}`;
+
+    console.log('url', url);
+    console.log('databsae', database);
+    const database_json = database.toJSON();
+    console.log('database_json', database_json);
+
+    return this.http
+      .patch(url, database_json)
+      .map((response: DatabaseJSON) => {
+        console.log(response);
+        return Database.fromJSON(response);
+      })
+      .catch(Helper.handleError);
+  }
+
+  restore(id: string): Observable<Database> {
+    const url = environment.API_ENDPOINT + `databases/restore/${id}`;
+
+    return this.http
+      .post(url, '')
+      .map((response: DatabaseJSON) => {
+        console.log(response);
+        return Database.fromJSON(response);
+      })
+      .catch(Helper.handleError);
+  }
+
   downloadFileJSON() {
     const url = `${this.databaseUrl}`;
 
