@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DatabaseService } from 'app/core/services';
-import { Database } from 'app/core/models'; 
+import { Database } from 'app/core/models';
 
 import * as FileSaver from 'file-saver';
 
@@ -12,7 +12,7 @@ import * as FileSaver from 'file-saver';
 })
 export class DatabaseListComponent implements OnInit {
 
-  private databases : Database[] = [];
+  private databases: Database[] = [];
   private title;
   constructor(private databaseService: DatabaseService) { }
 
@@ -30,12 +30,12 @@ export class DatabaseListComponent implements OnInit {
     */
 
     this.databaseService
-        .getAll()
-        .subscribe(
-          databases => {
-            this.databases = databases['data'];
-          } 
-        );
+      .getDatabases()
+      .subscribe(
+      databases => {
+        this.databases = databases;
+      }
+      );
   }
 
   downloadJSON(): any {

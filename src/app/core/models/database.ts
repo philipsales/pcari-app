@@ -1,5 +1,7 @@
+import { DatabaseJSON } from '../interfaces';
+
 export class Database {
-  id: number;
+  id: string;
   name: string;
   isDeleted: string;
   dateCreated: Date;
@@ -8,7 +10,39 @@ export class Database {
   startDate: Date;
   dirPath: string;
 
-  constructor(name: string) {
-      this.name = name;
+  static fromJSON(json: DatabaseJSON): Database {
+    console.log()
+    if (typeof json === 'string') {
+      return JSON.parse(json, Database.reviver);
+    } else {
+      const database = Object.create(Database.prototype);
+      console.log('FROMJSON', json._id);
+      return Object.assign(database, json, {
+        id: json._id,
+        name: json.name,
+        description: json.description
+      });
+    }
+  }
+
+  static reviver(key: string, value: any): any {
+    return key === '' ? Database.fromJSON(value) : value;
+  }
+
+  constructor(
+    name: string,
+    description: string
+  ) {
+    this.name = name;
+    this.description = description;
+  }
+
+  toJSON(): DatabaseJSON {
+    return Object.assign({}, this, {
+      _id: this.id,
+      name: this.name,
+      description: this.description
+
+    });
   }
 }

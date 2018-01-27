@@ -56,7 +56,8 @@
       <div class="x_panel">
         <div class="x_content">
           <br>
-          <form data-parsley-validate=""
+          <form 
+                data-parsley-validate=""
                 class="form-horizontal form-label-left"
                 #databaseCreateForm="ngForm" novalidate>
             <div class="row">
@@ -67,9 +68,11 @@
                    (input_name.errors && (input_name.dirty || input_name.touched)) }">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
                        for="databasename">
-                    Backup Name
+                    Name
                   <span class="required">*</span>
                 </label>
+                {{existing_database?.name}}
+                {{existing_database?.description}}
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <input type="text" id="databasename" required="required"
                          [(ngModel)]="new_database.name"
@@ -99,19 +102,43 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="databasedescription" required="required"
-                   [(ngModel)]="new_database.description"
-                   #input_description="ngModel" name="input_description"
-                   name="description"
-                   class="form-control col-md-7 col-xs-12">
-            <div class="help-block"
-                 *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
-              <span  [hidden]="!(input_description.errors.required)">
-                Description is required
-              </span>
-            </div>
-          </div>
-        </div>
+                <input type="text" id="databasedescription" required="required"
+                      [(ngModel)]="new_database.description"
+                      #input_description="ngModel" name="input_description"
+                      name="description"
+                      class="form-control col-md-7 col-xs-12">
+                  <div class="help-block"
+                      *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
+                    <span  [hidden]="!(input_description.errors.required)">
+                      Description is required
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group"
+                   [ngClass]="{'has-error': errors?.template|| 
+                   (input_template.errors && (input_template.dirty || input_template.touched)) }">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                 for="databasetemplate">
+                    Template 
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="databasetemplate" required="required"
+                      [(ngModel)]="new_database.template"
+                      #input_template="ngModel" name="input_template"
+                      name="template"
+                      class="form-control col-md-7 col-xs-12">
+                  <div class="help-block"
+                      *ngIf="(input_template.errors && (input_template.dirty || input_template.touched))">
+                    <span  [hidden]="!(input_template.errors.required)">
+                      Template is required
+                    </span>
+                  </div>
+                </div>
+              </div>
+
         </form>
       </div>
     </div>      

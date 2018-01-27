@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DatabaseService } from 'app/core/services';
-import { Database } from 'app/core/models'; 
+import { Database } from 'app/core/models';
 
 
 @Component({
@@ -16,8 +16,8 @@ export class DatabaseRestoreComponent implements OnInit {
   private has_errors = false;
   private is_processing = false;
 
-  constructor() { 
-     this.new_database = new Database('');
+  constructor() {
+    this.new_database = new Database('', '');
   }
 
   ngOnInit() {

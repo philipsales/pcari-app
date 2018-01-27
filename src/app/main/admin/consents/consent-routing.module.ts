@@ -13,6 +13,10 @@ const routes: Routes = [
       path: 'create',
       component: ConsentCreateComponent
     },
+    {
+      path: 'update/:id',
+      component: ConsentCreateComponent
+    },
     {path: '', redirectTo: 'list'}
 ];
 

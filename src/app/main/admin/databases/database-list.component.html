@@ -53,7 +53,9 @@
 	  </tr>
 	</thead>
 	<tbody>
-	  <tr  *ngFor='let database of databases | value:"key":true'>
+	  <!-- <tr  *ngFor='let database of databases | value:"key":true'>
+		-->
+	  <tr  *ngFor='let database of databases'>
 	    <td>{{ database.name }}</td>
 	    <td>{{ database.description }}</td>
 	    <td>{{ database.createdBy }}</td>
@@ -61,6 +63,12 @@
 	    <td>
         <button class="btn btn-sm btn-success"
           (click)="downloadJSON()">Download</button>
+			</td>
+			<td>
+          <button class="btn" [routerLink]="['/admin/database/update/',database._id]"
+             class="btn btn-default pull-right">
+             Update 
+          </button>
 	    </td>
 	    <td>
 				<!--<button class="btn btn-sm btn-info"

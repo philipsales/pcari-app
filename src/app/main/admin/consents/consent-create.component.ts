@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationsService } from 'angular2-notifications';
 
-import { Consent } from 'app/core/models'; 
+import { Consent } from 'app/core/models';
 
 @Component({
   selector: 'app-consent-create',
@@ -15,14 +15,20 @@ export class ConsentCreateComponent implements OnInit {
   private has_errors = false;
   private is_processing = false;
 
-  constructor() { 
-     this.new_consent = new Consent('');
+  constructor() {
+    this.new_consent = new Consent('');
   }
 
   ngOnInit() {
     this.errors = {};
     this.has_errors = false;
-    this.is_processing = true;
+    this.is_processing = false;
+
   }
+
+  onSaveClick(input_consent: Consent) {
+    console.log(input_consent);
+  }
+
 
 }
