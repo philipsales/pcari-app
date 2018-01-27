@@ -17,48 +17,68 @@ export class DatabaseCreateComponent implements OnInit {
 
   private databaseId: string;
 
-  private existing_database: Database;
-  private new_database: Database;
+  private database: Database;
+
   private errors: any = {};
   private has_errors = false;
   private is_processing = false;
+
   private state_view: string;
+  private view: string;
+  private is_restore: boolean;
 
   constructor(
     private _notificationsService: NotificationsService,
     private databaseService: DatabaseService,
     private route: ActivatedRoute,
     private router: Router) {
-    this.new_database = new Database('', '');
+
+    this.database = new Database('', '');
   }
 
   ngOnInit() {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = false;
+    this.is_restore = false;
 
     this.databaseId = this.route.snapshot.paramMap.get('id');
+    const view = this.route.snapshot.url[0].path;
 
-    if (this.databaseId) {
+    if (view === 'update') {
       this.updateDatabase();
     }
-    else {
+    else if (view == 'create') {
       this.saveDatabase();
-    };
+    }
+    else {
+      this.viewDatabase();
+    }
+
   }
 
   updateDatabase() {
-    this.state_view = 'Update';
+    this.state_view = 'update';
+    this.getDatabase();
+  }
+
+  viewDatabase() {
+    this.state_view = 'view';
+    this.getDatabase();
+  }
+
+  saveDatabase() {
+    this.state_view = 'create';
+  }
+
+
+  getDatabase() {
     this.databaseService
       .getDatabase(this.databaseId)
       .subscribe(
       database => {
-        this.new_database = database;
+        this.database = database;
       });
-  }
-
-  saveDatabase() {
-    this.state_view = 'Save';
   }
 
   onSaveClick(input_database: Database) {
@@ -83,7 +103,7 @@ export class DatabaseCreateComponent implements OnInit {
 
   onResetClick() {
     this.is_processing = false;
-    this.new_database = new Database('', '');
+    this.database = new Database('', '');
   }
 
   onRestoreClick(id) {

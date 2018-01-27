@@ -1,6 +1,6 @@
-import { NgModule }     from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }  from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 //InMemory modules
 import { HttpModule } from '@angular/http';
@@ -12,7 +12,6 @@ import { DatabaseService } from 'app/core/services';
 
 import { DatabaseListComponent } from './database-list.component';
 import { DatabaseCreateComponent } from './database-create.component';
-import { DatabaseRestoreComponent } from './database-restore.component';
 
 import { KeysPipe } from 'app/core/utils';
 
@@ -21,16 +20,15 @@ import { KeysPipe } from 'app/core/utils';
     CommonModule,
     FormsModule,
     HttpModule,
-   // InMemoryWebApiModule.forRoot(DatabaseDummyApiResponse),
+    // InMemoryWebApiModule.forRoot(DatabaseDummyApiResponse),
     DatabaseRoutingModule
   ],
   declarations: [
     KeysPipe,
     DatabaseListComponent,
-    DatabaseCreateComponent,
-    DatabaseRestoreComponent
+    DatabaseCreateComponent
   ],
-  providers: [ 
+  providers: [
     //DatabaseDummyApiResponse,
     DatabaseService
   ]
