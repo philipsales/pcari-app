@@ -50,4 +50,17 @@ export class RoleService {
               })
               .catch(Helper.handleError);
       }// --create
+
+      update(this_role: Role): Observable<Role> {
+        const url = environment.API_ENDPOINT + 'roles/' + this_role.id;
+        const role_json = this_role.toJSON();
+        console.log(role_json);
+
+        return this.http.patch(url, role_json)
+          .map((response: RoleJSON) => {
+            // return (response.json().data as Form[])
+            console.log(response, 'ROLE UPDATED from /roles');
+            return Role.fromJSON(response);
+        }).catch(Helper.handleError);
+      }
 }
