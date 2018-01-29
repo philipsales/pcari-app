@@ -8,7 +8,7 @@
 	  <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
 	    <li>
 	      <a [routerLink]="['/admin/roles']">Administration</a>
-	    </li>
+	    </li>	
 	    <li>
 	      <a [routerLink]="['/admin/roles/list']">Role List</a>
 	    </li>
@@ -28,96 +28,10 @@
 
 
   <div class="row" id="page-body">
-
-    <div class="col-md-12 table-nav">
-      <div class="col-sm-3 reset-wrapper">
-	<button class="btn btn-default pull-left">
-	  <i class="fa fa-refresh"></i> &nbsp; Reset
-	</button>
-      </div>
-      
-      <div class="col-sm-6">
-	<div class="alert alert-danger"
-	     [hidden]="!has_errors">
-	  <strong>
-	    <i class="fa fa-warning"></i> Unable to process your request.
-	  </strong>
-	  <em>Please see details below: </em>
-	</div>
-      </div>
-
-      <div class="col-sm-3 save-wrapper">
-	<button class="btn btn-success pull-right"
-		[disabled]="!roleCreateForm.form.valid || is_processing"
-		(click)="onSaveClick(new_role)">
-	  <i class="fa fa-save"></i> &nbsp; Save
-	</button>
-      </div>
-    </div>
-
-    <!-- Role Name -->
-    <div class="col-md-12 col-sm-12 col-xs-12"> 
-      <div class="x_panel">
-	<div class="x_content">
-	  <br>
-	  <form data-parsley-validate=""
-		class="form-horizontal form-label-left"
-		#roleCreateForm="ngForm" novalidate>
-	    <div class="row">
-	    </div>
-			<div class="material-form-group">
-				<mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
-					<input matInput 
-								[(ngModel)]="new_role.name"
-								#input_name="ngModel" name="input_name"
-								placeholder="Role Name">
-				</mat-form-field>	
-
-				<mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
-					<input matInput 
-								[(ngModel)]="new_role.description"
-								#input_description="ngModel" name="input_description"			
-								 placeholder="Description">
-				</mat-form-field>	
-
-				<mat-slide-toggle class="material-form-control col-md-offset-1 col-md-11 col-sm-12 col-xs-12"
-					[(ngModel)]="new_role.isActive"
-					#input_status="ngModel" 
-					name="input_status">
-					Active
-				</mat-slide-toggle>
-			</div> <br/><br/>
-	  </form>
-	</div>
-      </div>      
-    </div> <!-- Role Name -->
-
-      <div class="col-md-12 col-sm-12 col-xs-12">
-	<div class="x_panel">
-	  <div class="x_title">
-	    <h2>Permissions</h2>
-	    <small class="pull-right">Check permissions for role</small>
-	    <div class="clearfix"></div>
-		</div>
-		
-			<mat-selection-list #permission dense>
-				<mat-list-option *ngFor="let permission of permissions"
-					(click)="onPermissionListChanged(permission)"
-					[value]="permission.perm_code">
-					<div class="row">
-							<span class="col-md-3">{{permission.application}}</span>
-						<span class="col-md-3">{{permission.module}}</span>
-						<span class="col-md-3">{{permission.description}}</span>
-					</div>
-					
-				</mat-list-option>
-			</mat-selection-list>
-
-
-			<br/>
-			<p>
-				Options selected: {{permission.selectedOptions.selected.length}}
-			</p>
+		<app-roles-manage
+			[role]="new_role"
+			[method]="'CREATE'">
+		</app-roles-manage>
   </div> <!-- page-body -->
 
 </div> <!-- page-content -->

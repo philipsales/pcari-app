@@ -7,6 +7,7 @@ import { RolesListComponent } from './roles-list.component';
 import { RolesCreateComponent } from './roles-create.component';
 
 import { MaterialModule } from 'app/shared/_material/material.module';
+import { RolesManageComponent } from './roles-manage/roles-manage.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MaterialModule } from 'app/shared/_material/material.module';
   ],
   declarations: [
       RolesListComponent,
-      RolesCreateComponent
+      RolesCreateComponent,
+      RolesManageComponent
   ]
 })
 export class RolesModule { }
