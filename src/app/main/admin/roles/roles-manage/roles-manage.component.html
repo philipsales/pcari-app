@@ -75,14 +75,15 @@
     </div> <!-- x_title -->
 
     <mat-selection-list #permission dense>
-      <mat-list-option *ngFor="let permission of permissions"
-        (click)="onPermissionListChanged(permission)"
+      <mat-list-option *ngFor="let perm of permissions"
+        (click)="onPermissionListChanged(perm)"
         [disabled]="method == 'VIEW'"
-        [value]="permission.perm_code">
+        [selected]="_role.permissions.indexOf(perm.perm_code) !== -1"
+        [value]="perm.perm_code">
         <div class="row">
-            <span class="col-md-3">{{permission.application}}</span>
-          <span class="col-md-3">{{permission.module}}</span>
-          <span class="col-md-3">{{permission.description}}</span>
+            <span class="col-md-3">{{perm.application}}</span>
+          <span class="col-md-3">{{perm.module}}</span>
+          <span class="col-md-3">{{perm.description}}</span>
         </div>
         
       </mat-list-option>
