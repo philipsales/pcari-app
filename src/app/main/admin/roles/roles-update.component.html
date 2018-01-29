@@ -1,3 +1,37 @@
-<p>
-  roles-update works!
-</p>
+<div id="page-content"
+     class="col-md-offset-3 col-md-9">
+  <header class="app-header row">
+    <div class="app-header--primary">
+      
+      <div class="app-header--context">
+	<div class="app-header--breadcrumbs">
+	  <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
+	    <li>
+	      <a [routerLink]="['/admin/roles']">Administration</a>
+	    </li>	
+	    <li>
+	      <a [routerLink]="['/admin/roles/list']">Role List</a>
+	    </li>
+	    <li>
+	      <a [routerLink]="['/admin/roles/update', role.id]">Update</a>
+	    </li>
+	  </ol>
+	</div>
+	<h1 class="app-header--heading">
+	  Roles
+	</h1>
+      </div>
+    </div>  
+    <div class="app-header--secondary">
+    </div>
+  </header>
+
+
+  <div class="row" id="page-body">
+		<app-roles-manage
+			[role]="role"
+			[method]="'UPDATE'">
+		</app-roles-manage>
+  </div> <!-- page-body -->
+
+</div> <!-- page-content -->
