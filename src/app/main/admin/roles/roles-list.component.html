@@ -45,17 +45,30 @@
 	<thead>
 	  <tr>
 	    <th>#</th>
-	    <th>Name</th>
-	    <th>Status</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Status</th>
+			<th style="text-align: center"></th>
 	  </tr>
 	</thead>
 	<tbody>
 	  <tr  *ngFor="let role of roles; let i = index">
 	    <th scope="row">{{ i + 1 }}</th>
-	    <td>{{ role.name }}</td>
+			<td>{{ role.name }}</td>
+			<td>{{ role.description  | ellipsis:50 }}</td>
 	    <td>
-	      <span *ngIf="role.is_active" class="badge badge--success" #active> Active</span>
-	      <span *ngIf="!role.is_active"  class="badge badge--failed" #inactive>Inactive</span>
+	      <span *ngIf="role.isActive" class="badge badge--success" #active> Active</span>
+	      <span *ngIf="!role.isActive"  class="badge badge--failed" #inactive>Inactive</span>
+			</td>
+			<td style="text-align: right">
+        <button 
+				 class="btn btn-sm btn-default"
+				 [routerLink]="['/admin/roles/view', role.id]">
+				 <i class="fa fa-eye"></i> View</button>
+				 <button 
+				 class="btn btn-sm btn-warning"
+				 [routerLink]="['/admin/roles/update', role.id]">
+         <i class="fa fa-edit"></i> Update</button>
 	    </td>
 	  </tr>
 	</tbody>

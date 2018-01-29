@@ -6,8 +6,11 @@ import { RolesRoutingModule } from './roles-routing.module';
 import { RolesListComponent } from './roles-list.component';
 import { RolesCreateComponent } from './roles-create.component';
 
+import { SharedModule } from 'app/shared/shared.module';
 import { MaterialModule } from 'app/shared/_material/material.module';
 import { RolesManageComponent } from './roles-manage/roles-manage.component';
+import { RolesUpdateComponent } from './roles-update.component';
+import { RolesViewComponent } from './roles-view.component';
 
 
 @NgModule({
@@ -15,12 +18,15 @@ import { RolesManageComponent } from './roles-manage/roles-manage.component';
       CommonModule,
       FormsModule,
       RolesRoutingModule,
-      MaterialModule
+      MaterialModule,
+      SharedModule
   ],
   declarations: [
       RolesListComponent,
       RolesCreateComponent,
-      RolesManageComponent
+      RolesManageComponent,
+      RolesUpdateComponent,
+      RolesViewComponent
   ]
 })
 export class RolesModule { }

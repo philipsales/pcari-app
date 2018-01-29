@@ -39,6 +39,7 @@
           <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
             <input matInput 
                   [(ngModel)]="_role.name"
+                  [disabled]="method == 'VIEW'"
                   #input_name="ngModel" name="input_name"
                   placeholder="Role Name">
           </mat-form-field>	
@@ -46,11 +47,13 @@
           <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
             <input matInput 
                   [(ngModel)]="_role.description"
+                  [disabled]="method == 'VIEW'"
                   #input_description="ngModel" name="input_description"			
                     placeholder="Description">
           </mat-form-field>	
 
           <mat-slide-toggle class="material-form-control col-md-offset-1 col-md-11 col-sm-12 col-xs-12"
+            [disabled]="method == 'VIEW'"
             [(ngModel)]="_role.isActive"
             #input_status="ngModel" 
             name="input_status">
@@ -66,13 +69,15 @@
   <div class="x_panel">
     <div class="x_title">
       <h2>Permissions</h2>
-      <small class="pull-right">Check permissions for role</small>
+      <small class="pull-right"
+        [hidden]="method == 'VIEW'">Check permissions for role</small>
       <div class="clearfix"></div>
     </div> <!-- x_title -->
 
     <mat-selection-list #permission dense>
       <mat-list-option *ngFor="let permission of permissions"
         (click)="onPermissionListChanged(permission)"
+        [disabled]="method == 'VIEW'"
         [value]="permission.perm_code">
         <div class="row">
             <span class="col-md-3">{{permission.application}}</span>

@@ -1,6 +1,7 @@
 import { RoleJSON } from '../interfaces';
 
 export class Role {
+    id?: string;
     name: string;
     description: string;
     isActive: boolean;
@@ -11,13 +12,18 @@ export class Role {
             return JSON.parse(json, Role.reviver);
         } else {
             const role = Object.create(Role.prototype);
+            console.log(role, 'WWWWWWWWWWWWWWWWWWWWW');
             console.log(json.isActive, 'WWWWWWWWWWWWWWWWWWWWW');
-            return Object.assign(role, json, {
+
+            const output = Object.assign(role, json, {
+                id: json._id,
                 name: json.rolename,
                 description: json.description,
                 permissions: json.permissions,
                 isActive: json.isActive,
             });
+            console.log(output);
+            return output;
         }
     }
 
