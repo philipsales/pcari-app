@@ -23,7 +23,7 @@
 }
 
 .login-panel__content {
-    padding: 0 50px;
+    padding: 0 70px;
     color: #73879C;
     position: absolute;
     top: 25%;
@@ -75,7 +75,7 @@
     transition: box-shadow .2s ease;
     font-weight: 700;
     text-transform: uppercase;
-    margin: 0 30px;
+    margin: 0 auto;
 }
 
 .login-panel_footer {
@@ -116,7 +116,7 @@
     position: absolute;
     left: 62.5%;
     left: 53%;
-    top: 50%;
+    top: 30%;
     text-align: left;
     
     margin-left: -270px;
