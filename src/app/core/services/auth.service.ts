@@ -51,4 +51,24 @@ export class AuthService {
       })
       .catch(Helper.handleError);
   }// --login
+
+  checkPassword(username: string, password: string): Observable<any> {
+        const url = environment.API_HOST + '/users/token';
+        return this.http.post(url, { username: username, password: password }).map((response: Response) => {
+            console.log(response.json());
+            const token = response.json() && response.json().token;
+            if (token) {
+                return true;
+            } else {
+                return false;
+            }
+        })
+        .catch((error: Response) => {
+            let errMsg = 'Failed';
+            if (error.status === 400) {
+                errMsg = 'Wrong password';
+            }
+            return Observable.throw(errMsg);
+        });
+    }// --login
 }

@@ -74,4 +74,16 @@ export class UserService {
             return User.fromJSON(response);
         }).catch(Helper.handleError);
     }
+
+    updateMyPassword(id: string, new_password: string): Observable<User> {
+        const url = environment.API_ENDPOINT + 'users/me/' + id;
+        const user_json = {password: new_password};
+        console.log(user_json);
+
+        return this.http.patch(url, user_json)
+          .map((response: UserJSON) => {
+            console.log(response, 'USER UPDATED from /users');
+            return User.fromJSON(response);
+        }).catch(Helper.handleError);
+    }
 }
