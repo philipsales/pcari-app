@@ -1,6 +1,7 @@
 import { UserJSON } from '../interfaces';
 
 export class User {
+    id?: string;
     username: string;
     password: string;
     is_active: boolean;
@@ -21,8 +22,8 @@ export class User {
         } else {
             const user = Object.create(User.prototype);
             return Object.assign(user, json, {
+                id: json._id,
                 username: json.username,
-                password: '',
                 is_active: json.isDeleted,
                 first_name: json.first_name,
                 last_name: json.last_name,
@@ -58,6 +59,7 @@ export class User {
         this.gender = gender;
         this.email = username;
         this.mobile_number = mobile_number;
+        this.roles = [];
         this.verification_status = verification_status;
     }
 

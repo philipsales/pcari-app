@@ -25,6 +25,13 @@ export class UserService {
         .catch(Helper.handleError);
     }// --getAll
 
+    get(user_id: string): Observable<User> {
+        const url = environment.API_ENDPOINT + 'users/' + user_id;
+        return this.http.get(url).map((response: UserJSON) => {
+          console.log(response, 'OUTPUT GET /users');
+          return User.fromJSON(response);
+        }).catch(Helper.handleError);
+    }
 
     create(user: User): Observable<User> {
         console.log(user);

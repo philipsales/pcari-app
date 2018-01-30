@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'app/core/models';
 
 @Component({
   selector: 'app-users-create',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersCreateComponent implements OnInit {
 
+  private new_user: User;
+
   constructor() { }
 
   ngOnInit() {
+    this.new_user = new User('', false, '', '', '', '', '', '');
   }
 
 }

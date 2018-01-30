@@ -1,7 +1,8 @@
 
-<div class="col-md-12 table-nav">
+<div class="col-md-12 table-nav" [hidden]="method == 'VIEW'">
   <div class="col-sm-3 reset-wrapper">
-    <button class="btn btn-default pull-left">
+    <button class="btn btn-default pull-left"
+		(click)="onResetUserClick()">
       <i class="fa fa-refresh"></i> &nbsp; Reset
     </button>
   </div>
@@ -22,7 +23,7 @@
 			!userSaveFormGeneral.form.valid || 
 			!is_organization_ok || 
 			is_processing"
-	    (click)="onSaveClick(user)">
+	    (click)="onSaveClick(_user)">
       <i class="fa fa-save"></i> &nbsp; Save
     </button>
   </div>
@@ -53,7 +54,7 @@
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="text" id="input_username" 
-		   [(ngModel)]="user.username"
+		   [(ngModel)]="_user.username"
 		   #input_username="ngModel" name="input_username"
 		   required="required"
 		   class="form-control col-md-7 col-xs-12">
@@ -81,7 +82,7 @@
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="password" id="input_password" 
-		   [(ngModel)]="user.password"
+		   [(ngModel)]="_user.password"
 		   #input_password="ngModel" name="input_password"
 		   required="required"
 		   class="form-control col-md-7 col-xs-12">
@@ -104,7 +105,7 @@
 	<div class="form-group"
 		 [ngClass]="{'has-error': (input_confirmation_password.dirty || input_confirmation_password.touched) && 
   			      (input_confirmation_password.errors ||
-			      (user.password != confirmation_password)) }">
+			      (_user.password != confirmation_password)) }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">
 	    Confirm Password <span class="required">*</span>
 	  </label>
@@ -123,8 +124,8 @@
 	    </div>
 	    <div class="help-block"
 		 *ngIf="(input_confirmation_password.dirty || input_confirmation_password.touched) && 
-			(user.password != confirmation_password)">	    
-	      <span  [hidden]="(user.password == confirmation_password)">
+			(_user.password != confirmation_password)">	    
+	      <span  [hidden]="(_user.password == confirmation_password)">
 		Password do not match
 	      </span>
 	    </div>	    
@@ -135,7 +136,7 @@
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
 	    Status <span class="required">*</span>
 	  </label>
-	  <div *ngIf="user.is_active"
+	  <div *ngIf="_user.is_active"
 	       (click)="onToggleIsActive(false)"
 	       class="checkbox-wrapper col-md-6 col-sm-6 col-xs-12">
 	    <div class="icheckbox_flat-green checked" style="position: relative;">
@@ -146,7 +147,7 @@
 	    </div> &nbsp; Active
 	  </div>
 
-	  <div *ngIf="!user.is_active"
+	  <div *ngIf="!_user.is_active"
 	       (click)="onToggleIsActive(true)"
 	       class="checkbox-wrapper col-md-6 col-sm-6 col-xs-12">
 	    <div class="icheckbox_flat-green" style="position: relative;">
@@ -157,17 +158,6 @@
 	    </div> &nbsp; Inactive
 	  </div>
 	</div>
-
-			<div class="form-group">
-				<mat-form-field class="col-md-offset-3 col-md-6">
-					<mat-select placeholder="Roles" [formControl]="rolefc" multiple #selectroles>
-						<mat-option *ngFor="let role of roles" 
-						(click)="onRolesListChanged(selectroles)"
-						[value]="role.name">{{role.name}}</mat-option>
-					</mat-select>
-				</mat-form-field>
-
-			</div>
 
       </form>
     </div>
@@ -201,7 +191,7 @@
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="text" id="input_first_name"
 		   class="form-control col-md-7 col-xs-12"
-		   [(ngModel)]="user.first_name"
+		   [(ngModel)]="_user.first_name"
 		   #input_first_name="ngModel" name="input_first_name"
 		   required>
 	    <div class="help-block"
@@ -229,7 +219,7 @@
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="text" id="input_last_name"
 		   class="form-control col-md-7 col-xs-12"
-		   [(ngModel)]="user.last_name"
+		   [(ngModel)]="_user.last_name"
 		   #input_last_name="ngModel" name="input_last_name"
 		   required>
 	    <div class="help-block"
@@ -253,7 +243,7 @@
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="text" id="input_middle_name"
 		   class="form-control col-md-7 col-xs-12"
-		   [(ngModel)]="user.middle_name"
+		   [(ngModel)]="_user.middle_name"
 		   #input_middle_name="ngModel" name="input_middle_name">
 	  </div>
 	</div>
@@ -265,7 +255,7 @@
 		 (click)="onToggleGender('M')">
 	      Male :
 	      <div class="iradio_flat-green"
-		   [ngClass]="{'checked': user.gender == 'M'}"
+		   [ngClass]="{'checked': _user.gender == 'M'}"
 		   style="position: relative;">
 		<input type="radio" class="flat" id="input_gender_M"
 		       value="M" required
@@ -280,7 +270,7 @@
 		 (click)="onToggleGender('F')">
 	      Female :
 	      <div class="iradio_flat-green"
-		   [ngClass]="{'checked': user.gender == 'F'}"
+		   [ngClass]="{'checked': _user.gender == 'F'}"
 		   style="position: relative;">
 		<input type="radio" class="flat"
 		       name="input_gender" id="input_gender_F"
@@ -319,7 +309,7 @@
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="text" id="email"
-		   value="{{user.username}}"
+		   value="{{_user.username}}"
 		   class="form-control col-md-7 col-xs-12"
 		   readonly>
 	  </div>
@@ -331,7 +321,7 @@
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="text" id="input_mobile_number"
-		   [(ngModel)]="user.mobile_number"
+		   [(ngModel)]="_user.mobile_number"
 		   #input_mobile_number="ngModel" name="input_mobile_number"
 		   class="form-control col-md-7 col-xs-12">
 	  </div>
@@ -360,7 +350,7 @@
 	    class="form-horizontal form-label-left"
 	    #userSaveFormOrganization="ngForm" novalidate>
 	<div class="form-group"
-		 [ngClass]="{'has-error': user.organizations && !is_organization_ok }">
+		 [ngClass]="{'has-error': _user.organizations && !is_organization_ok }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="organization">Organization <span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
@@ -390,7 +380,7 @@
 	</div>
 	
 	<div class="form-group"
-		 [ngClass]="{'has-error': user.organizations && !is_organization_ok }">
+		 [ngClass]="{'has-error': _user.organizations && !is_organization_ok }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
 	    Position <span class="required">*</span>
 	  </label>
@@ -426,3 +416,34 @@
     </div>
   </div>
 </div> <!-- Organization -->
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Roles</h2>
+				<small class="pull-right"
+					[hidden]="method == 'VIEW'">Check roles for user</small>
+				<div class="clearfix"></div>
+			</div> <!-- x_title -->
+	
+			<mat-selection-list #sel_roles dense>
+				<mat-list-option *ngFor="let role of roles"
+					(click)="onRolesListChanged(role)"
+					[disabled]="method == 'VIEW'"
+					[selected]="_user.roles.indexOf(role.name) !== -1"
+					[value]="role.name">
+					<div class="row">
+							<span class="col-md-3">{{role.name}}</span>
+							<span class="col-md-3">{{role.description}}</span>
+					</div>
+					
+				</mat-list-option>
+			</mat-selection-list>
+	
+			<br/>
+			<p>
+				Roles selected: {{sel_roles.selectedOptions.selected.length}}
+			</p>
+		</div> <!-- x_panel -->
+	</div>

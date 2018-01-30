@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 
 import { NotificationsService } from 'angular2-notifications';
 import {
@@ -21,8 +21,9 @@ import {
     RoleService
 } from 'app/core/services';
 
-import { MatSelect } from '@angular/material';
+import { MatSelectionList } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { UserJSON } from 'app/core/interfaces';
 
 @Component({
   selector: 'shared-user-form',
@@ -32,7 +33,16 @@ import { FormControl } from '@angular/forms';
 
 export class UserFormComponent implements OnInit {
 
-    private user: User;
+    private _resetuser: UserJSON;
+    private _user: User;
+    @Input() set user(value: User) {
+        this._user = value;
+        this._resetuser = this._user.toJSON();
+        console.warn('HELLO!');
+    }// -- _reinit setter
+
+    @Input() method: string;
+
     private confirmation_password: String;
 
     private position_search = '';
@@ -44,8 +54,7 @@ export class UserFormComponent implements OnInit {
     @ViewChild('organizationCompleter') organizationCompleter: CompleterCmp;
 
     private roles: Role[];
-    rolefc = new FormControl();
-    @ViewChild('selectroles') selectroles: MatSelect;
+    @ViewChild('sel_roles') sel_roles: MatSelectionList;
 
     private errors: any = {};
     private has_errors = false;
@@ -61,8 +70,8 @@ export class UserFormComponent implements OnInit {
         private roleService: RoleService,
         private _notificationsService: NotificationsService
         ) {
-            this.user = new User('', false, '', '', '', '', '', '');
-            this.user.gender = 'M';
+            this._user = new User('', false, '', '', '', '', '', '');
+            this._user.gender = 'M';
             this.confirmation_password = '';
             const position = [
                 new Position('Researcher'),
@@ -88,54 +97,54 @@ export class UserFormComponent implements OnInit {
 
     onToggleIsActive(input_is_active: boolean) {
         console.log(input_is_active);
-        this.user.is_active = input_is_active;
+        this._user.is_active = input_is_active;
     }
 
     onToggleGender(input_gender: string) {
         console.log(input_gender);
-        this.user.gender = input_gender;
+        this._user.gender = input_gender;
     }
 
     onSelectOrganization(data: CompleterItem) {
       if (data) {
-        if (!this.user.organizations) {
-            this.user.organizations = [{
+        if (!this._user.organizations) {
+            this._user.organizations = [{
             'organization': -1,
             'position': -1
             }];
         }
 
-        this.user.organizations[0]['organization'] = data.originalObject.id;
-        if (this.user.organizations[0]['position'] !== -1) {
+        this._user.organizations[0]['organization'] = data.originalObject.id;
+        if (this._user.organizations[0]['position'] !== -1) {
             this.is_organization_ok = true;
         }
       } else {
-        this.user.organizations[0]['organization'] = -1;
+        this._user.organizations[0]['organization'] = -1;
         this.is_organization_ok = false;
       }
     }
 
     onSelectPosition(data: CompleterItem) {
         if (data) {
-            if (!this.user.organizations) {
-                this.user.organizations = [{
+            if (!this._user.organizations) {
+                this._user.organizations = [{
                 'organization': -1,
                 'position': -1
                 }];
             }
-            this.user.organizations[0]['position'] = data.originalObject.id;
-            if (this.user.organizations[0]['organization'] !== -1) {
+            this._user.organizations[0]['position'] = data.originalObject.id;
+            if (this._user.organizations[0]['organization'] !== -1) {
                 this.is_organization_ok = true;
             }
         } else {
-            this.user.organizations[0]['position'] = -1;
+            this._user.organizations[0]['position'] = -1;
             this.is_organization_ok = false;
         }
     }
 
-    onRolesListChanged(cur_roles: MatSelect) {
-        this.user.roles = cur_roles.value.map(item => item);
-        console.log(this.user.roles, 'SELECTED');
+    onRolesListChanged(cur_roles: MatSelectionList) {
+        this._user.roles = this.sel_roles.selectedOptions.selected.map(item => item.value);
+        console.log(this._user.roles, 'SELECTED');
     }
 
     onOrganizationSearchClick() {
@@ -152,6 +161,10 @@ export class UserFormComponent implements OnInit {
         } else {
             this.positionCompleter.open();
         }
+    }
+
+    onResetUserClick() {
+        this._user = User.fromJSON(this._resetuser);
     }
 
     onSaveClick(input_user: User) {

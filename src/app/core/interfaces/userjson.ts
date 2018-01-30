@@ -1,4 +1,5 @@
 export interface UserJSON {
+    _id?: string;
     username: string;
     password: string;
     isDeleted: boolean;

@@ -13,7 +13,7 @@
 	      <a [routerLink]="['/admin/users/list']">Users List</a>
 	    </li>
 	    <li>
-	      <a [routerLink]="['/admin/users/create']">Create</a>
+	      <a [routerLink]="['/admin/users/view', user_id]">View</a>
 	    </li>
 	  </ol>
 	</div>
@@ -29,9 +29,9 @@
 
   <div class="row" id="page-body">
     <shared-user-form
-		[user]="new_user"
-		[method]="'CREATE'">
-		</shared-user-form>
+      [user]="user"
+      [method]="'VIEW'">
+    </shared-user-form>
   </div> <!-- page-body -->
   
 </div> <!-- page-content -->
