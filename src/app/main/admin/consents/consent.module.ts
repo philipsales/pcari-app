@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //InMemory modules
 import { HttpModule } from '@angular/http';
@@ -15,10 +15,14 @@ import { ConsentService } from 'app/core/services';
 import { ConsentListComponent } from './consent-list.component';
 import { ConsentCreateComponent } from './consent-create.component';
 
+import { ErrorStateMatcher } from '@angular/material/core';
+import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     //InMemoryWebApiModule.forRoot(ConsentDummyApiResponse),
     MaterialModule,
@@ -30,6 +34,7 @@ import { ConsentCreateComponent } from './consent-create.component';
   ],
   providers: [
     //ConsentDummyApiResponse,
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     ConsentService
   ]
 })

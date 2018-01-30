@@ -7,6 +7,14 @@ import { ConsentService } from "app/core/services";
 import { Consent } from 'app/core/models';
 import { ConsentJSON } from 'app/core/interfaces';
 
+import { Observable } from 'rxjs/Observable';
+
+import { GenericErrorStateMatcher } from 'app/shared/_material/material.error';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+
+
 @Component({
   selector: 'app-consent-create',
   templateUrl: './consent-create.component.html',
@@ -14,9 +22,13 @@ import { ConsentJSON } from 'app/core/interfaces';
 })
 export class ConsentCreateComponent implements OnInit {
 
+
   private consent_id: string;
 
   private consent: Consent;
+
+  private consentForm: FormGroup;
+
 
   private errors: any = {};
   private has_errors = false;
@@ -25,12 +37,15 @@ export class ConsentCreateComponent implements OnInit {
   private state_view: string;
   private view: string;
 
+  private error_matcher: ErrorStateMatcher;
+
   constructor(
     private _notificationsService: NotificationsService,
     private consentService: ConsentService,
     private route: ActivatedRoute,
+    private fb: FormBuilder,
     private router: Router) {
-    this.consent = new Consent('');
+    this.error_matcher = new GenericErrorStateMatcher();
   }
 
   ngOnInit() {
@@ -38,8 +53,11 @@ export class ConsentCreateComponent implements OnInit {
     this.has_errors = false;
     this.is_processing = false;
 
+
     this.consent_id = this.route.snapshot.paramMap.get('id');
     this.state_view = this.route.snapshot.url[0].path;
+
+    this.initConsentFormGroup();
 
     if (this.state_view === 'update') {
       this.updateConsent();
@@ -50,31 +68,68 @@ export class ConsentCreateComponent implements OnInit {
     else if (this.state_view == 'view') {
       this.viewConsent();
     }
-
   }
 
-  updateConsent() {
-    this.getConsent();
-  }
-
-  viewConsent() {
-    this.getConsent();
-  }
-
-  saveConsent() {
+  getConsentAsync() {
+    var promise = new Promise((resolve, reject) => {
+      this.consentService
+        .getConsent(this.consent_id)
+        .subscribe(consent => {
+          this.consent = consent;
+          resolve();
+        });
+    });
+    return promise;
   }
 
   getConsent() {
     this.consentService
       .getConsent(this.consent_id)
-      .subscribe(
-      consent => {
+      .subscribe(consent => {
         this.consent = consent;
       });
   }
 
+  updateConsent() {
+    this.getConsentAsync().then(
+      (result) => {
+        this.initConsentFormGroup();
+      }
+    );
+  }
+
+  saveConsent() {
+    this.initConsentFormGroup();
+  }
+
+  initConsentFormGroup() {
+    if (!this.consent) {
+      this.consent = new Consent('', '', '', '', '', '', '');
+    }
+    this.consentForm = this.toFormGroup(this.consent);
+  }
+
+
+  toFormGroup(data: Consent) {
+    return this.fb.group({
+      name: [data.name, Validators.required],
+      number: data.number,
+      description: data.description,
+    });
+
+
+
+  }
+
+  viewConsent() {
+    this.getConsentAsync().then(
+      (result) => this.initConsentFormGroup(),
+    );
+  }
+
   onSaveClick(input_consent: Consent) {
-    console.log()
+    console.log('SAVE:', input_consent);
+    console.log('SAVE JSON:', JSON.stringify(input_consent));
     this.is_processing = true;
 
     this.consentService
@@ -96,7 +151,7 @@ export class ConsentCreateComponent implements OnInit {
 
   onResetClick() {
     this.is_processing = false;
-    this.consent = new Consent('');
+    this.consent = new Consent('', '', '', '', '', '', '');
   }
 
   notificationPrompt(input_database) {

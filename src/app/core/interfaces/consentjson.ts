@@ -9,8 +9,8 @@ export interface ConsentJSON {
     description: string;
     createdBy: string;
     isDeleted: string;
-    validityDate: Date;
-    dateCreated: Date;
+    validityDate?: Date;
+    dateCreated?: Date;
     dateUpdated?: Date;
     forms?: FormJSON[];
 }

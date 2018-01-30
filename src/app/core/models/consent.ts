@@ -42,9 +42,21 @@ export class Consent {
   }
 
   constructor(
-    name: string
+    name: string,
+    number: string,
+    organization: string,
+    dirPath: string,
+    description: string,
+    createdBy: string,
+    isDeleted: string
   ) {
     this.name = name;
+    this.number = number;
+    this.organization = organization;
+    this.dirPath = dirPath;
+    this.description = description;
+    this.createdBy = createdBy;
+    this.isDeleted = isDeleted;
   }
 
   toJSON(): ConsentJSON {

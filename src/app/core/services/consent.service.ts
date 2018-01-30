@@ -25,7 +25,7 @@ export class ConsentService {
 
   create(consent: Consent): Observable<Consent> {
     const url = environment.API_ENDPOINT + `consents/`;
-    const consent_json = consent.toJSON();
+    const consent_json = consent;
 
     return this.http
       .post(url, consent_json)
@@ -60,7 +60,8 @@ export class ConsentService {
 
   update(id: string, consent: Consent): Observable<Consent> {
     const url = environment.API_ENDPOINT + `consents/${id}`;
-    const consent_json = consent.toJSON();
+    //const consent_json = consent.toJSON();
+    const consent_json = consent;
 
     return this.http
       .patch(url, consent_json)

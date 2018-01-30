@@ -44,8 +44,21 @@
         </div>
       </div>
 
-    
-      
+      <div class="col-sm-3 save-wrapper">
+        <button class="btn btn-success pull-right"
+          *ngIf="state_view === 'create'"
+          [disabled]="!consentCreateForm.form.valid || is_processing"
+          (click)="onSaveClick(consent)">
+          <i class="fa fa-save"></i> &nbsp; Save
+        </button>
+        <button class="btn btn-success pull-right"
+          *ngIf="state_view === 'update'"
+          [hidden]="state_view !== 'update'"
+          [disabled]="!consentCreateForm.form.valid || is_processing"
+          (click)="onUpdateClick(consent)">
+          <i class="fa fa-edit"></i> &nbsp; Update 
+        </button>
+      </div>
     </div>
 
     <!-- consent form-->
@@ -53,56 +66,13 @@
       <div class="x_panel">
         <div class="x_content">
           <br>
-
-          <form [formGroup]="consentForm" novalidate>
-            <div class="row">
-                <div class="col-sm-3 save-wrapper">
-                    <button class="btn btn-success pull-right"
-                      *ngIf="state_view === 'create'"
-                      [disabled]="consentForm.status == 'INVALID' || is_processing"
-                      (click)="onSaveClick(consentForm.value)">
-                      <i class="fa fa-save"></i> &nbsp; Save
-                    </button>
-                    <button class="btn btn-success pull-right"
-                      *ngIf="state_view === 'update'"
-                      [hidden]="state_view !== 'update'"
-                      [disabled]="consentForm.status === 'INVALID' || is_processing"
-                      (click)="onUpdateClick(consentForm.value)">
-                      <i class="fa fa-edit"></i> &nbsp; Update 
-                    </button>
-                  </div> 
-            </div>
-            <div class="row">
-                <div class="col-sm-10" style="background: ink" > 
-                  <div class="material-form-group">
-                      <mat-form-field class="material-form-control"> 
-                      <input matInput
-                            placeholder="Name"
-
-                            [errorStateMatcher]="error_matcher"
-                            formControlName="name">
-                            <mat-error *ngIf="consentForm.get('name').hasError('required')">
-                                This field <strong>required</strong>
-                            </mat-error>
-                      </mat-form-field>
-                      <mat-form-field class="material-form-control">
-                          <input matInput
-                                placeholder="Number"
-                                formControlName="number">
-                              <mat-error *ngIf="consentForm.get('number').hasError('required')">
-                                This field <strong>required</strong>
-                              </mat-error>
-                      </mat-form-field>
-                  </div>
-                  <div class="material-form-group">
-                    <mat-form-field class="material-form-control">
-                        <input matInput
-                              placeholder="Description"
-                              formControlName="description">
-                    </mat-form-field>
-                  </div>
-              </div>
-            </div>
+          <form *ngIf="consentForm" [formGroup]="consentForm">
+            <mat-form-field class="material-form-control">
+              <input matInput
+                    placeholder="Consent Form Name"
+                    class="form-control" 
+                    formControlName="name">
+            </mat-form-field>
             <p> Form value {{ consentForm.value | json }}</p>
             <p> Form status {{ consentForm.status | json }}</p>
           </form>
