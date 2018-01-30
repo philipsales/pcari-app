@@ -48,7 +48,8 @@ export class Consent {
     dirPath: string,
     description: string,
     createdBy: string,
-    isDeleted: string
+    isDeleted: string,
+    forms?: Form[],
   ) {
     this.name = name;
     this.number = number;
@@ -57,6 +58,7 @@ export class Consent {
     this.description = description;
     this.createdBy = createdBy;
     this.isDeleted = isDeleted;
+    this.forms = forms;
   }
 
   toJSON(): ConsentJSON {

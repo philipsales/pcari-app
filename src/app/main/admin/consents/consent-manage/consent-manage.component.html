@@ -1,0 +1,127 @@
+<!-- consent form-->
+<div class="col-md-12 col-sm-12 col-xs-12"> 
+  <form [formGroup]="consentFormGroup" novalidate>
+
+    <div class="row">
+        <div class="col-md-12 table-nav" style="background: reen">
+          <div class="col-sm-3 reset-wrapper">
+            <button class="btn btn-default pull-left"
+              *ngIf="state_view !== 'view'"
+              (click)="onResetClick()">
+              <i class="fa fa-refresh"></i> &nbsp; Reset
+            </button>
+          </div>
+          <div class="col-sm-4 col-sm-offset-1">
+            <div class="alert alert-danger"
+                  [hidden]="!has_errors">
+              <strong>
+                <i class="fa fa-warning"></i> Unable to process your request.
+              </strong>
+            </div>
+            <br/>
+          </div>
+      
+          <div class="row">
+            <button class="btn btn-success pull-right"
+              *ngIf="state_view === 'create'"
+              [disabled]="consentFormGroup.status === 'INVALID' || is_processing"
+              (click)="onSaveClick(consentFormGroup.value)">
+              <i class="fa fa-save"></i> &nbsp; Save
+            </button>
+            <button class="btn btn-success pull-right"
+              *ngIf="state_view === 'update'"
+              [hidden]="state_view !== 'update'"
+              [disabled]="consentFormGroup.status === 'INVALID' || is_processing"
+              (click)="onUpdateClick(consentFormGroup.value)">
+              <i class="fa fa-edit"></i> &nbsp; Update 
+            </button>
+          </div> 
+        </div> 
+    </div>
+    <!-- information -->
+    <div class="row text-center" class="x_panel">
+        <div class="col-sm-12" style="background: ink" > 
+          <div class="material-form-group">
+              <mat-form-field class="material-form-control"> 
+              <input matInput
+                    placeholder="Name"
+                    [errorStateMatcher]="error_matcher"
+                    formControlName="name">
+                    <mat-error *ngIf="consentFormGroup.get('name').hasError('required')">
+                        Name is required
+                    </mat-error>
+              </mat-form-field>
+              <mat-form-field class="material-form-control">
+                  <input matInput
+                        placeholder="Number"
+                        formControlName="number">
+                      <mat-error *ngIf="consentFormGroup.get('number').hasError('required')">
+                        Number is required
+                      </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="material-form-group">
+            <mat-form-field class="material-form-control">
+                <input matInput
+                      placeholder="Description"
+                      formControlName="description">
+            </mat-form-field>
+          </div>
+      </div>
+    </div>
+    <!-- information -->
+    <app-consent-form-add>
+    </app-consent-form-add>
+
+
+    <app-conset-form-manage
+     [parentForm]="consentFormGroup" 
+     [consentForm]="data"
+     [viewState]="state_view" >
+    </app-conset-form-manage>
+    <!-- <app-case-form-add
+    (onSaveFormAddTrigger)="onAddSelectedForm($event)"
+    (onCancelFormAddTrigger)="onCancelAddForm()"
+    [show]="!show_selected_forms">
+    </app-case-form-add>
+    
+  
+  <app-case-form-manage 
+    (onCallSelectFormTrigger)="onAddForm()"
+    [show]="show_selected_forms"
+    [forms]="_case.forms"
+    [method]="method">
+  </app-case-form-manage> -->
+
+    <div class="x_panel">
+      <h2>insdier</h2>
+        <h1>
+            <!-- <mat-card 
+            *ngIf="consentFormGroupMappingGroup"
+            [formGroup]="consentFormGroupMappingGroup">
+                <div class="col-sm-offset-10 pull-right">
+                    <input type="text" 
+                    formControlName="name">
+                </div>
+            </mat-card> -->
+
+            <mat-table #table [dataSource]="datasource">
+              <ng-container matColumnDef="Name">
+                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let form"> {{form.name}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Department">
+                  <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
+                  <mat-cell *matCellDef="let form"> {{form.department}} </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+          {{consentFormGroup.get('forms').value}}
+        </h1>
+    </div>
+
+    <p> Form value {{ consentFormGroup.value | json }}</p>
+    <p> Form status {{ consentFormGroup.status | json }}</p>
+  </form>
+</div> <!-- consentFormGroup-->

@@ -12,11 +12,16 @@ import { MaterialModule } from 'app/shared/_material/material.module';
 import { ConsentRoutingModule } from './consent-routing.module';
 import { ConsentService } from 'app/core/services';
 
-import { ConsentListComponent } from './consent-list.component';
-import { ConsentCreateComponent } from './consent-create.component';
-
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
+
+import { ConsentListComponent } from './consent-list.component';
+import { ConsentCreateComponent } from './consent-create.component';
+import { ConsentFormAddComponent } from './consent-manage/consent-form-add.component';
+import { ConsetFormManageComponent } from './consent-manage/conset-form-manage.component';
+import { ConsentManageComponent } from './consent-manage/consent-manage.component';
+
+
 
 @NgModule({
   imports: [
@@ -30,7 +35,10 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
   ],
   declarations: [
     ConsentListComponent,
-    ConsentCreateComponent
+    ConsentCreateComponent,
+    ConsentFormAddComponent,
+    ConsetFormManageComponent,
+    ConsentManageComponent
   ],
   providers: [
     //ConsentDummyApiResponse,

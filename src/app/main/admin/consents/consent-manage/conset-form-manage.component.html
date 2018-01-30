@@ -1,0 +1,51 @@
+  <!-- Selected Forms  -->
+
+  <div class="col-md-12 col-sm-12 col-xs-12"
+    [hidden]="!_show"> 
+      <div class="x_panel">
+        <div class="x_title">
+          <h2 class="pull-left">Consent Forms</h2>
+          <div class="pull-right">
+            <button mat-button class="pull-right" >
+                <i class="fa fa-plus"></i> Add Form
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Form Name</th>
+                  <th>Organization</th>
+                  <th>Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let form of consentForm">
+                  <th scope="row">{{  1 }}</th>
+                  <td>form.name<td>
+                  <td>form.organization<td>
+                  <td>form.type<td>
+                  <td  
+                    style="text-align: center">
+                    <button 
+                      class="btn btn-sm btn-default">
+                      <i class="fa fa-eye"></i> View
+                    </button>
+                    <button 
+                      class="btn btn-sm btn-warning">
+                      <i class="fa fa-edit"></i> Update
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+
+        </div> <!-- x_content -->
+      </div>
+</div> 
+<!-- Selected Forms -->
