@@ -78,13 +78,15 @@
 			    (input_password.dirty || input_password.touched) && 
   			      (input_password.errors) }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_password">
-	    Password <span class="required">*</span>
+			Password 
+			<span class="required"
+				*ngIf="method == 'CREATE'">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="password" id="input_password" 
 		   [(ngModel)]="_user.password"
 		   #input_password="ngModel" name="input_password"
-		   required="required"
+		   [required]="method == 'CREATE'"
 		   class="form-control col-md-7 col-xs-12">
 	    <div class="help-block"
 		 *ngIf="errors?.password">
@@ -107,13 +109,15 @@
   			      (input_confirmation_password.errors ||
 			      (_user.password != confirmation_password)) }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">
-	    Confirm Password <span class="required">*</span>
+			Confirm Password 
+			<span class="required"
+				*ngIf="method == 'CREATE'">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <input type="password" id="input_confirmation_password" 
 		   [(ngModel)]="confirmation_password"
 		   #input_confirmation_password="ngModel" name="input_confirmation_password"
-		   required="required"
+		   [required]="method == 'CREATE'"
 		   class="form-control col-md-7 col-xs-12">
 	    <div class="help-block"
 		 *ngIf="(input_confirmation_password.dirty || input_confirmation_password.touched) && 
@@ -136,7 +140,7 @@
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
 	    Status <span class="required">*</span>
 	  </label>
-	  <div *ngIf="_user.is_active"
+	  <div *ngIf="_user.isActive"
 	       (click)="onToggleIsActive(false)"
 	       class="checkbox-wrapper col-md-6 col-sm-6 col-xs-12">
 	    <div class="icheckbox_flat-green checked" style="position: relative;">
@@ -147,7 +151,7 @@
 	    </div> &nbsp; Active
 	  </div>
 
-	  <div *ngIf="!_user.is_active"
+	  <div *ngIf="!_user.isActive"
 	       (click)="onToggleIsActive(true)"
 	       class="checkbox-wrapper col-md-6 col-sm-6 col-xs-12">
 	    <div class="icheckbox_flat-green" style="position: relative;">

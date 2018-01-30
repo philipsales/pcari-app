@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import 'rxjs/add/operator/switchMap';
+
+import { UserService } from 'app/core/services';
+
+import { User } from 'app/core/models';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { NoJWTError } from 'app/core/errors';
+import { UserJSON } from 'app/core/interfaces';
 
 @Component({
   selector: 'app-users-update',
@@ -7,9 +15,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersUpdateComponent implements OnInit {
 
-  constructor() { }
+  private user: User;
+  private user_id: string;
 
-  ngOnInit() {
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {
+    this.user = new User('', true, '', '', '', 'M', '', '');
   }
 
+  ngOnInit() {
+    this.user_id = this.route.snapshot.paramMap.get('id');
+    this.userService.get(this.user_id).subscribe((response: User) => {
+      delete this.user;
+      this.user = response;
+      console.log(response);
+    }, error => {
+      console.log(error); // get the error in error handler
+      if (error instanceof NoJWTError) {
+        console.warn('TO DO : handle JWT Expired');
+      }
+    });
+  }
 }

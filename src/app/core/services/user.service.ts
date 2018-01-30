@@ -42,4 +42,16 @@ export class UserService {
                     })
                     .catch(Helper.handleError);
     }// --create
+
+    update(this_user: User): Observable<User> {
+        const url = environment.API_ENDPOINT + 'users/' + this_user.id;
+        const user_json = this_user.toJSON();
+        console.log(user_json);
+
+        return this.http.patch(url, user_json)
+          .map((response: UserJSON) => {
+            console.log(response, 'USER UPDATED from /users');
+            return User.fromJSON(response);
+        }).catch(Helper.handleError);
+      }
 }

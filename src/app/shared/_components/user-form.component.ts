@@ -169,6 +169,14 @@ export class UserFormComponent implements OnInit {
 
     onSaveClick(input_user: User) {
         console.log(input_user);
+        if (this.method === 'CREATE') {
+            this.createUser(input_user);
+        } else if (this.method === 'UPDATE') {
+            this.updateUser(input_user);
+        }
+    }// --onSaveClick
+
+    createUser(input_user: User) {
         this.errors = {};
         this.has_errors = false;
         this.is_processing = true;
@@ -190,5 +198,29 @@ export class UserFormComponent implements OnInit {
             this.has_errors = true;
             this.is_processing = false;
             });
-    }// --onSaveClick
+    }
+
+    updateUser(input_user: User) {
+        this.errors = {};
+        this.has_errors = false;
+        this.is_processing = true;
+        this.userService.update(input_user).subscribe(
+            created_user => {
+            this.is_processing = false;
+            this._notificationsService.success(
+                'New User : ' + input_user.username,
+                'Successfully Created.',
+                {
+                    timeOut: 10000,
+                    showProgressBar: true,
+                    pauseOnHover: false,
+                    clickToClose: false,
+                });
+            },
+            errors  => {
+            this.errors = errors;
+            this.has_errors = true;
+            this.is_processing = false;
+            });
+    }
 }
