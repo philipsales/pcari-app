@@ -7,6 +7,7 @@ import { FormAnswer } from 'app/core/models';
   styleUrls: ['./case-form-manage.component.css']
 })
 export class CaseFormManageComponent implements OnInit {
+  @Input() caseid: string;
   @Input() forms: FormAnswer;
   @Input()  method: string;
   private _show: boolean;

@@ -1,0 +1,26 @@
+<div [formGroup]="parentForm">
+  <div formArrayName="questions">
+      <div *ngFor="let question of questions; let i = index;">
+        <div class="panel panel-default">
+            <question-content
+               [formArray]="parentForm.controls.questions"
+               [question]="question" 
+               [viewState]="viewState"
+               (clone)="cloneQuestion(question,i)"
+               (removed)="removeQuestion(i)" >
+            </question-content>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-11 col-md-11">
+          <mat-card-actions class="pull-right">
+            <button mat-raised-button color="primary"
+                    (click)="addQuestion()">
+                Add Question
+            </button>
+          </mat-card-actions>
+        </div>
+      </div>
+  </div>
+</div>
+

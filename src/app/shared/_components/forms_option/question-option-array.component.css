@@ -1,0 +1,10 @@
+.option_button {
+  margin-bottom: 20px;
+  padding-top: 10px;
+  display: inline-block;
+  cursor:  pointer;
+}
+
+.option_button:hover {
+  text-decoration: underline;
+}

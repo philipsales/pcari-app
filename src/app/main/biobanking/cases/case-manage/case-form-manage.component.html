@@ -32,8 +32,9 @@
                   <td  *ngIf="method == 'UPDATE'"
                     style="text-align: center">
                     <button 
+                      [routerLink]="['/biobanking/cases/view/' + caseid + '/forms', form._id]"
                       class="btn btn-sm btn-default">
-                      <i class="fa fa-eye"></i> View
+                      <i class="fa fa-eye"></i> Viewx
                     </button>
                     <button 
                       class="btn btn-sm btn-warning">

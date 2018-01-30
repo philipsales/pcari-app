@@ -24,6 +24,8 @@ export class Case {
         console.log(json.forms);
         if (json.forms) {
           output['forms'] = json.forms.map(FormAnswer.fromJSON);
+        } else {
+          output['forms'] = [];
         }
         return output;
     }

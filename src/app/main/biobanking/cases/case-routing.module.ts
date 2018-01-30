@@ -5,6 +5,7 @@ import { CaseListComponent } from './case-list.component';
 import { CaseCreateComponent } from './case-create.component';
 import { CaseViewComponent } from './case-view.component';
 import { CaseUpdateComponent } from './case-update.component';
+import { CaseFormsComponent } from 'app/main/biobanking/cases/case-forms/case-forms.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,10 @@ const routes: Routes = [
     {
         path: 'view/:id',
         component: CaseViewComponent
+    },
+    {
+        path: 'view/:id/forms/:formid',
+        component: CaseFormsComponent
     },
     {
         path: 'update/:id',

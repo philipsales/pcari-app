@@ -24,6 +24,7 @@ import { CaseUpdateComponent } from './case-update.component';
 import { CaseFormManageComponent } from './case-manage/case-form-manage.component';
 import { CaseFormAddComponent } from './case-manage/case-form-add.component';
 import { MatTableModule } from '@angular/material';
+import { CaseFormsComponent } from './case-forms/case-forms.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { MatTableModule } from '@angular/material';
     CaseViewComponent,
     CaseUpdateComponent,
     CaseFormManageComponent,
-    CaseFormAddComponent
+    CaseFormAddComponent,
+    CaseFormsComponent
   ],
   providers: [
     CaseDummyApiResponse,
