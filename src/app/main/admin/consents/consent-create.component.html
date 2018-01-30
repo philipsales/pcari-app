@@ -28,7 +28,9 @@
   <div class="row" id="page-body">
     <div class="col-md-12 table-nav">
       <div class="col-sm-3 reset-wrapper">
-        <button class="btn btn-default pull-left">
+        <button class="btn btn-default pull-left"
+          *ngIf="state_view !== 'view'"
+          (click)="onResetClick()">
           <i class="fa fa-refresh"></i> &nbsp; Reset
         </button>
       </div>
@@ -44,9 +46,17 @@
 
       <div class="col-sm-3 save-wrapper">
         <button class="btn btn-success pull-right"
+          *ngIf="state_view === 'create'"
           [disabled]="!consentCreateForm.form.valid || is_processing"
-          (click)="onSaveClick(new_consent)">
+          (click)="onSaveClick(consent)">
           <i class="fa fa-save"></i> &nbsp; Save
+        </button>
+        <button class="btn btn-success pull-right"
+          *ngIf="state_view === 'update'"
+          [hidden]="state_view !== 'update'"
+          [disabled]="!consentCreateForm.form.valid || is_processing"
+          (click)="onUpdateClick(consent)">
+          <i class="fa fa-edit"></i> &nbsp; Update 
         </button>
       </div>
     </div>
@@ -73,8 +83,9 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="consentname" required="required"
-                         [(ngModel)]="new_consent.name"
+                  <input [disabled]="state_view === 'view'"
+                         type="text" id="consentname" required="required"
+                         [(ngModel)]="consent.name"
                          #input_name="ngModel" name="input_name"
                          class="form-control col-md-7 col-xs-12">
                   <div class="help-block"
@@ -101,8 +112,9 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="consentnumber" required="required"
-                         [(ngModel)]="new_consent.number"
+                  <input [disabled]="state_view === 'view'"
+                         type="text" id="consentnumber" required="required"
+                         [(ngModel)]="consent.number"
                          #input_number="ngModel" name="input_number"
                          class="form-control col-md-7 col-xs-12">
                   <div class="help-block"
@@ -129,22 +141,21 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="consentdescription" required="required"
-                      [(ngModel)]="new_consent.description"
-                      #input_description="ngModel" name="input_description"
-                      name="description"
-                      class="form-control col-md-7 col-xs-12">
-                <div class="help-block"
-                    *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
-                  <span  [hidden]="!(input_description.errors.required)">
-                    Description is required
-                  </span>
-                </div>
+                 <input [disabled]="state_view === 'view'"
+                        type="text" id="consentdescription" required="required"
+                        [(ngModel)]="consent.description"
+                        #input_description="ngModel" name="input_description"
+                        name="description"
+                        class="form-control col-md-7 col-xs-12">
+                  <div class="help-block"
+                      *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
+                    <span  [hidden]="!(input_description.errors.required)">
+                      Description is required
+                    </span>
+                  </div>
               </div>
-
               
-
-        </div>
+          </div>
         </form>
       </div>
     </div>      

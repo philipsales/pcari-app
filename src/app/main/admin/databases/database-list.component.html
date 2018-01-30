@@ -53,8 +53,7 @@
 	  </tr>
 	</thead>
 	<tbody>
-	  <!-- <tr  *ngFor='let database of databases | value:"key":true'>
-		-->
+	  <!-- <tr  *ngFor='let database of databases | value:"key":true'> -->
 	  <tr  *ngFor='let database of databases; let i = index;'>
 	    <td>{{ i + 1 }}</td>
 	    <td>{{ database.name }}</td>
@@ -62,16 +61,14 @@
 	    <td>{{ database.createdBy }}</td>
 	    <td>{{ database.dateCreated | date: 'MMM dd, yyyy' }}</td>
 	    <td>
-				<!--<button class="btn btn-sm btn-info"
-          (click)="restore()">Restore</button>-->
           <button class="btn" [routerLink]="['/admin/database/view/',database._id]"
-						 class="btn btn-default pull-right">
+						 class="btn btn-sm btn-default pull-right">
 						 <i class="fa fa-eye"></i> &nbsp; View 
           </button>
 			</td>
 			<td>
           <button class="btn" [routerLink]="['/admin/database/update/',database._id]"
-             class="btn btn-warning pull-right">
+             class="btn btn-sm btn-warning pull-right">
 						 <i class="fa fa-edit"></i> &nbsp; Update 
           </button>
 	    </td>

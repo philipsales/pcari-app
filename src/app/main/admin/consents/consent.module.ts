@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule }  from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 //InMemory modules
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ConsentDummyApiResponse } from 'app/core/services-dummy';
+
+import { MaterialModule } from 'app/shared/_material/material.module';
 
 import { ConsentRoutingModule } from './consent-routing.module';
 import { ConsentService } from 'app/core/services';
@@ -18,16 +20,17 @@ import { ConsentCreateComponent } from './consent-create.component';
     CommonModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(ConsentDummyApiResponse),
+    //InMemoryWebApiModule.forRoot(ConsentDummyApiResponse),
+    MaterialModule,
     ConsentRoutingModule
   ],
   declarations: [
     ConsentListComponent,
     ConsentCreateComponent
   ],
-  providers: [ 
-    ConsentDummyApiResponse,
-    ConsentService 
+  providers: [
+    //ConsentDummyApiResponse,
+    ConsentService
   ]
 })
 export class ConsentModule { }

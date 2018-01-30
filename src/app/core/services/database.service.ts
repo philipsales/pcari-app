@@ -39,46 +39,9 @@ export class DatabaseService {
                     .catch(this.handleError);
   }//--getAll
   */
-
-  getDatabases(): Observable<Database[]> {
-    const url = environment.API_ENDPOINT + 'databases/';
-
-    return this.http
-      .get(url)
-      .map((response: Response) => {
-        //return (response.json() as Database[]);
-        console.log(response['data'].map(Database.fromJSON));
-        return response['data'].map(Database.fromJSON);
-        //return (JSON.parse(response['_body']) as Database[]);
-        //return (response.json() as Database[])
-      })
-      .catch(Helper.handleError);
-  }
-
-  getDatabase(id: string): Observable<Database> {
-    const url = environment.API_ENDPOINT + `databases/${id}`;
-
-    console.log('url', url);
-    return this.http
-      .get(url)
-      .map((response: DatabaseJSON) => {
-
-        console.log(Database.fromJSON(response));
-        // return response['data'].map(Database.fromJSON);
-        return Database.fromJSON(response);
-        //return (JSON.parse(response['_body']) as Database[]);
-        //return (response.json() as Database[])
-      })
-      .catch(Helper.handleError);
-  }
-
   create(database: Database): Observable<Database> {
     const url = environment.API_ENDPOINT + `databases/backup`;
-
-    console.log('url', url);
-    console.log('databsae', database);
     const database_json = database.toJSON();
-    console.log('database_json', database_json);
 
     return this.http
       .post(url, database_json)
@@ -89,13 +52,35 @@ export class DatabaseService {
       .catch(Helper.handleError);
   }
 
+  getDatabases(): Observable<Database[]> {
+    const url = environment.API_ENDPOINT + 'databases/';
+
+    return this.http
+      .get(url)
+      .map((response: Response) => {
+        //return (response.json() as Database[]);
+        console.log('databases----', response['data']);
+        return response['data'].map(Database.fromJSON);
+        //return (JSON.parse(response['_body']) as Database[]);
+        //return (response.json() as Database[])
+      })
+      .catch(Helper.handleError);
+  }
+
+  getDatabase(id: string): Observable<Database> {
+    const url = environment.API_ENDPOINT + `databases/${id}`;
+
+    return this.http
+      .get(url)
+      .map((response: DatabaseJSON) => {
+        return Database.fromJSON(response);
+      })
+      .catch(Helper.handleError);
+  }
+
   update(id: string, database: Database): Observable<Database> {
     const url = environment.API_ENDPOINT + `databases/backup/${id}`;
-
-    console.log('url', url);
-    console.log('databsae', database);
     const database_json = database.toJSON();
-    console.log('database_json', database_json);
 
     return this.http
       .patch(url, database_json)

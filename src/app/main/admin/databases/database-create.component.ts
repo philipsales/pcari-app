@@ -6,7 +6,6 @@ import { NotificationsService } from 'angular2-notifications';
 import { DatabaseService } from 'app/core/services';
 import { Database } from 'app/core/models';
 import { DatabaseJSON } from 'app/core/interfaces';
-import { Data } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-database-create',
@@ -15,8 +14,7 @@ import { Data } from '@angular/router/src/config';
 })
 export class DatabaseCreateComponent implements OnInit {
 
-  private databaseId: string;
-
+  private database_id: string;
   private database: Database;
 
   private errors: any = {};
@@ -24,7 +22,6 @@ export class DatabaseCreateComponent implements OnInit {
   private is_processing = false;
 
   private state_view: string;
-  private view: string;
   private is_restore: boolean;
 
   constructor(
@@ -42,39 +39,34 @@ export class DatabaseCreateComponent implements OnInit {
     this.is_processing = false;
     this.is_restore = false;
 
-    this.databaseId = this.route.snapshot.paramMap.get('id');
-    const view = this.route.snapshot.url[0].path;
+    this.database_id = this.route.snapshot.paramMap.get('id');
+    this.state_view = this.route.snapshot.url[0].path;
 
-    if (view === 'update') {
+    if (this.state_view === 'update') {
       this.updateDatabase();
     }
-    else if (view == 'create') {
+    else if (this.state_view == 'create') {
       this.saveDatabase();
     }
-    else {
+    else if (this.state_view == 'view') {
       this.viewDatabase();
     }
-
   }
 
   updateDatabase() {
-    this.state_view = 'update';
     this.getDatabase();
   }
 
   viewDatabase() {
-    this.state_view = 'view';
     this.getDatabase();
   }
 
   saveDatabase() {
-    this.state_view = 'create';
   }
-
 
   getDatabase() {
     this.databaseService
-      .getDatabase(this.databaseId)
+      .getDatabase(this.database_id)
       .subscribe(
       database => {
         this.database = database;
@@ -94,7 +86,7 @@ export class DatabaseCreateComponent implements OnInit {
 
   onUpdateClick(input_database: Database) {
     this.databaseService
-      .update(this.databaseId, input_database)
+      .update(this.database_id, input_database)
       .subscribe(
       updated_database => {
         this.notificationPrompt(updated_database);
@@ -120,7 +112,7 @@ export class DatabaseCreateComponent implements OnInit {
     this._notificationsService
       .success(
       'Database: ' + input_database.name,
-      this.state_view + ' Success',
+      this.state_view.toUpperCase() + ' SUCCESS ',
       {
         timeOut: 10000,
         showProgressBar: true,

@@ -29,6 +29,7 @@
     <div class="col-md-12 table-nav">
       <div class="col-sm-3 reset-wrapper">
         <button class="btn btn-default pull-left"
+          *ngIf="state_view !== 'view'"
           (click)="onResetClick()">
           <i class="fa fa-refresh"></i> &nbsp; Reset
         </button>
@@ -45,7 +46,6 @@
 
       <div class="col-sm-5 save-wrapper">
         <div class="row">
-          <h1> {{view}} </h1>
           <button class="btn btn-success pull-right"
             *ngIf="state_view === 'create'"
             [disabled]="!databaseCreateForm.form.valid || is_processing"

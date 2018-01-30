@@ -40,7 +40,7 @@ export class Database {
       _id: this.id,
       name: this.name,
       description: this.description,
-      createdBy: "philip",
+      createdBy: this.createdBy,
       dirPath: this.dirPath
     });
   }
