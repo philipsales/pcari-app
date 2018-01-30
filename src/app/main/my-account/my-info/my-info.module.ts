@@ -8,7 +8,7 @@ import { MyInfoComponent } from './my-info.component';
 @NgModule({
   imports: [
       CommonModule,
-      SharedModule,      
+      SharedModule,
       MyInfoRoutingModule,
   ],
   declarations: [MyInfoComponent]

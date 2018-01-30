@@ -173,6 +173,8 @@ export class UserFormComponent implements OnInit {
             this.createUser(input_user);
         } else if (this.method === 'UPDATE') {
             this.updateUser(input_user);
+        } else if (this.method === 'MYACCOUNT') {
+            this.updateMyAccount(input_user);
         }
     }// --onSaveClick
 
@@ -208,8 +210,31 @@ export class UserFormComponent implements OnInit {
             created_user => {
             this.is_processing = false;
             this._notificationsService.success(
-                'New User : ' + input_user.username,
-                'Successfully Created.',
+                'User : ' + input_user.username,
+                'Successfully Updated.',
+                {
+                    timeOut: 10000,
+                    showProgressBar: true,
+                    pauseOnHover: false,
+                    clickToClose: false,
+                });
+            },
+            errors  => {
+            this.errors = errors;
+            this.has_errors = true;
+            this.is_processing = false;
+            });
+    }
+
+    updateMyAccount(input_user: User) {
+        this.errors = {};
+        this.has_errors = false;
+        this.is_processing = true;
+        this.userService.updateMyAccount(input_user).subscribe(
+            created_user => {
+            this.is_processing = false;
+            this._notificationsService.success(
+                'Successfully Updated Account',
                 {
                     timeOut: 10000,
                     showProgressBar: true,

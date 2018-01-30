@@ -53,5 +53,25 @@ export class UserService {
             console.log(response, 'USER UPDATED from /users');
             return User.fromJSON(response);
         }).catch(Helper.handleError);
-      }
+    }
+
+    getMyAccount(user_id: string): Observable<User> {
+        const url = environment.API_ENDPOINT + 'users/me/' + user_id;
+        return this.http.get(url).map((response: UserJSON) => {
+          console.log(response, 'OUTPUT GET /users');
+          return User.fromJSON(response);
+        }).catch(Helper.handleError);
+    }
+
+    updateMyAccount(this_user: User): Observable<User> {
+        const url = environment.API_ENDPOINT + 'users/me/' + this_user.id;
+        const user_json = this_user.toJSON();
+        console.log(user_json);
+
+        return this.http.patch(url, user_json)
+          .map((response: UserJSON) => {
+            console.log(response, 'USER UPDATED from /users');
+            return User.fromJSON(response);
+        }).catch(Helper.handleError);
+    }
 }

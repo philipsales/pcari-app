@@ -26,7 +26,10 @@
 
 
   <div class="row" id="page-body">
-    <shared-user-form></shared-user-form>
+    <shared-user-form
+      [user]="user"
+      [method]="'MYACCOUNT'">
+    </shared-user-form>
   </div> <!-- page-body -->
   
 </div> <!-- page-content -->

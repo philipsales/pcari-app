@@ -21,7 +21,6 @@
     <button class="btn btn-success pull-right"
 	    [disabled]="!userSaveFormAccount.form.valid || 
 			!userSaveFormGeneral.form.valid || 
-			!is_organization_ok || 
 			is_processing"
 	    (click)="onSaveClick(_user)">
       <i class="fa fa-save"></i> &nbsp; Save
@@ -76,7 +75,8 @@
 	<div class="form-group"
 		 [ngClass]="{'has-error': errors?.password || 
 			    (input_password.dirty || input_password.touched) && 
-  			      (input_password.errors) }">
+							(input_password.errors) }"
+							*ngIf="method == 'CREATE'">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_password">
 			Password 
 			<span class="required"
@@ -107,7 +107,8 @@
 	<div class="form-group"
 		 [ngClass]="{'has-error': (input_confirmation_password.dirty || input_confirmation_password.touched) && 
   			      (input_confirmation_password.errors ||
-			      (_user.password != confirmation_password)) }">
+						(_user.password != confirmation_password)) }"
+						*ngIf="method == 'CREATE'">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">
 			Confirm Password 
 			<span class="required"
@@ -136,7 +137,8 @@
 	  </div>
 	</div>
 	
-	<div class="form-group">
+	<div class="form-group"
+		[hidden]="true">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
 	    Status <span class="required">*</span>
 	  </label>
@@ -355,7 +357,9 @@
 	    #userSaveFormOrganization="ngForm" novalidate>
 	<div class="form-group"
 		 [ngClass]="{'has-error': _user.organizations && !is_organization_ok }">
-	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="organization">Organization <span class="required">*</span>
+	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="organization">
+			Organization 
+			<span class="required" *ngIf="method == 'CREATE'">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <div class="input-group">
@@ -366,7 +370,8 @@
 			     [minSearchLength]="0"
 			     (selected)="onSelectOrganization($event)" 
 			     [inputClass]="form-control"
-			     [openOnClick]="true"
+					 [openOnClick]="true"
+					 [required]="method == 'CREATE'"
 			     [inputName]="input_organization_search">
 	      </ng2-completer>
 	      <div class="input-group-btn">
@@ -386,7 +391,9 @@
 	<div class="form-group"
 		 [ngClass]="{'has-error': _user.organizations && !is_organization_ok }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">
-	    Position <span class="required">*</span>
+			Position 
+			<span class="required"
+			*ngIf="method == 'CREATE'">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <div class="input-group">
@@ -398,7 +405,8 @@
 			     (selected)="onSelectPosition($event)" 
 			     [inputClass]="form-control"
 			     [openOnClick]="true"
-			     [inputName]="'input_position_search'"
+					 [inputName]="'input_position_search'"
+					 [required]="method == 'CREATE'"
 			     #input_position_search
 			     required>
 	      </ng2-completer>
@@ -427,14 +435,14 @@
 			<div class="x_title">
 				<h2>Roles</h2>
 				<small class="pull-right"
-					[hidden]="method == 'VIEW'">Check roles for user</small>
+					[hidden]="method == 'VIEW' || method == 'MYACCOUNT'">Check roles for user</small>
 				<div class="clearfix"></div>
 			</div> <!-- x_title -->
 	
 			<mat-selection-list #sel_roles dense>
 				<mat-list-option *ngFor="let role of roles"
 					(click)="onRolesListChanged(role)"
-					[disabled]="method == 'VIEW'"
+					[disabled]="method == 'VIEW' || method == 'MYACCOUNT'"
 					[selected]="_user.roles.indexOf(role.name) !== -1"
 					[value]="role.name">
 					<div class="row">

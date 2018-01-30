@@ -12,9 +12,6 @@ export class Role {
             return JSON.parse(json, Role.reviver);
         } else {
             const role = Object.create(Role.prototype);
-            console.log(role, 'WWWWWWWWWWWWWWWWWWWWW');
-            console.log(json.isActive, 'WWWWWWWWWWWWWWWWWWWWW');
-
             const output = Object.assign(role, json, {
                 id: json._id,
                 name: json.rolename,
@@ -22,7 +19,6 @@ export class Role {
                 permissions: json.permissions,
                 isActive: json.isActive,
             });
-            console.log(output);
             return output;
         }
     }
