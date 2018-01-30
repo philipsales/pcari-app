@@ -137,7 +137,13 @@ export class ConsentCreateComponent implements OnInit {
       .subscribe(
       saved_consent => {
         this.notificationPrompt(saved_consent);
-      });
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      }
+      );
   }
 
   onUpdateClick(input_consent: Consent) {
@@ -146,12 +152,22 @@ export class ConsentCreateComponent implements OnInit {
       .subscribe(
       updated_consent => {
         this.notificationPrompt(updated_consent);
-      });
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      }
+      );
   }
 
   onResetClick() {
     this.is_processing = false;
+    this.errors = '';
+    this.has_errors = false;
+    this.is_processing = false;
     this.consent = new Consent('', '', '', '', '', '', '');
+    this.initConsentFormGroup();
   }
 
   notificationPrompt(input_database) {

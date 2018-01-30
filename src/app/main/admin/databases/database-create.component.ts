@@ -81,7 +81,13 @@ export class DatabaseCreateComponent implements OnInit {
       .subscribe(
       saved_database => {
         this.notificationPrompt(saved_database);
-      });
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      }
+      );
   }
 
   onUpdateClick(input_database: Database) {
@@ -90,7 +96,13 @@ export class DatabaseCreateComponent implements OnInit {
       .subscribe(
       updated_database => {
         this.notificationPrompt(updated_database);
-      });
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      }
+      );
   }
 
   onResetClick() {
@@ -105,7 +117,14 @@ export class DatabaseCreateComponent implements OnInit {
       .subscribe(
       restored_database => {
         this.notificationPrompt(restored_database);
-      });
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      }
+      );
+
   }
 
   notificationPrompt(input_database) {

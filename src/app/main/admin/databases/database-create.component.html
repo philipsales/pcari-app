@@ -34,7 +34,7 @@
           <i class="fa fa-refresh"></i> &nbsp; Reset
         </button>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4 col-sm-offset-1">
         <div class="alert alert-danger"
              [hidden]="!has_errors">
           <strong>
@@ -42,13 +42,14 @@
           </strong>
           <em>Please see details below: </em>
         </div>
+        <br/>
       </div>
 
-      <div class="col-sm-5 save-wrapper">
+      <div class="col-sm-4 save-wrapper">
         <div class="row">
           <button class="btn btn-success pull-right"
             *ngIf="state_view === 'create'"
-            [disabled]="!databaseCreateForm.form.valid || is_processing"
+
             (click)="onSaveClick(database)">
             <i class="fa fa-save"></i> &nbsp; Save
           </button>
