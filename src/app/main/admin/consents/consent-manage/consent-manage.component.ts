@@ -4,8 +4,9 @@ import { Router, NavigationExtras, ActivatedRoute, ParamMap } from '@angular/rou
 import { NotificationsService } from 'angular2-notifications';
 
 import { ConsentService } from "app/core/services";
-import { Consent, Form, FormAnswer } from 'app/core/models';
+import { Consent, Form } from 'app/core/models';
 import { ConsentJSON } from 'app/core/interfaces';
+import { DatePipe } from '@angular/common';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -37,7 +38,6 @@ export class ConsentManageComponent implements OnInit {
   private formArray: FormArray;
 
   private forms: Form[] = [];
-  private displayedColumns: string[] = [];
 
   //private datasource: any;
   private datasource: MatTableDataSource<Form>;
@@ -70,7 +70,8 @@ export class ConsentManageComponent implements OnInit {
     this.consent_id = this.route.snapshot.paramMap.get('id');
     this.state_view = this.route.snapshot.url[0].path;
 
-    this.initConsentFormGroup();
+    //this.initConsentFormGroup();
+    this.initializeFormGroup();
 
     if (this.state_view === 'update') {
       this.updateConsent();
@@ -115,30 +116,31 @@ export class ConsentManageComponent implements OnInit {
   updateConsent() {
     this.getConsentAsync().then(
       (result) => {
-        console.log('SERVICE result', result);
-        this.initConsentFormGroup();
+        console.log('SERVICE update Asycn', result);
+        this.initConsentFormGroupOnUpdate();
       }
     );
 
   }
 
   saveConsent() {
-    this.initConsentFormGroup();
+    //this.initConsentFormGroupOnUpdate()
+    // this.initConsentFormGroupOnUpdate();
   }
 
-  initConsentFormGroup() {
-    if (!this.consent) {
-      this.consent = new Consent('', '', '', '', '', '', '');
-    }
+  initializeFormGroup() {
+    this.consent = new Consent('', '', '', '', '', '', '');
+    this.consentFormGroup = this.toFormGroup(this.consent);
+  }
+
+  initConsentFormGroupOnUpdate() {
 
     this.consentFormGroup = this.toFormGroup(this.consent);
-    console.log('consentForm', this.consentFormGroup);
-
     this.consentFormGroup.addControl('forms', new FormArray([]));
-    console.log('consentForm + addControls', this.consentFormGroup);
 
-    console.log('INITCONSENTFORMGROUP: ', this.consent.forms);
 
+    //if (this.consent.forms.length == 0) {
+    console.log('this.consent.forms', this.consent.forms);
     if (!this.consent.forms) {
       this.data = new Form(
         'Sample ',
@@ -149,9 +151,21 @@ export class ConsentManageComponent implements OnInit {
       this.forms.push(this.data);
     }
     else {
-      for (let form of this.consent.forms) {
-        console.log('ITERATE: ', form);
+      for (const form of this.consent.forms) {
+        console.log('iterate: ', form);
+
+        this.data = new Form(
+          form.name,
+          form.organization,
+          form.department,
+          form.type
+        );
+
+        this.forms.push(this.data);
+        this.consentFormMappingGroup = this.toConsentFormMappingFormGroup(this.data);
+        (<FormArray>this.consentFormGroup.get('forms')).push(this.toConsentFormMappingFormGroup(this.data));
       }
+      console.log('after terate: ', this.forms);
       /*
       for (const form of this.consent.forms) {
         this.forms.push(form);
@@ -159,13 +173,6 @@ export class ConsentManageComponent implements OnInit {
       */
     }
 
-    this.data = new Form(
-      'Sample ',
-      'University of the Philippines - Philippine General Hospital',
-      'General Surgery Department',
-      'Patient Repository'
-    );
-    this.forms.push(this.data);
 
 
     /*
@@ -179,11 +186,10 @@ export class ConsentManageComponent implements OnInit {
     this.forms.push(this.data);
     */
 
-    this.displayedColumns = ['Name', 'Department'];
-    this.datasource = new MatTableDataSource(this.forms);
 
-    this.consentFormMappingGroup = this.toConsentFormMappingFormGroup(this.data);
-    (<FormArray>this.consentFormGroup.get('forms')).push(this.toConsentFormMappingFormGroup(this.data));
+
+    //this.datasource = new MatTableDataSource(this.forms);
+    this.datasource = new MatTableDataSource(this.consentFormGroup.get('forms').value);
     /*
     this.consentForm.get('forms').setValue(this.consentFormMappingGroup);
     */
@@ -198,24 +204,23 @@ export class ConsentManageComponent implements OnInit {
   }
 
   toConsentFormMappingFormGroup(data: Form) {
-    console.log('FASKE', data);
     return this.fb.group({
+      _id: data.id,
       name: data.name,
       department: data.department,
       organization: data.organization,
-      type: data.type
+      type: data.type,
+      dateCreated: Date.now()
     });
   }
 
   viewConsent() {
     this.getConsentAsync().then(
-      (result) => this.initConsentFormGroup(),
+      (result) => this.initializeFormGroup(),
     );
   }
 
   onSaveClick(input_consent: Consent) {
-    console.log('SAVE:', input_consent);
-    console.log('SAVE JSON:', JSON.stringify(input_consent));
     this.is_processing = true;
 
     this.consentService
@@ -253,7 +258,7 @@ export class ConsentManageComponent implements OnInit {
     this.has_errors = false;
     this.is_processing = false;
     this.consent = new Consent('', '', '', '', '', '', '');
-    this.initConsentFormGroup();
+    this.initializeFormGroup();
   }
 
   notificationPrompt(input_database) {
@@ -270,7 +275,6 @@ export class ConsentManageComponent implements OnInit {
   }
 
   onAddForm() {
-    console.log('consent-manage onAddForm');
     this.show_selected_forms = false;
     this.is_adding_forms = true;
   }
@@ -282,19 +286,20 @@ export class ConsentManageComponent implements OnInit {
 
   onAddSelectedForm(add_forms: Form[]) {
     //onAddSelectedForm(add_forms: Form[]) {
-    console.log('consent-maange onAddSelectedForm');
     this.show_selected_forms = true;
     this.is_adding_forms = false;
-    console.log(add_forms);
 
-    console.log('THIS>FORMS', this.forms);
-    for (const form of add_forms) {
-      this.forms.push(form);
-      this.consentFormMappingGroup = this.toConsentFormMappingFormGroup(form);
-      (<FormArray>this.consentFormGroup.get('forms')).push(this.toConsentFormMappingFormGroup(form));
+    this.consentFormGroup.addControl('forms', new FormArray([]));
+
+    for (const x of add_forms) {
+      this.forms.push(x);
+      this.consentFormMappingGroup = this.toConsentFormMappingFormGroup(x);
+      (<FormArray>this.consentFormGroup.get('forms')).push(this.toConsentFormMappingFormGroup(x));
     }
 
-    this.datasource = new MatTableDataSource(this.forms);
+
+    //this.datasource = new MatTableDataSource(this.forms);
+    this.datasource = new MatTableDataSource(this.consentFormGroup.get('forms').value);
 
     /*
     for (const form of forms) {

@@ -25,7 +25,7 @@ import { FormJSON } from 'app/core/interfaces';
 @Injectable()
 export class FormService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({ 'Content-Type': 'application/json' });
   private apiV1 = 'v1';
 
   private apiVersion = this.apiV1;
@@ -33,39 +33,38 @@ export class FormService {
 
   constructor(public http: HttpClient) {
   }// --constructor
-/*
-  getQuestions(): Observable<Question[]>  { 
-    const url = environment.API_ENDPOINT + '/questions/';
-    // const url = 'http://127.0.0.1:8888' + '/questions';
-    return this.http
-             .get(url)
-             .map((response: Response) => {
-                console.warn(response, 'OUTTTTTTTTTTTTTT');
-                response.json().data1.map(Question.fromJSON);
-                // return (response.json().data as Question[])
-            });
-  }// --getQuestions
-*/
+  /*
+    getQuestions(): Observable<Question[]>  { 
+      const url = environment.API_ENDPOINT + '/questions/';
+      // const url = 'http://127.0.0.1:8888' + '/questions';
+      return this.http
+               .get(url)
+               .map((response: Response) => {
+                  console.warn(response, 'OUTTTTTTTTTTTTTT');
+                  response.json().data1.map(Question.fromJSON);
+                  // return (response.json().data as Question[])
+              });
+    }// --getQuestions
+  */
 
   getForms(): Observable<Form[]> {
     const url = environment.API_ENDPOINT + 'forms/';
 
     return this.http.get(url).map((response: Response) => {
       // return (response.json().data as Form[])
-      console.log(response, 'FORMS from /forms');
       return response['data'].map(Form.fromJSON);
     })
-    .catch(Helper.handleError);
+      .catch(Helper.handleError);
   }
 
   getForm(id: string): Observable<Form> {
     const url = environment.API_ENDPOINT + `forms/${id}`;
     return this.http.get(url)
       .map((response: FormJSON) => {
-          // return (response.json().data as Form)
-          return Form.fromJSON(response);
-        })
-        .catch(Helper.handleError);
+        // return (response.json().data as Form)
+        return Form.fromJSON(response);
+      })
+      .catch(Helper.handleError);
   }
 
   /*
@@ -128,11 +127,11 @@ export class FormService {
   }// --create
 */
 
-checkForm(form: Form) {
-  const ewan_json = JSON.stringify(form);
-  const form_json = form.toJSON();
-  console.warn(form_json, 'IN STRING');
-}
+  checkForm(form: Form) {
+    const ewan_json = JSON.stringify(form);
+    const form_json = form.toJSON();
+    console.warn(form_json, 'IN STRING');
+  }
 
   submitForm(form: FormJSON): Observable<Form> {
     const url = environment.API_ENDPOINT + 'forms/';
@@ -144,6 +143,6 @@ checkForm(form: Form) {
       console.log(response, 'FORM CREATED from /forms');
       return Form.fromJSON(response);
     })
-    .catch(Helper.handleError);
+      .catch(Helper.handleError);
   }
 }

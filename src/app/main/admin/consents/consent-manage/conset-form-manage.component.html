@@ -7,7 +7,8 @@
         <div class="x_title">
           <h2 class="pull-left">Consent Forms</h2>
           <div class="pull-right">
-            <button mat-button class="pull-right" 
+            <button mat-button 
+                class="pull-right" 
                 (click)="onAddForm()">
                 <i class="fa fa-plus"></i> Add Form
             </button>
@@ -15,21 +16,28 @@
           <div class="clearfix"></div>
         </div>
         <div class="x_content">
+          <div class="example-container">
 
-        <mat-table #table [dataSource]="datasource">
-          <ng-container matColumnDef="Name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-              <mat-cell *matCellDef="let form"> {{form.name}} </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="Department">
-              <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
-              <mat-cell *matCellDef="let form"> {{form.department}} </mat-cell>
-          </ng-container>
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+          <mat-table #table [dataSource]="datasource">
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let form"> {{form.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="organization">
+                <mat-header-cell *matHeaderCellDef> Organization </mat-header-cell>
+                <mat-cell *matCellDef="let form"> {{form.organization}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="dateCreated">
+                <mat-header-cell *matHeaderCellDef> Date Created</mat-header-cell>
+                <mat-cell *matCellDef="let form"> {{form.dateCreated | date: 'MMM dd, yyyy hh:mm a z'}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
 
          
+          </div> 
         </div> 
       </div>
 </div> 

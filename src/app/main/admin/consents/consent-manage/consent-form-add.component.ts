@@ -22,7 +22,7 @@ export class ConsentFormAddComponent implements OnInit {
   }// -- _reinit setter
   private selection: SelectionModel<Form>;
 
-  displayedColumns = ['select', 'name', 'type', 'organization'];
+  displayedColumns = ['select', 'name', 'type', 'organization', 'dateCreated'];
   dataSource: MatTableDataSource<Form>;
   initialSelection = [];
   allowMultiSelect = true;

@@ -32,7 +32,7 @@ export class ConsetFormManageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.displayedColumns = ['Name', 'Department'];
+    this.displayedColumns = ['name', 'dateCreated', 'organization'];
     console.log('SHIT', this.consentForm)
     console.log('VIEWSHIT', this.viewState)
   }

@@ -40,6 +40,11 @@
               <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="dateCreated">
+              <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.dateCreated}} </mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="organization">
               <mat-header-cell *matHeaderCellDef> Organization </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.organization }} </mat-cell>
