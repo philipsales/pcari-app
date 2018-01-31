@@ -11,6 +11,7 @@ import { MaterialModule } from 'app/shared/_material/material.module';
 
 import { ConsentRoutingModule } from './consent-routing.module';
 import { ConsentService } from 'app/core/services';
+import { FormService } from 'app/core/services';
 
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
@@ -43,6 +44,7 @@ import { ConsentManageComponent } from './consent-manage/consent-manage.componen
   providers: [
     //ConsentDummyApiResponse,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+    FormService,
     ConsentService
   ]
 })

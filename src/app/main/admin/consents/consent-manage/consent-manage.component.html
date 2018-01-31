@@ -70,15 +70,21 @@
       </div>
     </div>
     <!-- information -->
-    <app-consent-form-add>
+    <app-consent-form-add
+      (onSaveFormAddTrigger)="onAddSelectedForm($event)"
+      (onCancelFormAddTrigger)="onCancelAddForm()"
+      [show]="!show_selected_forms">
     </app-consent-form-add>
 
 
     <app-conset-form-manage
-     [parentForm]="consentFormGroup" 
-     [consentForm]="data"
-     [viewState]="state_view" >
+      (onCallSelectFormTrigger)="onAddForm()"
+      [parentForm]="consentFormGroup" 
+      [consentForm]="data"
+      [datasource]="datasource"
+      [viewState]="state_view" >
     </app-conset-form-manage>
+
     <!-- <app-case-form-add
     (onSaveFormAddTrigger)="onAddSelectedForm($event)"
     (onCancelFormAddTrigger)="onCancelAddForm()"
@@ -92,34 +98,6 @@
     [forms]="_case.forms"
     [method]="method">
   </app-case-form-manage> -->
-
-    <div class="x_panel">
-      <h2>insdier</h2>
-        <h1>
-            <!-- <mat-card 
-            *ngIf="consentFormGroupMappingGroup"
-            [formGroup]="consentFormGroupMappingGroup">
-                <div class="col-sm-offset-10 pull-right">
-                    <input type="text" 
-                    formControlName="name">
-                </div>
-            </mat-card> -->
-
-            <mat-table #table [dataSource]="datasource">
-              <ng-container matColumnDef="Name">
-                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                  <mat-cell *matCellDef="let form"> {{form.name}} </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="Department">
-                  <mat-header-cell *matHeaderCellDef> Department </mat-header-cell>
-                  <mat-cell *matCellDef="let form"> {{form.department}} </mat-cell>
-              </ng-container>
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-          {{consentFormGroup.get('forms').value}}
-        </h1>
-    </div>
 
     <p> Form value {{ consentFormGroup.value | json }}</p>
     <p> Form status {{ consentFormGroup.status | json }}</p>

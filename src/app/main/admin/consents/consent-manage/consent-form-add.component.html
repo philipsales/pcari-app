@@ -3,13 +3,14 @@
 </h1>
 
 <!-- Selected Forms  -->
-<!-- <div class="col-md-12 col-sm-12 col-xs-12"           
+<div class="col-md-12 col-sm-12 col-xs-12"           
     *ngIf="_show"> 
     <div class="x_panel">
       <div class="x_title">
-        <h2 class="pull-left">Case Forms</h2>
+        <h2 class="pull-left">Forms</h2>
         <div class="pull-right">
-            <button mat-button >
+            <button mat-button
+               (click)="onAddSelectedForm()" >
               <i class="fa fa-plus"></i> Add Selected
             </button>
 
@@ -41,7 +42,7 @@
 
             <ng-container matColumnDef="organization">
               <mat-header-cell *matHeaderCellDef> Organization </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.organization | ellipsis:50}} </mat-cell>
+              <mat-cell *matCellDef="let element"> {{element.organization }} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="select">
@@ -66,4 +67,4 @@
         </div>
       </div> 
     </div>
-</div> -->
+</div>

@@ -38,8 +38,13 @@ export class ConsentManageComponent implements OnInit {
 
   private forms: Form[] = [];
   private displayedColumns: string[] = [];
-  private datasource: any;
 
+  //private datasource: any;
+  private datasource: MatTableDataSource<Form>;
+
+  private show_selected_forms: boolean;
+
+  private is_adding_forms: boolean;
   private data: Form;
 
   constructor(
@@ -52,7 +57,6 @@ export class ConsentManageComponent implements OnInit {
 
     this.formArray = new FormArray([]);
 
-
   }
 
   ngOnInit() {
@@ -60,7 +64,9 @@ export class ConsentManageComponent implements OnInit {
     this.has_errors = false;
     this.is_processing = false;
 
+    this.show_selected_forms = true;
 
+    this.is_adding_forms = false;
     this.consent_id = this.route.snapshot.paramMap.get('id');
     this.state_view = this.route.snapshot.url[0].path;
 
@@ -86,7 +92,7 @@ export class ConsentManageComponent implements OnInit {
         .getConsent(this.consent_id)
         .subscribe(consent => {
           this.consent = consent;
-          resolve();
+          resolve(consent);
         });
     });
     return promise;
@@ -109,6 +115,7 @@ export class ConsentManageComponent implements OnInit {
   updateConsent() {
     this.getConsentAsync().then(
       (result) => {
+        console.log('SERVICE result', result);
         this.initConsentFormGroup();
       }
     );
@@ -130,20 +137,38 @@ export class ConsentManageComponent implements OnInit {
     this.consentFormGroup.addControl('forms', new FormArray([]));
     console.log('consentForm + addControls', this.consentFormGroup);
 
+    console.log('INITCONSENTFORMGROUP: ', this.consent.forms);
 
-    this.displayedColumns = ['Name', 'Department'];
-    this.datasource = new MatTableDataSource(this.forms);
-
+    if (!this.consent.forms) {
+      this.data = new Form(
+        'Sample ',
+        'University of the Philippines - Philippine General Hospital',
+        'General Surgery Department',
+        'Patient Repository'
+      );
+      this.forms.push(this.data);
+    }
+    else {
+      for (let form of this.consent.forms) {
+        console.log('ITERATE: ', form);
+      }
+      /*
+      for (const form of this.consent.forms) {
+        this.forms.push(form);
+      }
+      */
+    }
 
     this.data = new Form(
-      'Untitled form',
+      'Sample ',
       'University of the Philippines - Philippine General Hospital',
       'General Surgery Department',
       'Patient Repository'
     );
-
     this.forms.push(this.data);
 
+
+    /*
     this.data = new Form(
       'General Consent',
       'University of the Philippines - Philippine General Hospital',
@@ -152,9 +177,13 @@ export class ConsentManageComponent implements OnInit {
     );
 
     this.forms.push(this.data);
+    */
 
-    this.consentFormMappingGroup = this.toConsentFormMappingFormGroup(this.forms[0]);
-    (<FormArray>this.consentFormGroup.get('forms')).push(this.toConsentFormMappingFormGroup(this.forms[0]));
+    this.displayedColumns = ['Name', 'Department'];
+    this.datasource = new MatTableDataSource(this.forms);
+
+    this.consentFormMappingGroup = this.toConsentFormMappingFormGroup(this.data);
+    (<FormArray>this.consentFormGroup.get('forms')).push(this.toConsentFormMappingFormGroup(this.data));
     /*
     this.consentForm.get('forms').setValue(this.consentFormMappingGroup);
     */
@@ -171,10 +200,10 @@ export class ConsentManageComponent implements OnInit {
   toConsentFormMappingFormGroup(data: Form) {
     console.log('FASKE', data);
     return this.fb.group({
-      name: [data.name],
-      department: [data.department],
-      organization: [data.organization],
-      type: [data.type]
+      name: data.name,
+      department: data.department,
+      organization: data.organization,
+      type: data.type
     });
   }
 
@@ -238,5 +267,41 @@ export class ConsentManageComponent implements OnInit {
         pauseOnHover: false,
         clickToClose: false
       })
+  }
+
+  onAddForm() {
+    console.log('consent-manage onAddForm');
+    this.show_selected_forms = false;
+    this.is_adding_forms = true;
+  }
+
+  onCancelAddForm() {
+    this.show_selected_forms = true;
+    this.is_adding_forms = false;
+  }
+
+  onAddSelectedForm(add_forms: Form[]) {
+    //onAddSelectedForm(add_forms: Form[]) {
+    console.log('consent-maange onAddSelectedForm');
+    this.show_selected_forms = true;
+    this.is_adding_forms = false;
+    console.log(add_forms);
+
+    console.log('THIS>FORMS', this.forms);
+    for (const form of add_forms) {
+      this.forms.push(form);
+      this.consentFormMappingGroup = this.toConsentFormMappingFormGroup(form);
+      (<FormArray>this.consentFormGroup.get('forms')).push(this.toConsentFormMappingFormGroup(form));
+    }
+
+    this.datasource = new MatTableDataSource(this.forms);
+
+    /*
+    for (const form of forms) {
+      let answers: Answer[] = [];
+      this._case.forms.push(new FormAnswer(form.id, form.name, answers));
+    }
+    console.log(this._case, 'CASE');
+    */
   }
 }
