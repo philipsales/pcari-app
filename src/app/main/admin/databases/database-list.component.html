@@ -62,13 +62,11 @@
 	    <td>{{ database.dateCreated | date: 'MMM dd, yyyy' }}</td>
 			<td style="text-align: right">
 					<button 
-							class="btn btn-sm btn-default"
 							[routerLink]="['/admin/database/view/',database._id]"
 							class="btn btn-sm btn-default ">
 						 <i class="fa fa-eye"></i> &nbsp; View 
           </button>
 					<button 
-							class="btn btn-sm btn-default"
 							[routerLink]="['/admin/database/update/',database._id]"
 							class="btn btn-sm btn-warning ">
 						 <i class="fa fa-edit"></i> &nbsp; Update 

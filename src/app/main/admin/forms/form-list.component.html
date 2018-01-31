@@ -50,31 +50,34 @@
 	    <th>Type</th>
 	    <th>Organization</th>
 	    <th>Department</th>
-	    <th>Approval</th>
-			<!--<th style="text-align: center">Action</th>-->
 	    <th>Status</th>
+	    <th style="text-align: center"></th>
 	  </tr>
 	</thead>
 	<tbody>
 	  <tr  *ngFor="let form of forms; let i = index">
 	    <th scope="row">{{ i + 1 }}</th>
-	    <td>
-        <a class="form_name" 
-           [routerLink]="['/admin/forms/update',form.id]" >
-          {{ form.name }}
-        </a>
-      </td>
+	    <td> {{ form.name }}</td>
 	    <td>{{ form.type }}</td>
 	    <td>{{ form.organization }}</td>
-	    <td>{{ form.department }}</td>
-	    <td>{{ form.approval }}</td>
+			<td>{{ form.department }}</td>
+			<td style="text-align: center">
+				<span *ngIf="form.status ==='Pending'" class="badge badge--failed" #active> {{form.status }}</span>
+				<span *ngIf="form.status ==='Final'" class="badge badge--success" #active> {{form.status }}</span>
+			</td>
+			<td style="text-align: right">
+				<button 
+						[routerLink]="['/admin/forms/update',form.id]" 
+  					class="btn btn-sm btn-warning">
+					<i class="fa fa-edit"></i> &nbsp; Update 
+				</button>
+			</td>
 			<!--<td style="text-align: center">
         <button 
          class="btn btn-sm btn-success"
          [routerLink]="['/biobanking/forms/update',form.id]">
          <i class="fa fa-plus"></i> &nbsp; Update</button>
 			</td>-->
-	    <td>{{ form.status }}</td>
 	  </tr>
 	</tbody>
       </table>
