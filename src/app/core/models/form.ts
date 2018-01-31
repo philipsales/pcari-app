@@ -44,7 +44,8 @@ export class Form {
     organization: string,
     department: string,
     type: string,
-    sections?: Section[]
+    sections?: Section[],
+    date_created?: Date
   ) {
     this.name = name;
     this.organization = organization;
@@ -53,6 +54,7 @@ export class Form {
     if (sections) {
       this.sections = sections;
     }
+    this.date_created = date_created;
   }
 
   toJSON(): FormJSON {

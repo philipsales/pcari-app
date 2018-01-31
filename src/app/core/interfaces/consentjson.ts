@@ -5,12 +5,12 @@ export interface ConsentJSON {
     name: string;
     number: string;
     organization: string;
-    dirPath: string;
+    dir_path: string;
     description: string;
-    createdBy: string;
-    isDeleted: string;
-    validityDate?: Date;
-    dateCreated?: Date;
-    dateUpdated?: Date;
+    created_by: string;
+    is_deleted: string;
+    validity_date?: Date;
+    date_created?: Date;
+    date_updated?: Date;
     forms?: FormJSON[];
 }

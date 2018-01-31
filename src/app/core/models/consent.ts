@@ -45,19 +45,19 @@ export class Consent {
     name: string,
     number: string,
     organization: string,
-    dirPath: string,
+    dir_path: string,
     description: string,
-    createdBy: string,
-    isDeleted: string,
+    created_by: string,
+    is_deleted: string,
     forms?: Form[],
   ) {
     this.name = name;
     this.number = number;
     this.organization = organization;
-    this.dirPath = dirPath;
+    this.dirPath = dir_path;
     this.description = description;
-    this.createdBy = createdBy;
-    this.isDeleted = isDeleted;
+    this.createdBy = created_by;
+    this.isDeleted = is_deleted;
     this.forms = forms;
   }
 
