@@ -1,4 +1,4 @@
-import {SectionJSON} from './sectionjson';
+import { SectionJSON } from './sectionjson';
 
 export interface FormJSON {
     _id: string;

@@ -4,28 +4,28 @@ import { KeyGenerator } from 'app/core/utils';
 
 import { Router, NavigationExtras, ActivatedRoute, ParamMap } from '@angular/router';
 
-import { 
-  Question, 
-  Form, 
+import {
+  Question,
+  Form,
   Section,
-  Organization, 
+  Organization,
   Department,
   RegType,
   Option
-  } from 'app/core/models';
+} from 'app/core/models';
 
-import { FormService }          from 'app/core/services';
-import { OrganizationService }  from 'app/core/services';
-import { RegTypeService }       from 'app/core/services';
-import { DepartmentService }    from 'app/core/services';
-import { SharedDataService }    from 'app/core/services';
+import { FormService } from 'app/core/services';
+import { OrganizationService } from 'app/core/services';
+import { RegTypeService } from 'app/core/services';
+import { DepartmentService } from 'app/core/services';
+import { SharedDataService } from 'app/core/services';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-form-question',
   templateUrl: './form-create.component.html',
   styleUrls: ['./form-create.component.css']
-}) 
+})
 
 export class FormCreateComponent implements OnInit {
 
@@ -40,7 +40,7 @@ export class FormCreateComponent implements OnInit {
 
   private errors: any = {};
   private has_errors = false;
-  private hide_key = true ;
+  private hide_key = true;
   private is_processing = false;
 
   private newForm: Form;
@@ -61,6 +61,7 @@ export class FormCreateComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log('form-create');
     this.getRegistryTypes();
     this.getDepartments();
     // TO DO:
@@ -83,12 +84,12 @@ export class FormCreateComponent implements OnInit {
 
   //TODO: Refractor default declaration
   initCreateForm(): void {
-    if (this.sharedData.getStorage()){
-      let old_form : Form = <Form>this.sharedData.getStorage().form;
-      let sections : Section[] = [];
+    if (this.sharedData.getStorage()) {
+      let old_form: Form = <Form>this.sharedData.getStorage().form;
+      let sections: Section[] = [];
       if (old_form.sections) {
         old_form.sections.forEach((section) => {
-          let questions : Question[] = [];
+          let questions: Question[] = [];
           if (section.questions) {
             section.questions.forEach((question) => {
               questions.push(new Question(
@@ -125,8 +126,8 @@ export class FormCreateComponent implements OnInit {
     }
     else {
 
-      let sections : Section[] = [];
-      let questions : Question[] = [];
+      let sections: Section[] = [];
+      let questions: Question[] = [];
       sections.push(new Section(
         this.keyGenerator.create(),
         'Untitled section',
@@ -142,26 +143,26 @@ export class FormCreateComponent implements OnInit {
       );
 
       console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
-/*
-      newForm = {
-        id: 0, 
-        name: "Untitled form",
-        type: "Patient Repository", 
-        organization: "University of the Philippines - Philippine General Hospital", 
-        department: "General Surgery Department",
-        sections: [
-          {
-            key: this.keyGenerator.create(),
-            name: "Untitled section",
-            order: 0,
-            questions: []
-          }
-        ]
-      };
-      */
+      /*
+            newForm = {
+              id: 0, 
+              name: "Untitled form",
+              type: "Patient Repository", 
+              organization: "University of the Philippines - Philippine General Hospital", 
+              department: "General Surgery Department",
+              sections: [
+                {
+                  key: this.keyGenerator.create(),
+                  name: "Untitled section",
+                  order: 0,
+                  questions: []
+                }
+              ]
+            };
+            */
     }
 
-    this.data = this.newForm ;
+    this.data = this.newForm;
     this.initTemplateFormGroup();
 
   }
@@ -173,81 +174,83 @@ export class FormCreateComponent implements OnInit {
 
   initUpdateForm(id: string): void {
 
-    if(this.sharedData.getStorage()){
+    console.log('initUpdate');
+    if (this.sharedData.getStorage()) {
       this.data = this.sharedData.getStorage().form;
       this.initTemplateFormGroup();
     }
     else {
       this.formService
-          .getForm(id)
-          .subscribe(
-            existingForm => {
-              this.data = existingForm;
-              this.initTemplateFormGroup();
-            }
-          );
+        .getForm(id)
+        .subscribe(
+        existingForm => {
+          this.data = existingForm;
+          this.initTemplateFormGroup();
+        }
+        );
     }
   }
 
   initTemplateFormGroup() {
 
+    console.log('initTemplateFormGroup');
     this.templateForm = this.toFormGroup(this.data);
   }
 
   //TODO: Refractor default declaration
-  toFormGroup(data: Form){
+  toFormGroup(data: Form) {
 
     return this.fb.group({
-      id: data.id, 
+      id: data.id,
       name: data.name,
       type: data.type,
-      organization : data.organization,
+      organization: data.organization,
       department: data.department
     });
   }
 
-  getRegistryTypes(){
+  getRegistryTypes() {
 
     this.regTypeService
-        .getRegTypes()
-        .subscribe(
-          regType => {
-            this.registryTypes= regType;
-          }
-        );
+      .getRegTypes()
+      .subscribe(
+      regType => {
+        this.registryTypes = regType;
+      }
+      );
   }
 
-  getDepartments(){
+  getDepartments() {
 
     this.departmentService
-        .getDepartments()
-        .subscribe(
-          departments => {
-            this.departments = departments;
-          }
-        );
+      .getDepartments()
+      .subscribe(
+      departments => {
+        this.departments = departments;
+      }
+      );
   }
 
-  getOrganizations(){
+  getOrganizations() {
 
     this.organizationService
-        .getAll()
-        .subscribe(
-          organizations => {
-            this.organizations = organizations;
-          }
-        );
+      .getAll()
+      .subscribe(
+      organizations => {
+        this.organizations = organizations;
+      }
+      );
   }
 
-  onAddSection(){
+  onAddSection() {
 
     let questions: Question[] = [];
     this.data.sections.push(new Section(
-        this.keyGenerator.create(),
-        'Untitled section',
-        0,
-        questions
-      ));
+      this.keyGenerator.create(),
+      'Untitled section',
+      0,
+      questions
+    ));
 
     /*
     this.data.sections.push({
@@ -258,7 +261,7 @@ export class FormCreateComponent implements OnInit {
     */
   }
 
-  onSaveForm(inputForm: Form){
+  onSaveForm(inputForm: Form) {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
@@ -272,36 +275,36 @@ export class FormCreateComponent implements OnInit {
     console.log(this.data);
 
     this.formService
-        .submitForm(this.data.toJSON())
-        .subscribe(created_question => {
-          this.is_processing = false;
-          console.warn(created_question, 'AYUS');
+      .submitForm(this.data.toJSON())
+      .subscribe(created_question => {
+        this.is_processing = false;
+        console.warn(created_question, 'AYUS');
 
-          this.notificationsService
-              .success(
-                'Form: ' + inputForm.name,
-                'Successfully Saved.', 
-                {
-                  timeOut: 10000,
-                  showProgressBar: true,
-                  pauseOnHover: false,
-                  clickToClose: false
-                }
-              )
-        },
-        errors => {
-          this.errors = errors;
-          this.has_errors = true;
-          this.is_processing = false;
-          console.warn('errro');
-          throw errors
-        });
+        this.notificationsService
+          .success(
+          'Form: ' + inputForm.name,
+          'Successfully Saved.',
+          {
+            timeOut: 10000,
+            showProgressBar: true,
+            pauseOnHover: false,
+            clickToClose: false
+          }
+          )
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+        console.warn('errro');
+        throw errors
+      });
   }
 
   onPreviewForm(previewForm: Form, id: string) {
-     let params = { 'form': previewForm };
+    let params = { 'form': previewForm };
 
-     this.sharedData.setStorage(params);
-     this.router.navigate([`./forms/preview/${id}`]);
+    this.sharedData.setStorage(params);
+    this.router.navigate([`./forms/preview/${id}`]);
   }
 }

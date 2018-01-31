@@ -1,0 +1,105 @@
+<!-- consent form-->
+<div class="col-md-12 col-sm-12 col-xs-12"> 
+  <form 
+        [formGroup]="consentFormGroup" novalidate>
+
+    <div class="row">
+        <div class="col-md-12 table-nav" style="background: reen">
+          <div class="col-sm-3 reset-wrapper">
+            <button class="btn btn-default pull-left"
+              *ngIf="state_view !== 'view'"
+              (click)="onResetClick()">
+              <i class="fa fa-refresh"></i> &nbsp; Reset
+            </button>
+          </div>
+          <div class="col-sm-4 col-sm-offset-1">
+            <div class="alert alert-danger"
+                  [hidden]="!has_errors">
+              <strong>
+                <i class="fa fa-warning"></i> Unable to process your request.
+              </strong>
+            </div>
+            <br/>
+          </div>
+      
+          <div class="row">
+            <button class="btn btn-success pull-right"
+              *ngIf="state_view === 'create'"
+              [disabled]="consentFormGroup.status === 'INVALID' || is_processing"
+              (click)="onSaveClick(consentFormGroup.value)">
+              <i class="fa fa-save"></i> &nbsp; Save
+            </button>
+            <button class="btn btn-success pull-right"
+              *ngIf="state_view === 'update'"
+              [hidden]="state_view !== 'update'"
+              [disabled]="consentFormGroup.status === 'INVALID' || is_processing"
+              (click)="onUpdateClick(consentFormGroup.value)">
+              <i class="fa fa-edit"></i> &nbsp; Update 
+            </button>
+          </div> 
+        </div> 
+    </div>
+    <!-- information -->
+    <div class="row text-center" class="x_panel">
+        <div class="col-sm-12" style="background: ink" > 
+          <div class="material-form-group">
+              <mat-form-field class="material-form-control"> 
+              <input matInput
+                    placeholder="Name"
+                    [errorStateMatcher]="error_matcher"
+                    formControlName="name">
+                    <mat-error *ngIf="consentFormGroup.get('name').hasError('required')">
+                        Name is required
+                    </mat-error>
+              </mat-form-field>
+              <mat-form-field class="material-form-control">
+                  <input matInput
+                        placeholder="Number"
+                        formControlName="number">
+                      <mat-error *ngIf="consentFormGroup.get('number').hasError('required')">
+                        Number is required
+                      </mat-error>
+              </mat-form-field>
+          </div>
+          <div class="material-form-group">
+            <mat-form-field class="material-form-control">
+                <input matInput
+                      placeholder="Description"
+                      formControlName="description">
+            </mat-form-field>
+          </div>
+      </div>
+    </div>
+    <!-- information -->
+    <app-consent-form-add
+      (onSaveFormAddTrigger)="onAddSelectedForm($event)"
+      (onCancelFormAddTrigger)="onCancelAddForm()"
+      [show]="!show_selected_forms">
+    </app-consent-form-add>
+
+
+    <app-conset-form-manage
+      (onCallSelectFormTrigger)="onAddForm()"
+      [parentForm]="consentFormGroup" 
+      [show]="show_selected_forms"
+      [consentForm]="data"
+      [datasource]="datasource"
+      [viewState]="state_view" >
+    </app-conset-form-manage>
+
+    <!-- <app-case-form-add
+    (onSaveFormAddTrigger)="onAddSelectedForm($event)"
+    (onCancelFormAddTrigger)="onCancelAddForm()"
+    [show]="!show_selected_forms">
+    </app-case-form-add>
+    
+  
+  <app-case-form-manage 
+    (onCallSelectFormTrigger)="onAddForm()"
+    [show]="show_selected_forms"
+    [forms]="_case.forms"
+    [method]="method">
+  </app-case-form-manage> -->
+
+  </form>
+</div> <!-- consentFormGroup-->

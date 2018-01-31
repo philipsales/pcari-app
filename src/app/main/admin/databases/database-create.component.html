@@ -28,11 +28,13 @@
   <div class="row" id="page-body">
     <div class="col-md-12 table-nav">
       <div class="col-sm-3 reset-wrapper">
-        <button class="btn btn-default pull-left">
+        <button class="btn btn-default pull-left"
+          *ngIf="state_view !== 'view'"
+          (click)="onResetClick()">
           <i class="fa fa-refresh"></i> &nbsp; Reset
         </button>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-4 col-sm-offset-1">
         <div class="alert alert-danger"
              [hidden]="!has_errors">
           <strong>
@@ -40,19 +42,44 @@
           </strong>
           <em>Please see details below: </em>
         </div>
+        <br/>
       </div>
 
-      <div class="col-sm-3 save-wrapper">
-        <button class="btn btn-success pull-right"
-          [disabled]="!databaseCreateForm.form.valid || is_processing"
-          (click)="onSaveClick(new_database)">
-          <i class="fa fa-save"></i> &nbsp; Save
-        </button>
+      <div class="col-sm-4 save-wrapper">
+        <div class="row">
+          <button class="btn btn-success pull-right"
+            *ngIf="state_view === 'create'"
+
+            (click)="onSaveClick(database)">
+            <i class="fa fa-save"></i> &nbsp; Save
+          </button>
+          <button class="btn btn-success pull-right"
+            *ngIf="state_view === 'update'"
+            [hidden]="state_view !== 'update'"
+            [disabled]="!databaseCreateForm.form.valid || is_processing"
+            (click)="onUpdateClick(database)">
+            <i class="fa fa-edit"></i> &nbsp; Update 
+          </button>
+          <button class="btn btn-danger pull-right"
+            *ngIf="state_view === 'update'"
+            [hidden]="state_view !== 'update'"
+            (click)="is_restore=true"
+            [disabled]="!databaseCreateForm.form.valid || is_processing">
+            <i class="fa fa-database"></i> &nbsp; Restore 
+          </button>
+          <button class="btn btn-warning pull-right"
+            *ngIf="state_view === 'update' || state_view === 'view'"
+            [hidden]="state_view !== 'update' || state_view === 'view'"
+            (click)="onUpdateClick(database)">
+            <i class="fa fa-edit"></i> &nbsp; Download
+          </button>
+        </div>
+
       </div>
     </div>
 
-    <!-- Database Name -->
-    <div class="col-md-12 col-sm-12 col-xs-12"> 
+    <!-- Update Fields-->
+    <div [hidden]="is_restore" class="col-md-12 col-sm-12 col-xs-12" >
       <div class="x_panel">
         <div class="x_content">
           <br>
@@ -67,12 +94,14 @@
                    (input_name.errors && (input_name.dirty || input_name.touched)) }">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12"
                        for="databasename">
-                    Backup Name
+                    Name
                   <span class="required">*</span>
                 </label>
+               
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <input type="text" id="databasename" required="required"
-                         [(ngModel)]="new_database.name"
+                  <input [disabled]="state_view === 'view'"
+                         type="text" id="databasename" required="required"
+                         [(ngModel)]="database.name"
                          #input_name="ngModel" name="input_name"
                          class="form-control col-md-7 col-xs-12">
                   <div class="help-block"
@@ -99,24 +128,92 @@
                   <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-            <input type="text" id="databasedescription" required="required"
-                   [(ngModel)]="new_database.description"
-                   #input_description="ngModel" name="input_description"
-                   name="description"
-                   class="form-control col-md-7 col-xs-12">
-            <div class="help-block"
-                 *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
-              <span  [hidden]="!(input_description.errors.required)">
-                Description is required
-              </span>
-            </div>
-          </div>
-        </div>
+                <textarea 
+                      [disabled]="state_view === 'view'"
+                      type="text" id="databasedescription" required="required"
+                      [(ngModel)]="database.description"
+                      #input_description="ngModel" name="input_description"
+                      name="description"
+                      class="form-control col-md-7 col-xs-12"></textarea>
+                  <div class="help-block"
+                      *ngIf="(input_description.errors && (input_description.dirty || input_description.touched))">
+                    <span  [hidden]="!(input_description.errors.required)">
+                      Description is required
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group"
+                   [ngClass]="{'has-error': errors?.dirPath|| 
+                   (input_dirPath.errors && (input_dirPath.dirty || input_dirPath.touched)) }">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                 for="databasedirPath">
+                    Template 
+                  <span class="required">*</span>
+                </label>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                <input 
+                      [disabled]="state_view === 'view'"
+                      type="text" id="databasedirPath" required="required"
+                      [(ngModel)]="database.dirPath"
+                      #input_dirPath="ngModel" name="input_dirPath"
+                      name="dirPath"
+                      class="form-control col-md-7 col-xs-12">
+                  <div class="help-block"
+                      *ngIf="(input_dirPath.errors && (input_dirPath.dirty || input_dirPath.touched))">
+                    <span  [hidden]="!(input_dirPath.errors.required)">
+                      Template is required
+                    </span>
+                  </div>
+                </div>
+              </div>
+
         </form>
       </div>
     </div>      
-  </div> <!-- DatabaseName -->
+  </div>
+  <!-- Update Fields-->
 
+  <!-- Restore Warning -->
+  <div *ngIf="is_restore" class="col-md-12 col-sm-12 col-xs-12" >
+    <div class="x_panel">
+      <div class="x_content">
+        <br>
+        <form data-parsley-validate=""
+              class="form-horizontal form-label-left"
+              #databaseRestoreForm="ngForm" novalidate>
+          <div class="form-group" >
+            <div class="col-sm-6 col-sm-offset-3">
+              <div class="alert alert-danger" >
+                <strong>
+                  <i class="fa fa-warning"></i> Are you sure to restore the database
+                  using this backup.
+                </strong>
+                <em>All records in the database will be overwritten once submitted</em>
+                <br/> <br/>
+                <div class="row text-center">
+                  <button class="btn btn-danger"
+                      [disabled]="is_processing"
+                      (click)="onRestoreClick(database._id)" >
+                    <i class="fa fa-check"></i> &nbsp; Yes 
+                  </button>
+                  <button class="btn btn-success"
+                    (click)="is_restore=false">
+                    <i class="fa fa-times"></i> &nbsp; No 
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>      
+  </div> 
+  <!-- Restore Warning -->
 
     
   </div> <!-- page-body -->

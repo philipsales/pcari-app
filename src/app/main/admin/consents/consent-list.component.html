@@ -36,7 +36,7 @@
       </div>
       <a [routerLink]="['/admin/consent/create']"
          class="btn btn-default pull-right">
-        <i class="fa fa-plus"></i> &nbsp; Create Consent Form 
+        <i class="fa fa-plus"></i> &nbsp; Create Consent
       </a>
     </div>
     
@@ -58,19 +58,19 @@
 	    <td>{{ consent.name }}</td>
       <td>{{ consent.number}} </td>
       <td>{{ consent.description}} </td>
-	    <td>{{ consent.date_created }}</td>
-			<!--<td>
-        <button class="btn btn-sm btn-success"
-          (click)="downloadJSON()">Download</button>
-			</td>-->
-	    <td>
-				<!--<button class="btn btn-sm btn-info"
-          (click)="restore()">Restore</button>-->
-          <button class="btn" [routerLink]="['/admin/consent/restore']"
-             class="btn btn-default pull-right">
-             Update 
-          </button>
-	    </td>
+			<td>{{ consent.dateCreated | date: 'MMM dd, yyyy' }}</td>
+			<td>
+				<button class="btn" [routerLink]="['/admin/consent/view/',consent._id]"
+					 class="btn btn-sm btn-default pull-right">
+					 <i class="fa fa-eye"></i> &nbsp; View 
+				</button>
+			</td>
+			<td>
+				<button class="btn" [routerLink]="['/admin/consent/update/',consent._id]"
+					 class="btn btn-sm btn-warning pull-right">
+					 <i class="fa fa-edit"></i> &nbsp; Update 
+				</button>
+			</td>
 	  </tr>
 	</tbody>
       </table>

@@ -3,26 +3,29 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DatabaseListComponent } from './database-list.component';
 import { DatabaseCreateComponent } from './database-create.component';
-import { DatabaseRestoreComponent} from './database-restore.component';
 
 const routes: Routes = [
-    {
-      path: 'list',
-      component: DatabaseListComponent
-    },
-    {
-      path: 'create',
-      component: DatabaseCreateComponent
-    },
-    {
-      path: 'restore',
-      component: DatabaseRestoreComponent
-    },
-    {path: '', redirectTo: 'list'}
+  {
+    path: 'list',
+    component: DatabaseListComponent
+  },
+  {
+    path: 'create',
+    component: DatabaseCreateComponent
+  },
+  {
+    path: 'update/:id',
+    component: DatabaseCreateComponent
+  },
+  {
+    path: 'view/:id',
+    component: DatabaseCreateComponent
+  },
+  { path: '', redirectTo: 'list' }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class DatabaseRoutingModule { }

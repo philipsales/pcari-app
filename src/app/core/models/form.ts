@@ -1,7 +1,6 @@
 import { Section } from './section';
 import { FormJSON } from './../interfaces';
 
-
 export class Form {
   id: string;
   name: string;
@@ -15,25 +14,24 @@ export class Form {
   is_deleted?: boolean;
   sections?: Section[];
 
-
   static fromJSON(json: FormJSON): Form {
     if (typeof json === 'string') {
-        return JSON.parse(json, Form.reviver);
+      return JSON.parse(json, Form.reviver);
     } else {
-        const section = Object.create(Form.prototype);
-        return Object.assign(section, json, {
-          id: json._id,
-          name: json.name,
-          organization: json.organization,
-          department: json.department,
-          type: json.type,
-          approval: json.approval,
-          status: json.status,
-          created_by: json.created_by,
-          date_created: new Date(json.date_created),
-          is_deleted: json.is_deleted,
-          sections: json.sections
-        });
+      const section = Object.create(Form.prototype);
+      return Object.assign(section, json, {
+        id: json._id,
+        name: json.name,
+        organization: json.organization,
+        department: json.department,
+        type: json.type,
+        approval: json.approval,
+        status: json.status,
+        created_by: json.created_by,
+        date_created: new Date(json.date_created),
+        is_deleted: json.is_deleted,
+        sections: json.sections
+      });
     }
   }
 
@@ -46,15 +44,17 @@ export class Form {
     organization: string,
     department: string,
     type: string,
-    sections?: Section[]
+    sections?: Section[],
+    date_created?: Date
   ) {
-      this.name = name;
-      this.organization = organization;
-      this.department = department;
-      this.type = type;
-      if (sections) {
-        this.sections = sections;
-      }
+    this.name = name;
+    this.organization = organization;
+    this.department = department;
+    this.type = type;
+    if (sections) {
+      this.sections = sections;
+    }
+    this.date_created = date_created;
   }
 
   toJSON(): FormJSON {
@@ -67,6 +67,7 @@ export class Form {
       sections = this.sections.map((section) => section.toJSON());
     }
     return Object.assign({}, this, {
+
       _id: this.id,
       name: this.name,
       organization: this.organization,

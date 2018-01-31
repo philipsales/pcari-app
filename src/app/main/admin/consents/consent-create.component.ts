@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationsService } from 'angular2-notifications';
 
-import { Consent } from 'app/core/models'; 
+import { Router, NavigationExtras, ActivatedRoute, ParamMap } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-consent-create',
@@ -10,19 +10,12 @@ import { Consent } from 'app/core/models';
 })
 export class ConsentCreateComponent implements OnInit {
 
-  private new_consent: Consent;
-  private errors: any = {};
-  private has_errors = false;
-  private is_processing = false;
-
-  constructor() { 
-     this.new_consent = new Consent('');
+  constructor(
+    private _notificationsService: NotificationsService,
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit() {
-    this.errors = {};
-    this.has_errors = false;
-    this.is_processing = true;
   }
-
 }

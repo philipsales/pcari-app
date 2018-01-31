@@ -56,9 +56,9 @@
 	    <th scope="row">{{ i + 1 }}</th>
 	    <td>{{ case.case_nbr }}</td>
 	    <td>
-					{{case.diagnosis | ellipsis:50 }} 
+					{{case.diagnosis }} 
 			</td>
-	    <td>{{ case.date_created | date :'medium' }}</td>
+	    <td>{{ case.date_created  }}</td>
 	    <td style="text-align: center">
         <button 
 				 class="btn btn-sm btn-default"
