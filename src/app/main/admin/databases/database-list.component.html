@@ -49,7 +49,7 @@
 	    <th>Description</th>
 	    <th>Created By</th>
 	    <th>Date Created</th>
-	    <th colspan="2" style="text-align: center">Action</th>
+	    <th style="text-align: center"></th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -60,15 +60,17 @@
 	    <td>{{ database.description }}</td>
 	    <td>{{ database.createdBy }}</td>
 	    <td>{{ database.dateCreated | date: 'MMM dd, yyyy' }}</td>
-	    <td>
-          <button class="btn" [routerLink]="['/admin/database/view/',database._id]"
-						 class="btn btn-sm btn-default pull-right">
+			<td style="text-align: right">
+					<button 
+							class="btn btn-sm btn-default"
+							[routerLink]="['/admin/database/view/',database._id]"
+							class="btn btn-sm btn-default ">
 						 <i class="fa fa-eye"></i> &nbsp; View 
           </button>
-			</td>
-			<td>
-          <button class="btn" [routerLink]="['/admin/database/update/',database._id]"
-             class="btn btn-sm btn-warning pull-right">
+					<button 
+							class="btn btn-sm btn-default"
+							[routerLink]="['/admin/database/update/',database._id]"
+							class="btn btn-sm btn-warning ">
 						 <i class="fa fa-edit"></i> &nbsp; Update 
           </button>
 	    </td>

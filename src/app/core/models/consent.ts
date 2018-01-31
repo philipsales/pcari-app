@@ -20,7 +20,6 @@ export class Consent {
       return JSON.parse(json, Consent.reviver);
     } else {
       const consent = Object.create(Consent.prototype);
-      console.log('formJSON: ===', consent);
       return Object.assign(consent, json, {
         id: json._id,
         name: json.name,
@@ -28,7 +27,7 @@ export class Consent {
         organization: json.organization,
         dir_path: json.dir_path,
         description: json.description,
-        validityDate: json.validity_date,
+        validity_date: json.validity_date,
         created_by: json.created_by,
         date_created: json.date_created,
         is_deleted: json.is_deleted,
@@ -48,8 +47,9 @@ export class Consent {
     dir_path: string,
     description: string,
     created_by: string,
-    is_deleted: string,
     forms?: Form[],
+    date_created?: Date,
+    is_deleted?: string,
   ) {
     this.name = name;
     this.number = number;
@@ -57,6 +57,7 @@ export class Consent {
     this.dir_path = dir_path;
     this.description = description;
     this.created_by = created_by;
+    this.date_created = date_created;
     this.is_deleted = is_deleted;
     this.forms = forms;
   }
@@ -69,6 +70,7 @@ export class Consent {
     return Object.assign({}, this, {
       _id: this.id,
       name: this.name,
+      date_created: this.date_created,
       organization: this.organization,
       forms: forms
     });

@@ -49,7 +49,7 @@
 	    <th>Form number</th>
 	    <th>Description </th>
 	    <th>Date Created</th>
-	    <th colspan="2" style="text-align: center">Action</th>
+	    <th style="text-align: center"></th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -58,16 +58,18 @@
 	    <td>{{ consent.name }}</td>
       <td>{{ consent.number}} </td>
       <td>{{ consent.description}} </td>
-			<td>{{ consent.dateCreated | date: 'MMM dd, yyyy' }}</td>
-			<td>
-				<button class="btn" [routerLink]="['/admin/consent/view/',consent._id]"
-					 class="btn btn-sm btn-default pull-right">
+			<td>{{ consent.date_created | date: 'MMM dd, yyyy' }}</td>
+			<td style="text-align: right">
+        <button 
+						class="btn btn-sm btn-default"
+						[routerLink]="['/admin/consent/view/',consent._id]"
+						class="btn btn-sm btn-default ">
 					 <i class="fa fa-eye"></i> &nbsp; View 
 				</button>
-			</td>
-			<td>
-				<button class="btn" [routerLink]="['/admin/consent/update/',consent._id]"
-					 class="btn btn-sm btn-warning pull-right">
+        <button 
+						class="btn btn-sm btn-default"
+						[routerLink]="['/admin/consent/update/',consent._id]"
+						class="btn btn-sm btn-warning ">
 					 <i class="fa fa-edit"></i> &nbsp; Update 
 				</button>
 			</td>

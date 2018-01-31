@@ -88,7 +88,7 @@ export class ConsentManageComponent implements OnInit {
   }
 
   initializeFormGroup() {
-    this.consent = new Consent('', '', '', '', '', '', '');
+    this.consent = new Consent('', '', '', '', '', '');
     this.consentFormGroup = this.toFormGroup(this.consent);
   }
 
@@ -249,7 +249,7 @@ export class ConsentManageComponent implements OnInit {
     this.errors = '';
     this.has_errors = false;
     this.is_processing = false;
-    this.consent = new Consent('', '', '', '', '', '', '');
+    this.consent = new Consent('', '', '', '', '', '');
     this.initializeFormGroup();
   }
 

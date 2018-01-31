@@ -18,8 +18,9 @@ export class ConsentListComponent implements OnInit {
     this.consentService
       .getConsents()
       .subscribe(
-      consentss => {
-        this.consents = consentss;
+      consents => {
+        console.log(consents);
+        this.consents = consents;
       }
       );
   }
