@@ -22,6 +22,11 @@ export class Question {
         return JSON.parse(json, Question.reviver);
     } else {
         const question = Object.create(Question.prototype);
+        let options_array = json.options.split('|');
+        let options_obj : Option[] = [];
+        options_array.forEach((element) => {
+          options_obj.push(new Option(element));
+        });
         return Object.assign(question, json, {
           key: json.key,
           label: json.label,
@@ -29,7 +34,7 @@ export class Question {
           value: json.value,
           required: json.required,
           order: json.order,
-          options: json.options
+          options: options_obj
         });
     }
       }
