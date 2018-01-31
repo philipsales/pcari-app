@@ -14,6 +14,10 @@ export class ConsetFormManageComponent implements OnInit {
   @Input() viewState: string;
   @Input() datasource: any;
 
+  @Input() set show(value: boolean) {
+    console.warn(this._show);
+    this._show = value;
+  }// 
   private _show: boolean;
   private is_adding_forms: boolean;
   private displayedColumns: string[] = [];
@@ -32,13 +36,12 @@ export class ConsetFormManageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.displayedColumns = ['name', 'dateCreated', 'organization'];
+    this.displayedColumns = ['name', 'date_created', 'organization'];
     console.log('SHIT', this.consentForm)
     console.log('VIEWSHIT', this.viewState)
   }
 
   onAddForm() {
-    console.log('consent-form-manage onAddForm');
     this.onCallSelectFormTrigger.emit();
   }
 

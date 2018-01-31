@@ -27,7 +27,7 @@
                 <mat-header-cell *matHeaderCellDef> Organization </mat-header-cell>
                 <mat-cell *matCellDef="let form"> {{form.organization}} </mat-cell>
             </ng-container>
-            <ng-container matColumnDef="dateCreated">
+            <ng-container matColumnDef="date_created">
                 <mat-header-cell *matHeaderCellDef> Date Created</mat-header-cell>
                 <mat-cell *matCellDef="let form"> {{form.date_created | date: 'MMM dd, yyyy hh:mm a z'}} </mat-cell>
                 <!-- <mat-cell *matCellDef="let form"> {{form.date_created}} </mat-cell> -->

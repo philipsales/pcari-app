@@ -81,6 +81,7 @@
     <app-conset-form-manage
       (onCallSelectFormTrigger)="onAddForm()"
       [parentForm]="consentFormGroup" 
+      [show]="show_selected_forms"
       [consentForm]="data"
       [datasource]="datasource"
       [viewState]="state_view" >
