@@ -8,7 +8,9 @@
              for="case">Case Number </label>
 
         <div class="col-md-5 col-sm-5 col-xs-12">
-          <input type="text" class="form-control" type="text" (change)="onChange($event)">
+          <input type="text" class="form-control" 
+            disabled
+            type="text" (change)="onChange($event)">
         </div>
         <div class="clearfix"></div>
     </div>
@@ -18,7 +20,9 @@
              for="case">Consents</label>
 
         <div class="col-md-5 col-sm-5 col-xs-12">
-          <input type="text" class="form-control" type="text">
+          <input type="text" class="form-control" 
+          [disabled]="method === 'VIEW'"
+          type="text">
         </div>
         <div class="clearfix"></div>
     </div>
@@ -32,7 +36,7 @@
             <div *ngFor="let sections of formArrayTest.controls">
               <div class="row">
                 <span class="pull-left">
-                  <h3>{{sections.get('name').value}}</h3> 
+                  <h4>{{sections.get('name').value}}</h4> 
                 </span>
               </div>
 
@@ -50,7 +54,8 @@
       </div>
 
 
-    <div class="form-row col-sm-12 pull-right">
+    <div class="form-row col-sm-12 pull-right"
+      *ngIf="method !== 'VIEW'">
       {{form.valid}}
       <button mat-raised-button color="primary"
               [disabled]="!form.valid" class="btn btn-success pull-right"

@@ -24,9 +24,11 @@ export class Question {
         const question = Object.create(Question.prototype);
         let options_array = json.options.split('|');
         let options_obj : Option[] = [];
-        options_array.forEach((element) => {
-          options_obj.push(new Option(element));
-        });
+        if (options_array) {
+          options_array.forEach((element) => {
+            options_obj.push(new Option(element));
+          });
+        }
         return Object.assign(question, json, {
           key: json.key,
           label: json.label,
@@ -37,7 +39,7 @@ export class Question {
           options: options_obj
         });
     }
-      }
+  }
 
   static reviver(key: string, value: any): any {
     return key === '' ? Question.fromJSON(value) : value;

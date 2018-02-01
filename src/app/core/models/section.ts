@@ -12,12 +12,17 @@ export class Section {
         return JSON.parse(json, Section.reviver);
     } else {
         const section = Object.create(Section.prototype);
-        return Object.assign(section, json, {
+        let output = Object.assign(section, json, {
           key: json.key,
           name: json.name,
-          order: json.order,
-          questions: json.questions
+          order: json.order
         });
+        if (json.questions) {
+          output['questions'] = json.questions.map(Question.fromJSON);
+        } else {
+          output['questions'] = [];
+        }
+        return output;
     }
   }
 

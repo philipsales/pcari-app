@@ -5,11 +5,11 @@ import { FormService } from 'app/core/services';
 import { NoJWTError } from 'app/core/errors';
 
 @Component({
-  selector: 'app-case-forms',
-  templateUrl: './case-forms.component.html',
-  styleUrls: ['./case-forms.component.css']
+  selector: 'app-case-forms-update',
+  templateUrl: './case-forms-update.component.html',
+  styleUrls: ['./case-forms-update.component.css']
 })
-export class CaseFormsComponent implements OnInit {
+export class CaseFormsUpdateComponent implements OnInit {
 
   private data: Form;
   private caseid = '';

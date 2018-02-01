@@ -19,7 +19,7 @@ export class Form {
       return JSON.parse(json, Form.reviver);
     } else {
       const section = Object.create(Form.prototype);
-      return Object.assign(section, json, {
+      let output = Object.assign(section, json, {
         id: json._id,
         name: json.name,
         organization: json.organization,
@@ -29,9 +29,14 @@ export class Form {
         status: json.status,
         created_by: json.created_by,
         date_created: new Date(json.date_created),
-        is_deleted: json.is_deleted,
-        sections: json.sections
+        is_deleted: json.is_deleted
       });
+      if (json.sections) {
+        output['sections'] = json.sections.map(Section.fromJSON);
+      } else {
+        output['sections'] = [];
+      }
+      return output;
     }
   }
 
