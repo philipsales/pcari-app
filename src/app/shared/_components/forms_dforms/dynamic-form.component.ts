@@ -12,7 +12,7 @@ import { DatepickerQuestion } from './question-datepicker';
 import { NotificationsService } from 'angular2-notifications';
 
 import { Form, Section, Question, FormAnswer, Answer, Case } from 'app/core/models';
-import { CaseService } from 'app/core/services';
+import { CaseService, FormAnswerService } from 'app/core/services';
 
 
 @Component({
@@ -34,6 +34,8 @@ export class DynamicFormComponent implements OnInit {
     }
 
     @Input() method: string;
+    @Input() caseid: string;
+    @Input() formanswerid: string;
     @Input() answers: Map<string, string>;
 
     private sectionz: Section[] = [];
@@ -54,6 +56,7 @@ export class DynamicFormComponent implements OnInit {
     constructor(
       private qcs: QuestionControlService,
       private caseservice: CaseService,
+      private formAnswerService: FormAnswerService,
       private notificationsService: NotificationsService
     ) {
     }// --constructor
@@ -213,6 +216,32 @@ export class DynamicFormComponent implements OnInit {
 
       console.warn(this.casenumber, 'CASE NUMBER');
       console.warn(answers, 'WAAAAAAAAA');
+      console.warn(forms, 'WAAAAAAAAA');
+      console.warn(this.caseid, 'WAAAAAAAAA');
+      console.warn(this.formanswerid, 'WAAAAAAAAA');
+
+      this.formAnswerService.update(
+        this.caseid,
+        this.formanswerid,
+        new FormAnswer('', '', answers)).subscribe(updated_formanswer => {
+          console.warn(updated_formanswer, 'AYUS');
+          this.notificationsService
+                .success(
+                  'Form : ' + updated_formanswer.form_name,
+                  'Successfully Updated.',
+                  {
+                    timeOut: 10000,
+                    showProgressBar: true,
+                    pauseOnHover: false,
+                    clickToClose: false
+                  }
+                );
+        }, errors => {
+          console.warn('errors');
+          throw errors;
+        });
+
+      /*
       let to_save = new Case(this.casenumber.toString(), '', forms);
       this.caseservice.create(to_save).subscribe(created_case => {
         console.warn(created_case, 'AYUS');
@@ -231,5 +260,6 @@ export class DynamicFormComponent implements OnInit {
         console.warn('errors');
         throw errors;
       });
+      */
     }// --onSubmit
 }// --DynamicFormComponent

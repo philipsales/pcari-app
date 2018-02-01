@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Helper } from '../helper';
-import { Case, FormAnswer } from '../models';
+import { Case, FormAnswer, Answer } from '../models';
 import { CaseJSON, FormAnswerJSON } from '../interfaces';
 import { environment } from 'environments/environment';
 
@@ -21,16 +21,16 @@ export class FormAnswerService {
               private httpclient: HttpClient) {
   }// --constructor
 
-  get(case_id: string, form_id: string): Observable<FormAnswer> {
-    const url = environment.API_ENDPOINT + 'cases/' + case_id + '/forms/' + form_id;
+  get(case_id: string, formanswer_id: string): Observable<FormAnswer> {
+    const url = environment.API_ENDPOINT + 'cases/' + case_id + '/forms/' + formanswer_id;
     return this.httpclient.get(url).map((response: FormAnswerJSON) => {
       console.log(response, 'OUTPUT GET /cases/forms one');
       return FormAnswer.fromJSON(response);
     }).catch(Helper.handleError);
   }
 
-  create(case_id: string, form_id: string, formanswer: FormAnswer): Observable<FormAnswer> {
-    const url = environment.API_ENDPOINT + 'cases/' + case_id + '/forms/' + form_id;
+  create(case_id: string, formanswer_id: string, formanswer: FormAnswer): Observable<FormAnswer> {
+    const url = environment.API_ENDPOINT + 'cases/' + case_id + '/forms/' + formanswer_id;
     const formanswer_json = formanswer.toJSON();
     console.log(formanswer_json);
 
@@ -42,12 +42,12 @@ export class FormAnswerService {
     }).catch(Helper.handleError);
   }
 
-  update(case_id: string, form_id: string, formanswer: FormAnswer): Observable<FormAnswer> {
-    const url = environment.API_ENDPOINT + 'cases/' + case_id + '/forms/' + form_id;
-    const formanswer_json = formanswer.toJSON();
+  update(case_id: string, formanswer_id: string, form_answers: FormAnswer): Observable<FormAnswer> {
+    const url = environment.API_ENDPOINT + 'cases/' + case_id + '/forms/' + formanswer_id;
+    const formanswer_json = form_answers.toJSON();
     console.log(formanswer_json);
 
-    return this.httpclient.patch(url, formanswer_json)
+    return this.httpclient.patch(url, {answers: formanswer_json.answers})
       .map((response: FormAnswerJSON) => {
         // return (response.json().data as Form[])
         console.log(response, 'CASE UPDATED from /cases');

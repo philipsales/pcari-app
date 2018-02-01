@@ -16,7 +16,7 @@
                 <a [routerLink]="['/biobanking/cases/update', caseid]">Case</a>
               </li>
               <li>
-                <a [routerLink]="['/biobanking/cases/view/' + caseid + '/forms/' + formid]">Form</a>
+                <a [routerLink]="['/biobanking/cases/view/' + caseid + '/forms/' + form_answer_id]">Form</a>
               </li>
             </ol>
           </div>
@@ -36,6 +36,8 @@
         <app-dynamic-form
           [method]="'UPDATE'"
           [answers]="answers"
+          [caseid]="caseid"
+          [formanswerid]="form_answer_id"
           [inquestionz]="caseform?.sections" 
           [insectionz]="caseform?.sections" >
         </app-dynamic-form>
