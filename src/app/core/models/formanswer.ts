@@ -3,6 +3,7 @@ import { FormAnswerJSON } from './../interfaces';
 
 
 export class FormAnswer {
+  id: string;
   form_id: string;
   form_name: string;
   date_created: Date;
@@ -14,6 +15,7 @@ export class FormAnswer {
     } else {
         const section = Object.create(FormAnswer.prototype);
         let output = Object.assign(section, json, {
+          id: json._id,
           form_id: json.form_id,
           form_name: json.form_name,
           date_created: new Date(json.date_created)
