@@ -31,12 +31,13 @@
 
   <div class="col-md-12 col-sm-12 col-xs-12">
     <br/> <br/>
-    <div *ngIf="data">
+    <div *ngIf="caseform">
       <div class="row">
         <app-dynamic-form
           [method]="'VIEW'"
-          [inquestionz]="data?.sections" 
-          [insectionz]="data?.sections" >
+          [answers]="answers"
+          [inquestionz]="caseform?.sections" 
+          [insectionz]="caseform?.sections" >
         </app-dynamic-form>
       </div>
     </div>

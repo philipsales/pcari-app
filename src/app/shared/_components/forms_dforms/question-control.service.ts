@@ -47,6 +47,7 @@ export class QuestionControlService {
   toFormGroup(questions: QuestionBase<any>[]) { 
     let group: any = {};
     questions.forEach(question => {
+      console.log(question.value);
       if (question.required) {
         group[question.key] = new FormControl({
           value: question.value || '',

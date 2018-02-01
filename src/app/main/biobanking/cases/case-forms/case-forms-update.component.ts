@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Form } from 'app/core/models';
+import { Form, FormAnswer, Answer } from 'app/core/models';
 import { ActivatedRoute } from '@angular/router';
-import { FormService } from 'app/core/services';
+import { FormService, FormAnswerService } from 'app/core/services';
 import { NoJWTError } from 'app/core/errors';
 
 @Component({
@@ -11,27 +11,48 @@ import { NoJWTError } from 'app/core/errors';
 })
 export class CaseFormsUpdateComponent implements OnInit {
 
-  private data: Form;
+  private caseform: Form;
   private caseid = '';
-  private formid = '';
+  private form_answer_id = '';
+  private form_id = '';
+  private answers = new Map<string, string>();
 
   constructor(
     private route: ActivatedRoute,
+    private formAnswerService: FormAnswerService,
     private formService: FormService
   ) {
-    this.data = new Form('', '', '', '');
+    this.caseform = new Form('', '', '', '');
   }
 
   ngOnInit() {
     this.caseid = this.route.snapshot.paramMap.get('id');
-    this.formid = this.route.snapshot.paramMap.get('formid');
+    this.form_answer_id = this.route.snapshot.paramMap.get('formid');
     console.log('PREVIEW', this.caseid);
-    console.log('PREVIEW', this.formid);
-    //this.formid = '5a707e0de356d86c2c579012';
-    this.formService.getForm(this.formid).subscribe((response: Form) => {
-      delete this.data;
-      this.data = response;
-      console.log(response, 'nakuhang form');
+    console.log('PREVIEW', this.form_answer_id);
+
+    this.formAnswerService.get(this.caseid, this.form_answer_id).subscribe((response: FormAnswer) => {
+      const form_answers = response;
+      this.form_id = form_answers.form_id;
+      if (form_answers.answers) {
+        this.answers.clear();
+        form_answers.answers.map((answer: Answer) => {
+          this.answers.set(answer.key, answer.answer);
+        });
+      }
+      console.log(response, 'answers for caseform');
+      console.log(this.answers, 'answers for caseform');
+
+      this.formService.getForm(this.form_id).subscribe((recv_form: Form) => {
+        delete this.caseform;
+        this.caseform = recv_form;
+        console.log(recv_form, 'nakuhang caseform');
+      }, error => {
+        console.log(error); // get the error in error handler
+        if (error instanceof NoJWTError) {
+          console.warn('TO DO : handle JWT Expired');
+        }
+      });
     }, error => {
       console.log(error); // get the error in error handler
       if (error instanceof NoJWTError) {

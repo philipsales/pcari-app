@@ -34,6 +34,7 @@ export class DynamicFormComponent implements OnInit {
     }
 
     @Input() method: string;
+    @Input() answers: Map<string, string>;
 
     private sectionz: Section[] = [];
     @Input() set insectionz(value: Section[]) {
@@ -45,7 +46,7 @@ export class DynamicFormComponent implements OnInit {
     }
 
     questions: QuestionBase<any>[] = [];
-    form : FormGroup;
+    form: FormGroup;
     payLoad = '';
     private section: string[];
     private sections: Section[];
@@ -59,9 +60,9 @@ export class DynamicFormComponent implements OnInit {
 
 
     private questions_test: QuestionBase<any>[] = [];
-    private form_test : FormGroup;
+    private form_test: FormGroup;
     private sections_test: Section;
-    private sections_array: Section[]=[];
+    private sections_array: Section[]= [];
     private casenumber: String = '123';
 
     sectionGroupTest: FormGroup;
@@ -86,7 +87,8 @@ export class DynamicFormComponent implements OnInit {
                 new TextboxQuestion({
                   key      : my_question.key,
                   label    : my_question.label,
-                  value    : my_question.value,
+                  // value    : my_question.value,
+                  value    : this.answers.get(my_question.key),
                   required : my_question.required ? true : false,
                   order: my_question.order,
                   disabled: this.method === 'VIEW'
@@ -98,7 +100,8 @@ export class DynamicFormComponent implements OnInit {
                   key      : my_question.key,
                   label    : my_question.label,
                   type     : my_question.type,
-                  value    : my_question.value,
+                  // value    : my_question.value,
+                  value    : this.answers.get(my_question.key),
                   order    : my_question.order,
                   required : my_question.required ? true : false,
                   options  : my_question.options,
@@ -111,7 +114,8 @@ export class DynamicFormComponent implements OnInit {
                   key      : my_question.key,
                   label    : my_question.label,
                   type     : my_question.type,
-                  value    : my_question.value,
+                  // value    : my_question.value,
+                  value    : this.answers.get(my_question.key),
                   order    : my_question.order,
                   required : my_question.required ? true : false,
                   options  : my_question.options,
@@ -124,7 +128,8 @@ export class DynamicFormComponent implements OnInit {
                   key      : my_question.key,
                   label    : my_question.label,
                   type     : my_question.type,
-                  value    : my_question.value,
+                  // value    : my_question.value,
+                  value    : this.answers.get(my_question.key),
                   order    : my_question.order,
                   required : my_question.required ? true : false,
                   options  : my_question.options,
@@ -137,7 +142,8 @@ export class DynamicFormComponent implements OnInit {
                   key      : my_question.key,
                   label    : my_question.label,
                   type     : my_question.type,
-                  value    : my_question.value,
+                  // value    : my_question.value,
+                  value    : this.answers.get(my_question.key),
                   required : my_question.required ? true : false,
                   order    : my_question.order,
                   disabled: this.method === 'VIEW'
@@ -151,6 +157,7 @@ export class DynamicFormComponent implements OnInit {
                   type     : my_question.type,
                   required : my_question.required ? true : false,
                   order    : my_question.order,
+                  value    : this.answers.get(my_question.key),
                   disabled: this.method === 'VIEW'
                 })
               );
@@ -161,6 +168,7 @@ export class DynamicFormComponent implements OnInit {
                   label    : my_question.label,
                   type     : my_question.type,
                   order    : my_question.order,
+                  value    : this.answers.get(my_question.key),
                   disabled: this.method === 'VIEW'
                 })
               );
@@ -171,6 +179,7 @@ export class DynamicFormComponent implements OnInit {
                   label    : my_question.label,
                   type     : my_question.type,
                   order    : my_question.order,
+                  value    : this.answers.get(my_question.key),
                   disabled: this.method === 'VIEW'
                 })
               );
