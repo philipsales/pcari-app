@@ -13,6 +13,7 @@ export class CaseFormsComponent implements OnInit {
 
   private caseform: Form;
   private caseid = '';
+  private casenumber = '';
   private form_answer_id = '';
   private form_id = '';
   private answers = new Map<string, string>();
@@ -28,8 +29,10 @@ export class CaseFormsComponent implements OnInit {
   ngOnInit() {
     this.caseid = this.route.snapshot.paramMap.get('id');
     this.form_answer_id = this.route.snapshot.paramMap.get('formid');
+    this.casenumber = this.route.snapshot.queryParamMap.get('nbr');
     console.log('PREVIEW', this.caseid);
     console.log('PREVIEW', this.form_answer_id);
+    console.log('PREVIEW', this.casenumber);
 
     this.formAnswerService.get(this.caseid, this.form_answer_id).subscribe((response: FormAnswer) => {
       const form_answers = response;

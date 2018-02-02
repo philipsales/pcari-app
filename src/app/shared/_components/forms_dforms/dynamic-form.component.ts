@@ -11,8 +11,8 @@ import { RadiobuttonQuestion } from './question-radiobutton';
 import { DatepickerQuestion } from './question-datepicker';
 import { NotificationsService } from 'angular2-notifications';
 
-import { Form, Section, Question, FormAnswer, Answer, Case } from 'app/core/models';
-import { CaseService, FormAnswerService } from 'app/core/services';
+import { Form, Section, Question, FormAnswer, Answer, Case, Consent } from 'app/core/models';
+import { CaseService, FormAnswerService, ConsentService } from 'app/core/services';
 
 
 @Component({
@@ -35,6 +35,7 @@ export class DynamicFormComponent implements OnInit {
 
     @Input() method: string;
     @Input() caseid: string;
+    @Input() casenumber: string;
     @Input() formanswerid: string;
     @Input() answers: Map<string, string>;
 
@@ -47,6 +48,7 @@ export class DynamicFormComponent implements OnInit {
       }
     }
 
+    private consents: Consent[];
     questions: QuestionBase<any>[] = [];
     form: FormGroup;
     payLoad = '';
@@ -57,6 +59,7 @@ export class DynamicFormComponent implements OnInit {
       private qcs: QuestionControlService,
       private caseservice: CaseService,
       private formAnswerService: FormAnswerService,
+      private consentService: ConsentService,
       private notificationsService: NotificationsService
     ) {
     }// --constructor
@@ -66,12 +69,16 @@ export class DynamicFormComponent implements OnInit {
     private form_test: FormGroup;
     private sections_test: Section;
     private sections_array: Section[]= [];
-    private casenumber: String = '123';
 
     sectionGroupTest: FormGroup;
     formArrayTest: FormArray;
 
     ngOnInit() {
+      this.consentService.getConsents().subscribe(
+      consents => {
+        console.log(consents);
+        this.consents = consents;
+      });
       this.initUI();
     }// --onInit
 
@@ -198,11 +205,6 @@ export class DynamicFormComponent implements OnInit {
         this.form = this.qcs.toFormGroup(this.questions);
         console.log('--formARrayTest--', this.formArrayTest);
         console.log('--this.form--', this.form);
-    }
-
-    onChange(event) {
-      console.log(event.target.value);
-      this.casenumber = event.target.value;
     }
 
     onSubmit() {
