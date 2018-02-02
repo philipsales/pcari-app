@@ -17,6 +17,9 @@ export class RolesManageComponent implements OnInit {
     private _role: Role;
     @Input() set role(value: Role) {
         this._role = value;
+        if (!this._role.permissions) {
+            this._role.permissions = [];
+        }
         this._resetrole = this._role.toJSON();
         console.warn('HELLO!');
     }// -- _reinit setter
