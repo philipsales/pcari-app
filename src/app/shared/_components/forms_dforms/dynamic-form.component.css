@@ -239,7 +239,7 @@ form {
 
 }
 .form-editor-body {
-   /* width: 900px !important; */
+   width: 100%;
    max-width: 900px;
    display: inline-block
 }
