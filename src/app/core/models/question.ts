@@ -68,7 +68,9 @@ export class Question {
   toJSON(): QuestionJSON {
     let stringified_options = '';
     this.options.forEach((element) => {
-      stringified_options += '|' + element.name;
+      if (element) {
+        stringified_options += '|' + element.name;
+      }
     });
 
     return Object.assign({}, this, {
