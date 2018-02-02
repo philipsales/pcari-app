@@ -26,7 +26,9 @@ export class Question {
         let options_obj : Option[] = [];
         if (options_array) {
           options_array.forEach((element) => {
-            options_obj.push(new Option(element));
+            if (element) {
+              options_obj.push(new Option(element));
+            }
           });
         }
         return Object.assign(question, json, {

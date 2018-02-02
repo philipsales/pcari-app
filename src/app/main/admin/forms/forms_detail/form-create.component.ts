@@ -173,21 +173,16 @@ export class FormCreateComponent implements OnInit {
   }
 
   initUpdateForm(id: string): void {
-
     console.log('initUpdate');
     if (this.sharedData.getStorage()) {
       this.data = this.sharedData.getStorage().form;
       this.initTemplateFormGroup();
-    }
-    else {
-      this.formService
-        .getForm(id)
-        .subscribe(
-        existingForm => {
+    } else {
+      this.formService.getForm(id)
+        .subscribe(existingForm => {
           this.data = existingForm;
           this.initTemplateFormGroup();
-        }
-        );
+        });
     }
   }
 
@@ -199,7 +194,6 @@ export class FormCreateComponent implements OnInit {
 
   //TODO: Refractor default declaration
   toFormGroup(data: Form) {
-
     return this.fb.group({
       id: data.id,
       name: data.name,
