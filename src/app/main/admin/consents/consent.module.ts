@@ -8,10 +8,12 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ConsentDummyApiResponse } from 'app/core/services-dummy';
 
 import { MaterialModule } from 'app/shared/_material/material.module';
+import { SharedModule } from 'app/shared/shared.module';
 
 import { ConsentRoutingModule } from './consent-routing.module';
 import { ConsentService } from 'app/core/services';
 import { FormService } from 'app/core/services';
+
 
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
@@ -31,6 +33,7 @@ import { ConsentManageComponent } from './consent-manage/consent-manage.componen
     ReactiveFormsModule,
     HttpModule,
     //InMemoryWebApiModule.forRoot(ConsentDummyApiResponse),
+    SharedModule,
     MaterialModule,
     ConsentRoutingModule
   ],

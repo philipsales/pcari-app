@@ -55,19 +55,17 @@
 	<tbody>
 	  <tr  *ngFor="let consent of consents; let i = index">
 	    <th scope="row">{{ i + 1 }}</th>
-	    <td>{{ consent.name }}</td>
-      <td>{{ consent.number}} </td>
-      <td>{{ consent.description}} </td>
+      <td matTooltip="">{{ consent.name  }} </td>
+      <td matTooltip="">{{ consent.number }} </td>
+      <td matTooltip="{{consent.description}}">{{ consent.description | ellipsis:50 }} </td>
 			<td>{{ consent.date_created | date: 'MMM dd, yyyy' }}</td>
 			<td style="text-align: right">
         <button 
-						class="btn btn-sm btn-default"
 						[routerLink]="['/admin/consent/view/',consent._id]"
 						class="btn btn-sm btn-default ">
 					 <i class="fa fa-eye"></i> &nbsp; View 
 				</button>
         <button 
-						class="btn btn-sm btn-default"
 						[routerLink]="['/admin/consent/update/',consent._id]"
 						class="btn btn-sm btn-warning ">
 					 <i class="fa fa-edit"></i> &nbsp; Update 
