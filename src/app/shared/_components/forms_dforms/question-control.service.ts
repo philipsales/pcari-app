@@ -45,15 +45,23 @@ export class QuestionControlService {
   }//--toFormGroup
 
   toFormGroup(questions: QuestionBase<any>[]) { 
-  let group: any = {};
-
+    let group: any = {};
     questions.forEach(question => {
-      group[question.key] 
-        = question.required ? new FormControl(question.value || '', Validators.required) 
-                            : new FormControl(question.value || '');
+      console.log(question.value);
+      if (question.required) {
+        group[question.key] = new FormControl({
+          value: question.value || '',
+          disabled: question.disabled
+        }, Validators.required);
+      } else {
+        group[question.key] = new FormControl({
+          value: question.value || '',
+          disabled: question.disabled
+        });
+      }
     });
-	return new FormGroup(group);
-  }//--toFormGroup
+    return new FormGroup(group);
+  }// --toFormGroup
 
   toFormGroupQuestionBase(section: Section) {
     return this.fb.group( {

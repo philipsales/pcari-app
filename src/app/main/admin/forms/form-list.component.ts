@@ -26,6 +26,7 @@ export class FormListComponent implements OnInit {
         .subscribe(
           forms => {
             this.forms = forms;
+            console.log(this.forms, 'FORMS');
           }
         );
 

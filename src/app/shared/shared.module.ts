@@ -8,6 +8,8 @@ import { UserFormComponent } from './_components/user-form.component';
 import { MaterialModule } from 'app/shared/_material/material.module';
 import { EllipsisPipe } from './_pipes/ellipsis.pipe';
 
+import { ConsentService } from 'app/core/services';
+
 // DFORMS
 // import { DformsComponent } from './_components/forms_dforms/dforms.component';
 import { DynamicFormComponent } from './_components/forms_dforms/dynamic-form.component';
@@ -24,6 +26,7 @@ import { QuestionContentComponent } from './_components/forms_question/question-
 
 import { QuestionOptionArrayComponent } from './_components/forms_option/question-option-array.component';
 import { QuestionOptionComponent } from './_components/forms_option/question-option.component';
+import { Consent } from 'app/core/models';
 
 
 @NgModule({
@@ -52,6 +55,9 @@ import { QuestionOptionComponent } from './_components/forms_option/question-opt
 
     QuestionOptionArrayComponent,
     QuestionOptionComponent
+  ],
+  providers: [
+    ConsentService
   ],
   exports: [
     UserFormComponent,

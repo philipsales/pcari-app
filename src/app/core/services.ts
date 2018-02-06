@@ -12,3 +12,4 @@ export * from './services/regtype.service';
 export * from './services/department.service';
 export * from './services/shared-data.service';
 export * from './services/permission.service';
+export * from './services/formanswer.service';

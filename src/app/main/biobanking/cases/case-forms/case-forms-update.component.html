@@ -16,7 +16,7 @@
                 <a [routerLink]="['/biobanking/cases/update', caseid]">Case</a>
               </li>
               <li>
-                <a [routerLink]="['/biobanking/cases/view/' + caseid + '/forms/' + formid]">Form</a>
+                <a [routerLink]="['/biobanking/cases/view/' + caseid + '/forms/' + form_answer_id]">Form</a>
               </li>
             </ol>
           </div>
@@ -34,7 +34,7 @@
     <div *ngIf="caseform">
       <div class="row">
         <app-dynamic-form
-          [method]="'VIEW'"
+          [method]="'UPDATE'"
           [answers]="answers"
           [caseid]="caseid"
           [casenumber]="casenumber"

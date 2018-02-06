@@ -112,6 +112,8 @@ export class CaseManageComponent implements OnInit {
     this.is_processing = true;
     this.caseService.update(this._case).subscribe((updated_case: Case) => {
       this.is_processing = false;
+      this._case = updated_case;
+      this._resetcase = this._case.toJSON();
       console.log(updated_case, 'CASE UPDATED : case-manage.component');
       this._notificationsService.success(
           'Updated Case : ' + updated_case.case_nbr,

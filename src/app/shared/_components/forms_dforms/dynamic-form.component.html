@@ -1,38 +1,57 @@
   <form *ngIf="form"
         [formGroup]="form"
-        (ngSubmit)="onSubmit()" 
-        style="margin-top: 20px;">
+        (ngSubmit)="onSubmit()" >
+
+    <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"
+      style="margin-bottom: 20px;"> 
+        <div class="row section-title">
+            <span class="pull-left">
+              <h4>Case Details</h4> 
+            </span>
+          </div>
+    </div>
 
     <div class="form-group">
-      <label class="question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
+      <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
              for="case">Case Number </label>
 
         <div class="col-md-5 col-sm-5 col-xs-12">
-          <input type="text" class="form-control" type="text" (change)="onChange($event)">
+          <input type="text" class="form-control" 
+            disabled
+            type="text" 
+            [value]="casenumber">
         </div>
         <div class="clearfix"></div>
     </div>
 
     <div class="form-group">
-      <label class="question-label col-md-offset-1 col-md-4 col-sm-offset-1 col-sm-4 col-xs-12" 
+      <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
              for="case">Consents</label>
 
+        
         <div class="col-md-5 col-sm-5 col-xs-12">
-          <input type="text" class="form-control" type="text">
+          <mat-select placeholder="Select your option"
+            class="material-input-full-width">
+            <mat-option *ngFor="let opt of consents"
+                class="pull-left material-input-full-width"
+                [value]="opt.id">{{opt.name}}
+            </mat-option>
+          </mat-select>
         </div>
+       
         <div class="clearfix"></div>
     </div>
 
-    <div class="ln_solid"></div>
+    
     
       <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"> 
         <div class="form-editor-body">
-          <div class="col-sm-12"> 
+          <div class="col-sm-12" style="padding-left: 0; padding-right: 0;"> 
             <!--insert form Array here-->
             <div *ngFor="let sections of formArrayTest.controls">
-              <div class="row">
+              <div class="row section-title">
                 <span class="pull-left">
-                  <h3>{{sections.get('name').value}}</h3> 
+                  <h4>{{sections.get('name').value}}</h4> 
                 </span>
               </div>
 
@@ -50,7 +69,8 @@
       </div>
 
 
-    <div class="form-row col-sm-12 pull-right">
+    <div class="form-row col-sm-12 pull-right"
+      *ngIf="method !== 'VIEW'">
       {{form.valid}}
       <button mat-raised-button color="primary"
               [disabled]="!form.valid" class="btn btn-success pull-right"

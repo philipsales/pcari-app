@@ -25,7 +25,7 @@ export class CaseService {
   getAll(): Observable<Case[]> {
     const url = environment.API_ENDPOINT + 'cases/';
     return this.httpclient.get(url).map((response: Response) => {
-      console.log(response['data'], 'OUTPUT GET /cases');
+      console.log(response['data'], 'OUTPUT GET /cases all');
       return response['data'].map(Case.fromJSON);
     }).catch(Helper.handleError);
   }
@@ -33,7 +33,7 @@ export class CaseService {
   get(case_id: string): Observable<Case> {
     const url = environment.API_ENDPOINT + 'cases/' + case_id;
     return this.httpclient.get(url).map((response: CaseJSON) => {
-      console.log(response, 'OUTPUT GET /cases');
+      console.log(response, 'OUTPUT GET /cases one');
       return Case.fromJSON(response);
     }).catch(Helper.handleError);
   }
