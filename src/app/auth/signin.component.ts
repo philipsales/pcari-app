@@ -38,12 +38,16 @@ export class SigninComponent implements OnInit {
           this.router.navigate(['my-account']);
         } else {
           this.error = 'Username or password is incorrect';
-              this.loading = false;
+          this.loading = false;
         }
       }, error => {
+          this.error = 'Username or password is incorrect';
+          this.loading = false;
+          /*
           const error_message = JSON.parse(error).message;
           this.error = error_message;
           this.loading = false;
+          */
         });
   }// --login
 
