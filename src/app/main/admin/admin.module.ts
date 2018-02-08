@@ -13,8 +13,8 @@ import { AdminMenuTitleComponent } from './admin-menu-title.component';
     AdminRoutingModule
   ],
   declarations: [
-    AdminComponent, 
-    AdminMenuComponent, 
+    AdminComponent,
+    AdminMenuComponent,
     AdminMenuTitleComponent
   ]
 })

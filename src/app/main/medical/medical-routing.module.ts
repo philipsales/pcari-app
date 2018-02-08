@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { MedicalComponent } from './medical.component';
 
 const routes: Routes = [
-  { 
-    path: '', component: MedicalComponent, 
+  {
+    path: '', component: MedicalComponent,
       children: [
         {
           path: 'cases',
@@ -12,7 +12,7 @@ const routes: Routes = [
         },
         {
           path: 'forms',
-          loadChildren: './forms/forms.module#FormsModule'
+          loadChildren: './forms/form.module#FormModule'
         },
         {
           path: 'reports',

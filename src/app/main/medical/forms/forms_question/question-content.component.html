@@ -1,0 +1,77 @@
+  <div class="panel-body">
+    <div [formGroup]="questionGroup">
+      <div class="">
+        <div class="">
+         <br/>
+         <div class="material-form-group">
+           <input type="hidden" formControlName="key">
+           <mat-form-field class="col-md-9">
+              <input matInput 
+                     placeholder="Question {{index+1}}"
+                     formControlName="label">
+           </mat-form-field>
+           <mat-form-field class="col-md-3">
+              <mat-select placeholder="Question Type"
+                         formControlName="type" >
+                <mat-option *ngFor="let type of questionTypes"
+                         [value]="type.value">{{type.label}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--<label>Order</label>-->
+        <label>&nbsp;</label>
+        <input type="hidden" 
+               class="form-control"
+               formControlName="order">
+
+        <div class="row">
+          <div class="form-group"
+               [hidden]="questionGroup.get('type').value=='textbox'  ||
+                         questionGroup.get('type').value=='textarea' ||
+                         questionGroup.get('type').value=='datepicker'">
+            <question-option-array
+               [parentForm]="questionGroup"
+               [options]="question?.options" 
+               [viewState]="viewState" >
+            </question-option-array>
+          </div>
+        </div>
+
+        <div class="ln_solid"></div>
+
+        <span class="form-footer-editor-fxn col-sm-1 pull-right" >
+            <span class="material-delete-icon-btn"
+                  matTooltip="Delete Question"
+                  (click)="removed.emit()">
+              <mat-icon>delete</mat-icon>
+          </span>
+        </span>
+
+        <span class="form-footer-editor-fxn col-sm-3 pull-right" >
+          <label class="pull-right">
+            <mat-slide-toggle
+                id="input_required" 
+                formControlName="required"
+                color="primary"
+                [checked]="question.required">
+                Required
+            </mat-slide-toggle>
+
+            <!--<mat-checkbox 
+                    id="input_required" 
+                    formControlName="required"
+                     [checked]="question.required"
+                    class="material-checkbox-margin"> Is Required 
+            </mat-checkbox>
+
+            <input type="checkbox" name="input_required"
+                 formControlName="required"
+                 [checked]="question.required"
+                 id="input_required"> Is Required?-->
+          </label>
+        </span>
+      </div>
+    </div>
+  </div>

@@ -13,8 +13,8 @@ import { MedicalMenuTitleComponent } from './medical-menu-title.component';
     MedicalRoutingModule
   ],
   declarations: [
-    MedicalComponent, 
-    MedicalMenuComponent, 
+    MedicalComponent,
+    MedicalMenuComponent,
     MedicalMenuTitleComponent
   ]
 })
