@@ -71,3 +71,15 @@ li {
 .table-nav .form-group{
     margin-bottom: 0px;
 }
+
+.badge--success {
+    Background-color: #5EB065;
+    width: 70px;
+    padding: 5px;
+}
+
+.badge--failed {
+    background-color: #C8CDCF;
+    width: 70px;
+    padding: 5px;
+}

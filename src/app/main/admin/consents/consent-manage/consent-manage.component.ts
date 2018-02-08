@@ -47,6 +47,8 @@ export class ConsentManageComponent implements OnInit {
   private is_adding_forms: boolean;
   private data: Form;
 
+  private validity_date: Date = new Date();
+
   constructor(
     private _notificationsService: NotificationsService,
     private consentService: ConsentService,
@@ -88,16 +90,31 @@ export class ConsentManageComponent implements OnInit {
   }
 
   initializeFormGroup() {
-    this.consent = new Consent('', '', '', '', '', '');
+    this.consent = new Consent('', '', '', '', '', '', new Date());
     this.consentFormGroup = this.toFormGroup(this.consent);
   }
 
 
   toFormGroup(data: Consent) {
+    let input;
+    if (this.state_view == 'view')
+      input = true;
+    else
+      input = false
+
     return this.fb.group({
-      name: [data.name, Validators.required],
-      number: [data.number],
-      description: [data.description]
+      name: [
+        { value: data.name, disabled: input },
+        Validators.required
+      ],
+      validity_date: [
+        { value: data.validity_date, disabled: input },
+        Validators.required
+      ],
+      number:
+        { value: data.number, disabled: input },
+      description:
+        { value: data.description, disabled: input },
     });
   }
 
@@ -148,7 +165,6 @@ export class ConsentManageComponent implements OnInit {
         this.initConsentFormGroupOnUpdate();
       }
     );
-
   }
 
   getConsentAsync() {
@@ -217,17 +233,13 @@ export class ConsentManageComponent implements OnInit {
     });
   }
 
-
-
-
-
   viewConsent() {
     this.getConsentAsync().then(
-      (result) => this.initializeFormGroup(),
+      (result) => {
+        this.initConsentFormGroupOnUpdate();
+      }
     );
   }
-
-
 
   onUpdateClick(input_consent: Consent) {
     this.consentService
@@ -249,7 +261,7 @@ export class ConsentManageComponent implements OnInit {
     this.errors = '';
     this.has_errors = false;
     this.is_processing = false;
-    this.consent = new Consent('', '', '', '', '', '');
+    this.consent = new Consent('', '', '', '', '', '', new Date);
     this.initializeFormGroup();
   }
 

@@ -47,6 +47,7 @@ export class Consent {
     dir_path: string,
     description: string,
     created_by: string,
+    validity_date: Date,
     forms?: Form[],
     date_created?: Date,
     is_deleted?: string,
@@ -58,6 +59,7 @@ export class Consent {
     this.description = description;
     this.created_by = created_by;
     this.date_created = date_created;
+    this.validity_date = validity_date;
     this.is_deleted = is_deleted;
     this.forms = forms;
   }
@@ -72,6 +74,7 @@ export class Consent {
       name: this.name,
       date_created: this.date_created,
       organization: this.organization,
+      validity_date: this.validity_date,
       forms: forms
     });
   }

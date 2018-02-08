@@ -26,9 +26,9 @@ import { FormControl } from '@angular/forms';
 import { UserJSON } from 'app/core/interfaces';
 
 @Component({
-  selector: 'shared-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+    selector: 'shared-user-form',
+    templateUrl: './user-form.component.html',
+    styleUrls: ['./user-form.component.css']
 })
 
 export class UserFormComponent implements OnInit {
@@ -60,6 +60,7 @@ export class UserFormComponent implements OnInit {
     private has_errors = false;
     private is_processing = false;
     private is_organization_ok = false;
+    private approval_status = [];
 
     constructor(
         private userService: UserService,
@@ -69,17 +70,21 @@ export class UserFormComponent implements OnInit {
         private organizationService: OrganizationService,
         private roleService: RoleService,
         private _notificationsService: NotificationsService
-        ) {
-            this._user = new User('', false, '', '', '', '', '', '');
-            this._user.gender = 'M';
-            this.confirmation_password = '';
-            const position = [
-                new Position('Researcher'),
-                new Position('Physician')
-            ];
+    ) {
+        this._user = new User('', false, '', '', '', '', '', '', false);
+        this._user.gender = 'M';
+        this.confirmation_password = '';
+        const position = [
+            new Position('Researcher'),
+            new Position('Physician')
+        ];
+        this.approval_status = [
+            { "text": "Active", "value": true },
+            { "text": "Inactive", "value": false }
+        ];
 
-            this.positionCompleterData = positionCompleterService.local(position, 'name', 'name');
-            this.organizationCompleterData = organizationCompleterService.local(
+        this.positionCompleterData = positionCompleterService.local(position, 'name', 'name');
+        this.organizationCompleterData = organizationCompleterService.local(
             this.organizationService.getAll(), 'name', 'name');
     }
 
@@ -97,7 +102,7 @@ export class UserFormComponent implements OnInit {
 
     onToggleIsActive(input_is_active: boolean) {
         console.log(input_is_active);
-        this._user.is_active = input_is_active;
+        this._user.isActive = input_is_active;
     }
 
     onToggleGender(input_gender: string) {
@@ -106,30 +111,30 @@ export class UserFormComponent implements OnInit {
     }
 
     onSelectOrganization(data: CompleterItem) {
-      if (data) {
-        if (!this._user.organizations) {
-            this._user.organizations = [{
-            'organization': -1,
-            'position': -1
-            }];
-        }
+        if (data) {
+            if (!this._user.organizations) {
+                this._user.organizations = [{
+                    'organization': -1,
+                    'position': -1
+                }];
+            }
 
-        this._user.organizations[0]['organization'] = data.originalObject.id;
-        if (this._user.organizations[0]['position'] !== -1) {
-            this.is_organization_ok = true;
+            this._user.organizations[0]['organization'] = data.originalObject.id;
+            if (this._user.organizations[0]['position'] !== -1) {
+                this.is_organization_ok = true;
+            }
+        } else {
+            this._user.organizations[0]['organization'] = -1;
+            this.is_organization_ok = false;
         }
-      } else {
-        this._user.organizations[0]['organization'] = -1;
-        this.is_organization_ok = false;
-      }
     }
 
     onSelectPosition(data: CompleterItem) {
         if (data) {
             if (!this._user.organizations) {
                 this._user.organizations = [{
-                'organization': -1,
-                'position': -1
+                    'organization': -1,
+                    'position': -1
                 }];
             }
             this._user.organizations[0]['position'] = data.originalObject.id;
@@ -184,21 +189,21 @@ export class UserFormComponent implements OnInit {
         this.is_processing = true;
         this.userService.create(input_user).subscribe(
             created_user => {
-            this.is_processing = false;
-            this._notificationsService.success(
-                'New User : ' + input_user.username,
-                'Successfully Created.',
-                {
-                    timeOut: 10000,
-                    showProgressBar: true,
-                    pauseOnHover: false,
-                    clickToClose: false,
-                });
+                this.is_processing = false;
+                this._notificationsService.success(
+                    'New User : ' + input_user.username,
+                    'Successfully Created.',
+                    {
+                        timeOut: 10000,
+                        showProgressBar: true,
+                        pauseOnHover: false,
+                        clickToClose: false,
+                    });
             },
-            errors  => {
-            this.errors = errors;
-            this.has_errors = true;
-            this.is_processing = false;
+            errors => {
+                this.errors = errors;
+                this.has_errors = true;
+                this.is_processing = false;
             });
     }
 
@@ -208,21 +213,21 @@ export class UserFormComponent implements OnInit {
         this.is_processing = true;
         this.userService.update(input_user).subscribe(
             created_user => {
-            this.is_processing = false;
-            this._notificationsService.success(
-                'User : ' + input_user.username,
-                'Successfully Updated.',
-                {
-                    timeOut: 10000,
-                    showProgressBar: true,
-                    pauseOnHover: false,
-                    clickToClose: false,
-                });
+                this.is_processing = false;
+                this._notificationsService.success(
+                    'User : ' + input_user.username,
+                    'Successfully Updated.',
+                    {
+                        timeOut: 10000,
+                        showProgressBar: true,
+                        pauseOnHover: false,
+                        clickToClose: false,
+                    });
             },
-            errors  => {
-            this.errors = errors;
-            this.has_errors = true;
-            this.is_processing = false;
+            errors => {
+                this.errors = errors;
+                this.has_errors = true;
+                this.is_processing = false;
             });
     }
 
@@ -232,20 +237,20 @@ export class UserFormComponent implements OnInit {
         this.is_processing = true;
         this.userService.updateMyAccount(input_user).subscribe(
             created_user => {
-            this.is_processing = false;
-            this._notificationsService.success(
-                'Successfully Updated Account',
-                {
-                    timeOut: 10000,
-                    showProgressBar: true,
-                    pauseOnHover: false,
-                    clickToClose: false,
-                });
+                this.is_processing = false;
+                this._notificationsService.success(
+                    'Successfully Updated Account',
+                    {
+                        timeOut: 10000,
+                        showProgressBar: true,
+                        pauseOnHover: false,
+                        clickToClose: false,
+                    });
             },
-            errors  => {
-            this.errors = errors;
-            this.has_errors = true;
-            this.is_processing = false;
+            errors => {
+                this.errors = errors;
+                this.has_errors = true;
+                this.is_processing = false;
             });
     }
 }

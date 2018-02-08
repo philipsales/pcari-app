@@ -6,7 +6,8 @@
           <h2 class="pull-left">Case Forms</h2>
           <div class="pull-right" *ngIf="!is_adding_forms">
             <button mat-button class="pull-right"
-              (click)="onAddForm()">
+                *ngIf="method == 'UPDATE' || method == 'CREATE'"
+                (click)="onAddForm()">
                 <i class="fa fa-plus"></i> Add Form
             </button>
           </div>
@@ -21,7 +22,6 @@
                   <th>#</th>
                   <th>Form Name</th>
                   <th>Date Created</th>
-                  <th *ngIf="method == 'UPDATE'">Manage</th>
                 </tr>
               </thead>
               <tbody>
@@ -29,20 +29,20 @@
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ form.form_name }}</td>
                   <td>{{ form.date_created | date :'medium' }}</td>
-                  <td  *ngIf="method == 'UPDATE'"
-                    style="text-align: center">
+                  <td style="text-align: right">
                     <button 
+                      class="btn btn-sm btn-default"
                       [disabled]="!form.id"
                       [routerLink]="['/biobanking/cases/view/' + caseid + '/forms', form.id]"
-                      [queryParams]="{nbr: casenumber}"
-                      class="btn btn-sm btn-default">
+                      [queryParams]="{nbr: casenumber}" >
                       <i class="fa fa-eye"></i> View
                     </button>
                     <button 
+                      class="btn btn-sm btn-warning"
+                      *ngIf="method == 'UPDATE'"
                       [disabled]="!form.id"
                       [routerLink]="['/biobanking/cases/update/' + caseid + '/forms/', form.id]"
-                      [queryParams]="{nbr: casenumber}"
-                      class="btn btn-sm btn-warning">
+                      [queryParams]="{nbr: casenumber}">
                       <i class="fa fa-edit"></i> Update
                     </button>
                   </td>

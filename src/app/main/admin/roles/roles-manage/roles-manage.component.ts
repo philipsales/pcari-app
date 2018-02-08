@@ -8,9 +8,9 @@ import { MatSelectionList } from '@angular/material';
 import { RoleJSON } from 'app/core/interfaces';
 
 @Component({
-  selector: 'app-roles-manage',
-  templateUrl: './roles-manage.component.html',
-  styleUrls: ['./roles-manage.component.css']
+    selector: 'app-roles-manage',
+    templateUrl: './roles-manage.component.html',
+    styleUrls: ['./roles-manage.component.css']
 })
 export class RolesManageComponent implements OnInit {
     private _resetrole: RoleJSON;
@@ -63,8 +63,8 @@ export class RolesManageComponent implements OnInit {
         console.log(this._role.permissions, 'SELECTED');
     }
 
-    onToggleIsActive(input_isActive: boolean) {
-        this._role.isActive = input_isActive;
+    onToggleIsActive(input_is_active: boolean) {
+        this._role.isActive = input_is_active;
     }
 
     onSaveClick(role: Role) {
@@ -81,20 +81,20 @@ export class RolesManageComponent implements OnInit {
         this.has_errors = false;
         this.is_processing = true;
         this.roleService.create(role).subscribe((created_role: Role) => {
-                this.is_processing = false;
-                console.log(created_role, 'ROLE CREATED : roles-create.component');
-                this._notificationsService.success(
-                    'New Role : ' + role.name,
-                    'Successfully Created.',
-                    {
-                        timeOut: 10000,
-                        showProgressBar: true,
-                        pauseOnHover: false,
-                        clickToClose: false,
-                    }
-                );
-            },
-            errors  => {
+            this.is_processing = false;
+            console.log(created_role, 'ROLE CREATED : roles-create.component');
+            this._notificationsService.success(
+                'New Role : ' + role.name,
+                'Successfully Created.',
+                {
+                    timeOut: 10000,
+                    showProgressBar: true,
+                    pauseOnHover: false,
+                    clickToClose: false,
+                }
+            );
+        },
+            errors => {
                 console.log(errors, 'ERROR : roles-create.component');
                 this.errors = errors;
                 this.has_errors = true;
@@ -108,20 +108,20 @@ export class RolesManageComponent implements OnInit {
         this.has_errors = false;
         this.is_processing = true;
         this.roleService.update(role).subscribe((updated_role: Role) => {
-                this.is_processing = false;
-                console.log(updated_role, 'ROLE UPDATED : roles-manage.component');
-                this._notificationsService.success(
-                    'Role : ' + role.name,
-                    'Successfully Updated.',
-                    {
-                        timeOut: 10000,
-                        showProgressBar: true,
-                        pauseOnHover: false,
-                        clickToClose: false,
-                    }
-                );
-            },
-            errors  => {
+            this.is_processing = false;
+            console.log(updated_role, 'ROLE UPDATED : roles-manage.component');
+            this._notificationsService.success(
+                'Role : ' + role.name,
+                'Successfully Updated.',
+                {
+                    timeOut: 10000,
+                    showProgressBar: true,
+                    pauseOnHover: false,
+                    clickToClose: false,
+                }
+            );
+        },
+            errors => {
                 console.log(errors, 'ERROR : roles-manage.component');
                 this.errors = errors;
                 this.has_errors = true;

@@ -4,7 +4,7 @@
         [formGroup]="consentFormGroup" novalidate>
 
     <div class="row">
-        <div class="col-md-12 table-nav" style="background: reen">
+        <div class="col-md-12 table-nav" >
           <div class="col-sm-3 reset-wrapper">
             <button class="btn btn-default pull-left"
               *ngIf="state_view !== 'view'"
@@ -40,33 +40,42 @@
         </div> 
     </div>
     <!-- information -->
+    <h1>{{state_view}}</h1>
     <div class="row text-center" class="x_panel">
-        <div class="col-sm-12" style="background: ink" > 
+        <div class="col-sm-12"> 
           <div class="material-form-group col-sm-12">
-              <mat-form-field class="material-form-control col-sm-6"> 
+            <mat-form-field class="material-form-control col-sm-6 col-md-6">
               <input matInput
                     placeholder="Name"
                     [errorStateMatcher]="error_matcher"
                     formControlName="name">
                     <mat-error *ngIf="consentFormGroup.get('name').hasError('required')">
-                        Name is required
+                        Name is required 
                     </mat-error>
               </mat-form-field>
-              <mat-form-field class="material-form-control col-sm-6">
-                  <input matInput
-                        placeholder="Number"
-                        formControlName="number">
-                      <mat-error *ngIf="consentFormGroup.get('number').hasError('required')">
-                        Number is required
+            <mat-form-field class="material-form-control col-sm-6 col-md-6">
+                <input formControlName="validity_date" 
+                       matInput [matDatepicker]="validitydate" 
+                       placeholder="Validity Date">
+                      <mat-datepicker-toggle matSuffix [for]="validitydate"></mat-datepicker-toggle>
+                      <mat-datepicker #validitydate ></mat-datepicker>
+                      <mat-error *ngIf="consentFormGroup.get('validity_date').hasError('required')">
+                        Validity Date is required
                       </mat-error>
-              </mat-form-field>
+                    </mat-form-field>
           </div>
+          <br/> <br/> <br/> <br/>
           <div class="material-form-group col-sm-12">
-            <mat-form-field class="material-form-control col-sm-offset-3 col-sm-6">
+            <mat-form-field class="material-form-control col-sm-6 col-md-6">
                 <input matInput
                       placeholder="Description"
                       formControlName="description">
             </mat-form-field>
+              <mat-form-field class="material-form-control col-sm-6 col-md-6">
+                <input matInput
+                      placeholder="Number"
+                      formControlName="number">
+              </mat-form-field>
           </div>
       </div>
     </div>
@@ -86,20 +95,6 @@
       [datasource]="datasource"
       [viewState]="state_view" >
     </app-conset-form-manage>
-
-    <!-- <app-case-form-add
-    (onSaveFormAddTrigger)="onAddSelectedForm($event)"
-    (onCancelFormAddTrigger)="onCancelAddForm()"
-    [show]="!show_selected_forms">
-    </app-case-form-add>
-    
-  
-  <app-case-form-manage 
-    (onCallSelectFormTrigger)="onAddForm()"
-    [show]="show_selected_forms"
-    [forms]="_case.forms"
-    [method]="method">
-  </app-case-form-manage> -->
 
   </form>
 </div> <!-- consentFormGroup-->

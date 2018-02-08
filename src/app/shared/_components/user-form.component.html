@@ -430,6 +430,37 @@
 </div> <!-- Organization -->
 
 
+<!-- Approval-->
+<div class="col-md-12 col-sm-12 col-xs-12"> 
+  <div class="x_panel">
+    <div class="x_title">
+      <h2>Approval</h2>
+      <ul class="nav navbar-right panel_toolbox">
+			<li>
+				<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+			</li>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <br>
+					<div class="form-group" >
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" style="text-align:right" >
+							Status
+					 </label>
+					<div class="col-md-6 col-sm-6 col-xs-12 material-form-group" >
+						<mat-slide-toggle class="material-form-control col-md-11 col-sm-12 col-xs-12"
+							[disabled]="method == 'VIEW'"
+							[(ngModel)]="_user.isActive"
+							#input_status="ngModel" 
+							name="input_status">
+						</mat-slide-toggle>
+					</div>
+      </div>
+    </div>
+  </div>
+</div> <!-- Approval -->
+
 <div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">

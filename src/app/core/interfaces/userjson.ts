@@ -11,4 +11,5 @@ export interface UserJSON {
     mobile_number: string;
     verification_status: string;
     roles: string[];
+    isActive: boolean;
 }

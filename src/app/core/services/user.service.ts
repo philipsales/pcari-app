@@ -22,14 +22,14 @@ export class UserService {
             console.log(response['data'], 'OUTPUT GET /users');
             return response['data'].map(User.fromJSON);
         })
-        .catch(Helper.handleError);
+            .catch(Helper.handleError);
     }// --getAll
 
     get(user_id: string): Observable<User> {
         const url = environment.API_ENDPOINT + 'users/' + user_id;
         return this.http.get(url).map((response: UserJSON) => {
-          console.log(response, 'OUTPUT GET /users');
-          return User.fromJSON(response);
+            console.log(response, 'OUTPUT GET /users');
+            return User.fromJSON(response);
         }).catch(Helper.handleError);
     }
 
@@ -37,29 +37,30 @@ export class UserService {
         console.log(user);
         const url = environment.API_ENDPOINT + 'users/';
         return this.http.post(url, user.toJSON())
-                    .map((response: UserJSON) => {
-                        return User.fromJSON(response);
-                    })
-                    .catch(Helper.handleError);
+            .map((response: UserJSON) => {
+                return User.fromJSON(response);
+            })
+            .catch(Helper.handleError);
     }// --create
 
     update(this_user: User): Observable<User> {
+        console.log('SHIT', this_user);
         const url = environment.API_ENDPOINT + 'users/' + this_user.id;
         const user_json = this_user.toJSON();
-        console.log(user_json);
+        console.log('fuck', user_json);
 
         return this.http.patch(url, user_json)
-          .map((response: UserJSON) => {
-            console.log(response, 'USER UPDATED from /users');
-            return User.fromJSON(response);
-        }).catch(Helper.handleError);
+            .map((response: UserJSON) => {
+                console.log(response, 'USER UPDATED from /users');
+                return User.fromJSON(response);
+            }).catch(Helper.handleError);
     }
 
     getMyAccount(user_id: string): Observable<User> {
         const url = environment.API_ENDPOINT + 'users/me/' + user_id;
         return this.http.get(url).map((response: UserJSON) => {
-          console.log(response, 'OUTPUT GET /users');
-          return User.fromJSON(response);
+            console.log(response, 'OUTPUT GET /users');
+            return User.fromJSON(response);
         }).catch(Helper.handleError);
     }
 
@@ -69,21 +70,21 @@ export class UserService {
         console.log(user_json);
 
         return this.http.patch(url, user_json)
-          .map((response: UserJSON) => {
-            console.log(response, 'USER UPDATED from /users');
-            return User.fromJSON(response);
-        }).catch(Helper.handleError);
+            .map((response: UserJSON) => {
+                console.log(response, 'USER UPDATED from /users');
+                return User.fromJSON(response);
+            }).catch(Helper.handleError);
     }
 
     updateMyPassword(id: string, new_password: string): Observable<User> {
         const url = environment.API_ENDPOINT + 'users/me/' + id;
-        const user_json = {password: new_password};
+        const user_json = { password: new_password };
         console.log(user_json);
 
         return this.http.patch(url, user_json)
-          .map((response: UserJSON) => {
-            console.log(response, 'USER UPDATED from /users');
-            return User.fromJSON(response);
-        }).catch(Helper.handleError);
+            .map((response: UserJSON) => {
+                console.log(response, 'USER UPDATED from /users');
+                return User.fromJSON(response);
+            }).catch(Helper.handleError);
     }
 }

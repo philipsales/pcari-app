@@ -44,7 +44,7 @@
 	    <th>First Name</th>
 	    <th>Last Name</th>
 			<th>Username</th>
-			<th style="text-align: center"></th>
+			<th>Status</th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -53,6 +53,10 @@
 	    <td>{{ user.first_name }}</td>
 	    <td>{{ user.last_name }}</td>
 			<td>{{ user.username }}</td>
+			<td>
+				<span *ngIf="user.isActive" class="badge badge--success" #active> Active</span>
+				<span *ngIf="!user.isActive" class="badge badge--failed" #inactive> Inactive </span>
+			</td>
 			<td style="text-align: right">
 					<button 
 					 class="btn btn-sm btn-default"
