@@ -1,9 +1,0 @@
-.question_button {
-  margin: 20px;
-  display: inline-block;
-  cursor:  pointer;
-}
-
-.question_button:hover {
-  text-decoration: underline;
-}

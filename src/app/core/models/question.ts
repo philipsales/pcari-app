@@ -22,7 +22,9 @@ export class Question {
         return JSON.parse(json, Question.reviver);
     } else {
         const question = Object.create(Question.prototype);
+        console.log(json.options);
         let options_array = json.options.split('|');
+        console.log('EWAN');
         let options_obj : Option[] = [];
         if (options_array) {
           options_array.forEach((element) => {
@@ -41,6 +43,30 @@ export class Question {
           options: options_obj
         });
     }
+  }
+
+  static fromAnyToJSON(json): QuestionJSON {
+    let stringified_options = '';
+    json.options.forEach((element) => {
+      if (element) {
+        if (stringified_options === '') {
+          stringified_options = element.name;
+        } else {
+          stringified_options += '|' + element.name;
+        }
+      }
+    });
+
+    let out = Object.assign({}, json, {
+      key: json.key,
+      label: json.label,
+      type: json.type,
+      value: json.value,
+      required: json.required,
+      order: json.order,
+      options: stringified_options
+    });
+    return out;
   }
 
   static reviver(key: string, value: any): any {
@@ -69,7 +95,11 @@ export class Question {
     let stringified_options = '';
     this.options.forEach((element) => {
       if (element) {
-        stringified_options += '|' + element.name;
+        if (stringified_options === '') {
+          stringified_options = element.name;
+        } else {
+          stringified_options += '|' + element.name;
+        }
       }
     });
 

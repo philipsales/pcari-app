@@ -145,4 +145,15 @@ export class FormService {
     })
       .catch(Helper.handleError);
   }
+
+  updateForm(form: FormJSON): Observable<Form> {
+    const url = environment.API_ENDPOINT + 'forms/' + form._id;
+
+    return this.http.patch(url, form).map((response: FormJSON) => {
+      // return (response.json().data as Form[])
+      console.log(response, 'FORM UPDATED from /forms');
+      return Form.fromJSON(response);
+    })
+      .catch(Helper.handleError);
+  }
 }

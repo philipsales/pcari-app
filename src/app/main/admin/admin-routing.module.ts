@@ -22,6 +22,12 @@ const routes: Routes = [
           path: 'consent',
           loadChildren: './consents/consent.module#ConsentModule'
         },
+        /*
+        {
+          path: 'forms',
+          loadChildren: './forms/form.module#FormModule'
+        },
+        */
         { path: '', redirectTo: 'users' } ]
   }
 ];

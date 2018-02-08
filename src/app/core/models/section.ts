@@ -30,6 +30,19 @@ export class Section {
     return key === '' ? Section.fromJSON(value) : value;
   }
 
+  static fromAnyToJSON(json): SectionJSON {
+    let questions;
+    if (json.questions) {
+      questions = json.questions.map((question) => Question.fromAnyToJSON(question));
+    }
+    return Object.assign({}, json, {
+      key: json.key,
+      name: json.name,
+      order: json.order,
+      questions: questions
+    });
+  }
+
   constructor(
     key: string,
     name: string,

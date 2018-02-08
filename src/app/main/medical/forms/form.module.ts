@@ -45,6 +45,7 @@ import { QuestionContentComponent } from './forms_question/question-content.comp
 
 import { QuestionOptionArrayComponent } from './forms_option/question-option-array.component';
 import { QuestionOptionComponent } from './forms_option/question-option.component';
+import { FormUpdateComponent } from './forms_detail/form-update.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { QuestionOptionComponent } from './forms_option/question-option.componen
     QuestionContentComponent,
 
     QuestionOptionArrayComponent,
-    QuestionOptionComponent
+    QuestionOptionComponent,
+    FormUpdateComponent
   ],
   providers: [
     OrganizationService,

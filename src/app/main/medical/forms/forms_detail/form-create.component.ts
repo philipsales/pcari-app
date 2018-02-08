@@ -67,19 +67,12 @@ export class FormCreateComponent implements OnInit {
     // TO DO:
     // this.getOrganizations();
     this.organizations.push(new Organization('PGH'));
-    this.formId = this.route.snapshot.paramMap.get('id');
-    this.initForm(this.formId);
+    // this.formId = this.route.snapshot.paramMap.get('id');
+    this.initForm();
   }
 
-  initForm(id) {
-
-    console.warn(id, 'xxx');
-    if (id === 0) {
-      this.initCreateForm();
-    } else {
-      console.warn(id, 'yo!');
-      this.initUpdateForm(id);
-    }
+  initForm() {
+    this.initCreateForm();
   }
 
   // TODO: Refractor default declaration
@@ -254,11 +247,11 @@ export class FormCreateComponent implements OnInit {
     */
   }
 
-  onSaveForm(inputForm: Form) {
+  onSaveForm(inputForm) {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
-
+    let data = Form.fromAnyToJSON(inputForm);
     // console.warn(inputForm, 'CHECK ME!');
     // console.warn(this.newForm.toJSON(), 'NA-EDIT');
     // console.warn(JSON.stringify(this.newForm.toJSON()), 'NA-EDIT2');
@@ -268,7 +261,7 @@ export class FormCreateComponent implements OnInit {
     console.log(this.data);
 
     this.formService
-      .submitForm(this.data.toJSON())
+      .submitForm(data)
       .subscribe(created_question => {
         this.is_processing = false;
         console.warn(created_question, 'AYUS');

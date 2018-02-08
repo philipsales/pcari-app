@@ -5,6 +5,7 @@ import { FormListComponent } from './form-list.component';
 import { FormCreateComponent } from './forms_detail/form-create.component';
 
 import { DformsComponent } from './forms_dforms/dforms.component';
+import { FormUpdateComponent } from './forms_detail/form-update.component';
 
 const routes: Routes = [
     {
@@ -12,7 +13,7 @@ const routes: Routes = [
       component: FormListComponent
     },
     {
-      path: 'create/:id',
+      path: 'create',
       component: FormCreateComponent
     },
     {
@@ -21,7 +22,7 @@ const routes: Routes = [
     },
     {
       path: 'update/:id',
-      component: FormCreateComponent
+      component: FormUpdateComponent
     },
     {path: '', redirectTo: 'list'}
 ];

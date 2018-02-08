@@ -19,8 +19,15 @@ export class Form {
       return JSON.parse(json, Form.reviver);
     } else {
       const section = Object.create(Form.prototype);
+      let id = '';
+      if (json._id) {
+        id = json._id;
+      } else if (json.id) {
+        id = json.id;
+      }
+
       let output = Object.assign(section, json, {
-        id: json._id,
+        id: id,
         name: json.name,
         organization: json.organization,
         department: json.department,
@@ -31,6 +38,7 @@ export class Form {
         date_created: new Date(json.date_created),
         is_deleted: json.is_deleted
       });
+
       if (json.sections) {
         output['sections'] = json.sections.map(Section.fromJSON);
       } else {
@@ -38,6 +46,30 @@ export class Form {
       }
       return output;
     }
+  }
+
+  static fromAnyToJSON(json): FormJSON {
+    let date_created;
+    let sections;
+    if (json.date_created) {
+      date_created = json.date_created.getTime();
+    }
+    if (json.sections) {
+      sections = json.sections.map((section) => Section.fromAnyToJSON(section));
+    }
+    return Object.assign({}, json, {
+      _id: json.id,
+      name: json.name,
+      organization: json.organization,
+      department: json.department,
+      type: json.type,
+      approval: json.approval,
+      status: json.status,
+      created_by: json.created_by,
+      date_created: date_created,
+      is_deleted: json.is_deleted,
+      sections: sections
+    });
   }
 
   static reviver(key: string, value: any): any {

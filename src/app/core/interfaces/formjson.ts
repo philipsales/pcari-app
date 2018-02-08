@@ -1,7 +1,8 @@
 import { SectionJSON } from './sectionjson';
 
 export interface FormJSON {
-    _id: string;
+    _id?: string;
+    id?: string;
     name: string;
     organization: string;
     department: string;
