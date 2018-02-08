@@ -65,7 +65,7 @@ export class FormCreateComponent implements OnInit {
     this.getRegistryTypes();
     this.getDepartments();
     // TO DO:
-    //this.getOrganizations();
+    // this.getOrganizations();
     this.organizations.push(new Organization('PGH'));
     this.formId = this.route.snapshot.paramMap.get('id');
     this.initForm(this.formId);
@@ -74,7 +74,7 @@ export class FormCreateComponent implements OnInit {
   initForm(id) {
 
     console.warn(id, 'xxx');
-    if (id == 0) {
+    if (id === 0) {
       this.initCreateForm();
     } else {
       console.warn(id, 'yo!');
@@ -82,14 +82,14 @@ export class FormCreateComponent implements OnInit {
     }
   }
 
-  //TODO: Refractor default declaration
+  // TODO: Refractor default declaration
   initCreateForm(): void {
     if (this.sharedData.getStorage()) {
-      let old_form: Form = <Form>this.sharedData.getStorage().form;
-      let sections: Section[] = [];
+      const old_form: Form = <Form>this.sharedData.getStorage().form;
+      const sections: Section[] = [];
       if (old_form.sections) {
         old_form.sections.forEach((section) => {
-          let questions: Question[] = [];
+          const questions: Question[] = [];
           if (section.questions) {
             section.questions.forEach((question) => {
               questions.push(new Question(
@@ -123,11 +123,10 @@ export class FormCreateComponent implements OnInit {
 
       console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
 
-    }
-    else {
+    } else {
 
-      let sections: Section[] = [];
-      let questions: Question[] = [];
+      const sections: Section[] = [];
+      const questions: Question[] = [];
       sections.push(new Section(
         this.keyGenerator.create(),
         'Untitled section',
@@ -145,10 +144,10 @@ export class FormCreateComponent implements OnInit {
       console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
       /*
             newForm = {
-              id: 0, 
+              id: 0,
               name: "Untitled form",
-              type: "Patient Repository", 
-              organization: "University of the Philippines - Philippine General Hospital", 
+              type: "Patient Repository",
+              organization: "University of the Philippines - Philippine General Hospital",
               department: "General Surgery Department",
               sections: [
                 {
@@ -192,7 +191,7 @@ export class FormCreateComponent implements OnInit {
     this.templateForm = this.toFormGroup(this.data);
   }
 
-  //TODO: Refractor default declaration
+  // TODO: Refractor default declaration
   toFormGroup(data: Form) {
     return this.fb.group({
       id: data.id,
@@ -238,7 +237,7 @@ export class FormCreateComponent implements OnInit {
 
   onAddSection() {
 
-    let questions: Question[] = [];
+    const questions: Question[] = [];
     this.data.sections.push(new Section(
       this.keyGenerator.create(),
       'Untitled section',
@@ -283,22 +282,21 @@ export class FormCreateComponent implements OnInit {
             showProgressBar: true,
             pauseOnHover: false,
             clickToClose: false
-          }
-          )
+          });
       },
       errors => {
         this.errors = errors;
         this.has_errors = true;
         this.is_processing = false;
         console.warn('errro');
-        throw errors
+        throw errors;
       });
   }
 
   onPreviewForm(previewForm: Form, id: string) {
-    let params = { 'form': previewForm };
+    const params = { 'form': previewForm };
 
     this.sharedData.setStorage(params);
-    this.router.navigate([`./forms/preview/${id}`]);
+    this.router.navigate([`/medical/forms/preview/${id}`]);
   }
 }

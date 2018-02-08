@@ -13,7 +13,7 @@
 	  </ol>
 	</div>
 	<h1 class="app-header--heading">
-	  Forms 
+	  Cases 
 	</h1>
       </div>
     </div> <!-- app-header--primary -->
@@ -34,10 +34,9 @@
 	  </span>
 	</div>
       </div>
-      <!--<a [routerLink]="['/biobanking/questions/create']"-->
-      <a [routerLink]="['/medical/forms/create',0]"
+      <a [routerLink]="['/medical/cases/create']"
          class="btn btn-default pull-right">
-        <i class="fa fa-plus"></i> &nbsp; Create Form 
+        <i class="fa fa-plus"></i> &nbsp; Create Case 
       </a>
     </div>
     
@@ -46,36 +45,27 @@
 	<thead>
 	  <tr>
 	    <th>#</th>
-	    <th>Form Name</th>
-	    <th>Type</th>
-	    <th>Department</th>
-	    <th>Status</th>
-	    <th style="text-align: center"></th>
+	    <th>Case Number</th>
+	    <th>Diagnosis</th>
+	    <th>Date Created</th>
 	  </tr>
 	</thead>
 	<tbody>
-	  <tr  *ngFor="let form of forms; let i = index">
+	  <tr  *ngFor="let case of cases; let i = index">
 	    <th scope="row">{{ i + 1 }}</th>
-	    <td> {{ form.name }}</td>
-	    <td>{{ form.type }}</td>
-			<td>{{ form.department }}</td>
-			<td style="text-align: center">
-				<span *ngIf="form.status ==='Pending'" class="badge badge--failed" #active> {{form.status }}</span>
-				<span *ngIf="form.status ==='Final'" class="badge badge--success" #active> {{form.status }}</span>
-			</td>
+	    <td>{{ case.case_nbr }}</td>
+	    <td> {{case.diagnosis }} </td>
+	    <td>{{ case.date_created }}</td>
 			<td style="text-align: right">
-				<button 
-						[routerLink]="['/medical/forms/update',form.id]" 
-  					class="btn btn-sm btn-warning">
-					<i class="fa fa-edit"></i> &nbsp; Update 
-				</button>
-			</td>
-			<!--<td style="text-align: center">
         <button 
-         class="btn btn-sm btn-success"
-         [routerLink]="['/biobanking/forms/update',form.id]">
-         <i class="fa fa-plus"></i> &nbsp; Update</button>
-			</td>-->
+				 class="btn btn-sm btn-default"
+				 [routerLink]="['/medical/cases/view', case.id]">
+				 <i class="fa fa-eye"></i> View</button>
+				 <button 
+				 class="btn btn-sm btn-warning"
+				 [routerLink]="['/medical/cases/update', case.id]">
+         <i class="fa fa-edit"></i> Update</button>
+	    </td>
 	  </tr>
 	</tbody>
       </table>

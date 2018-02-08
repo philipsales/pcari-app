@@ -1,0 +1,56 @@
+  <!-- Selected Forms  -->
+  <div class="col-md-12 col-sm-12 col-xs-12"
+    [hidden]="!_show"> 
+      <div class="x_panel">
+        <div class="x_title">
+          <h2 class="pull-left">Case Forms</h2>
+          <div class="pull-right" *ngIf="!is_adding_forms">
+            <button mat-button class="pull-right"
+                *ngIf="method == 'UPDATE' || method == 'CREATE'"
+                (click)="onAddForm()">
+                <i class="fa fa-plus"></i> Add Form
+            </button>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Form Name</th>
+                  <th>Date Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let form of forms; let i = index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ form.form_name }}</td>
+                  <td>{{ form.date_created | date :'medium' }}</td>
+                  <td style="text-align: right">
+                    <button 
+                      class="btn btn-sm btn-default"
+                      [disabled]="!form.id"
+                      [routerLink]="['/medical/cases/view/' + caseid + '/forms', form.id]"
+                      [queryParams]="{nbr: casenumber}" >
+                      <i class="fa fa-eye"></i> View
+                    </button>
+                    <button 
+                      class="btn btn-sm btn-warning"
+                      *ngIf="method == 'UPDATE'"
+                      [disabled]="!form.id"
+                      [routerLink]="['/medical/cases/update/' + caseid + '/forms/', form.id]"
+                      [queryParams]="{nbr: casenumber}">
+                      <i class="fa fa-edit"></i> Update
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+
+        </div> <!-- x_content -->
+      </div>
+</div> 
+<!-- Selected Forms -->
