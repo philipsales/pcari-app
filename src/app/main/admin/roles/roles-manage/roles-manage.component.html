@@ -7,7 +7,7 @@
     </button>
   </div>
   
-  <div class="col-sm-6">
+  <div class="col-sm-6 col-md-6">
     <div class="alert alert-danger"
         [hidden]="!has_errors">
       <strong>
@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="col-sm-3 save-wrapper">
+  <div class="col-sm-3 col-md-3 save-wrapper">
     <button class="btn btn-success pull-right"
     [disabled]="!roleCreateForm.form.valid || is_processing"
     (click)="onSaveClick(_role)">
@@ -58,7 +58,7 @@
             [(ngModel)]="_role.isActive"
             #input_status="ngModel" 
             name="input_status">
-            Active
+            {{ _role.isActive ? 'Active' : ' Inactive' }}
           </mat-slide-toggle>
         </div> <br/><br/>
       </form>

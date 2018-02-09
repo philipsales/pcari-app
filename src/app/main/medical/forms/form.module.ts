@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { DatePickerModule } from 'angular-io-datepicker';
 
 import { MaterialModule } from 'app/shared/_material/material.module';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
 
 // InMemory modules
 import { HttpModule } from '@angular/http';
@@ -62,17 +64,17 @@ import { FormUpdateComponent } from './forms_detail/form-update.component';
     FormRoutingModule
   ],
   declarations: [
-// Utils
+    // Utils
 
-// Editor
+    // Editor
     FormListComponent,
 
-// Dforms
+    // Dforms
     DformsComponent,
     DynamicFormComponent,
     DynamicFormQuestionComponent,
 
-// Nested Dforms
+    // Nested Dforms
     FormCreateComponent,
     FormSectionArrayComponent,
     FormSectionComponent,
@@ -92,11 +94,13 @@ import { FormUpdateComponent } from './forms_detail/form-update.component';
     DepartmentService,
     RegTypeService,
 
-// Dforms
+    // Dforms
     QuestionControlService,
 
+    // Material Form ErrorMatcher 
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
 
-// KeyGeneratorUtil
+    // KeyGeneratorUtil
     KeyGenerator
 
   ]

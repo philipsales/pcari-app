@@ -59,7 +59,7 @@
 	    <td>{{ database.name }}</td>
 	    <td>{{ database.description }}</td>
 	    <td>{{ database.createdBy }}</td>
-	    <td>{{ database.dateCreated | date: 'MMM dd, yyyy' }}</td>
+	    <td>{{ database.dateCreated | date: 'medium' }}</td>
 			<td style="text-align: right">
 					<button 
 							[routerLink]="['/admin/database/view/',database._id]"

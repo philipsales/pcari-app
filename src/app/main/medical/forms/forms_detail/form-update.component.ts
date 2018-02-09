@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
+
+import { FormControl, FormArray, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { KeyGenerator } from 'app/core/utils';
 
 import { Router, NavigationExtras, ActivatedRoute, ParamMap } from '@angular/router';
@@ -44,6 +45,7 @@ export class FormUpdateComponent implements OnInit {
   private is_processing = false;
 
   private newForm: Form;
+  private status: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -57,13 +59,17 @@ export class FormUpdateComponent implements OnInit {
     private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
   ) {
+    this.status = [
+      { "name": "Pending", "key": "Pending" },
+      { "name": "Approved", "key": "Approved" }
+    ];
   }
 
   ngOnInit() {
     this.getRegistryTypes();
     this.getDepartments();
     this.getOrganizations();
-    // this.organizations.push(new Organization('PGH'));
+
     this.formId = this.route.snapshot.paramMap.get('id');
     this.initForm(this.formId);
   }
@@ -93,10 +99,26 @@ export class FormUpdateComponent implements OnInit {
   toFormGroup(data: Form) {
     return this.fb.group({
       id: data.id,
-      name: data.name,
-      type: data.type,
-      organization: data.organization,
-      department: data.department
+      name: [
+        { value: data.name, disabled: false },
+        Validators.required
+      ],
+      status: [
+        { value: data.status, disabled: false },
+        Validators.required
+      ],
+      type: [
+        { value: data.type, disabled: false },
+        Validators.required
+      ],
+      organization: [
+        { value: data.organization, disabled: false },
+        Validators.required
+      ],
+      department: [
+        { value: data.department, disabled: false },
+        Validators.required
+      ]
     });
   }
 
@@ -140,29 +162,33 @@ export class FormUpdateComponent implements OnInit {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
-    const data = Form.fromAnyToJSON(inputForm);
-    this.formService.updateForm(data).subscribe(
-      updated_question => {
-        this.is_processing = false;
-        console.warn(updated_question, 'AYUS');
 
-        this.notificationsService
-          .success(
-          'Form: ' + inputForm.name,
-          'Successfully Saved.',
-          {
-            timeOut: 10000,
-            showProgressBar: true,
-            pauseOnHover: false,
-            clickToClose: false
-          });
-      }, errors => {
-        this.errors = errors;
-        this.has_errors = true;
-        this.is_processing = false;
-        console.warn('errro');
-        throw errors;
-    });
+    if (this.templateForm.valid) {
+      const data = Form.fromAnyToJSON(inputForm);
+      this.formService.updateForm(data).subscribe(
+        updated_question => {
+          this.is_processing = false;
+          console.warn(updated_question, 'AYUS');
+
+          this.notificationsService
+            .success(
+            'Form: ' + inputForm.name,
+            'Successfully Saved.',
+            {
+              timeOut: 10000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false
+            });
+        }, errors => {
+          this.errors = errors;
+          this.has_errors = true;
+          this.is_processing = false;
+          console.warn('errro');
+          throw errors;
+        });
+    }
+
   }
 
   onPreviewForm(previewForm: Form, id: string) {

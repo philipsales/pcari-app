@@ -44,13 +44,14 @@
     <div class="col-md-12">
       <table class="table table-striped">
 	<thead>
-	  <tr>
+		<tr>
 	    <th>#</th>
 	    <th>Form Name</th>
 	    <th>Type</th>
 	    <th>Department</th>
-	    <th style="text-align: center">Status</th>
-	    <th style="text-align: center"></th>
+
+	    <th>Status</th>
+	    <th></th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -59,9 +60,9 @@
 	    <td> {{ form.name }}</td>
 	    <td>{{ form.type }}</td>
 			<td>{{ form.department }}</td>
-			<td style="text-align: center">
-				<span *ngIf="form.status ==='Pending'" class="badge badge--failed" #active> {{form.status }}</span>
-				<span *ngIf="form.status ==='Final'" class="badge badge--success" #active> {{form.status }}</span>
+			<td>
+				<span *ngIf="form.status ==='Pending'" class="badge badge--failed" #pending> {{form.status }}</span>
+				<span *ngIf="form.status ==='Approved'" class="badge badge--success" #active> {{form.status }}</span>
 			</td>
 			<td style="text-align: right">
 				<button 

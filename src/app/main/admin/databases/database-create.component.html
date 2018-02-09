@@ -27,25 +27,25 @@
 
   <div class="row" id="page-body">
     <div class="col-md-12 table-nav">
-      <div class="col-sm-2 col-md-2 reset-wrapper">
+
+      <div class="col-sm-3 col-md-3 reset-wrapper">
         <button class="btn btn-default pull-left"
           *ngIf="state_view !== 'view'"
           (click)="onResetClick()">
           <i class="fa fa-refresh"></i> &nbsp; Reset
         </button>
       </div>
-      <div class="col-sm-4 col-md-4 col-sm-offset-1">
-        <div class="alert alert-danger"
-             [hidden]="!has_errors">
-          <strong>
-            <i class="fa fa-warning"></i> Unable to process your request.
-          </strong>
-          <em>Please see details below: </em>
+      <div class="col-sm-6 col-md-6">
+          <div class="alert alert-danger"
+              [hidden]="!has_errors">
+            <strong>
+              <i class="fa fa-warning"></i> Unable to process your request.
+            </strong>
+            <em>Please see details below: </em>
+          </div>
         </div>
-        <br/>
-      </div>
 
-      <div class="col-sm-5 col-md-5 save-wrapper" >
+      <div class="col-sm-3 col-md-3 save-wrapper pull-right" >
         <div class="row">
           <button class="btn btn-success pull-right"
             *ngIf="state_view === 'create'"
@@ -165,7 +165,7 @@
                       *ngIf="state_view === 'update' || state_view === 'view'"
                       [hidden]="state_view !== 'update' || state_view === 'view'"
                       (click)="onUpdateClick(database)">
-                      <i class="fa fa-edit"></i> &nbsp; Download
+                      <i class="fa fa-download"></i> &nbsp; Download
                     </button>
                   </div>
                 </div>

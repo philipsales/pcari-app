@@ -23,36 +23,49 @@
     </div>
   </div>
   
-  <div class="col-md-12" style="padding-top: 20px; padding-bottom: 15px;">
-    <!-- Case Identifier -->
-    <div class="col-md-6 col-sm-6 col-xs-12"> 
-        <div class="material-form-group">
-          <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
-            <input matInput 
-                  [(ngModel)]="_case.case_nbr"
-                  #input_name="ngModel" name="input_casenumber"
-                  [disabled]="method == 'VIEW'"
-                  placeholder="Case Number">
-          </mat-form-field>	
+  <!-- Case -->
+  <div class="col-md-12 col-sm-12 col-xs-12"> 
+      <div class="x_panel">
+        <div class="x_content">
+        <br>
+          <form data-parsley-validate=""
+          class="form-horizontal form-label-left"
+          #caseCreateForm="ngForm" novalidate>
+            <div class="row">
+            </div>
+            <div class="material-form-group">
+                <!-- Case Number-->
+                <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+                    <input matInput 
+                          [(ngModel)]="_case.case_nbr"
+                          #input_name="ngModel" name="input_casenumber"
+                          [disabled]="method == 'VIEW'"
+                          placeholder="Case Number">
+                </mat-form-field>	
+    
+                <!-- Diagnosis-->
+                <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+                    <input matInput 
+                          [(ngModel)]="_case.diagnosis"
+                          #input_name="ngModel" name="input_casenumber"
+                          [disabled]="method == 'VIEW'"
+                          placeholder="Diagnosis">
+                </mat-form-field>	  
+                <!-- Status -->
+                <br/><br/>
+                <mat-slide-toggle class="material-form-control col-md-offset-1 col-md-11 col-sm-12 col-xs-12"
+                    [disabled]="method == 'VIEW'"
+                    [(ngModel)]="_case.is_active"
+                    #input_is_active="ngModel" 
+                    name="input_is_active">
+                    {{ _case.is_active ? 'Active' : ' Inactive' }}
+                </mat-slide-toggle>
+            </div> <br/><br/>
+          </form>
         </div>
-    </div> 
-    <!-- Case Identifier -->
-  
-    <!-- Diagnosis -->
-    <div class="col-md-6 col-sm-6 col-xs-12"> 
-      <div class="material-form-group">  
-        <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
-            <input matInput 
-                  [(ngModel)]="_case.diagnosis"
-                  #input_name="ngModel" name="input_casenumber"
-                  [disabled]="method == 'VIEW'"
-                  placeholder="Diagnosis">
-        </mat-form-field>	  
-      </div>
-    </div>
-    <!-- Diagnosis -->
-  </div> 
-
+      </div>      
+    </div> <!--Case --> 
+   
 <app-case-form-add
   (onSaveFormAddTrigger)="onAddSelectedForm($event)"
   (onCancelFormAddTrigger)="onCancelAddForm()"

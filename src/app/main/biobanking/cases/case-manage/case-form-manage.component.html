@@ -22,6 +22,8 @@
                   <th>#</th>
                   <th>Form Name</th>
                   <th>Date Created</th>
+                  <th>Status</th>
+                  <th *ngIf="method != 'VIEW'">Approval</th>
                 </tr>
               </thead>
               <tbody>
@@ -29,6 +31,18 @@
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ form.form_name }}</td>
                   <td>{{ form.date_created | date :'medium' }}</td>
+                  <td>
+                      <span *ngIf="!form.status" class="badge badge--failed" #pending>Pending</span>
+                      <span *ngIf="form.status" class="badge badge--success" #approved>Approved</span>
+                  </td>
+                  <td *ngIf="method != 'VIEW'">
+                    <mat-slide-toggle class="material-form-control col-md-offset-1 col-md-11 col-sm-12 col-xs-12"
+                        [disabled]="method == 'VIEW'"
+                        [(ngModel)]="form.status"
+                        #input_form_status="ngModel" 
+                        name="input_form_status">
+                    </mat-slide-toggle>
+                  </td>
                   <td style="text-align: right">
                     <button 
                       class="btn btn-sm btn-default"

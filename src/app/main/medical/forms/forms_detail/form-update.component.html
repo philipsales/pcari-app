@@ -43,44 +43,63 @@
                           <input matInput 
                                  placeholder="Template Names"
                                  formControlName="name"
-                                 [disabled]="true"
-                                 readonly
                                  (change)="onChange($event)">
+                                 <mat-error *ngIf="templateForm.get('name').hasError('required')">
+                                    Template Name is required 
+                                </mat-error>
                      </mat-form-field>
                      <mat-form-field class="material-form-control" *ngIf="registryTypes">
                         <mat-select placeholder="Registry Type"
-                                    [disabled]="true"
                                     formControlName="type" >
                           <mat-option *ngFor="let type of registryTypes"
                                       [id]="type.name" 
                                       [value]="type.name">{{type.name}}
                           </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="templateForm.get('type').hasError('required')">
+                            Registry Type is required 
+                        </mat-error>
                       </mat-form-field>
                     </div>
 
                    <div class="material-form-group">
                       <mat-form-field class="material-form-control" *ngIf="organizations" >
                         <mat-select placeholder="Organization"
-                                    [disabled]="true"
                                     formControlName="organization" >
                           <mat-option *ngFor="let org of organizations"
                                       [id]="org.key" 
                                       [value]="org.name">{{org.name}}
                           </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="templateForm.get('organization').hasError('required')">
+                            Organization is required 
+                        </mat-error>
                       </mat-form-field>
                       <mat-form-field class="material-form-control" *ngIf="departments" >
                         <mat-select placeholder="Department"
-                                    [disabled]="true"
                                     formControlName="department" >
                           <mat-option *ngFor="let dept of departments"
                                       [id]="dept.key" 
                                       [value]="dept.name">{{dept.name}}
                           </mat-option>
                         </mat-select>
+                        <mat-error *ngIf="templateForm.get('department').hasError('required')">
+                            Department is required 
+                        </mat-error>
                       </mat-form-field>
                      </div>
+
+                     <div class="material-form-group">
+                        <mat-form-field class="material-form-control pull-left" >
+                          <mat-select placeholder="Status"
+                                      formControlName="status" >
+                            <mat-option *ngFor="let stat of status"
+                                        [id]="stat.key" 
+                                        [value]="stat.name">{{stat.name}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                    </div>
 
                  </div>
                </div>

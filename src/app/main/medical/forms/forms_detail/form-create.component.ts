@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { KeyGenerator } from 'app/core/utils';
 
+import { FormControl, FormArray, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, NavigationExtras, ActivatedRoute, ParamMap } from '@angular/router';
 
 import {
@@ -45,6 +45,7 @@ export class FormCreateComponent implements OnInit {
   private is_created = false;
 
   private newForm: Form;
+  private status: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -58,6 +59,7 @@ export class FormCreateComponent implements OnInit {
     private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
   ) {
+
   }
 
   ngOnInit() {
@@ -66,27 +68,76 @@ export class FormCreateComponent implements OnInit {
     this.getRegistryTypes();
     this.getDepartments();
     this.getOrganizations();
-    // this.organizations.push(new Organization('PGH'));
+    //TODO: make in API or dummy api
+    this.status = [
+      { "name": "Pending", "key": "Pending" },
+      { "name": "Approved", "key": "Approved" }
+    ];
+
     this.initForm();
   }
 
   initForm() {
     if (this.sharedData.getStorage()) {
+
       console.log('Data from shared!');
       const data = this.sharedData.getStorage().form;
       this.data = Form.fromJSON(Form.fromAnyToJSON(data));
       this.templateForm = this.toFormGroup(this.data);
+
+      const old_form: Form = <Form>this.sharedData.getStorage().form;
+      const sections: Section[] = [];
+      if (old_form.sections) {
+        old_form.sections.forEach((section) => {
+          const questions: Question[] = [];
+          if (section.questions) {
+            section.questions.forEach((question) => {
+              questions.push(new Question(
+                question.key,
+                question.label,
+                question.type,
+                question.value,
+                question.required,
+                question.order,
+                question.options
+              ));
+            });
+          }
+
+          sections.push(new Section(
+            section.key,
+            section.name,
+            section.order,
+            questions
+          ));
+        });
+      }
+
+      this.newForm = new Form(
+        old_form.name,
+        old_form.organization,
+        old_form.department,
+        old_form.type,
+        old_form.status,
+        sections
+      );
+
+      console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
+
     } else {
       const sections: Section[] = [];
       const questions: Question[] = [];
+
       sections.push(new Section(
         this.keyGenerator.create(),
         'Untitled section',
         0,
         questions
       ));
+
       this.newForm = new Form(
-        'Untitled form',
+        '',
+        '',
         '',
         '',
         '',
@@ -106,10 +157,27 @@ export class FormCreateComponent implements OnInit {
   toFormGroup(data: Form) {
     return this.fb.group({
       id: data.id,
-      name: data.name,
-      type: data.type,
-      organization: data.organization,
-      department: data.department
+      name: [
+        { value: data.name, disabled: false },
+        Validators.required
+      ],
+      status: [
+        { value: data.status, disabled: false },
+        Validators.required
+      ],
+      type: [
+        { value: data.type, disabled: false },
+        Validators.required
+      ],
+      organization: [
+        { value: data.organization, disabled: false },
+        Validators.required
+      ],
+      department: [
+        { value: data.department, disabled: false },
+        Validators.required
+      ]
+
     });
   }
 
@@ -117,21 +185,21 @@ export class FormCreateComponent implements OnInit {
     this.regTypeService.getRegTypes().subscribe(
       regType => {
         this.registryTypes = regType;
-    });
+      });
   }
 
   getDepartments() {
     this.departmentService.getDepartments().subscribe(
       departments => {
         this.departments = departments;
-    });
+      });
   }
 
   getOrganizations() {
     this.organizationService.getAll().subscribe(
       organizations => {
         this.organizations = organizations;
-    });
+      });
   }
 
   onAddSection() {
@@ -148,29 +216,32 @@ export class FormCreateComponent implements OnInit {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
-    const data = Form.fromAnyToJSON(inputForm);
-    this.formService.submitForm(data).subscribe(
-      created_question => {
-        this.is_processing = false;
-        console.warn(created_question, 'AYUS');
-        this.is_created = true;
-        this.notificationsService
-          .success(
-          'Form: ' + inputForm.name,
-          'Successfully Saved.',
-          {
-            timeOut: 10000,
-            showProgressBar: true,
-            pauseOnHover: false,
-            clickToClose: false
-          });
-      }, errors => {
-        this.errors = errors;
-        this.has_errors = true;
-        this.is_processing = false;
-        console.warn('errro');
-        throw errors;
-      });
+
+    if (this.templateForm.valid) {
+      const data = Form.fromAnyToJSON(inputForm);
+      this.formService.submitForm(data).subscribe(
+        created_question => {
+          this.is_processing = false;
+          console.warn(created_question, 'AYUS');
+          this.is_created = true;
+          this.notificationsService
+            .success(
+            'Form: ' + inputForm.name,
+            'Successfully Saved.',
+            {
+              timeOut: 10000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false
+            });
+        }, errors => {
+          this.errors = errors;
+          this.has_errors = true;
+          this.is_processing = false;
+          console.warn('errro');
+          throw errors;
+        });
+    }
   }
 
   onPreviewForm(previewForm: Form, id: string) {

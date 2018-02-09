@@ -58,7 +58,7 @@
       <td matTooltip="">{{ consent.name  }} </td>
       <td matTooltip="">{{ consent.number }} </td>
       <td matTooltip="{{consent.description}}">{{ consent.description | ellipsis:50 }} </td>
-			<td>{{ consent.date_created | date: 'MMM dd, yyyy' }}</td>
+			<td>{{ consent.date_created | date: 'medium' }}</td>
 			<td style="text-align: right">
         <button 
 						[routerLink]="['/admin/consent/view/',consent._id]"
