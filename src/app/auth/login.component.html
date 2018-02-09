@@ -1,14 +1,24 @@
 <div id="login-sidebar">
   <div class="login-panel_header">
     <img src="/assets/images/dual-transparent-B.png" class="login-panel__logos">
+    <br/><br/>
+    <div>
+      <a class="login-panel__about"
+         (click)="onAboutClick()">
+        About Us 
+      </a>
+    </div>
   </div>
+
   
   <div class="login-panel__content">
     <h2 class="login-panel__header">
       <small class="login-panel__subheader">
       v1.0.0-alpha
       </small>
-      PCARI REGISTRY
+      <em>
+        Philippine Cancer-Phenome Biobank Registry
+      </em>
     </h2>
     <p class="login-panel__caption">
       Medical Information &<br>
@@ -20,7 +30,7 @@
       SIGN UP
     </a>
     <a (click)="onSigninClick()"
-      *ngIf="show_signup"
+      *ngIf="show_signup || show_about"
       class="login-panel__button center-block">
       SIGN IN
     </a>
@@ -42,3 +52,6 @@
 <app-signup
   [show]="show_signup">
 </app-signup>
+<app-about 
+  [show]="show_about">
+</app-about>

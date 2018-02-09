@@ -6,6 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login.component';
 import { SigninComponent } from './signin.component';
 import { SignupComponent } from './signup.component';
+import { AboutComponent } from './about.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { SignupComponent } from './signup.component';
     FormsModule,
     AuthRoutingModule
   ],
-  declarations: [LoginComponent, SigninComponent, SignupComponent]
+  declarations: [LoginComponent, SigninComponent, SignupComponent, AboutComponent]
 })
 export class AuthModule { }
