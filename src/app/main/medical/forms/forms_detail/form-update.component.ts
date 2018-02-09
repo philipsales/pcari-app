@@ -99,9 +99,12 @@ export class FormUpdateComponent implements OnInit {
   toFormGroup(data: Form) {
     return this.fb.group({
       id: data.id,
-<<<<<<< HEAD
       name: [
         { value: data.name, disabled: false },
+        Validators.required
+      ],
+      status: [
+        { value: data.status, disabled: false },
         Validators.required
       ],
       type: [
@@ -116,13 +119,6 @@ export class FormUpdateComponent implements OnInit {
         { value: data.department, disabled: false },
         Validators.required
       ]
-=======
-      name: data.name,
-      status: data.status,
-      type: data.type,
-      organization: data.organization,
-      department: data.department
->>>>>>> feature/approvals.01
     });
   }
 

@@ -90,16 +90,19 @@
                     </div>
 
                     <div class="material-form-group">
-                        <mat-form-field class="material-form-control pull-left" >
-                          <mat-select placeholder="Approval Status"
-                                      formControlName="status" >
-                            <mat-option *ngFor="let stat of status"
-                                        [id]="stat.key" 
-                                        [value]="stat.name">{{stat.name}}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
+                      <mat-form-field class="material-form-control pull-left" >
+                        <mat-select placeholder="Status"
+                                    formControlName="status" >
+                          <mat-option *ngFor="let stat of status"
+                                      [id]="stat.key" 
+                                      [value]="stat.name">{{stat.name}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="templateForm.get('status').hasError('required')">
+                            Status is required 
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
 
                  </div>
                </div>

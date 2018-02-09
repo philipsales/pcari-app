@@ -67,7 +67,8 @@ export class FormCreateComponent implements OnInit {
     console.log('form-create');
     this.getRegistryTypes();
     this.getDepartments();
-    this.getOrganizations();    //TODO: make in API or dummy api
+    this.getOrganizations();
+    //TODO: make in API or dummy api
     this.status = [
       { "name": "Pending", "key": "Pending" },
       { "name": "Approved", "key": "Approved" }
@@ -135,18 +136,11 @@ export class FormCreateComponent implements OnInit {
       ));
 
       this.newForm = new Form(
-<<<<<<< HEAD
         '',
         '',
         '',
         '',
-=======
-        'Untitled form',
-        'University of the Philippines - Philippine General Hospital',
-        'General Surgery Department',
-        'Patient Repository',
-        'Pending',
->>>>>>> feature/approvals.01
+        '',
         sections
       );
       this.data = this.newForm;
@@ -163,13 +157,12 @@ export class FormCreateComponent implements OnInit {
   toFormGroup(data: Form) {
     return this.fb.group({
       id: data.id,
-
-      //name: data.name,
-      //type: data.type,
-      //organization: data.organization,
-      //department: data.department
       name: [
         { value: data.name, disabled: false },
+        Validators.required
+      ],
+      status: [
+        { value: data.status, disabled: false },
         Validators.required
       ],
       type: [
