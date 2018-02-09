@@ -11,6 +11,10 @@ const routes: Routes = [
           loadChildren: './cases/case.module#CaseModule'
         },
         {
+          path: 'forms',
+          loadChildren: './consentforms/consentforms.module#ConsentformsModule'
+        },
+        {
           path: 'reports',
           loadChildren: './reports/reports-biobanking.module#ReportsBiobankingModule'
         },
