@@ -74,12 +74,12 @@ li {
 
 .badge--success {
     Background-color: #5EB065;
-    width: 70px;
+    width: 80px;
     padding: 5px;
 }
 
 .badge--failed {
     background-color: #C8CDCF;
-    width: 70px;
+    width: 80px;
     padding: 5px;
 }

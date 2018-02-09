@@ -48,6 +48,7 @@
 	    <th>Case Number</th>
 	    <th>Diagnosis</th>
 	    <th>Date Created</th>
+	    <th>Status</th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -56,6 +57,10 @@
 	    <td>{{ case.case_nbr }}</td>
 	    <td> {{case.diagnosis }} </td>
 	    <td>{{ case.date_created }}</td>
+			<td>
+				<span *ngIf="!case.is_active" class="badge badge--failed" #inactive> Inactive</span>
+				<span *ngIf="case.is_active" class="badge badge--success" #active> Active</span>
+			</td>
 			<td style="text-align: right">
         <button 
 				 class="btn btn-sm btn-default"

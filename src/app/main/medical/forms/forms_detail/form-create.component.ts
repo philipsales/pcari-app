@@ -58,6 +58,7 @@ export class FormCreateComponent implements OnInit {
     private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
   ) {
+    //TODO: make in API or dummy api
     this.status = [
       { "name": "Pending", "key": "Pending" },
       { "name": "Approved", "key": "Approved" }

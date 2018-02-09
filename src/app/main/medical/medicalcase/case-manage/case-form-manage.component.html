@@ -22,6 +22,7 @@
                   <th>#</th>
                   <th>Form Name</th>
                   <th>Date Created</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -29,6 +30,11 @@
                   <th scope="row">{{ i + 1 }}</th>
                   <td>{{ form.form_name }}</td>
                   <td>{{ form.date_created | date :'medium' }}</td>
+                  <td>
+                    <span *ngIf="form.status=='Pending'" class="badge badge--failed" #pending> Pending</span>
+                    <span *ngIf="form.status=='Approved'" class="badge badge--success" #approved> Approved</span>
+                  </td>
+
                   <td style="text-align: right">
                     <button 
                       class="btn btn-sm btn-default"
