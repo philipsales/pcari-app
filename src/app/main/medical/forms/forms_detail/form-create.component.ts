@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { KeyGenerator } from 'app/core/utils';
 
+import { FormControl, FormArray, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, NavigationExtras, ActivatedRoute, ParamMap } from '@angular/router';
 
 import {
@@ -79,14 +79,16 @@ export class FormCreateComponent implements OnInit {
     } else {
       const sections: Section[] = [];
       const questions: Question[] = [];
+
       sections.push(new Section(
         this.keyGenerator.create(),
         'Untitled section',
         0,
         questions
       ));
+
       this.newForm = new Form(
-        'Untitled form',
+        '',
         '',
         '',
         '',
@@ -106,10 +108,26 @@ export class FormCreateComponent implements OnInit {
   toFormGroup(data: Form) {
     return this.fb.group({
       id: data.id,
-      name: data.name,
-      type: data.type,
-      organization: data.organization,
-      department: data.department
+      //name: data.name,
+      //type: data.type,
+      //organization: data.organization,
+      //department: data.department
+      name: [
+        { value: data.name, disabled: false },
+        Validators.required
+      ],
+      type: [
+        { value: data.type, disabled: false },
+        Validators.required
+      ],
+      organization: [
+        { value: data.organization, disabled: false },
+        Validators.required
+      ],
+      department: [
+        { value: data.department, disabled: false },
+        Validators.required
+      ]
     });
   }
 
@@ -117,21 +135,21 @@ export class FormCreateComponent implements OnInit {
     this.regTypeService.getRegTypes().subscribe(
       regType => {
         this.registryTypes = regType;
-    });
+      });
   }
 
   getDepartments() {
     this.departmentService.getDepartments().subscribe(
       departments => {
         this.departments = departments;
-    });
+      });
   }
 
   getOrganizations() {
     this.organizationService.getAll().subscribe(
       organizations => {
         this.organizations = organizations;
-    });
+      });
   }
 
   onAddSection() {
@@ -148,29 +166,32 @@ export class FormCreateComponent implements OnInit {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
-    const data = Form.fromAnyToJSON(inputForm);
-    this.formService.submitForm(data).subscribe(
-      created_question => {
-        this.is_processing = false;
-        console.warn(created_question, 'AYUS');
-        this.is_created = true;
-        this.notificationsService
-          .success(
-          'Form: ' + inputForm.name,
-          'Successfully Saved.',
-          {
-            timeOut: 10000,
-            showProgressBar: true,
-            pauseOnHover: false,
-            clickToClose: false
-          });
-      }, errors => {
-        this.errors = errors;
-        this.has_errors = true;
-        this.is_processing = false;
-        console.warn('errro');
-        throw errors;
-      });
+
+    if (this.templateForm.valid) {
+      const data = Form.fromAnyToJSON(inputForm);
+      this.formService.submitForm(data).subscribe(
+        created_question => {
+          this.is_processing = false;
+          console.warn(created_question, 'AYUS');
+          this.is_created = true;
+          this.notificationsService
+            .success(
+            'Form: ' + inputForm.name,
+            'Successfully Saved.',
+            {
+              timeOut: 10000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false
+            });
+        }, errors => {
+          this.errors = errors;
+          this.has_errors = true;
+          this.is_processing = false;
+          console.warn('errro');
+          throw errors;
+        });
+    }
   }
 
   onPreviewForm(previewForm: Form, id: string) {
