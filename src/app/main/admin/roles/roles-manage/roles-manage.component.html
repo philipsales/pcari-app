@@ -58,7 +58,7 @@
             [(ngModel)]="_role.isActive"
             #input_status="ngModel" 
             name="input_status">
-            Active
+            {{ _role.isActive ? 'Active' : ' Inactive' }}
           </mat-slide-toggle>
         </div> <br/><br/>
       </form>

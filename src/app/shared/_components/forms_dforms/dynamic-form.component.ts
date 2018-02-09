@@ -16,252 +16,252 @@ import { CaseService, FormAnswerService, ConsentService } from 'app/core/service
 
 
 @Component({
-    selector: 'app-dynamic-form',
-    templateUrl: './dynamic-form.component.html',
-    styleUrls: [ './dynamic-form.component.css' ],
-    providers: [ QuestionControlService ]
+  selector: 'app-dynamic-form',
+  templateUrl: './dynamic-form.component.html',
+  styleUrls: ['./dynamic-form.component.css'],
+  providers: [QuestionControlService]
 })
 export class DynamicFormComponent implements OnInit {
 
-    @Input() formArray: FormArray;
-    private questionz: Question[] = [];
-    @Input() set inquestionz(value: Question[]) {
-      if (value) {
-        this.questionz = value;
-        console.warn(this.questionz, 'HELLO questionz!');
-        this.initUI();
-      }
+  @Input() formArray: FormArray;
+  private questionz: Question[] = [];
+  @Input() set inquestionz(value: Question[]) {
+    if (value) {
+      this.questionz = value;
+      console.warn(this.questionz, 'HELLO questionz!');
+      this.initUI();
     }
+  }
 
-    @Input() method: string;
-    @Input() caseid: string;
-    @Input() casenumber: string;
-    @Input() formanswerid: string;
-    @Input() answers: Map<string, string>;
+  @Input() method: string;
+  @Input() caseid: string;
+  @Input() casenumber: string;
+  @Input() formanswerid: string;
+  @Input() answers: Map<string, string>;
 
-    private sectionz: Section[] = [];
-    @Input() set insectionz(value: Section[]) {
-      if (value) {
-        this.sectionz = value;
-        console.warn(this.sectionz, 'HELLO sectionz!');
-        this.initUI();
-      }
+  private sectionz: Section[] = [];
+  @Input() set insectionz(value: Section[]) {
+    if (value) {
+      this.sectionz = value;
+      console.warn(this.sectionz, 'HELLO sectionz!');
+      this.initUI();
     }
+  }
 
-    private consents: Consent[];
-    questions: QuestionBase<any>[] = [];
-    form: FormGroup;
-    payLoad = '';
-    private section: string[];
-    private sections: Section[];
+  private consents: Consent[];
+  questions: QuestionBase<any>[] = [];
+  form: FormGroup;
+  payLoad = '';
+  private section: string[];
+  private sections: Section[];
 
-    constructor(
-      private qcs: QuestionControlService,
-      private caseservice: CaseService,
-      private formAnswerService: FormAnswerService,
-      private consentService: ConsentService,
-      private notificationsService: NotificationsService
-    ) {
-    }// --constructor
+  constructor(
+    private qcs: QuestionControlService,
+    private caseservice: CaseService,
+    private formAnswerService: FormAnswerService,
+    private consentService: ConsentService,
+    private notificationsService: NotificationsService
+  ) {
+  }// --constructor
 
 
-    private questions_test: QuestionBase<any>[] = [];
-    private form_test: FormGroup;
-    private sections_test: Section;
-    private sections_array: Section[]= [];
+  private questions_test: QuestionBase<any>[] = [];
+  private form_test: FormGroup;
+  private sections_test: Section;
+  private sections_array: Section[] = [];
 
-    sectionGroupTest: FormGroup;
-    formArrayTest: FormArray;
+  sectionGroupTest: FormGroup;
+  formArrayTest: FormArray;
 
-    ngOnInit() {
-      this.consentService.getConsents().subscribe(
+  ngOnInit() {
+    this.consentService.getConsents().subscribe(
       consents => {
         console.log(consents);
         this.consents = consents;
       });
-      this.initUI();
-    }// --onInit
+    this.initUI();
+  }// --onInit
 
 
-    initUI() {
-      this.formArrayTest = new FormArray([]);
-      for (let my_section of this.sectionz) {
-        this.sectionGroupTest = this.qcs.toFormGroupSection(my_section);
-        this.formArrayTest.push(this.sectionGroupTest);
-        this.sectionGroupTest.addControl('questions', new FormArray([]));
-        this.sectionGroupTest.addControl('questionsType', new FormArray([]));
-          for (let my_question of my_section.questions) {
-            (<FormArray>this.sectionGroupTest.get('questions')).push(this.qcs.toFormGroupQuestion(my_question));
-            if (my_question.type === 'textbox' || my_question.type === 'text') {
-              this.questions.push(
-                new TextboxQuestion({
-                  key      : my_question.key,
-                  label    : my_question.label,
-                  // value    : my_question.value,
-                  value    : this.answers.get(my_question.key),
-                  required : my_question.required ? true : false,
-                  order: my_question.order,
-                  disabled: this.method === 'VIEW'
-                })
-              );
-            } else if (my_question.type === 'dropdown') {
-              this.questions.push(
-                new DropdownQuestion({
-                  key      : my_question.key,
-                  label    : my_question.label,
-                  type     : my_question.type,
-                  // value    : my_question.value,
-                  value    : this.answers.get(my_question.key),
-                  order    : my_question.order,
-                  required : my_question.required ? true : false,
-                  options  : my_question.options,
-                  disabled: this.method === 'VIEW'
-                })
-              );
-            } else if (my_question.type === 'checkbox') {
-              this.questions.push(
-                new CheckboxQuestion({
-                  key      : my_question.key,
-                  label    : my_question.label,
-                  type     : my_question.type,
-                  // value    : my_question.value,
-                  value    : this.answers.get(my_question.key),
-                  order    : my_question.order,
-                  required : my_question.required ? true : false,
-                  options  : my_question.options,
-                  disabled: this.method === 'VIEW'
-                })
-              );
-            } else if (my_question.type === 'radiobutton') {
-              this.questions.push(
-                new RadiobuttonQuestion({
-                  key      : my_question.key,
-                  label    : my_question.label,
-                  type     : my_question.type,
-                  // value    : my_question.value,
-                  value    : this.answers.get(my_question.key),
-                  order    : my_question.order,
-                  required : my_question.required ? true : false,
-                  options  : my_question.options,
-                  disabled: this.method === 'VIEW'
-                })
-              );
-            } else if (my_question.type === 'datepicker') {
-              this.questions.push(
-                new DatepickerQuestion({
-                  key      : my_question.key,
-                  label    : my_question.label,
-                  type     : my_question.type,
-                  // value    : my_question.value,
-                  value    : this.answers.get(my_question.key),
-                  required : my_question.required ? true : false,
-                  order    : my_question.order,
-                  disabled: this.method === 'VIEW'
-                })
-              );
-            } else if (my_question.type === 'textarea') {
-              this.questions.push(
-                new TextareaQuestion({
-                  key      : my_question.key,
-                  label    : my_question.label,
-                  type     : my_question.type,
-                  required : my_question.required ? true : false,
-                  order    : my_question.order,
-                  value    : this.answers.get(my_question.key),
-                  disabled: this.method === 'VIEW'
-                })
-              );
-            } else if (my_question.type === 'email') {
-              this.questions.push(
-                new TextboxQuestion({
-                  key      : my_question.key,
-                  label    : my_question.label,
-                  type     : my_question.type,
-                  order    : my_question.order,
-                  value    : this.answers.get(my_question.key),
-                  disabled: this.method === 'VIEW'
-                })
-              );
-            } else if (my_question.type === 'password') {
-              this.questions.push(
-                new TextboxQuestion({
-                  key      : my_question.key,
-                  label    : my_question.label,
-                  type     : my_question.type,
-                  order    : my_question.order,
-                  value    : this.answers.get(my_question.key),
-                  disabled: this.method === 'VIEW'
-                })
-              );
-            } else {
-              console.warn('FIX ME : Not yet supported ' , my_question.type);
-            }
+  initUI() {
+    this.formArrayTest = new FormArray([]);
+    for (let my_section of this.sectionz) {
+      this.sectionGroupTest = this.qcs.toFormGroupSection(my_section);
+      this.formArrayTest.push(this.sectionGroupTest);
+      this.sectionGroupTest.addControl('questions', new FormArray([]));
+      this.sectionGroupTest.addControl('questionsType', new FormArray([]));
+      for (let my_question of my_section.questions) {
+        (<FormArray>this.sectionGroupTest.get('questions')).push(this.qcs.toFormGroupQuestion(my_question));
+        if (my_question.type === 'textbox' || my_question.type === 'text') {
+          this.questions.push(
+            new TextboxQuestion({
+              key: my_question.key,
+              label: my_question.label,
+              // value    : my_question.value,
+              value: this.answers.get(my_question.key),
+              required: my_question.required ? true : false,
+              order: my_question.order,
+              disabled: this.method === 'VIEW'
+            })
+          );
+        } else if (my_question.type === 'dropdown') {
+          this.questions.push(
+            new DropdownQuestion({
+              key: my_question.key,
+              label: my_question.label,
+              type: my_question.type,
+              // value    : my_question.value,
+              value: this.answers.get(my_question.key),
+              order: my_question.order,
+              required: my_question.required ? true : false,
+              options: my_question.options,
+              disabled: this.method === 'VIEW'
+            })
+          );
+        } else if (my_question.type === 'checkbox') {
+          this.questions.push(
+            new CheckboxQuestion({
+              key: my_question.key,
+              label: my_question.label,
+              type: my_question.type,
+              // value    : my_question.value,
+              value: this.answers.get(my_question.key),
+              order: my_question.order,
+              required: my_question.required ? true : false,
+              options: my_question.options,
+              disabled: this.method === 'VIEW'
+            })
+          );
+        } else if (my_question.type === 'radiobutton') {
+          this.questions.push(
+            new RadiobuttonQuestion({
+              key: my_question.key,
+              label: my_question.label,
+              type: my_question.type,
+              // value    : my_question.value,
+              value: this.answers.get(my_question.key),
+              order: my_question.order,
+              required: my_question.required ? true : false,
+              options: my_question.options,
+              disabled: this.method === 'VIEW'
+            })
+          );
+        } else if (my_question.type === 'datepicker') {
+          this.questions.push(
+            new DatepickerQuestion({
+              key: my_question.key,
+              label: my_question.label,
+              type: my_question.type,
+              // value    : my_question.value,
+              value: this.answers.get(my_question.key),
+              required: my_question.required ? true : false,
+              order: my_question.order,
+              disabled: this.method === 'VIEW'
+            })
+          );
+        } else if (my_question.type === 'textarea') {
+          this.questions.push(
+            new TextareaQuestion({
+              key: my_question.key,
+              label: my_question.label,
+              type: my_question.type,
+              required: my_question.required ? true : false,
+              order: my_question.order,
+              value: this.answers.get(my_question.key),
+              disabled: this.method === 'VIEW'
+            })
+          );
+        } else if (my_question.type === 'email') {
+          this.questions.push(
+            new TextboxQuestion({
+              key: my_question.key,
+              label: my_question.label,
+              type: my_question.type,
+              order: my_question.order,
+              value: this.answers.get(my_question.key),
+              disabled: this.method === 'VIEW'
+            })
+          );
+        } else if (my_question.type === 'password') {
+          this.questions.push(
+            new TextboxQuestion({
+              key: my_question.key,
+              label: my_question.label,
+              type: my_question.type,
+              order: my_question.order,
+              value: this.answers.get(my_question.key),
+              disabled: this.method === 'VIEW'
+            })
+          );
+        } else {
+          console.warn('FIX ME : Not yet supported ', my_question.type);
+        }
 
-            (<FormArray>this.sectionGroupTest.get('questionsType'))
-              .push(this.qcs.toFormGroupQuestionType(this.questions));
-          }// --for
-        }// --for
-        // this.questions = this.questions.sort((a, b) => a.order - b.order);
-        this.form = this.qcs.toFormGroup(this.questions);
-        console.log('--formARrayTest--', this.formArrayTest);
-        console.log('--this.form--', this.form);
-    }
+        (<FormArray>this.sectionGroupTest.get('questionsType'))
+          .push(this.qcs.toFormGroupQuestionType(this.questions));
+      }// --for
+    }// --for
+    // this.questions = this.questions.sort((a, b) => a.order - b.order);
+    this.form = this.qcs.toFormGroup(this.questions);
+    console.log('--formARrayTest--', this.formArrayTest);
+    console.log('--this.form--', this.form);
+  }
 
-    onSubmit() {
-      this.payLoad = JSON.stringify(this.form.value);
-      let answers: Answer[] = [];
-      Object.keys(this.form.value).forEach((key) => {
-        answers.push(new Answer(key, this.form.value[key]));
-      });
-      let forms : FormAnswer[] = [];
-      forms.push(new FormAnswer('', '', answers));
+  onSubmit() {
+    this.payLoad = JSON.stringify(this.form.value);
+    let answers: Answer[] = [];
+    Object.keys(this.form.value).forEach((key) => {
+      answers.push(new Answer(key, this.form.value[key]));
+    });
+    let forms: FormAnswer[] = [];
+    forms.push(new FormAnswer('', '', false, answers));
 
-      console.warn(this.casenumber, 'CASE NUMBER');
-      console.warn(answers, 'WAAAAAAAAA');
-      console.warn(forms, 'WAAAAAAAAA');
-      console.warn(this.caseid, 'WAAAAAAAAA');
-      console.warn(this.formanswerid, 'WAAAAAAAAA');
+    console.warn(this.casenumber, 'CASE NUMBER');
+    console.warn(answers, 'WAAAAAAAAA');
+    console.warn(forms, 'WAAAAAAAAA');
+    console.warn(this.caseid, 'WAAAAAAAAA');
+    console.warn(this.formanswerid, 'WAAAAAAAAA');
 
-      this.formAnswerService.update(
-        this.caseid,
-        this.formanswerid,
-        new FormAnswer('', '', answers)).subscribe(updated_formanswer => {
-          console.warn(updated_formanswer, 'AYUS');
-          this.notificationsService
-                .success(
-                  'Form : ' + updated_formanswer.form_name,
-                  'Successfully Updated.',
-                  {
-                    timeOut: 10000,
-                    showProgressBar: true,
-                    pauseOnHover: false,
-                    clickToClose: false
-                  }
-                );
-        }, errors => {
-          console.warn('errors');
-          throw errors;
-        });
-
-      /*
-      let to_save = new Case(this.casenumber.toString(), '', forms);
-      this.caseservice.create(to_save).subscribe(created_case => {
-        console.warn(created_case, 'AYUS');
+    this.formAnswerService.update(
+      this.caseid,
+      this.formanswerid,
+      new FormAnswer('', '', false, answers)).subscribe(updated_formanswer => {
+        console.warn(updated_formanswer, 'AYUS');
         this.notificationsService
-              .success(
-                'Case: ' + created_case['case_number'],
-                'Successfully Saved.',
-                {
-                  timeOut: 10000,
-                  showProgressBar: true,
-                  pauseOnHover: false,
-                  clickToClose: false
-                }
-              );
+          .success(
+          'Form : ' + updated_formanswer.form_name,
+          'Successfully Updated.',
+          {
+            timeOut: 10000,
+            showProgressBar: true,
+            pauseOnHover: false,
+            clickToClose: false
+          }
+          );
       }, errors => {
         console.warn('errors');
         throw errors;
       });
-      */
-    }// --onSubmit
+
+    /*
+    let to_save = new Case(this.casenumber.toString(), '', forms);
+    this.caseservice.create(to_save).subscribe(created_case => {
+      console.warn(created_case, 'AYUS');
+      this.notificationsService
+            .success(
+              'Case: ' + created_case['case_number'],
+              'Successfully Saved.',
+              {
+                timeOut: 10000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: false
+              }
+            );
+    }, errors => {
+      console.warn('errors');
+      throw errors;
+    });
+    */
+  }// --onSubmit
 }// --DynamicFormComponent

@@ -45,6 +45,7 @@ export class FormCreateComponent implements OnInit {
   private is_created = false;
 
   private newForm: Form;
+  private status: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -58,6 +59,7 @@ export class FormCreateComponent implements OnInit {
     private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
   ) {
+
   }
 
   ngOnInit() {
@@ -65,17 +67,62 @@ export class FormCreateComponent implements OnInit {
     console.log('form-create');
     this.getRegistryTypes();
     this.getDepartments();
-    this.getOrganizations();
-    // this.organizations.push(new Organization('PGH'));
+    this.getOrganizations();    //TODO: make in API or dummy api
+    this.status = [
+      { "name": "Pending", "key": "Pending" },
+      { "name": "Approved", "key": "Approved" }
+    ];
+
     this.initForm();
   }
 
   initForm() {
     if (this.sharedData.getStorage()) {
+
       console.log('Data from shared!');
       const data = this.sharedData.getStorage().form;
       this.data = Form.fromJSON(Form.fromAnyToJSON(data));
       this.templateForm = this.toFormGroup(this.data);
+
+      const old_form: Form = <Form>this.sharedData.getStorage().form;
+      const sections: Section[] = [];
+      if (old_form.sections) {
+        old_form.sections.forEach((section) => {
+          const questions: Question[] = [];
+          if (section.questions) {
+            section.questions.forEach((question) => {
+              questions.push(new Question(
+                question.key,
+                question.label,
+                question.type,
+                question.value,
+                question.required,
+                question.order,
+                question.options
+              ));
+            });
+          }
+
+          sections.push(new Section(
+            section.key,
+            section.name,
+            section.order,
+            questions
+          ));
+        });
+      }
+
+      this.newForm = new Form(
+        old_form.name,
+        old_form.organization,
+        old_form.department,
+        old_form.type,
+        old_form.status,
+        sections
+      );
+
+      console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
+
     } else {
       const sections: Section[] = [];
       const questions: Question[] = [];
@@ -88,10 +135,18 @@ export class FormCreateComponent implements OnInit {
       ));
 
       this.newForm = new Form(
+<<<<<<< HEAD
         '',
         '',
         '',
         '',
+=======
+        'Untitled form',
+        'University of the Philippines - Philippine General Hospital',
+        'General Surgery Department',
+        'Patient Repository',
+        'Pending',
+>>>>>>> feature/approvals.01
         sections
       );
       this.data = this.newForm;
@@ -108,6 +163,7 @@ export class FormCreateComponent implements OnInit {
   toFormGroup(data: Form) {
     return this.fb.group({
       id: data.id,
+
       //name: data.name,
       //type: data.type,
       //organization: data.organization,
@@ -128,6 +184,7 @@ export class FormCreateComponent implements OnInit {
         { value: data.department, disabled: false },
         Validators.required
       ]
+
     });
   }
 

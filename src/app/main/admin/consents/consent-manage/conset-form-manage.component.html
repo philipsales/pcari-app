@@ -29,9 +29,7 @@
             <ng-container matColumnDef="date_created">
                 <mat-header-cell *matHeaderCellDef> Date Created</mat-header-cell>
                 <mat-cell *matCellDef="let form"> 
-                  {{form.date_created | date: 'MMM dd, yyyy'}} 
-                  <br/>
-                  {{form.date_created | date: 'hh:mm a'}}  
+                  {{form.date_created | date: 'medium'}} 
                 </mat-cell>
                 <!-- <mat-cell *matCellDef="let form"> {{form.date_created}} </mat-cell> -->
             </ng-container>

@@ -207,6 +207,7 @@ export class ConsentManageComponent implements OnInit {
         form.organization,
         form.department,
         form.type,
+        form.status,
         [],
         form.date_created
       );
