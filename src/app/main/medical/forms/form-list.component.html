@@ -61,7 +61,7 @@
 			<td>{{ form.department }}</td>
 			<td style="text-align: center">
 				<span *ngIf="form.status ==='Pending'" class="badge badge--failed" #active> {{form.status }}</span>
-				<span *ngIf="form.status ==='Final'" class="badge badge--success" #active> {{form.status }}</span>
+				<span *ngIf="form.status ==='Approved'" class="badge badge--success" #active> {{form.status }}</span>
 			</td>
 			<td style="text-align: right">
 				<button 

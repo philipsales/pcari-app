@@ -151,7 +151,6 @@ export class FormService {
 
     return this.http.patch(url, form).map((response: FormJSON) => {
       // return (response.json().data as Form[])
-      console.log(response, 'FORM UPDATED from /forms');
       return Form.fromJSON(response);
     })
       .catch(Helper.handleError);

@@ -44,6 +44,7 @@ export class FormCreateComponent implements OnInit {
   private is_processing = false;
 
   private newForm: Form;
+  private status: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -57,6 +58,10 @@ export class FormCreateComponent implements OnInit {
     private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
   ) {
+    this.status = [
+      { "name": "Pending", "key": "Pending" },
+      { "name": "Approved", "key": "Approved" }
+    ];
   }
 
   ngOnInit() {
@@ -64,10 +69,8 @@ export class FormCreateComponent implements OnInit {
     console.log('form-create');
     this.getRegistryTypes();
     this.getDepartments();
-    // TO DO:
-    // this.getOrganizations();
-    this.organizations.push(new Organization('PGH'));
-    // this.formId = this.route.snapshot.paramMap.get('id');
+    this.getOrganizations();
+
     this.initForm();
   }
 
@@ -110,7 +113,8 @@ export class FormCreateComponent implements OnInit {
         old_form.name,
         old_form.organization,
         old_form.department,
-        old_form.department,
+        old_form.type,
+        old_form.status,
         sections
       );
 
@@ -131,6 +135,7 @@ export class FormCreateComponent implements OnInit {
         'University of the Philippines - Philippine General Hospital',
         'General Surgery Department',
         'Patient Repository',
+        'Pending',
         sections
       );
 
@@ -189,6 +194,7 @@ export class FormCreateComponent implements OnInit {
     return this.fb.group({
       id: data.id,
       name: data.name,
+      status: data.status,
       type: data.type,
       organization: data.organization,
       department: data.department

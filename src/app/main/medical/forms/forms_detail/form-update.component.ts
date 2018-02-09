@@ -45,6 +45,7 @@ export class FormUpdateComponent implements OnInit {
   private is_processing = false;
 
   private newForm: Form;
+  private status: any[];
 
   constructor(
     private fb: FormBuilder,
@@ -58,6 +59,10 @@ export class FormUpdateComponent implements OnInit {
     private sharedData: SharedDataService,
     private keyGenerator: KeyGenerator
   ) {
+    this.status = [
+      { "name": "Pending", "key": "Pending" },
+      { "name": "Approved", "key": "Approved" }
+    ];
   }
 
   ngOnInit() {
@@ -65,9 +70,8 @@ export class FormUpdateComponent implements OnInit {
     console.log('form-create');
     this.getRegistryTypes();
     this.getDepartments();
-    // TO DO:
-    // this.getOrganizations();
-    this.organizations.push(new Organization('PGH'));
+    this.getOrganizations();
+
     this.formId = this.route.snapshot.paramMap.get('id');
     this.initForm(this.formId);
   }
@@ -108,6 +112,7 @@ export class FormUpdateComponent implements OnInit {
     return this.fb.group({
       id: data.id,
       name: data.name,
+      status: data.status,
       type: data.type,
       organization: data.organization,
       department: data.department
@@ -155,8 +160,6 @@ export class FormUpdateComponent implements OnInit {
     this.has_errors = false;
     this.is_processing = true;
     let data = Form.fromAnyToJSON(inputForm);
-    console.log(data);
-    console.log(this.data);
 
     this.formService
       .updateForm(data)

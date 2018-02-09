@@ -81,6 +81,7 @@ export class Form {
     organization: string,
     department: string,
     type: string,
+    status: string,
     sections?: Section[],
     date_created?: Date
   ) {
@@ -88,6 +89,7 @@ export class Form {
     this.organization = organization;
     this.department = department;
     this.type = type;
+    this.status = status;
     if (sections) {
       this.sections = sections;
     }
