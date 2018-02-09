@@ -42,6 +42,7 @@ export class FormCreateComponent implements OnInit {
   private has_errors = false;
   private hide_key = true;
   private is_processing = false;
+  private is_created = false;
 
   private newForm: Form;
 
@@ -60,64 +61,22 @@ export class FormCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.is_created = false;
     console.log('form-create');
     this.getRegistryTypes();
     this.getDepartments();
-    // TO DO:
-    // this.getOrganizations();
-    this.organizations.push(new Organization('PGH'));
-    // this.formId = this.route.snapshot.paramMap.get('id');
+    this.getOrganizations();
+    // this.organizations.push(new Organization('PGH'));
     this.initForm();
   }
 
   initForm() {
-    this.initCreateForm();
-  }
-
-  // TODO: Refractor default declaration
-  initCreateForm(): void {
     if (this.sharedData.getStorage()) {
-      const old_form: Form = <Form>this.sharedData.getStorage().form;
-      const sections: Section[] = [];
-      if (old_form.sections) {
-        old_form.sections.forEach((section) => {
-          const questions: Question[] = [];
-          if (section.questions) {
-            section.questions.forEach((question) => {
-              questions.push(new Question(
-                question.key,
-                question.label,
-                question.type,
-                question.value,
-                question.required,
-                question.order,
-                question.options
-              ));
-            });
-          }
-
-          sections.push(new Section(
-            section.key,
-            section.name,
-            section.order,
-            questions
-          ));
-        });
-      }
-
-      this.newForm = new Form(
-        old_form.name,
-        old_form.organization,
-        old_form.department,
-        old_form.department,
-        sections
-      );
-
-      console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
-
+      console.log('Data from shared!');
+      const data = this.sharedData.getStorage().form;
+      this.data = Form.fromJSON(Form.fromAnyToJSON(data));
+      this.templateForm = this.toFormGroup(this.data);
     } else {
-
       const sections: Section[] = [];
       const questions: Question[] = [];
       sections.push(new Section(
@@ -128,60 +87,19 @@ export class FormCreateComponent implements OnInit {
       ));
       this.newForm = new Form(
         'Untitled form',
-        'University of the Philippines - Philippine General Hospital',
-        'General Surgery Department',
-        'Patient Repository',
+        '',
+        '',
+        '',
         sections
       );
-
-      console.warn(this.newForm.toJSON(), 'SILIPIN MO KO!');
-      /*
-            newForm = {
-              id: 0,
-              name: "Untitled form",
-              type: "Patient Repository",
-              organization: "University of the Philippines - Philippine General Hospital",
-              department: "General Surgery Department",
-              sections: [
-                {
-                  key: this.keyGenerator.create(),
-                  name: "Untitled section",
-                  order: 0,
-                  questions: []
-                }
-              ]
-            };
-            */
+      this.data = this.newForm;
+      this.templateForm = this.toFormGroup(this.data);
     }
-
-    this.data = this.newForm;
-    this.initTemplateFormGroup();
-
   }
 
   onChange(event) {
     console.log(event.target.value);
     this.data.name = event.target.value;
-  }
-
-  initUpdateForm(id: string): void {
-    console.log('initUpdate');
-    if (this.sharedData.getStorage()) {
-      this.data = this.sharedData.getStorage().form;
-      this.initTemplateFormGroup();
-    } else {
-      this.formService.getForm(id)
-        .subscribe(existingForm => {
-          this.data = existingForm;
-          this.initTemplateFormGroup();
-        });
-    }
-  }
-
-  initTemplateFormGroup() {
-
-    console.log('initTemplateFormGroup');
-    this.templateForm = this.toFormGroup(this.data);
   }
 
   // TODO: Refractor default declaration
@@ -196,40 +114,27 @@ export class FormCreateComponent implements OnInit {
   }
 
   getRegistryTypes() {
-
-    this.regTypeService
-      .getRegTypes()
-      .subscribe(
+    this.regTypeService.getRegTypes().subscribe(
       regType => {
         this.registryTypes = regType;
-      }
-      );
+    });
   }
 
   getDepartments() {
-
-    this.departmentService
-      .getDepartments()
-      .subscribe(
+    this.departmentService.getDepartments().subscribe(
       departments => {
         this.departments = departments;
-      }
-      );
+    });
   }
 
   getOrganizations() {
-
-    this.organizationService
-      .getAll()
-      .subscribe(
+    this.organizationService.getAll().subscribe(
       organizations => {
         this.organizations = organizations;
-      }
-      );
+    });
   }
 
   onAddSection() {
-
     const questions: Question[] = [];
     this.data.sections.push(new Section(
       this.keyGenerator.create(),
@@ -237,35 +142,18 @@ export class FormCreateComponent implements OnInit {
       0,
       questions
     ));
-
-    /*
-    this.data.sections.push({
-      key: this.keyGenerator.create(),
-      name: 'Untitled section',
-      questions: []
-    });
-    */
   }
 
   onSaveForm(inputForm) {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
-    let data = Form.fromAnyToJSON(inputForm);
-    // console.warn(inputForm, 'CHECK ME!');
-    // console.warn(this.newForm.toJSON(), 'NA-EDIT');
-    // console.warn(JSON.stringify(this.newForm.toJSON()), 'NA-EDIT2');
-    // this.formService
-    //    .checkForm(inputForm);
-
-    console.log(this.data);
-
-    this.formService
-      .submitForm(data)
-      .subscribe(created_question => {
+    const data = Form.fromAnyToJSON(inputForm);
+    this.formService.submitForm(data).subscribe(
+      created_question => {
         this.is_processing = false;
         console.warn(created_question, 'AYUS');
-
+        this.is_created = true;
         this.notificationsService
           .success(
           'Form: ' + inputForm.name,
@@ -276,8 +164,7 @@ export class FormCreateComponent implements OnInit {
             pauseOnHover: false,
             clickToClose: false
           });
-      },
-      errors => {
+      }, errors => {
         this.errors = errors;
         this.has_errors = true;
         this.is_processing = false;
@@ -288,7 +175,6 @@ export class FormCreateComponent implements OnInit {
 
   onPreviewForm(previewForm: Form, id: string) {
     const params = { 'form': previewForm };
-
     this.sharedData.setStorage(params);
     this.router.navigate([`/medical/forms/preview/${id}`]);
   }

@@ -31,7 +31,6 @@ export class FormUpdateComponent implements OnInit {
 
   private templateForm: FormGroup;
   private data: Form;
-  private data2: FormJSON;
 
   private registryTypes: RegType[];
   private departments: Department[];
@@ -61,46 +60,33 @@ export class FormUpdateComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    console.log('form-create');
     this.getRegistryTypes();
     this.getDepartments();
-    // TO DO:
-    // this.getOrganizations();
-    this.organizations.push(new Organization('PGH'));
+    this.getOrganizations();
+    // this.organizations.push(new Organization('PGH'));
     this.formId = this.route.snapshot.paramMap.get('id');
     this.initForm(this.formId);
   }
 
-  initForm(id) {
-    this.initUpdateForm(id);
+  initForm(id: string) {
+    if (this.sharedData.getStorage()) {
+      console.log('Data from shared!');
+      const data = this.sharedData.getStorage().form;
+      this.data = Form.fromJSON(Form.fromAnyToJSON(data));
+      this.templateForm = this.toFormGroup(this.data);
+    } else {
+      this.formService.getForm(id).subscribe(
+        (existingForm: Form) => {
+          console.log('Data from service!');
+          this.data = existingForm;
+          this.templateForm = this.toFormGroup(this.data);
+        });
+    }
   }
 
   onChange(event) {
     console.log(event.target.value);
     this.data.name = event.target.value;
-  }
-
-  initUpdateForm(id: string): void {
-    console.log('initUpdate');
-    if (this.sharedData.getStorage()) {
-      console.log('From shared!');
-      this.data = this.sharedData.getStorage().form;
-      this.initTemplateFormGroup();
-    } else {
-      this.formService.getForm(id).subscribe(
-        (existingForm: Form) => {
-          console.log('From service!');
-          this.data = existingForm;
-          this.data2 = existingForm.toJSON();
-          this.initTemplateFormGroup();
-        });
-    }
-  }
-
-  initTemplateFormGroup() {
-    console.log('initTemplateFormGroup');
-    this.templateForm = this.toFormGroup(this.data);
   }
 
   // TODO: Refractor default declaration
@@ -154,13 +140,9 @@ export class FormUpdateComponent implements OnInit {
     this.errors = {};
     this.has_errors = false;
     this.is_processing = true;
-    let data = Form.fromAnyToJSON(inputForm);
-    console.log(data);
-    console.log(this.data);
-
-    this.formService
-      .updateForm(data)
-      .subscribe(updated_question => {
+    const data = Form.fromAnyToJSON(inputForm);
+    this.formService.updateForm(data).subscribe(
+      updated_question => {
         this.is_processing = false;
         console.warn(updated_question, 'AYUS');
 
@@ -174,19 +156,17 @@ export class FormUpdateComponent implements OnInit {
             pauseOnHover: false,
             clickToClose: false
           });
-      },
-      errors => {
+      }, errors => {
         this.errors = errors;
         this.has_errors = true;
         this.is_processing = false;
         console.warn('errro');
         throw errors;
-      });
+    });
   }
 
   onPreviewForm(previewForm: Form, id: string) {
     const params = { 'form': previewForm };
-
     this.sharedData.setStorage(params);
     this.router.navigate([`/medical/forms/preview/${id}`]);
   }

@@ -35,6 +35,7 @@ export class DepartmentService {
     return this.http
                .get(url)
                .map((response: Response) => {
+                 console.log(response);
                     //return (response.json().data as Department[])
                     return (response.json() as Department[])
                  })

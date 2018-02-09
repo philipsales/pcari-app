@@ -12,6 +12,11 @@
                 <li>
                   <a [routerLink]="['/medical/forms/list']">Forms List</a>
                 </li>
+                <li>
+                    <a [routerLink]="['.']">
+                      <strong>Create New</strong>
+                    </a>
+                  </li>
               </ol>
             </div>
             <h1 class="app-header--heading">
@@ -96,6 +101,7 @@
                             class="form-side-editor-fxn" 
                             (click)="onAddSection()">
                             <a matTooltip="Add Section"
+                               *ngIf="!is_created"
                                [routerLink]="['.']">
                               <i class="fa fa-3x fa-plus-circle"></i>
                             </a>
@@ -114,6 +120,7 @@
                         <li class="form-side-editor-fxn" 
                             (click)="onSaveForm(templateForm.value)" >
                             <a matTooltip="Save Form"
+                            *ngIf="!is_created"
                               [routerLink]="['.']">
                               <i class="fa fa-3x fa-save"></i>
                             </a>

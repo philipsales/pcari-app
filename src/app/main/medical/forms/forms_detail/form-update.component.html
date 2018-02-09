@@ -12,6 +12,11 @@
                 <li>
                   <a [routerLink]="['/medical/forms/list']">Forms List</a>
                 </li>
+                <li>
+                  <a [routerLink]="['.']">
+                    <strong>Update Sections</strong>
+                  </a>
+                </li>
               </ol>
             </div>
             <h1 class="app-header--heading">
@@ -38,10 +43,13 @@
                           <input matInput 
                                  placeholder="Template Names"
                                  formControlName="name"
+                                 [disabled]="true"
+                                 readonly
                                  (change)="onChange($event)">
                      </mat-form-field>
                      <mat-form-field class="material-form-control" *ngIf="registryTypes">
                         <mat-select placeholder="Registry Type"
+                                    [disabled]="true"
                                     formControlName="type" >
                           <mat-option *ngFor="let type of registryTypes"
                                       [id]="type.name" 
@@ -54,6 +62,7 @@
                    <div class="material-form-group">
                       <mat-form-field class="material-form-control" *ngIf="organizations" >
                         <mat-select placeholder="Organization"
+                                    [disabled]="true"
                                     formControlName="organization" >
                           <mat-option *ngFor="let org of organizations"
                                       [id]="org.key" 
@@ -63,6 +72,7 @@
                       </mat-form-field>
                       <mat-form-field class="material-form-control" *ngIf="departments" >
                         <mat-select placeholder="Department"
+                                    [disabled]="true"
                                     formControlName="department" >
                           <mat-option *ngFor="let dept of departments"
                                       [id]="dept.key" 
