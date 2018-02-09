@@ -1,4 +1,4 @@
-import {Answer} from './answer';
+import { Answer } from './answer';
 import { FormAnswerJSON } from './../interfaces';
 
 
@@ -7,25 +7,27 @@ export class FormAnswer {
   form_id: string;
   form_name: string;
   date_created: Date;
+  status: boolean;
   answers: Answer[];
 
   static fromJSON(json): FormAnswer {
     if (typeof json === 'string') {
-        return JSON.parse(json, FormAnswer.reviver);
+      return JSON.parse(json, FormAnswer.reviver);
     } else {
-        const section = Object.create(FormAnswer.prototype);
-        let output = Object.assign(section, json, {
-          id: json._id,
-          form_id: json.form_id,
-          form_name: json.form_name,
-          date_created: new Date(json.date_created)
-        });
+      const section = Object.create(FormAnswer.prototype);
+      let output = Object.assign(section, json, {
+        id: json._id,
+        form_id: json.form_id,
+        form_name: json.form_name,
+        status: json.status,
+        date_created: new Date(json.date_created)
+      });
 
-        if (json.answers) {
-          output['answers'] =  json.answers.map(Answer.fromJSON);
-        }
+      if (json.answers) {
+        output['answers'] = json.answers.map(Answer.fromJSON);
+      }
 
-        return output;
+      return output;
     }
   }
 
@@ -37,14 +39,16 @@ export class FormAnswer {
   constructor(
     form_id: string,
     form_name: string,
+    status: boolean,
     answers: Answer[]
   ) {
-      this.form_id = form_id;
-      this.form_name = form_name;
-      this.date_created = new Date();
-      if (answers) {
-        this.answers = answers;
-      }
+    this.form_id = form_id;
+    this.form_name = form_name;
+    this.status = status;
+    this.date_created = new Date();
+    if (answers) {
+      this.answers = answers;
+    }
   }
 
   toJSON(): FormAnswerJSON {
