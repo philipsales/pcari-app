@@ -27,6 +27,7 @@
     color: #73879C;
     position: absolute;
     top: 25%;
+    width: 100%;
 }
 
 .login-panel__header {
@@ -38,6 +39,7 @@
     color: #6E0D1C;
     letter-spacing: 1.42px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .login-panel__subheader {
@@ -213,4 +215,8 @@ p {
     background: transparent;
     border: 0px;
     box-shadow: none;
+}
+
+#login-sidebar .login-panel_header {
+    text-align: center;
 }
