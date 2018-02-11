@@ -11,6 +11,8 @@ import {
   FormService
 } from 'app/core/services';
 
+import { environment } from 'environments/environment';
+
 @Component({
   selector: 'app-consentforms-create',
   templateUrl: './consentforms-create.component.html',
@@ -35,9 +37,9 @@ export class ConsentformsCreateComponent implements OnInit {
   ) {
     this.new_form = new Form(
       '',
+      environment.ORG_BIOBANK,
       '',
-      '',
-      '',
+      environment.FORM_TYPE_BIOBANK,
       '',
       [
         new Section(

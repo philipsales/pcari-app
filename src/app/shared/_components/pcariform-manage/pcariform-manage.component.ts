@@ -19,7 +19,7 @@ export class PcariformManageComponent implements OnInit {
   @Input() organizations: Organization[];
   @Input() is_created: boolean;
   @Input() is_processing = false;
-  
+
   private _form: Form;
   @Input() set form(value: Form) {
     this._form = value;

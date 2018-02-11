@@ -11,6 +11,8 @@ import {
   FormService
 } from 'app/core/services';
 
+import { environment } from 'environments/environment';
+
 @Component({
   selector: 'app-medforms-create',
   templateUrl: './medforms-create.component.html',
@@ -34,9 +36,9 @@ export class MedformsCreateComponent implements OnInit {
   ) {
     this.new_form = new Form(
       '',
+      environment.ORG_MEDICAL,
       '',
-      '',
-      '',
+      environment.FORM_TYPE_MEDICAL,
       '',
       [
         new Section(
