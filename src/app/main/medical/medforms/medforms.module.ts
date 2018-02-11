@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 import { MaterialModule } from 'app/shared/_material/material.module';
 import { SharedModule } from 'app/shared/shared.module';
@@ -10,13 +11,23 @@ import { MedformsCreateComponent } from './medforms-create/medforms-create.compo
 import { MedformsPreviewComponent } from './medforms-preview/medforms-preview.component';
 import { MedformsUpdateComponent } from './medforms-update/medforms-update.component';
 
-import { FormService } from 'app/core/services';
+import {
+  FormService,
+  DepartmentService,
+  RegTypeService,
+  OrganizationService
+} from 'app/core/services';
+import { FormDummyApiResponse } from 'app/core/services-dummy';
+import { KeyGenerator } from 'app/core/utils';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     SharedModule,
+    InMemoryWebApiModule.forRoot(FormDummyApiResponse, {
+      passThruUnknownUrl: true, delay: 1000
+    }),
     MedformsRoutingModule
   ],
   declarations: [
@@ -26,7 +37,11 @@ import { FormService } from 'app/core/services';
     MedformsUpdateComponent
   ],
   providers: [
-    FormService
+    FormService,
+    DepartmentService,
+    RegTypeService,
+    OrganizationService,
+    KeyGenerator
   ]
 })
 export class MedformsModule { }
