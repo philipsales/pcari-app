@@ -21,10 +21,10 @@
       <tr>
         <th>#</th>
         <th>Form Name</th>
-        <th>Type</th>
+        <!-- <th>Type</th> -->
         <th>Department</th>
 
-        <th>Status</th>
+        <th style="text-align: center">Status</th>
         <th></th>
       </tr>
     </thead>
@@ -32,9 +32,9 @@
       <tr  *ngFor="let form of _forms; let i = index">
         <th scope="row">{{ i + 1 }}</th>
         <td> {{ form.name }}</td>
-        <td>{{ form.type }}</td>
+        <!-- <td>{{ form.type }}</td> -->
         <td>{{ form.department }}</td>
-        <td>
+        <td style="text-align: center">
           <span *ngIf="form.status ==='Pending'" class="badge badge--failed" #pending> {{form.status }}</span>
           <span *ngIf="form.status ==='Approved'" class="badge badge--success" #active> {{form.status }}</span>
         </td>
