@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, Section } from 'app/core/models';
+import { Form, Section, RegType, Department, Organization } from 'app/core/models';
 
 import { KeyGenerator } from 'app/core/utils';
+import { OrganizationService, DepartmentService, RegTypeService } from 'app/core/services';
 
 @Component({
   selector: 'app-consentforms-create',
@@ -11,8 +12,16 @@ import { KeyGenerator } from 'app/core/utils';
 export class ConsentformsCreateComponent implements OnInit {
 
   private new_form: Form;
+  private registryTypes: RegType[];
+  private departments: Department[];
+  private organizations: Organization[];
 
-  constructor(private keyGenerator: KeyGenerator) {
+  constructor(
+    private keyGenerator: KeyGenerator,
+    private regTypeService: RegTypeService,
+    private departmentService: DepartmentService,
+    private organizationService: OrganizationService
+  ) {
     this.new_form = new Form(
       '',
       '',
@@ -27,9 +36,32 @@ export class ConsentformsCreateComponent implements OnInit {
         [])
       ]
     );
+    this.getRegistryTypes();
+    this.getDepartments();
+    this.getOrganizations();
   }
 
   ngOnInit() {
   }
 
+  private getRegistryTypes() {
+    this.regTypeService.getRegTypes().subscribe(
+      regType => {
+        this.registryTypes = regType;
+      });
+  }
+
+  private getDepartments() {
+    this.departmentService.getDepartments().subscribe(
+      departments => {
+        this.departments = departments;
+      });
+  }
+
+  private getOrganizations() {
+    this.organizationService.getAll().subscribe(
+      organizations => {
+        this.organizations = organizations;
+      });
+  }
 }

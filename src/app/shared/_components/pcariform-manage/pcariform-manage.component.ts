@@ -14,6 +14,10 @@ export class PcariformManageComponent implements OnInit {
 
   @Input() method: string;
   @Input() withconsent: boolean;
+  @Input() registryTypes: RegType[];
+  @Input() departments: Department[];
+  @Input() organizations: Organization[];
+
   private _form: Form;
   @Input() set form(value: Form) {
     this._form = value;
@@ -22,9 +26,6 @@ export class PcariformManageComponent implements OnInit {
   }// -- setter for forms
 
   private templateForm: FormGroup;
-  private registryTypes: RegType[];
-  private departments: Department[];
-  private organizations: Organization[] = [];
   private status: any[];
 
   private errors: any = {};
@@ -33,17 +34,10 @@ export class PcariformManageComponent implements OnInit {
   private is_processing = false;
   private is_created = false;
 
-
   constructor(
     private fb: FormBuilder,
-    private regTypeService: RegTypeService,
-    private departmentService: DepartmentService,
-    private organizationService: OrganizationService,
     private keyGenerator: KeyGenerator
   ) {
-    this.getRegistryTypes();
-    this.getDepartments();
-    this.getOrganizations();
     this.status = [
       { 'name': 'Pending', 'key': 'Pending' },
       { 'name': 'Approved', 'key': 'Approved' }
@@ -77,27 +71,6 @@ export class PcariformManageComponent implements OnInit {
         Validators.required
       ]
     });
-  }
-
-  private getRegistryTypes() {
-    this.regTypeService.getRegTypes().subscribe(
-      regType => {
-        this.registryTypes = regType;
-      });
-  }
-
-  private getDepartments() {
-    this.departmentService.getDepartments().subscribe(
-      departments => {
-        this.departments = departments;
-      });
-  }
-
-  private getOrganizations() {
-    this.organizationService.getAll().subscribe(
-      organizations => {
-        this.organizations = organizations;
-      });
   }
 
   onAddSection() {
