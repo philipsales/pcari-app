@@ -14,12 +14,14 @@
          </mat-menu>
       </div>
       <input type="hidden" 
-             formControlName="key">
+             formControlName="key"
+             [(ngModel)]="section.key">
        <div class="material-form-group">
          <mat-form-field class="material-input-full-width">
               <input matInput 
                      placeholder="Section Name"
-                     formControlName="name">
+                     formControlName="name"
+                     [(ngModel)]="section.name">
           </mat-form-field>
        </div>
 

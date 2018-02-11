@@ -13,11 +13,13 @@
          <mat-form-field class="col-md-12">
               <input matInput 
                      placeholder="Options"
-                     formControlName="name">
+                     formControlName="name"
+                     [(ngModel)]="option.name">
           </mat-form-field>
        </div>
       <input type="hidden" class="form-control"
-             formControlName="key">
+             formControlName="key"
+             [(ngModel)]="option.key">
     </span>
     <span class="col-sm-1" >
       <span matTooltip="Delete Option"

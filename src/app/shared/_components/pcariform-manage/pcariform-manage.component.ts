@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Form, Section, Question, RegType, Department, Organization } from 'app/core/models';
 import { OrganizationService, DepartmentService, RegTypeService } from 'app/core/services';
@@ -24,6 +24,8 @@ export class PcariformManageComponent implements OnInit {
     this.templateForm = this.toFormGroup(this._form);
     console.warn(this._form, 'HELLO!');
   }// -- setter for forms
+
+  @Output() onSubmitTrigger: EventEmitter<Form> = new EventEmitter();
 
   private templateForm: FormGroup;
   private status: any[];
@@ -82,8 +84,8 @@ export class PcariformManageComponent implements OnInit {
     ));
   }
 
-  onChange(event) {
-    console.log(event.target.value);
-    this._form.name = event.target.value;
+  onSaveForm(updated_form: Form) {
+    console.log(updated_form, 'NEW UPDATES');
+    // `this.onSubmitTrigger.emit(updated_form);
   }
 }

@@ -11,14 +11,15 @@
                       <input matInput 
                             placeholder="Template Name"
                             formControlName="name"
-                            (change)="onChange($event)">
+                            [(ngModel)]="_form.name">
                             <mat-error *ngIf="templateForm.get('name').hasError('required')">
                                 Template Name is required 
                             </mat-error>
                 </mat-form-field>
                 <mat-form-field class="material-form-control" *ngIf="registryTypes">
                   <mat-select placeholder="Registry Type"
-                              formControlName="type" >
+                              formControlName="type"
+                              [(ngModel)]="_form.type" >
                     <mat-option *ngFor="let type of registryTypes"
                                 [id]="type.name" 
                                 [value]="type.name">{{type.name}}
@@ -33,7 +34,8 @@
               <div class="material-form-group">
                 <mat-form-field class="material-form-control" *ngIf="organizations" >
                   <mat-select placeholder="Organization"
-                              formControlName="organization" >
+                              formControlName="organization"
+                              [(ngModel)]="_form.organization" >
                     <mat-option *ngFor="let org of organizations"
                                 [id]="org.key" 
                                 [value]="org.name">{{org.name}}
@@ -45,7 +47,8 @@
                 </mat-form-field>
                 <mat-form-field class="material-form-control" *ngIf="departments" >
                   <mat-select placeholder="Department"
-                              formControlName="department" >
+                              formControlName="department"
+                              [(ngModel)]="_form.department" >
                     <mat-option *ngFor="let dept of departments"
                                 [id]="dept.key" 
                                 [value]="dept.name">{{dept.name}}
@@ -60,7 +63,8 @@
               <div class="material-form-group">
                 <mat-form-field class="material-form-control pull-left" >
                   <mat-select placeholder="Status"
-                              formControlName="status" >
+                              formControlName="status" 
+                              [(ngModel)]="_form.status">
                     <mat-option *ngFor="let stat of status"
                                 [id]="stat.key" 
                                 [value]="stat.name">{{stat.name}}
@@ -109,7 +113,7 @@
                   <li title="Save Template" class="form-side-editor-fxn" >
                     <button 
                         mat-button
-                        (click)="onSaveForm(templateForm.value)" 
+                        (click)="onSaveForm(_form)" 
                         matTooltip="Save Form" >
                         <i class="fa fa-3x fa-save"></i> &nbsp; 
                     </button>

@@ -14,7 +14,6 @@ import { ConsentformsCreateComponent } from './consentforms-create/consentforms-
 import { ConsentformsUpdateComponent } from './consentforms-update/consentforms-update.component';
 import { ConsentformsPreviewComponent } from './consentforms-preview/consentforms-preview.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
