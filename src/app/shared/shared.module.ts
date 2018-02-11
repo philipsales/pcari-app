@@ -27,12 +27,15 @@ import { QuestionContentComponent } from './_components/forms_question/question-
 import { QuestionOptionArrayComponent } from './_components/forms_option/question-option-array.component';
 import { QuestionOptionComponent } from './_components/forms_option/question-option.component';
 import { Consent } from 'app/core/models';
+import { PcariformListComponent } from './_components/pcariform-list/pcariform-list.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     Ng2CompleterModule,
     MaterialModule
@@ -54,7 +57,8 @@ import { Consent } from 'app/core/models';
     QuestionContentComponent,
 
     QuestionOptionArrayComponent,
-    QuestionOptionComponent
+    QuestionOptionComponent,
+    PcariformListComponent
   ],
   providers: [
     ConsentService
@@ -62,7 +66,8 @@ import { Consent } from 'app/core/models';
   exports: [
     UserFormComponent,
     EllipsisPipe,
-    DynamicFormComponent
+    DynamicFormComponent,
+    PcariformListComponent
   ]
 })
 export class SharedModule { }

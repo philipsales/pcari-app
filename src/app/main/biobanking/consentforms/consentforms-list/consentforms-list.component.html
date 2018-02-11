@@ -1,35 +1,34 @@
 <div id="page-content"
      class="col-md-offset-3 col-md-9">
-      <header class="app-header row">
-        <div class="app-header--primary">
-          <div class="app-header--context">
+  <header class="app-header row">
+    <div class="app-header--primary">
+      <div class="app-header--context">
 
-            <div class="app-header--breadcrumbs">
-              <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
-                <li>
-                  <a [routerLink]="['/biobanking/forms']">Biobanking Registry</a>
-                </li>
-                <li>
-                  <a [routerLink]="['.']">
-                    <strong>Consent Forms List</strong>
-                  </a>
-                </li>
-              </ol>
-            </div>
-            <h1 class="app-header--heading">
-              Forms
-            </h1>
-          </div>
+        <div class="app-header--breadcrumbs">
+          <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
+            <li>
+              <a [routerLink]="['/biobanking/forms']">Biobanking Registry</a>
+            </li>
+            <li>
+              <a [routerLink]="['.']">
+                <strong>Consent Forms List</strong>
+              </a>
+            </li>
+          </ol>
         </div>
-      </header>
-      <br/> <br/>
-
-      <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"> 
-        <div class="form-editor-body">
-
+        <h1 class="app-header--heading">
+          Forms
+        </h1>
       </div>
-      <!--end of row-->
     </div>
-    <!--end of form-editor-body-->
-</div>
-<!--end of page-content-->
+  </header>
+  <br/> <br/>
+
+  <div class="row"> 
+    <app-pcariform-list
+      [create_url]="'/biobanking/forms/create'"
+      [update_url]="'/biobanking/forms/update'"
+      [forms]="forms">
+    </app-pcariform-list>
+  </div> <!-- col-md-12 -->
+</div> <!--end of page-content-->
