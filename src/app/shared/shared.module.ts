@@ -29,6 +29,7 @@ import { QuestionOptionComponent } from './_components/forms_option/question-opt
 import { Consent } from 'app/core/models';
 import { PcariformListComponent } from './_components/pcariform-list/pcariform-list.component';
 import { RouterModule } from '@angular/router';
+import { PcariformManageComponent } from './_components/pcariform-manage/pcariform-manage.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { RouterModule } from '@angular/router';
 
     QuestionOptionArrayComponent,
     QuestionOptionComponent,
-    PcariformListComponent
+    PcariformListComponent,
+    PcariformManageComponent
   ],
   providers: [
     ConsentService

@@ -49,7 +49,9 @@ export class Section {
     order?: number,
     questions?: Question[]
   ) {
-    this.key = key;
+    if (key) {
+      this.key = key;
+    }
     this.name = name;
     this.order = order;
     this.questions = questions;
