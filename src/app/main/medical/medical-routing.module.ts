@@ -15,6 +15,10 @@ const routes: Routes = [
           loadChildren: './forms/form.module#FormModule'
         },
         {
+          path: 'medforms',
+          loadChildren: './medforms/medforms.module#MedformsModule'
+        },
+        {
           path: 'reports',
           loadChildren: './reports/reports-medical.module#ReportsMedicalModule'
         },
