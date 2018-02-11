@@ -28,11 +28,11 @@
       <br/> <br/>
 
       <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"> 
-        <div class="form-editor-body">
-
-      </div>
-      <!--end of row-->
-    </div>
-    <!--end of form-editor-body-->
+        <app-pcariform-manage
+          [method]="CREATE"
+          [withconsent]="true"
+          [form]="new_form">
+        </app-pcariform-manage>
+      </div><!-- col-md-12 -->
 </div>
 <!--end of page-content-->

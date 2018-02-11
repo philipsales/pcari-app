@@ -9,6 +9,9 @@ import { MaterialModule } from 'app/shared/_material/material.module';
 import { EllipsisPipe } from './_pipes/ellipsis.pipe';
 
 import { ConsentService } from 'app/core/services';
+import { RegTypeService } from 'app/core/services';
+import { DepartmentService } from 'app/core/services';
+import { OrganizationService } from 'app/core/services';
 
 // DFORMS
 // import { DformsComponent } from './_components/forms_dforms/dforms.component';
@@ -30,6 +33,10 @@ import { Consent } from 'app/core/models';
 import { PcariformListComponent } from './_components/pcariform-list/pcariform-list.component';
 import { RouterModule } from '@angular/router';
 import { PcariformManageComponent } from './_components/pcariform-manage/pcariform-manage.component';
+import { KeyGenerator } from 'app/core/utils';
+
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FormDummyApiResponse } from 'app/core/services-dummy';
 
 
 @NgModule({
@@ -38,6 +45,9 @@ import { PcariformManageComponent } from './_components/pcariform-manage/pcarifo
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
+    InMemoryWebApiModule.forRoot(FormDummyApiResponse, {
+      passThruUnknownUrl: true, delay: 1000
+    }),
     Ng2CompleterModule,
     MaterialModule
   ],
@@ -63,13 +73,18 @@ import { PcariformManageComponent } from './_components/pcariform-manage/pcarifo
     PcariformManageComponent
   ],
   providers: [
-    ConsentService
+    ConsentService,
+    DepartmentService,
+    RegTypeService,
+    OrganizationService,
+    KeyGenerator
   ],
   exports: [
     UserFormComponent,
     EllipsisPipe,
     DynamicFormComponent,
-    PcariformListComponent
+    PcariformListComponent,
+    PcariformManageComponent
   ]
 })
 export class SharedModule { }

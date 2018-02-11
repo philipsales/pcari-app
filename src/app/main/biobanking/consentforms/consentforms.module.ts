@@ -11,6 +11,8 @@ import { ConsentformsUpdateComponent } from './consentforms-update/consentforms-
 import { ConsentformsPreviewComponent } from './consentforms-preview/consentforms-preview.component';
 import { FormService } from 'app/core/services';
 
+import { KeyGenerator } from 'app/core/utils';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { FormService } from 'app/core/services';
     ConsentformsPreviewComponent
   ],
   providers: [
-    FormService
+    FormService,
+    KeyGenerator
   ]
 })
 export class ConsentformsModule { }
