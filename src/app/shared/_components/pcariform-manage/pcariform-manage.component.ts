@@ -17,7 +17,9 @@ export class PcariformManageComponent implements OnInit {
   @Input() registryTypes: RegType[];
   @Input() departments: Department[];
   @Input() organizations: Organization[];
-
+  @Input() is_created: boolean;
+  @Input() is_processing = false;
+  
   private _form: Form;
   @Input() set form(value: Form) {
     this._form = value;
@@ -33,8 +35,6 @@ export class PcariformManageComponent implements OnInit {
   private errors: any = {};
   private has_errors = false;
   private hide_key = true;
-  private is_processing = false;
-  private is_created = false;
 
   constructor(
     private fb: FormBuilder,
@@ -86,6 +86,6 @@ export class PcariformManageComponent implements OnInit {
 
   onSaveForm(updated_form: Form) {
     console.log(updated_form, 'NEW UPDATES');
-    // `this.onSubmitTrigger.emit(updated_form);
+    this.onSubmitTrigger.emit(updated_form);
   }
 }

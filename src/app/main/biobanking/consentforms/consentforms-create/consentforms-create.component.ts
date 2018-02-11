@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Form, Section, RegType, Department, Organization } from 'app/core/models';
 
 import { KeyGenerator } from 'app/core/utils';
-import { OrganizationService, DepartmentService, RegTypeService } from 'app/core/services';
+import { NotificationsService } from 'angular2-notifications';
+
+import {
+  OrganizationService,
+  DepartmentService,
+  RegTypeService,
+  FormService
+} from 'app/core/services';
 
 @Component({
   selector: 'app-consentforms-create',
@@ -15,12 +22,16 @@ export class ConsentformsCreateComponent implements OnInit {
   private registryTypes: RegType[];
   private departments: Department[];
   private organizations: Organization[];
+  private is_created = false;
+  private is_processing = false;
 
   constructor(
     private keyGenerator: KeyGenerator,
     private regTypeService: RegTypeService,
     private departmentService: DepartmentService,
-    private organizationService: OrganizationService
+    private organizationService: OrganizationService,
+    private formService: FormService,
+    private notificationsService: NotificationsService
   ) {
     this.new_form = new Form(
       '',
@@ -63,5 +74,32 @@ export class ConsentformsCreateComponent implements OnInit {
       organizations => {
         this.organizations = organizations;
       });
+  }
+
+  onSubmitTrigger(form_to_submit: Form) {
+    this.is_processing = true;
+    console.log(form_to_submit, 'SUBMITTING');
+    const data = form_to_submit.toJSON();
+    this.formService.submitForm(data).subscribe(
+      created_question => {
+        console.warn(created_question, 'AYUS');
+        this.is_processing = false;
+        this.is_created = true;
+        this.notificationsService
+          .success(
+          'Form: ' + data.name,
+          'Successfully Saved.',
+          {
+            timeOut: 10000,
+            showProgressBar: true,
+            pauseOnHover: false,
+            clickToClose: false
+          });
+      }, errors => {
+        this.is_processing = false;
+        console.warn('error');
+        throw errors;
+      });
+
   }
 }

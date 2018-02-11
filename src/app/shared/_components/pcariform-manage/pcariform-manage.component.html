@@ -60,7 +60,7 @@
                 </mat-form-field>
               </div> <!-- material-form-group -->
   
-              <div class="material-form-group">
+              <div class="material-form-group col-md-offset-3 col-md-9">
                 <mat-form-field class="material-form-control pull-left" >
                   <mat-select placeholder="Status"
                               formControlName="status" 
@@ -98,6 +98,7 @@
                     <button 
                         mat-button
                         matTooltip="Add Section" 
+                        [disabled]="is_processing || is_created"
                         (click)="onAddSection()">
                         <i class="fa fa-3x fa-plus-circle"></i> &nbsp; 
                     </button>
@@ -113,6 +114,7 @@
                   <li title="Save Template" class="form-side-editor-fxn" >
                     <button 
                         mat-button
+                        [disabled]="is_processing || is_created"
                         (click)="onSaveForm(_form)" 
                         matTooltip="Save Form" >
                         <i class="fa fa-3x fa-save"></i> &nbsp; 

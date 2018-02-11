@@ -34,7 +34,10 @@
           [registryTypes]="registryTypes"
           [departments]="departments"
           [organizations]="organizations"
-          [form]="new_form">
+          [form]="new_form"
+          [is_created]="is_created"
+          [is_processing]="is_processing"
+          (onSubmitTrigger)="onSubmitTrigger($event)">
         </app-pcariform-manage>
       </div><!-- col-md-12 -->
 </div>
