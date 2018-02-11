@@ -12,12 +12,15 @@ import {
   FormService
 } from 'app/core/services';
 
+import { SharedModule } from 'app/shared/shared.module';
+
+import { MaterialModule } from 'app/shared/_material/material.module';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
 
 import { CaseListComponent } from './case-list.component';
 import { CaseCreateComponent } from './case-create.component';
 
-import { SharedModule } from 'app/shared/shared.module';
-import { MaterialModule } from 'app/shared/_material/material.module';
 import { CaseManageComponent } from './case-manage/case-manage.component';
 import { CaseViewComponent } from './case-view.component';
 import { CaseUpdateComponent } from './case-update.component';
@@ -50,6 +53,9 @@ import { CaseFormsUpdateComponent } from './case-forms/case-forms-update.compone
     CaseFormsUpdateComponent
   ],
   providers: [
+    // Material Form ErrorMatcher 
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+
     CaseDummyApiResponse,
     CaseService,
     FormService

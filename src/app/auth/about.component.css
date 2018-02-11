@@ -23,11 +23,10 @@
 }
 
 .login-panel__content {
-    padding: 0 50px;
+    padding: 0 70px;
     color: #73879C;
     position: absolute;
     top: 25%;
-    width: 100%;
 }
 
 .login-panel__header {
@@ -39,21 +38,6 @@
     color: #6E0D1C;
     letter-spacing: 1.42px;
     text-transform: uppercase;
-    text-align: center;
-
-}
-
-.login-panel__about {
-    padding-top: 5px;
-    text-align: center;
-    display: block;
-    font-weight: bolder;
-    font-style: italic;
-}
-
-.login-panel__about:hover,
-a:hover {
-    cursor: pointer
 }
 
 .login-panel__subheader {
@@ -91,7 +75,7 @@ a:hover {
     transition: box-shadow .2s ease;
     font-weight: 700;
     text-transform: uppercase;
-    margin: 0 30px;
+    margin: 0 auto;
 }
 
 .login-panel_footer {
@@ -132,7 +116,7 @@ a:hover {
     position: absolute;
     left: 62.5%;
     left: 53%;
-    top: 50%;
+    top: 30%;
     text-align: left;
     
     margin-left: -270px;
@@ -231,6 +215,26 @@ p {
     box-shadow: none;
 }
 
-#login-sidebar .login-panel_header {
+.about-panel__title {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #FFF;
+    color: gray;
+    font-weight: bold;
+    letter-spacing: 1.09px;
     text-align: center;
+}
+.about-panel__authors {
+    color: #434C5F;
+    margin-bottom: 30px;
+    text-align: left;
+    display: block;
+}
+.about-panel__description {
+    text-align: justify;
+    text-justify: inter-word
+}
+.about-panel__link {
+    text-align: left;
 }

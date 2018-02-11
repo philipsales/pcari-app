@@ -56,7 +56,7 @@
 	    <th scope="row">{{ i + 1 }}</th>
 	    <td>{{ case.case_nbr }}</td>
 	    <td> {{case.diagnosis }} </td>
-	    <td>{{ case.date_created }}</td>
+	    <td>{{ case.date_created | date: 'medium' }}</td>
 			<td>
 				<span *ngIf="!case.is_active" class="badge badge--failed" #inactive> Inactive</span>
 				<span *ngIf="case.is_active" class="badge badge--success" #active> Active</span>
