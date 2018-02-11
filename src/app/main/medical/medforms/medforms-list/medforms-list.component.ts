@@ -16,7 +16,7 @@ export class MedformsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formService.getForms().subscribe(
+    this.formService.getMedicalForms().subscribe(
       forms => {
         this.forms = forms;
         console.log(this.forms, 'FORMS');

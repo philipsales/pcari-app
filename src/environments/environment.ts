@@ -6,7 +6,11 @@
 export const environment = {
     production: false,
     API_QUESTION_HOST: 'http://localhost:8888',
-    API_QUESTION_ENDPOINT: 'http://localhost:8888/default',    
+    API_QUESTION_ENDPOINT: 'http://localhost:8888/default',
     API_HOST: 'http://localhost:3001',
-    API_ENDPOINT: 'http://localhost:3001/',    
+    API_ENDPOINT: 'http://localhost:3001/',
+    ORG_BIOBANK: 'University of the Philippines Diliman',
+    ORG_MEDICAL: 'University of the Philippines - Philippine General Hospital',
+    FORM_TYPE_BIOBANK: 'Biobanking Repository',
+    FORM_TYPE_MEDICAL: 'Patient Repository'
 };

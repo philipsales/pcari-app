@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 // Statics
@@ -51,10 +52,28 @@ export class FormService {
     const url = environment.API_ENDPOINT + 'forms/';
 
     return this.http.get(url).map((response: Response) => {
-      // return (response.json().data as Form[])
       return response['data'].map(Form.fromJSON);
-    })
-      .catch(Helper.handleError);
+    }).catch(Helper.handleError);
+  }
+
+  getBiobankForms(): Observable<Form[]> {
+    const biobank_form_type = environment.FORM_TYPE_BIOBANK;
+    const url = environment.API_ENDPOINT + 'forms/';
+    return this.http.get(url).map((response) => {
+      return response['data'].filter((all_forms: FormJSON) => {
+        return all_forms.type === biobank_form_type;
+      }).map(Form.fromJSON);
+    }).catch(Helper.handleError);
+  }
+
+  getMedicalForms(): Observable<Form[]> {
+    const medical_form_type = environment.FORM_TYPE_MEDICAL;
+    const url = environment.API_ENDPOINT + 'forms/';
+    return this.http.get(url).map((response: Response) => {
+      return response['data'].filter((all_forms: FormJSON) => {
+        return all_forms.type === medical_form_type;
+      }).map(Form.fromJSON);
+    }).catch(Helper.handleError);
   }
 
   getForm(id: string): Observable<Form> {

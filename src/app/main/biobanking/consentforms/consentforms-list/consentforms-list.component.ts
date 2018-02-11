@@ -17,7 +17,7 @@ export class ConsentformsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formService.getForms().subscribe(
+    this.formService.getBiobankForms().subscribe(
       forms => {
         this.forms = forms;
         console.log(this.forms, 'FORMS');
