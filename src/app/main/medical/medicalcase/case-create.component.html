@@ -27,10 +27,14 @@
     </header>
 
     <div class="row" id="page-body">
-      <app-case-manage 
+      <app-pcaricase-manage 
         [case]="case" 
-        [method]="'CREATE'">
-      </app-case-manage>
+        [forms]="forms"
+        [update_url]="'/biobanking/cases/update/'"
+        [view_url]="'/biobanking/cases/view/'"
+        [method]="'CREATE'"
+        (onSubmitCaseTrigger)="onSubmitCase($event)">
+      </app-pcaricase-manage>
     </div> <!-- page-body -->
     
 </div>  <!-- page-content -->
