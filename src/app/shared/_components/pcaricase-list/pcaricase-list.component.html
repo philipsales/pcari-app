@@ -20,7 +20,7 @@
 					<tr>
 						<th>#</th>
 						<th>Case Number</th>
-						<th>Diagnosis</th>
+						<th *ngIf="show_diagnosis">Diagnosis</th>
 						<th>Date Created</th>
 						<th>Status</th>
 					</tr>
@@ -29,7 +29,7 @@
 					<tr  *ngFor="let case of _cases; let i = index">
 						<th scope="row">{{ i + 1 }}</th>
 						<td>{{ case.case_nbr }}</td>
-						<td> {{case.diagnosis }} </td>
+						<td *ngIf="show_diagnosis"> {{case.diagnosis }} </td>
 						<td>{{ case.date_created | date: 'medium' }}</td>
 						<td>
 							<span *ngIf="!case.is_active" class="badge badge--failed" #inactive> Inactive</span>

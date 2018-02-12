@@ -11,6 +11,7 @@ export class PcaricaseListComponent implements OnInit {
   @Input() create_url: string;
   @Input() view_url: string;
   @Input() update_url: string;
+  @Input() show_diagnosis: boolean;
   private _cases: Case[];
   @Input() set cases(value: Case[]) {
       this._cases = value;
