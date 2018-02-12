@@ -32,6 +32,9 @@ import { RouterModule } from '@angular/router';
 import { PcariformManageComponent } from './_components/pcariform-manage/pcariform-manage.component';
 import { KeyGenerator } from 'app/core/utils';
 import { PcaricaseListComponent } from './_components/pcaricase-list/pcaricase-list.component';
+import { PcaricaseManageComponent } from './_components/pcaricase-manage/pcaricase-manage.component';
+import { PcaricaseFormListComponent } from './_components/pcaricase-form-list/pcaricase-form-list.component';
+import { PcaricaseFormAddComponent } from './_components/pcaricase-form-add/pcaricase-form-add.component';
 
 
 @NgModule({
@@ -63,7 +66,10 @@ import { PcaricaseListComponent } from './_components/pcaricase-list/pcaricase-l
     QuestionOptionComponent,
     PcariformListComponent,
     PcariformManageComponent,
-    PcaricaseListComponent
+    PcaricaseListComponent,
+    PcaricaseManageComponent,
+    PcaricaseFormListComponent,
+    PcaricaseFormAddComponent
   ],
   providers: [
     ConsentService,
@@ -75,7 +81,8 @@ import { PcaricaseListComponent } from './_components/pcaricase-list/pcaricase-l
     DynamicFormComponent,
     PcariformListComponent,
     PcariformManageComponent,
-    PcaricaseListComponent
+    PcaricaseListComponent,
+    PcaricaseManageComponent
   ]
 })
 export class SharedModule { }
