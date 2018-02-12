@@ -14,6 +14,7 @@ import { NotificationsService } from 'angular2-notifications';
 import { Form, Section, Question, FormAnswer, Answer, Case } from 'app/core/models';
 import { CaseService } from 'app/core/services';
 
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'dynamic-form',
@@ -195,7 +196,7 @@ export class DynamicFormComponent implements OnInit {
 
     console.warn(this.casenumber, 'CASE NUMBER');
     console.warn(answers, 'WAAAAAAAAA');
-    let to_save = new Case(this.casenumber.toString(), '', forms);
+    let to_save = new Case(this.casenumber.toString(), environment.ORG_MEDICAL, '', forms);
     this.caseservice.create(to_save)
       .subscribe(created_case => {
         console.warn(created_case, 'AYUS');

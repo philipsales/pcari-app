@@ -22,7 +22,7 @@ const routes: Routes = [
           path: 'reports',
           loadChildren: './reports/reports-medical.module#ReportsMedicalModule'
         },
-        { path: '', redirectTo: 'reports' }
+        { path: '', redirectTo: 'cases' }
       ]
 
   }

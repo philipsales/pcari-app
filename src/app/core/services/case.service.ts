@@ -30,6 +30,29 @@ export class CaseService {
     }).catch(Helper.handleError);
   }
 
+  getMedicalCases(): Observable<Case[]> {
+    const url = environment.API_ENDPOINT + 'cases/';
+    const medical_org = environment.ORG_MEDICAL;
+    return this.httpclient.get(url).map((response: Response) => {
+      console.log(response['data'], 'OUTPUT GET /cases all');
+      return response['data'].filter((all_cases: CaseJSON) => {
+        return all_cases.organization === medical_org;
+      }).map(Case.fromJSON);
+    }).catch(Helper.handleError);
+  }
+
+  getBiobankCases(): Observable<Case[]> {
+    const url = environment.API_ENDPOINT + 'cases/';
+    const biobank_org = environment.ORG_BIOBANK;
+    return this.httpclient.get(url).map((response: Response) => {
+      console.log(response['data'], 'OUTPUT GET /cases all');
+      return response['data'].filter((all_cases: CaseJSON) => {
+        return all_cases.organization === biobank_org;
+      }).map(Case.fromJSON);
+    }).catch(Helper.handleError);
+  }
+
+
   get(case_id: string): Observable<Case> {
     const url = environment.API_ENDPOINT + 'cases/' + case_id;
     return this.httpclient.get(url).map((response: CaseJSON) => {

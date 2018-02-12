@@ -5,6 +5,8 @@ import {
   FormAnswer
 } from 'app/core/models';
 
+import { environment } from 'environments/environment';
+
 @Component({
   selector: 'app-case-create',
   templateUrl: './case-create.component.html',
@@ -17,7 +19,7 @@ export class CaseCreateComponent implements OnInit {
 
   constructor() {
     this.answers = [];
-    this.case = new Case('', '', this.answers);
+    this.case = new Case('', environment.ORG_MEDICAL, '', this.answers);
   }
 
   ngOnInit() {

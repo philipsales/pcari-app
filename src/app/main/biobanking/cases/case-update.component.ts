@@ -8,6 +8,8 @@ import { NoJWTError } from 'app/core/errors';
 import { ActivatedRoute } from '@angular/router';
 import { CaseService } from 'app/core/services';
 
+import { environment } from 'environments/environment';
+
 @Component({
   selector: 'app-case-update',
   templateUrl: './case-update.component.html',
@@ -22,7 +24,7 @@ export class CaseUpdateComponent implements OnInit {
     private caseService: CaseService
   ) {
     this.answers = [];
-    this.case = new Case('', '', this.answers);
+    this.case = new Case('', environment.ORG_BIOBANK, '', this.answers);
   }
 
   ngOnInit() {

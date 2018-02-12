@@ -11,6 +11,8 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NoJWTError } from 'app/core/errors';
 import { CaseJSON } from 'app/core/interfaces';
 
+import { environment } from 'environments/environment';
+
 @Component({
   selector: 'app-case-view',
   templateUrl: './case-view.component.html',
@@ -26,7 +28,7 @@ export class CaseViewComponent implements OnInit {
     private caseService: CaseService
   ) {
     this.answers = [];
-    this.case = new Case('', '', this.answers);
+    this.case = new Case('', environment.ORG_BIOBANK, '', this.answers);
   }
 
   ngOnInit() {

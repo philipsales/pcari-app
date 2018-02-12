@@ -31,6 +31,7 @@ import { PcariformListComponent } from './_components/pcariform-list/pcariform-l
 import { RouterModule } from '@angular/router';
 import { PcariformManageComponent } from './_components/pcariform-manage/pcariform-manage.component';
 import { KeyGenerator } from 'app/core/utils';
+import { PcaricaseListComponent } from './_components/pcaricase-list/pcaricase-list.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { KeyGenerator } from 'app/core/utils';
     QuestionOptionArrayComponent,
     QuestionOptionComponent,
     PcariformListComponent,
-    PcariformManageComponent
+    PcariformManageComponent,
+    PcaricaseListComponent
   ],
   providers: [
     ConsentService,
@@ -72,7 +74,8 @@ import { KeyGenerator } from 'app/core/utils';
     EllipsisPipe,
     DynamicFormComponent,
     PcariformListComponent,
-    PcariformManageComponent
+    PcariformManageComponent,
+    PcaricaseListComponent
   ]
 })
 export class SharedModule { }

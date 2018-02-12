@@ -4,6 +4,7 @@ import {FormAnswer} from './formanswer';
 export class Case {
   id: string;
   case_nbr: string;
+  organization: string;
   date_created: Date;
   diagnosis?: string;
   forms?: FormAnswer[];
@@ -17,6 +18,7 @@ export class Case {
         let output = Object.assign(instance, json, {
           id: json._id,
           case_nbr: json.case_number,
+          organization: json.organization,
           diagnosis: json.diagnosis,
           date_created: new Date(json.date_created),
           is_deleted: json.isDeleted
@@ -35,8 +37,9 @@ export class Case {
     return key === '' ? Case.fromJSON(value) : value;
   }
 
-  constructor(case_nbr: string, diagnosis: string, forms: FormAnswer[]) {
+  constructor(case_nbr: string, organization: string, diagnosis: string, forms: FormAnswer[]) {
       this.case_nbr = case_nbr;
+      this.organization = organization;
       this.diagnosis = diagnosis;
       this.forms = forms;
       this.is_deleted = false;
@@ -54,6 +57,7 @@ export class Case {
 
     return Object.assign({}, this, {
       case_number: this.case_nbr,
+      organization: this.organization,
       diagnosis: this.diagnosis,
       date_created: date_created,
       forms: forms

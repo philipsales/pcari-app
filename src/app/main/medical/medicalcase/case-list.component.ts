@@ -16,7 +16,7 @@ export class CaseListComponent implements OnInit {
   constructor(private caseService: CaseService) { }
 
   ngOnInit() {
-    this.caseService.getAll().subscribe(
+    this.caseService.getMedicalCases().subscribe(
       cases => {
         this.cases = cases;
         console.warn(cases, 'CASES');

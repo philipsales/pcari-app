@@ -24,56 +24,11 @@
   </header>
 
   <div class="row">
-
-    <div class="col-md-12 table-nav">
-      <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-left top_search">
-	<div class="input-group">
-	  <input type="text" class="form-control" placeholder="Search for...">
-	  <span class="input-group-btn">
-	    <button class="btn btn-default" type="button">Go!</button>
-	  </span>
-	</div>
-      </div>
-      <a [routerLink]="['/medical/cases/create']"
-         class="btn btn-default pull-right">
-        <i class="fa fa-plus"></i> &nbsp; Create Case 
-      </a>
-    </div>
-    
-    <div class="col-md-12">
-      <table class="table table-striped">
-	<thead>
-	  <tr>
-	    <th>#</th>
-	    <th>Case Number</th>
-	    <th>Diagnosis</th>
-	    <th>Date Created</th>
-	    <th>Status</th>
-	  </tr>
-	</thead>
-	<tbody>
-	  <tr  *ngFor="let case of cases; let i = index">
-	    <th scope="row">{{ i + 1 }}</th>
-	    <td>{{ case.case_nbr }}</td>
-	    <td> {{case.diagnosis }} </td>
-	    <td>{{ case.date_created | date: 'medium' }}</td>
-			<td>
-				<span *ngIf="!case.is_active" class="badge badge--failed" #inactive> Inactive</span>
-				<span *ngIf="case.is_active" class="badge badge--success" #active> Active</span>
-			</td>
-			<td style="text-align: right">
-        <button 
-				 class="btn btn-sm btn-default"
-				 [routerLink]="['/medical/cases/view', case.id]">
-				 <i class="fa fa-eye"></i> View</button>
-				 <button 
-				 class="btn btn-sm btn-warning"
-				 [routerLink]="['/medical/cases/update', case.id]">
-         <i class="fa fa-edit"></i> Update</button>
-	    </td>
-	  </tr>
-	</tbody>
-      </table>
-    </div>
+		<app-pcaricase-list
+			[cases]="cases"
+			[create_url]="'/medical/cases/create'"
+			[view_url]="'/medical/cases/view'"
+			[update_url]="'/medical/cases/update'">
+		</app-pcaricase-list>
   </div>
 </div>
