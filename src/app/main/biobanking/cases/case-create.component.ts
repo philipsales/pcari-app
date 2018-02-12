@@ -22,6 +22,7 @@ export class CaseCreateComponent implements OnInit {
   private answers: FormAnswer[];
   private is_processing = false;
   private medcases: string[];
+  private show_icd: boolean;
 
   constructor(
     private formService: FormService,

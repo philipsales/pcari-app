@@ -21,6 +21,7 @@ export class CaseCreateComponent implements OnInit {
   private forms: Form[];
   private answers: FormAnswer[];
   private is_processing = false;
+  private show_icd: boolean;
 
 
   constructor(
@@ -30,6 +31,7 @@ export class CaseCreateComponent implements OnInit {
   ) {
     this.answers = [];
     this.case = new Case('', environment.ORG_MEDICAL, '', this.answers);
+    this.show_icd = false;
   }
 
   ngOnInit() {
@@ -58,5 +60,10 @@ export class CaseCreateComponent implements OnInit {
       console.log(errors, 'ERROR : case-manage.component');
       this.is_processing = false;
     });
+  }
+
+  onShowICD() {
+    console.log("onSHOWICD CaseCreate");
+    this.show_icd = true;
   }
 }

@@ -1,0 +1,70 @@
+<form data-parsley-validate=""
+    class="form-horizontal form-label-left"
+    #icdCreateForm="ngForm" novalidate>
+    <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+    <input matInput 
+          [(ngModel)]="_search.site"
+          #input_search_site="ngModel" 
+          name="input_search"
+          placeholder="Site">
+          <mat-hint align="start"><strong>E.g breast</strong> </mat-hint>
+  </mat-form-field>	  
+  <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+    <input matInput 
+          [(ngModel)]="_search.histology"
+          #input_search="ngModel" 
+          name="input_search_histology"
+          placeholder="Histology">
+          <mat-hint align="start"><strong>E.g neoplasm</strong> </mat-hint>
+  </mat-form-field>	   
+
+  <button class="btn btn-success pull-right"
+          (click)="onSubmitICDSearch(_search)">
+          <i class="fa fa-search"></i> &nbsp; Search
+  </button>
+</form>
+
+        
+<!-- <div *ngIf="error">
+  {{error}}
+</div> -->
+<div *ngIf="dataSource" class="col-md-12 col-sm-12 col-xs-12" >
+  <div class="x_panel">
+    <div class="x_content">
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+
+          <mat-table  #table [dataSource]="dataSource">
+              <!-- diagnosis -->
+              <ng-container matColumnDef="diagnosis_name">
+                  <mat-header-cell *matHeaderCellDef>International Classification of Disease -  Oncology </mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.diagnosis_name}} </mat-cell>
+              </ng-container>
+
+              <!-- action -->
+              <ng-container matColumnDef="select">
+                <mat-header-cell *matHeaderCellDef class="select-cell"> Action </mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <button mat-button 
+                  (click)="onSelectDiagnosis(row)">
+                    <i class="fa fa-check"></i> Select
+                  </button>
+                </mat-cell>    
+              </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+
+          <!-- error -->
+          <div class="mat-row" *ngIf="error">
+            <div class="mat-cell">
+              {{error}}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

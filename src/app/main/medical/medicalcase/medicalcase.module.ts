@@ -19,7 +19,8 @@ import { CaseFormsUpdateComponent } from './case-forms/case-forms-update.compone
 
 import {
   CaseService,
-  FormService
+  FormService,
+  IcdoncologyService
 } from 'app/core/services';
 
 @NgModule({
@@ -44,7 +45,8 @@ import {
   ],
   providers: [
     CaseService,
-    FormService
+    FormService,
+    IcdoncologyService
   ]
 })
 export class MedicalcaseModule { }
