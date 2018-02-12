@@ -21,6 +21,7 @@ export class CaseCreateComponent implements OnInit {
   private forms: Form[];
   private answers: FormAnswer[];
   private is_processing = false;
+  private medcases: string[];
 
   constructor(
     private formService: FormService,
@@ -35,6 +36,12 @@ export class CaseCreateComponent implements OnInit {
     this.formService.getBiobankForms().subscribe(
       forms => {
         this.forms = forms;
+      }
+    );
+
+    this.caseService.getMedicalCaseNumbers().subscribe(
+      casenbrs => {
+        this.medcases = casenbrs;
       }
     );
   }

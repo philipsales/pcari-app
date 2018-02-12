@@ -17,6 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatNativeDateModule,
     MatListModule,
     MatTableModule,
-    MatChipsModule
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatCheckboxModule,
@@ -53,7 +55,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatNativeDateModule,
     MatListModule,
     MatTableModule,
-    MatChipsModule
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   declarations: [],
   providers: []

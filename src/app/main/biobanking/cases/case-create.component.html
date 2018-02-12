@@ -33,6 +33,8 @@
         [update_url]="'/biobanking/cases/update/'"
         [view_url]="'/biobanking/cases/view/'"
         [method]="'CREATE'"
+        [case_searchable]="true"
+        [medcases]="medcases"
         (onSubmitCaseTrigger)="onSubmitCase($event)">
       </app-pcaricase-manage>
     </div> <!-- page-body -->
