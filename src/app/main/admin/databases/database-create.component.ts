@@ -142,9 +142,6 @@ export class DatabaseCreateComponent implements OnInit {
         a.download = fileName;
         a.click();
 
-        //window.URL.revokeObjectURL(url);
-        //window.open(url);
-
         this.notificationPrompt({ 'name': path[1] });
       },
       errors => {
