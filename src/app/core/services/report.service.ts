@@ -46,7 +46,7 @@ export class ReportService {
   }//--getReport
 
   downloadFileJSON() {
-    const url = `${this.reportUrl}`;
+    const url = environment.API_ENDPOINT + '/reports'; 
 
     return this.http
                .get(url)
@@ -58,7 +58,7 @@ export class ReportService {
   }
 
   downloadFilePDF() {
-    const url = `${this.reportUrl}`;
+    const url = environment.API_ENDPOINT + '/reports'; 
 
     return this.http
                .get(url)

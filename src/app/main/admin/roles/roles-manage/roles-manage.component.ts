@@ -85,7 +85,7 @@ export class RolesManageComponent implements OnInit {
             console.log(created_role, 'ROLE CREATED : roles-create.component');
             this._notificationsService.success(
                 'New Role : ' + role.name,
-                'Successfully Created.',
+                'Successfully Created',
                 {
                     timeOut: 10000,
                     showProgressBar: true,
@@ -112,7 +112,7 @@ export class RolesManageComponent implements OnInit {
             console.log(updated_role, 'ROLE UPDATED : roles-manage.component');
             this._notificationsService.success(
                 'Role : ' + role.name,
-                'Successfully Updated.',
+                'Successfully Updated',
                 {
                     timeOut: 10000,
                     showProgressBar: true,
