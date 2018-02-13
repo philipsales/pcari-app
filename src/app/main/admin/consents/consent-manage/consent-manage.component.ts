@@ -209,7 +209,7 @@ export class ConsentManageComponent implements OnInit {
         form.type,
         form.status,
         [],
-        form.date_created
+        form.validity_date
       );
 
       this.forms.push(this.data);

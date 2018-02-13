@@ -71,6 +71,10 @@ export class PcariformManageComponent implements OnInit {
       department: [
         { value: data.department, disabled: false },
         Validators.required
+      ],
+      validity_date: [
+        { value: data.validity_date, disabled: false },
+        Validators.required
       ]
     });
   }
@@ -85,7 +89,7 @@ export class PcariformManageComponent implements OnInit {
   }
 
   onSaveForm(updated_form: Form) {
-    console.log(updated_form, 'NEW UPDATES');
+    console.log("new Update", updated_form);
     this.onSubmitTrigger.emit(updated_form);
   }
 }

@@ -43,11 +43,12 @@ export class ConsentformsCreateComponent implements OnInit {
       '',
       [
         new Section(
-        this.keyGenerator.create(),
-        'Untitled section',
-        0,
-        [])
-      ]
+          this.keyGenerator.create(),
+          'Untitled section',
+          0,
+          [])
+      ],
+      new Date
     );
     this.getRegistryTypes();
     this.getDepartments();

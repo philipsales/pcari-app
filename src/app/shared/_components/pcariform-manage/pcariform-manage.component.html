@@ -1,4 +1,4 @@
-<h1>FORM</h1>
+<h1>FORM BOTH</h1>
 <div class="form-editor-body">
     <form *ngIf="templateForm" [formGroup]="templateForm">
       <div class="row">
@@ -10,11 +10,11 @@
               <div class="material-form-group">
                 <mat-form-field class="material-form-control">
                       <input matInput 
-                            placeholder="Template Name"
+                            placeholder="Form Name"
                             formControlName="name"
                             [(ngModel)]="_form.name">
                             <mat-error *ngIf="templateForm.get('name').hasError('required')">
-                                Template Name is required 
+                                Form Name is required 
                             </mat-error>
                 </mat-form-field>
                 <mat-form-field class="material-form-control" *ngIf="registryTypes">
@@ -63,21 +63,39 @@
                 </mat-form-field>
               </div> <!-- material-form-group -->
   
-              <div class="material-form-group col-md-9">
+              <div class="material-form-group">
                 <mat-form-field class="material-form-control pull-left" >
-                  <mat-select placeholder="Status"
-                              formControlName="status" 
-                              [(ngModel)]="_form.status">
+                  <mat-select formControlName="status" 
+                              [(ngModel)]="_form.status"
+                              placeholder="Approval Status" >
                     <mat-option *ngFor="let stat of status"
                                 [id]="stat.key" 
                                 [value]="stat.name">{{stat.name}}
                     </mat-option>
                   </mat-select>
                   <mat-error *ngIf="templateForm.get('status').hasError('required')">
-                      Status is required 
+                      Approval Status is required 
                   </mat-error>
                 </mat-form-field>
               </div> <!-- material-form-group -->
+
+              <div class="material-form-group">
+                <mat-form-field class="material-form-control" >
+                      <input placeholder="Validity Date"
+                              formControlName="validity_date"
+                              [(ngModel)]="_form.validity_date"
+                              matInput [matDatepicker]="i" >
+                      <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
+                      <mat-datepicker #i></mat-datepicker>
+                    </mat-form-field>
+              <!-- <mat-form-field class="material-form-control col-sm-6 col-md-6">
+
+                  <input matInput 
+                            placeholder="Validity Date"
+                            formControlName="validity_date"
+                            [(ngModel)]="_form.validity_date">
+              </mat-form-field> -->
+              </div>
   
            </div> <!-- #formcreatecontainer -->
         </div> <!-- col-sm-10 -->

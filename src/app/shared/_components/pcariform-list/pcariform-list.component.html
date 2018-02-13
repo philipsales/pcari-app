@@ -23,8 +23,9 @@
         <th>Form Name</th>
         <!-- <th>Type</th> -->
         <th>Department</th>
-
-        <th style="text-align: center">Status</th>
+        <th>Consent Validity</th>
+        <th>Status</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -34,7 +35,17 @@
         <td> {{ form.name }}</td>
         <!-- <td>{{ form.type }}</td> -->
         <td>{{ form.department }}</td>
-        <td style="text-align: center">
+        <td>
+          <span *ngIf='((_date_today | date: "MMM dd, yyyy")
+            <= (form.validity_date | date: "MMM dd, yyyy"))'
+            class="badge badge--success" #valid> Valid 
+          </span>
+          <span *ngIf='!((_date_today | date: "MMM dd, yyyy")
+            <= (form.validity_date | date: "MMM dd, yyyy"))'
+            class="badge badge--failed" #invalid> Invalid 
+          </span>
+        </td>
+        <td>
           <span *ngIf="form.status ==='Pending'" class="badge badge--failed" #pending> {{form.status }}</span>
           <span *ngIf="form.status ==='Approved'" class="badge badge--success" #active> {{form.status }}</span>
         </td>

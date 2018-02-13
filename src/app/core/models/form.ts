@@ -8,6 +8,7 @@ export class Form {
   department: string;
   type: string;
   approval?: string;
+  validity_date?: Date;
   status?: string;
   created_by?: string;
   date_created?: Date;
@@ -36,6 +37,7 @@ export class Form {
         status: json.status,
         created_by: json.created_by,
         date_created: new Date(json.date_created),
+        validity_date: json.validity_date,
         is_deleted: json.is_deleted
       });
 
@@ -67,6 +69,7 @@ export class Form {
       status: json.status,
       created_by: json.created_by,
       date_created: date_created,
+      validity_date: json.validity_date,
       is_deleted: json.is_deleted,
       sections: sections
     });
@@ -83,6 +86,7 @@ export class Form {
     type: string,
     status: string,
     sections?: Section[],
+    validity_date?: Date,
     date_created?: Date
   ) {
     this.name = name;
@@ -93,7 +97,8 @@ export class Form {
     if (sections) {
       this.sections = sections;
     }
-    this.date_created = date_created;
+    this.validity_date = validity_date,
+      this.date_created = date_created;
   }
 
   toJSON(): FormJSON {
@@ -106,7 +111,6 @@ export class Form {
       sections = this.sections.map((section) => section.toJSON());
     }
     return Object.assign({}, this, {
-
       _id: this.id,
       name: this.name,
       organization: this.organization,
@@ -116,6 +120,7 @@ export class Form {
       status: this.status,
       created_by: this.created_by,
       date_created: date_created,
+      validity_date: this.validity_date,
       is_deleted: this.is_deleted,
       sections: sections
     });
