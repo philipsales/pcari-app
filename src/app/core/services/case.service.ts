@@ -19,7 +19,7 @@ export class CaseService {
   private caseUrl = environment.API_ENDPOINT + '/cases';
 
   constructor(private http: Http,
-              private httpclient: HttpClient) {
+    private httpclient: HttpClient) {
   }// --constructor
 
   getAll(): Observable<Case[]> {
@@ -62,7 +62,7 @@ export class CaseService {
       }).map((x) => {
         console.log(x);
         return x['case_number'];
-    });
+      });
     }).catch(Helper.handleError);
   }
 
@@ -85,7 +85,7 @@ export class CaseService {
         // return (response.json().data as Form[])
         console.log(response, 'CASE CREATED from /cases');
         return Case.fromJSON(response);
-    }).catch(Helper.handleError);
+      }).catch(Helper.handleError);
   }
 
   update(mycase: Case): Observable<Case> {
@@ -98,6 +98,22 @@ export class CaseService {
         // return (response.json().data as Form[])
         console.log(response, 'CASE UPDATED from /cases');
         return Case.fromJSON(response);
-    }).catch(Helper.handleError);
+      }).catch(Helper.handleError);
+  }
+
+  upload(dir_path: string): Observable<any> {
+    const url = environment.API_ENDPOINT + 'cases/upload';
+
+    console.log(url);
+    console.log(dir_path);
+    var body = { 'dir_path': dir_path };
+
+    var headers = { 'Content-Disposition': 'multipart/form-data' };
+
+    return this.httpclient.post(url, body)
+      .map((response: Response) => {
+        console.log('RESPONSE: ', response);
+        return response;
+      }).catch(Helper.handleError);
   }
 }

@@ -1,5 +1,31 @@
 <h1>FORM BOTH</h1>
 <div class="form-editor-body">
+    <form ref='uploadForm' 
+    id='uploadForm' 
+    action='http://localhost:3001/cases/upload' 
+    method='post' 
+    encType="multipart/form-data">
+      <input type="file" name="sampleFile" />
+      <input type='submit' value='Upload!' />
+  </form> 
+
+  <form enctype="multipart/form-data" 
+  action="http://localhost:3001/cases/upload" method="POST">
+    <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+    Choose a file to upload: <input name="uploadedfile" type="file" /><br />
+    <input type="submit" 
+          (click)="onUploadTemplate(this.uploadedfile)" 
+          value="Upload File" />
+    </form>
+
+  <form 
+    action='http://localhost:3001/cases/upload' 
+    enctype="multipart/form-data" method="post">
+    <input type="text" name="title">
+    <input type="file" name="file">
+    <input type="submit" value="Upload FOO">
+</form>
+
     <form *ngIf="templateForm" [formGroup]="templateForm">
       <div class="row">
         <div class="col-sm-10" > 
@@ -88,14 +114,48 @@
                       <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
                       <mat-datepicker #i></mat-datepicker>
                     </mat-form-field>
-              <!-- <mat-form-field class="material-form-control col-sm-6 col-md-6">
-
-                  <input matInput 
-                            placeholder="Validity Date"
-                            formControlName="validity_date"
-                            [(ngModel)]="_form.validity_date">
-              </mat-form-field> -->
               </div>
+              <div class="material-form-group">
+
+                <mat-form-field class="material-form-control" >
+                  <input matInput 
+                      placeholder="Dir pathName"
+                      formControlName="dir_path"
+                      value="{{upload.value}}"
+                      [(ngModel)]="_form.dir_path" >
+
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput #message maxlength="256" placeholder="Message">
+                    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                    <input matInput value="{{upload}}">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input multiple type="file" #upload>
+                    <input matInput value="{{upload.value}}">
+                </mat-form-field>
+
+                
+
+                <h1>foo
+
+              {{message.value}}
+              {{upload.value}}
+                </h1>
+
+                <!-- <input class="ng-hide" 
+                       formControlName="dir_path"
+                       [(ngModel)]="_form.dir_path"
+                       id="input-file-id" 
+                       multiple type="file" 
+                       /> -->
+                <button class="btn btn-md btn-default" 
+                       (click)="onUploadTemplate(upload.value)" >
+                       Submit
+                  </button>
+                </div>
   
            </div> <!-- #formcreatecontainer -->
         </div> <!-- col-sm-10 -->

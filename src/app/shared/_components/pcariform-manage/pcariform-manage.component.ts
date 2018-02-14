@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Form, Section, Question, RegType, Department, Organization } from 'app/core/models';
-import { OrganizationService, DepartmentService, RegTypeService } from 'app/core/services';
+import { OrganizationService, DepartmentService, RegTypeService, CaseService } from 'app/core/services';
 
 import { KeyGenerator } from 'app/core/utils';
 
@@ -38,7 +38,8 @@ export class PcariformManageComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private keyGenerator: KeyGenerator
+    private keyGenerator: KeyGenerator,
+    private caseService: CaseService
   ) {
     this.status = [
       { 'name': 'Pending', 'key': 'Pending' },
@@ -75,6 +76,10 @@ export class PcariformManageComponent implements OnInit {
       validity_date: [
         { value: data.validity_date, disabled: false },
         Validators.required
+      ],
+      dir_path: [
+        { value: data.dir_path, disabled: false },
+        Validators.required
       ]
     });
   }
@@ -91,5 +96,24 @@ export class PcariformManageComponent implements OnInit {
   onSaveForm(updated_form: Form) {
     console.log("new Update", updated_form);
     this.onSubmitTrigger.emit(updated_form);
+  }
+
+  onUploadTemplate(path: string) {
+    this.caseService
+      .upload(path)
+      .subscribe(upload => {
+        console.log(upload)
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      }
+      );
+
+    console.log('upload: ', this._form.dir_path);
+    console.log('upload: ', this._form);
+    console.log('upload: ', path);
+
   }
 }

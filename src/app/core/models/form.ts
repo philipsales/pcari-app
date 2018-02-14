@@ -9,6 +9,7 @@ export class Form {
   type: string;
   approval?: string;
   validity_date?: Date;
+  dir_path?: string;
   status?: string;
   created_by?: string;
   date_created?: Date;
@@ -38,6 +39,7 @@ export class Form {
         created_by: json.created_by,
         date_created: new Date(json.date_created),
         validity_date: json.validity_date,
+        dir_path: json.dir_path,
         is_deleted: json.is_deleted
       });
 
@@ -70,6 +72,7 @@ export class Form {
       created_by: json.created_by,
       date_created: date_created,
       validity_date: json.validity_date,
+      dir_path: json.dir_path,
       is_deleted: json.is_deleted,
       sections: sections
     });
@@ -87,6 +90,7 @@ export class Form {
     status: string,
     sections?: Section[],
     validity_date?: Date,
+    dir_path?: string,
     date_created?: Date
   ) {
     this.name = name;
@@ -98,6 +102,7 @@ export class Form {
       this.sections = sections;
     }
     this.validity_date = validity_date,
+      this.dir_path = dir_path,
       this.date_created = date_created;
   }
 
@@ -121,6 +126,7 @@ export class Form {
       created_by: this.created_by,
       date_created: date_created,
       validity_date: this.validity_date,
+      dir_path: this.dir_path,
       is_deleted: this.is_deleted,
       sections: sections
     });
