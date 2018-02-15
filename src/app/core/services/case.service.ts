@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -101,19 +101,35 @@ export class CaseService {
       }).catch(Helper.handleError);
   }
 
-  upload(dir_path: string): Observable<any> {
+  setFileHeader() {
+    return new HttpHeaders({
+      'Accept': 'application/json',
+    });
+  }
+
+  upload(form: any): Observable<any> {
     const url = environment.API_ENDPOINT + 'cases/upload';
 
     console.log(url);
-    console.log(dir_path);
-    var body = { 'dir_path': dir_path };
+    console.log(form);
+    var body = { 'dir_path': form };
 
     var headers = { 'Content-Disposition': 'multipart/form-data' };
+    var header1 = { 'Content-Type': 'application/json' };
+    var header2 = { 'Accept': 'application/json' };
 
-    return this.httpclient.post(url, body)
-      .map((response: Response) => {
-        console.log('RESPONSE: ', response);
-        return response;
-      }).catch(Helper.handleError);
+    /*
+    return this.httpclient.post(url, form, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
+    */
+    return this.httpclient.post(url, form,
+      {
+        headers: header2
+      }
+    ).map((response: Response) => {
+      console.log('RESPONSE: ', response);
+      return response;
+    }).catch(Helper.handleError);
   }
 }

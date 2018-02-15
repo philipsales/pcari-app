@@ -1,236 +1,216 @@
-<h1>FORM BOTH</h1>
 <div class="form-editor-body">
-    <form ref='uploadForm' 
-    id='uploadForm' 
-    action='http://localhost:3001/cases/upload' 
-    method='post' 
-    encType="multipart/form-data">
-      <input type="file" name="sampleFile" />
-      <input type='submit' value='Upload!' />
-  </form> 
-
-  <form enctype="multipart/form-data" 
-  action="http://localhost:3001/cases/upload" method="POST">
-    <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-    Choose a file to upload: <input name="uploadedfile" type="file" /><br />
-    <input type="submit" 
-          (click)="onUploadTemplate(this.uploadedfile)" 
-          value="Upload File" />
+    <!-- <form ref='uploadForm' 
+        id='uploadForm' 
+        action='http://localhost:3001/cases/upload' 
+        method='post' 
+        encType="multipart/form-data">
+        <input type="file" name="sampleFile" />
+        <input type='submit' value='Upload!' />
+    </form> 
+  
+    <form enctype="multipart/form-data" 
+    action="http://localhost:3001/cases/upload" method="POST">
+      <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+      Choose a file to upload: <input name="uploadedfile" type="file" /><br />
+      <input type="submit" 
+            (click)="onUploadTemplate(this.uploadedfile)" 
+            value="Upload File" />
+      </form>
+  
+    <form 
+      action='http://localhost:3001/cases/upload' 
+      enctype="multipart/form-data" method="post">
+      <input type="text" name="title">
+      <input type="file" name="file">
+      <input type="submit" value="Upload FOO">
+  </form> -->
+  
+  
+  <form [formGroup]="formUpload" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Bob" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="avatar">Avatar</label>
+        <input type="file" id="avatar" (change)="onFileChange($event)" #fileInput>
+        <button type="button" class="btn btn-sm btn-default" (click)="clearFile()">clear file</button>
+      </div>
+      <!-- <button type="submit" [disabled]="formUpload.invalid || loading" class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button> -->
+      <button type="submit"  class="btn btn-success">Submit <i class="fa fa-spinner fa-spin fa-fw" *ngIf="loading"></i></button>
     </form>
-
-  <form 
-    action='http://localhost:3001/cases/upload' 
-    enctype="multipart/form-data" method="post">
-    <input type="text" name="title">
-    <input type="file" name="file">
-    <input type="submit" value="Upload FOO">
-</form>
-
-    <form *ngIf="templateForm" [formGroup]="templateForm">
-      <div class="row">
-        <div class="col-sm-10" > 
-           <div id="formcreatecontainer">
-              <input type="hidden" class="form-control"
-                     placeholder="id"
-                     formControlName="id">
-              <div class="material-form-group">
-                <mat-form-field class="material-form-control">
-                      <input matInput 
-                            placeholder="Form Name"
-                            formControlName="name"
-                            [(ngModel)]="_form.name">
-                            <mat-error *ngIf="templateForm.get('name').hasError('required')">
-                                Form Name is required 
-                            </mat-error>
-                </mat-form-field>
-                <mat-form-field class="material-form-control" *ngIf="registryTypes">
-                  <mat-select placeholder="Registry Type"
-                              formControlName="type"
-                              [disabled]="true"
-                              [(ngModel)]="_form.type" >
-                    <mat-option *ngFor="let type of registryTypes"
-                                [id]="type.name" 
-                                [value]="type.name">{{type.name}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="templateForm.get('type').hasError('required')">
-                      Registry Type is required 
-                  </mat-error>
-                </mat-form-field>
-              </div> <!-- material-form-group -->
   
-              <div class="material-form-group">
-                <mat-form-field class="material-form-control" *ngIf="organizations" >
-                  <mat-select placeholder="Organization"
-                              formControlName="organization"
-                              [disabled]="true"
-                              [(ngModel)]="_form.organization" >
-                    <mat-option *ngFor="let org of organizations"
-                                [id]="org.key" 
-                                [value]="org.name">{{org.name}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="templateForm.get('organization').hasError('required')">
-                      Organization is required 
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field class="material-form-control" *ngIf="departments" >
-                  <mat-select placeholder="Department"
-                              formControlName="department"
-                              [(ngModel)]="_form.department" >
-                    <mat-option *ngFor="let dept of departments"
-                                [id]="dept.key" 
-                                [value]="dept.name">{{dept.name}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="templateForm.get('department').hasError('required')">
-                      Department is required 
-                  </mat-error>
-                </mat-form-field>
-              </div> <!-- material-form-group -->
+      <form *ngIf="templateForm" [formGroup]="templateForm">
+        <div class="row">
+          <div class="col-sm-10" > 
+             <div id="formcreatecontainer">
+                <input type="hidden" class="form-control"
+                       placeholder="id"
+                       formControlName="id">
+                <div class="material-form-group">
+                  <mat-form-field class="material-form-control">
+                        <input matInput 
+                              placeholder="Form Name"
+                              formControlName="name"
+                              [(ngModel)]="_form.name">
+                              <mat-error *ngIf="templateForm.get('name').hasError('required')">
+                                  Form Name is required 
+                              </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="material-form-control" *ngIf="registryTypes">
+                    <mat-select placeholder="Registry Type"
+                                formControlName="type"
+                                [disabled]="true"
+                                [(ngModel)]="_form.type" >
+                      <mat-option *ngFor="let type of registryTypes"
+                                  [id]="type.name" 
+                                  [value]="type.name">{{type.name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="templateForm.get('type').hasError('required')">
+                        Registry Type is required 
+                    </mat-error>
+                  </mat-form-field>
+                </div> <!-- material-form-group -->
+    
+                <div class="material-form-group">
+                  <mat-form-field class="material-form-control" *ngIf="organizations" >
+                    <mat-select placeholder="Organization"
+                                formControlName="organization"
+                                [disabled]="true"
+                                [(ngModel)]="_form.organization" >
+                      <mat-option *ngFor="let org of organizations"
+                                  [id]="org.key" 
+                                  [value]="org.name">{{org.name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="templateForm.get('organization').hasError('required')">
+                        Organization is required 
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="material-form-control" *ngIf="departments" >
+                    <mat-select placeholder="Department"
+                                formControlName="department"
+                                [(ngModel)]="_form.department" >
+                      <mat-option *ngFor="let dept of departments"
+                                  [id]="dept.key" 
+                                  [value]="dept.name">{{dept.name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="templateForm.get('department').hasError('required')">
+                        Department is required 
+                    </mat-error>
+                  </mat-form-field>
+                </div> <!-- material-form-group -->
+    
+                <div class="material-form-group">
+                  <mat-form-field class="material-form-control pull-left" >
+                    <mat-select formControlName="status" 
+                                [(ngModel)]="_form.status"
+                                placeholder="Approval Status" >
+                      <mat-option *ngFor="let stat of status"
+                                  [id]="stat.key" 
+                                  [value]="stat.name">{{stat.name}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="templateForm.get('status').hasError('required')">
+                        Approval Status is required 
+                    </mat-error>
+                  </mat-form-field>
+                </div> <!-- material-form-group -->
   
-              <div class="material-form-group">
-                <mat-form-field class="material-form-control pull-left" >
-                  <mat-select formControlName="status" 
-                              [(ngModel)]="_form.status"
-                              placeholder="Approval Status" >
-                    <mat-option *ngFor="let stat of status"
-                                [id]="stat.key" 
-                                [value]="stat.name">{{stat.name}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="templateForm.get('status').hasError('required')">
-                      Approval Status is required 
-                  </mat-error>
-                </mat-form-field>
-              </div> <!-- material-form-group -->
-
-              <div class="material-form-group">
-                <mat-form-field class="material-form-control" >
-                      <input placeholder="Validity Date"
-                              formControlName="validity_date"
-                              [(ngModel)]="_form.validity_date"
-                              matInput [matDatepicker]="i" >
-                      <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
-                      <mat-datepicker #i></mat-datepicker>
-                    </mat-form-field>
-              </div>
-              <div class="material-form-group">
-
-                <mat-form-field class="material-form-control" >
-                  <input matInput 
-                      placeholder="Dir pathName"
-                      formControlName="dir_path"
-                      value="{{upload.value}}"
-                      [(ngModel)]="_form.dir_path" >
-
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <input matInput #message maxlength="256" placeholder="Message">
-                    <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
-                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-                    <input matInput value="{{upload}}">
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width">
-                    <input multiple type="file" #upload>
-                    <input matInput value="{{upload.value}}">
-                </mat-form-field>
-
-                
-
-                <h1>foo
-
-              {{message.value}}
-              {{upload.value}}
-                </h1>
-
-                <!-- <input class="ng-hide" 
-                       formControlName="dir_path"
-                       [(ngModel)]="_form.dir_path"
-                       id="input-file-id" 
-                       multiple type="file" 
-                       /> -->
-                <button class="btn btn-md btn-default" 
-                       (click)="onUploadTemplate(upload.value)" >
-                       Submit
-                  </button>
+                <div class="material-form-group">
+                  <mat-form-field class="material-form-control" >
+                        <input placeholder="Validity Date"
+                                formControlName="validity_date"
+                                [(ngModel)]="_form.validity_date"
+                                matInput [matDatepicker]="i" >
+                        <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
+                        <mat-datepicker #i></mat-datepicker>
+                      </mat-form-field>
                 </div>
+                <!-- <div class="material-form-group">
+                  <mat-form-field class="material-form-control" >
+                    <input matInput 
+                        placeholder="Dir pathName"
+                        formControlName="dir_path"
+                        value="{{upload.value}}"
+                        [(ngModel)]="_form.dir_path" >
   
-           </div> <!-- #formcreatecontainer -->
-        </div> <!-- col-sm-10 -->
-      </div> <!-- row -->
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width">
+                      <input matInput #message maxlength="256" placeholder="Message">
+                      <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+                      <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                      <input matInput value="{{upload}}">
+                  </mat-form-field>
   
-      <div class="row">
-        <div class="col-sm-10"> 
-          <form-section-array
-            [parentForm]="templateForm"
-            [sections]="_form?.sections" 
-            [viewState]="'create'" > 
-          </form-section-array>
-        </div>
+                  <mat-form-field class="example-full-width">
+                      <input multiple type="file" #upload>
+                      <input matInput value="{{upload.value}}">
+                  </mat-form-field>
   
-        <div class="col-sm-1 section"  > 
-          <div class="col-sm-1" >
-            <div class="row">
-              <div class="sidebar">
-                <ul class="nav nav-sidebar form-side-editor-main" style="">
-                  <li title="Add Sectino" class="form-side-editor-fxn" >
-                    <button 
-                        mat-button
-                        matTooltip="Add Section" 
-                        [disabled]="is_processing || is_created"
-                        (click)="onAddSection()">
-                        <i class="fa fa-3x fa-plus-circle"></i> &nbsp; 
-                    </button>
-                  </li>
-                  <li title="Preview Template" class="form-side-editor-fxn" >
-                    <button 
-                        mat-button
-                        matTooltip="Preivew Form" 
-                        (click)="onPreviewForm(templateForm.value,formId)" >
-                        <i class="fa fa-3x fa-eye"></i> &nbsp; 
-                    </button>
-                  </li>
-                  <li title="Save Template" class="form-side-editor-fxn" >
-                    <button 
-                        mat-button
-                        [disabled]="is_processing || is_created"
-                        (click)="onSaveForm(_form)" 
-                        matTooltip="Save Form" >
-                        <i class="fa fa-3x fa-save"></i> &nbsp; 
-                    </button>
-                  </li>
-                  <!-- <li title="Add Section" 
-                      class="form-side-editor-fxn" 
-                      (click)="onAddSection()">
-                      <a matTooltip="Add Section"
-                         *ngIf="!is_created"
-                         [routerLink]="['.']">
-                        <i class="fa fa-3x fa-plus-circle"></i>
-                      </a>
-                  </li>
-                  <li title="Preview Template" 
-                      class="form-side-editor-fxn" 
-                      (click)="onPreviewForm(templateForm.value,formId)" >
-                      <a matTooltip="Preview Form"
-                        [routerLink]="['.']">
-                        <i class="fa fa-3x fa-eye"></i>
-                      </a>
-                  </li> -->
-                  <!-- <li class="form-side-editor-fxn" 
-                      (click)="onSaveForm(templateForm.value)" >
-                      <a matTooltip="Save Form"
-                        *ngIf="!is_created"
-                        [routerLink]="['.']">
-                        <i class="fa fa-3x fa-save"></i>
-                      </a>
-                  </li> -->
-                </ul>
-              </div> <!-- sidebar -->
-            </div> <!-- row -->
-          </div> <!-- col-sm-1 -->
-        </div> <!-- section -->
-      </div> <!-- row-->
-    </form> <!-- templateForm -->
-  </div> <!-- form-editor-body -->
+  
+                  <input class="ng-hide" 
+                         formControlName="dir_path"
+                         [(ngModel)]="_form.dir_path"
+                         id="input-file-id" 
+                         multiple type="file" 
+                         />
+                      <button class="btn btn-md btn-default" 
+                         (click)="onUploadTemplate(upload.value)" >
+                         Submit
+                      </button>
+              </div> -->
+             </div> <!-- #formcreatecontainer -->
+          </div> <!-- col-sm-10 -->
+        </div> <!-- row -->
+    
+        <div class="row">
+          <div class="col-sm-10"> 
+            <form-section-array
+              [parentForm]="templateForm"
+              [sections]="_form?.sections" 
+              [viewState]="'create'" > 
+            </form-section-array>
+          </div>
+    
+          <div class="col-sm-1 section"  > 
+            <div class="col-sm-1" >
+              <div class="row">
+                <div class="sidebar">
+                  <ul class="nav nav-sidebar form-side-editor-main" style="">
+                    <li title="Add Sectino" class="form-side-editor-fxn" >
+                      <button 
+                          mat-button
+                          matTooltip="Add Section" 
+                          [disabled]="is_processing || is_created"
+                          (click)="onAddSection()">
+                          <i class="fa fa-3x fa-plus-circle"></i> &nbsp; 
+                      </button>
+                    </li>
+                    <li title="Preview Template" class="form-side-editor-fxn" >
+                      <button 
+                          mat-button
+                          matTooltip="Preivew Form" 
+                          (click)="onPreviewForm(templateForm.value,formId)" >
+                          <i class="fa fa-3x fa-eye"></i> &nbsp; 
+                      </button>
+                    </li>
+                    <li title="Save Template" class="form-side-editor-fxn" >
+                      <button 
+                          mat-button
+                          [disabled]="is_processing || is_created"
+                          (click)="onSaveForm(_form)" 
+                          matTooltip="Save Form" >
+                          <i class="fa fa-3x fa-save"></i> &nbsp; 
+                      </button>
+                    </li>
+                  </ul>
+                </div> <!-- sidebar -->
+              </div> <!-- row -->
+            </div> <!-- col-sm-1 -->
+          </div> <!-- section -->
+        </div> <!-- row-->
+      </form> <!-- templateForm -->
+    </div> <!-- form-editor-body -->

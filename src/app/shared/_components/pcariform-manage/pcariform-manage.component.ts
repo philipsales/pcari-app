@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Form, Section, Question, RegType, Department, Organization } from 'app/core/models';
 import { OrganizationService, DepartmentService, RegTypeService, CaseService } from 'app/core/services';
@@ -10,7 +18,18 @@ import { KeyGenerator } from 'app/core/utils';
   templateUrl: './pcariform-manage.component.html',
   styleUrls: ['./pcariform-manage.component.css']
 })
+
+/*
+export class FileUpload {
+  id: number;
+  avatar: string | any;
+}
+*/
+
 export class PcariformManageComponent implements OnInit {
+
+  formUpload: FormGroup;
+  loading: boolean = false;
 
   @Input() method: string;
   @Input() withconsent: boolean;
@@ -45,6 +64,8 @@ export class PcariformManageComponent implements OnInit {
       { 'name': 'Pending', 'key': 'Pending' },
       { 'name': 'Approved', 'key': 'Approved' }
     ];
+
+    this.createForm();
   }
 
   ngOnInit() {
@@ -116,4 +137,54 @@ export class PcariformManageComponent implements OnInit {
     console.log('upload: ', path);
 
   }
+
+  createForm() {
+    this.formUpload = this.fb.group({
+      name: ['', Validators.required],
+      avatar: null
+    });
+  }
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      let file = event.target.files[0];
+      this.formUpload.get('avatar').setValue(file);
+    }
+  }
+
+  private prepareSave(): any {
+    let input = new FormData();
+    input.append('name', this.formUpload.get('name').value);
+    input.append('avatar', this.formUpload.get('avatar').value);
+    return input;
+  }
+
+  onSubmit() {
+    const formModel = this.prepareSave();
+    this.loading = true;
+    // In a real-world app you'd have a http request / service call here like
+    // this.http.post('apiUrl', formModel)
+    this.caseService
+      .upload(formModel)
+      .subscribe(upload => {
+        console.log(upload)
+        this.loading = false;
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      }
+      );
+
+  }
+
+  clearFile() {
+    this.formUpload.get('avatar').setValue(null);
+    //this.fileInput.nativeElement.value = '';
+  }
+
+
+
+
 }
