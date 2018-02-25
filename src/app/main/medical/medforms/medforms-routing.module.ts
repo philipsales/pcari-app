@@ -15,7 +15,7 @@ const routes: Routes = [
     component: MedformsCreateComponent
   },
   {
-    path: 'preview',
+    path: 'preview/:origin',
     component: MedformsPreviewComponent
   },
   {

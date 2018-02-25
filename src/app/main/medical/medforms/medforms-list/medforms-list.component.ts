@@ -11,11 +11,12 @@ import { Form } from 'app/core/models';
 export class MedformsListComponent implements OnInit {
   private forms: Form[];
 
-  constructor(private formService: FormService) { 
+  constructor(private formService: FormService) {
     this.forms = [];
   }
 
   ngOnInit() {
+    this.formService.currentForm = undefined;
     this.formService.getMedicalForms().subscribe(
       forms => {
         this.forms = forms;

@@ -12,6 +12,12 @@
                 <li>
                   <a [routerLink]="['/medical/medforms/list']">Medical Forms List</a>
                 </li>
+                <li *ngIf="origin == 'CREATE'">
+                    <a [routerLink]="['/medical/medforms/create']">Create New</a>
+                </li>
+                <li *ngIf="origin == 'UPDATE'">
+                    <a [routerLink]="['/medical/medforms/update']">Update</a>
+                </li>
                 <li>
                     <a [routerLink]="['.']">
                       <strong>Preview</strong>
@@ -25,7 +31,24 @@
           </div>
         </div>
       </header>
-      <br/> <br/>
+
+      <br/> 
+      <div class="row">
+        <div class="col-sm-3">
+            <a class="btn btn-default"
+            *ngIf="origin == 'CREATE'"
+            [routerLink]="['/medical/medforms/create']">
+            <i class="fa fa-chevron-left"></i> Back to Create
+          </a>
+          <a class="btn btn-default"
+            *ngIf="origin == 'UPDATE'"
+            [routerLink]="['/medical/medforms/update']">
+            <i class="fa fa-chevron-left"></i> Back to Update
+          </a>
+        </div>
+        <div class="col-sm-9"></div>
+      </div>
+      
       <div class="col-md-12 col-sm-12 col-xs-12">
         <br/> <br/>
         <div *ngIf="caseform">

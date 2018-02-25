@@ -34,20 +34,26 @@ export class MedformsCreateComponent implements OnInit {
     private formService: FormService,
     private notificationsService: NotificationsService
   ) {
-    this.new_form = new Form(
-      '',
-      environment.ORG_MEDICAL,
-      '',
-      environment.FORM_TYPE_MEDICAL,
-      '',
-      [
-        new Section(
-        this.keyGenerator.create(),
-        'Untitled section',
-        0,
-        [])
-      ]
-    );
+    if (this.formService.currentForm) {
+      console.log('BACK TO CREATE');
+      this.new_form = this.formService.currentForm;
+    } else {
+      console.log('COMPLETELY NEW');
+      this.new_form = new Form(
+        '',
+        environment.ORG_MEDICAL,
+        '',
+        environment.FORM_TYPE_MEDICAL,
+        '',
+        [
+          new Section(
+          this.keyGenerator.create(),
+          'Untitled section',
+          0,
+          [])
+        ]
+      );
+    }
     this.getRegistryTypes();
     this.getDepartments();
     this.getOrganizations();
