@@ -32,10 +32,21 @@ export class FormService {
   private apiVersion = this.apiV1;
   private formUrl = environment.API_ENDPOINT + '/forms';
 
+  private _currentForm: Form;
+
+  set currentForm(instance: Form){
+    console.log(instance, 'RECEIVED FORM');
+    this._currentForm = instance;
+  }
+
+  get currentForm(): Form{
+    return this._currentForm;
+  }
+
   constructor(public http: HttpClient) {
   }// --constructor
   /*
-    getQuestions(): Observable<Question[]>  { 
+    getQuestions(): Observable<Question[]>  {
       const url = environment.API_ENDPOINT + '/questions/';
       // const url = 'http://127.0.0.1:8888' + '/questions';
       return this.http

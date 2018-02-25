@@ -40,7 +40,7 @@
         </td>
         <td style="text-align: right">
           <button 
-              [routerLink]="[update_url,form.id]" 
+              (click)="setCurrentForm(form)"
               class="btn btn-sm btn-warning">
             <i class="fa fa-edit"></i> &nbsp; Update 
           </button>

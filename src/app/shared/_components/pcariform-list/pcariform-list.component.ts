@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Form } from 'app/core/models';
+import { FormService } from '../../../core/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pcariform-list',
@@ -16,9 +18,17 @@ export class PcariformListComponent implements OnInit {
       console.warn('HELLO!');
   }// -- setter for forms
 
-  constructor() { }
+  constructor(
+    private formService: FormService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  setCurrentForm(form: Form) {
+    this.formService.currentForm = form;
+    this.router.navigate([this.update_url]);
   }
 
 }

@@ -27,12 +27,19 @@
       </header>
       <br/> <br/>
 
+      
       <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"> 
-        <div class="form-editor-body">
-
-      </div>
-      <!--end of row-->
-    </div>
-    <!--end of form-editor-body-->
+        <app-pcariform-manage
+          [method]="'UPDATE'"
+          [withconsent]="false"
+          [registryTypes]="registryTypes"
+          [departments]="departments"
+          [organizations]="organizations"
+          [form]="for_update"
+          [is_created]="is_updated"
+          [is_processing]="is_processing"
+          (onSubmitTrigger)="onSubmitTrigger($event)">
+        </app-pcariform-manage>
+      </div><!-- col-md-12 -->
 </div>
 <!--end of page-content-->

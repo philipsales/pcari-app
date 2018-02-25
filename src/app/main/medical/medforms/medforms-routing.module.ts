@@ -19,7 +19,7 @@ const routes: Routes = [
     component: MedformsPreviewComponent
   },
   {
-    path: 'update/:id',
+    path: 'update',
     component: MedformsUpdateComponent
   },
   {path: '', redirectTo: 'list'}
