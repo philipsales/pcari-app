@@ -19,7 +19,7 @@ const routes: Routes = [
     component: ConsentformsPreviewComponent
   },
   {
-    path: 'update/:id',
+    path: 'update',
     component: ConsentformsUpdateComponent
   },
   {path: '', redirectTo: 'list'}
