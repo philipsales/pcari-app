@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Form, Section, Question, RegType, Department, Organization } from 'app/core/models';
-import { OrganizationService, DepartmentService, RegTypeService } from 'app/core/services';
+import { OrganizationService, DepartmentService, RegTypeService, FormService } from 'app/core/services';
 
 import { KeyGenerator } from 'app/core/utils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pcariform-manage',
@@ -19,6 +20,7 @@ export class PcariformManageComponent implements OnInit {
   @Input() organizations: Organization[];
   @Input() is_created: boolean;
   @Input() is_processing = false;
+  @Input() preview_url = '';
 
   private _form: Form;
   @Input() set form(value: Form) {
@@ -38,7 +40,9 @@ export class PcariformManageComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private keyGenerator: KeyGenerator
+    private keyGenerator: KeyGenerator,
+    private formService: FormService,
+    private router: Router
   ) {
     this.status = [
       { 'name': 'Pending', 'key': 'Pending' },
@@ -87,5 +91,11 @@ export class PcariformManageComponent implements OnInit {
   onSaveForm(updated_form: Form) {
     console.log(updated_form, 'NEW UPDATES');
     this.onSubmitTrigger.emit(updated_form);
+  }
+
+  onPreviewForm(preview_form: Form) {
+    console.log(preview_form, 'NEW UPDATES');
+    this.formService.currentForm = preview_form;
+    this.router.navigate([this.preview_url]);
   }
 }

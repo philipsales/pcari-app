@@ -26,13 +26,21 @@
         </div>
       </header>
       <br/> <br/>
-
-      <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"> 
-        <div class="form-editor-body">
-
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <br/> <br/>
+        <div *ngIf="caseform">
+          <div class="row">
+            <app-dynamic-form
+              [method]="'VIEW'"
+              [answers]="answers"
+              [caseid]="caseid"
+              [casenumber]="casenumber"
+              [formanswerid]="form_answer_id"
+              [inquestionz]="caseform?.sections" 
+              [insectionz]="caseform?.sections" >
+            </app-dynamic-form>
+          </div>
+        </div>
       </div>
-      <!--end of row-->
-    </div>
-    <!--end of form-editor-body-->
 </div>
 <!--end of page-content-->
