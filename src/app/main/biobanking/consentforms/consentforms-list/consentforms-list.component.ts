@@ -12,7 +12,8 @@ export class ConsentformsListComponent implements OnInit {
 
   private forms: Form[];
 
-  constructor(private formService: FormService) { 
+  constructor(private formService: FormService) {
+    this.formService.currentForm = undefined;
     this.forms = [];
   }
 

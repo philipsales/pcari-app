@@ -15,7 +15,7 @@ const routes: Routes = [
     component: ConsentformsCreateComponent
   },
   {
-    path: 'preview/:id',
+    path: 'preview/:origin',
     component: ConsentformsPreviewComponent
   },
   {

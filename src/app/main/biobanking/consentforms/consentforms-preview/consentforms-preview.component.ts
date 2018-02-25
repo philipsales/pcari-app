@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Form } from 'app/core/models';
+import { FormService } from '../../../../core/services';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-consentforms-preview',
@@ -7,7 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsentformsPreviewComponent implements OnInit {
 
-  constructor() { }
+  private caseform: Form;
+  private caseid = '';
+  private casenumber = '';
+  private form_answer_id = '';
+  private form_id = '';
+  private origin = '';
+  private answers = new Map<string, string>();
+
+  constructor(
+    private formService: FormService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.caseid = '';
+    this.form_answer_id = '';
+    this.casenumber = '';
+    if (this.formService.currentForm) {
+      this.caseform = this.formService.currentForm;
+      console.log(this.caseform, 'hello');
+      this.origin = this.route.snapshot.paramMap.get('origin').toUpperCase();
+      console.log(this.origin, 'origin');
+    } else {
+      this.router.navigate(['biobanking/forms']);
+    }
+  }
 
   ngOnInit() {
   }
