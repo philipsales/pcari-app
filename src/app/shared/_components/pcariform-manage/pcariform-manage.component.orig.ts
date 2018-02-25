@@ -65,12 +65,14 @@ export class PcariformManageComponent implements OnInit {
       { 'name': 'Pending', 'key': 'Pending' },
       { 'name': 'Approved', 'key': 'Approved' }
     ];
+
+    this.createForm();
   }
 
   ngOnInit() {
   }
 
-  private toFormGroup(data: any) {
+  private toFormGroup(data: Form) {
     return this.fb.group({
       id: data.id,
       name: [
@@ -97,7 +99,10 @@ export class PcariformManageComponent implements OnInit {
         { value: data.validity_date, disabled: false },
         Validators.required
       ],
-      dir_path: [{ value: data.dir_path, disabled: false }]
+      dir_path: [
+        { value: data.dir_path, disabled: false },
+        Validators.required
+      ]
     });
   }
 
@@ -111,27 +116,15 @@ export class PcariformManageComponent implements OnInit {
   }
 
 
-  @ViewChild("fileInput") fileInput;
-
   onSaveForm(updated_form: Form) {
     console.log("new Update", updated_form);
-    let fi = this.fileInput.nativeElement;
-    let formModel = new FormData();
 
-    if (fi.files && fi.files[0]) {
-      formModel = fi.files[0];
-      updated_form.dir_path = fi.files[0].name;
-      updated_form.file = formModel;
-    }
+    let fi = this.fileInput.nativeElement;
+    updated_form.dir_path = fi.files[0];
+
+    console.log("new Update", updated_form);
 
     this.onSubmitTrigger.emit(updated_form);
-  }
-
-  onChangeFile() {
-    console.log('new file');
-    let fi = this.fileInput.nativeElement;
-    let formModel = new FormData();
-    this._form.dir_path = fi.files[0].name;
   }
 
   onUploadTemplate(path: string) {
@@ -153,6 +146,29 @@ export class PcariformManageComponent implements OnInit {
 
   }
 
+  createForm() {
+    this.formUpload = this.fb.group({
+      name: ['', Validators.required],
+      avatar: null
+    });
+  }
+
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      let file = event.target.files[0];
+      this.formUpload.get('avatar').setValue(file);
+    }
+  }
+
+  private prepareSave(): any {
+    let input = new FormData();
+    input.append('name', this.formUpload.get('name').value);
+    input.append('avatar', this.formUpload.get('avatar').value);
+    return input;
+  }
+
+
+  @ViewChild("fileInput") fileInput;
 
   onSubmit() {
     console.log('this._name', this._name);
@@ -165,7 +181,6 @@ export class PcariformManageComponent implements OnInit {
     if (fi.files && fi.files[0]) {
       formModel = fi.files[0];
       console.log(fi.files[0]);
-      console.log('FOMR MODEL', formModel);
     }
 
     this.loading = true;
@@ -185,5 +200,13 @@ export class PcariformManageComponent implements OnInit {
       );
 
   }
+
+  clearFile() {
+    this.formUpload.get('avatar').setValue(null);
+    //this.fileInput.nativeElement.value = '';
+  }
+
+
+
 
 }

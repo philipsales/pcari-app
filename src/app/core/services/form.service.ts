@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 // import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
@@ -152,17 +153,73 @@ export class FormService {
     console.warn(form_json, 'IN STRING');
   }
 
-  submitForm(form: FormJSON): Observable<Form> {
+  //submitForm(form: FormJSON): Observable<Form> {
+  submitForm(form: any): Observable<Form> {
     const url = environment.API_ENDPOINT + 'forms/';
-    const form_json = JSON.stringify(form);
-    console.log(form_json);
+    console.log('submitForm: ', url);
+    console.log('Form before: ', form.dir_path);
 
-    return this.http.post(url, form).map((response: FormJSON) => {
-      // return (response.json().data as Form[])
-      console.log(response, 'FORM CREATED from /forms');
-      return Form.fromJSON(response);
-    })
+    let input = new FormData();
+
+    var file = form.file;
+    input.append("file", file);
+    console.log('FORM BEFORE dirpath: ', form);
+    input.append("data", JSON.stringify(Form.fromJSON(form)));
+    //input.append("data", form);
+    console.log('FORM AFTER dirpath: ', form);
+
+    return this.http
+      //.post(url, form,
+      .post(url, input,
+      /*
+      .post(url, input,
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      }
+    }
+    */
+    )
+      /*
+      .map((response: FormJSON) => {
+        console.log(response, 'FORM CREATED from /forms');
+        return Form.fromJSON(response);
+      })
+      */
+      .map((response: Response) => {
+        console.log(response, 'FORM CREATED from /forms');
+        //return response['data'].map(Form.fromJSON);
+        //return Form.fromJSON();
+      })
+
       .catch(Helper.handleError);
+  }
+
+  upload(fileToUpload: any): Observable<any> {
+    let input = new FormData();
+    input.append("file", fileToUpload);
+    console.log('filetoUpload', fileToUpload);
+    console.log('ipnut', input);
+
+    const url = environment.API_ENDPOINT + 'cases/upload';
+
+    console.log(url);
+
+
+    var headers = { 'Content-Disposition': 'multipart/form-data' };
+    var header1 = { 'Content-Type': 'application/json' };
+    var header2 = { 'Accept': 'application/json' };
+
+    /*
+    return this.httpclient.post(url, form, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
+    */
+    return this.http.post(url, input)
+      .map((response: Response) => {
+        console.log('RESPONSE: ', response);
+        return response;
+      }).catch(Helper.handleError);
   }
 
   updateForm(form: FormJSON): Observable<Form> {

@@ -10,6 +10,7 @@ export class Form {
   approval?: string;
   validity_date?: Date;
   dir_path?: string;
+  file?: FormData;
   status?: string;
   created_by?: string;
   date_created?: Date;
@@ -91,6 +92,7 @@ export class Form {
     sections?: Section[],
     validity_date?: Date,
     dir_path?: string,
+    file?: FormData,
     date_created?: Date
   ) {
     this.name = name;
@@ -98,12 +100,14 @@ export class Form {
     this.department = department;
     this.type = type;
     this.status = status;
+    this.validity_date = validity_date;
+    this.dir_path = dir_path;
+    this.file = file;
+    this.date_created = date_created;
+
     if (sections) {
       this.sections = sections;
     }
-    this.validity_date = validity_date,
-      this.dir_path = dir_path,
-      this.date_created = date_created;
   }
 
   toJSON(): FormJSON {

@@ -76,6 +76,7 @@ export class CaseService {
   }
 
   create(mycase: Case): Observable<Case> {
+    console.log('CASE SEVICE', mycase);
     const url = environment.API_ENDPOINT + 'cases/';
     const case_json = mycase.toJSON();
     console.log(case_json);
@@ -107,12 +108,15 @@ export class CaseService {
     });
   }
 
-  upload(form: any): Observable<any> {
+  upload(fileToUpload: any): Observable<any> {
+    let input = new FormData();
+    input.append("file", fileToUpload);
+    console.log('filetoUpload', fileToUpload);
+    console.log('ipnut', input);
+
     const url = environment.API_ENDPOINT + 'cases/upload';
 
     console.log(url);
-    console.log(form);
-    var body = { 'dir_path': form };
 
     var headers = { 'Content-Disposition': 'multipart/form-data' };
     var header1 = { 'Content-Type': 'application/json' };
@@ -122,14 +126,18 @@ export class CaseService {
     return this.httpclient.post(url, form, {
       headers: { 'Content-Type': 'multipart/form-data' }
     })
-    */
-    return this.httpclient.post(url, form,
+    return this.httpclient.post(url, input,
       {
-        headers: header2
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
+    */
+    return this.httpclient.post(url, input,
+      {
       }
-    ).map((response: Response) => {
-      console.log('RESPONSE: ', response);
-      return response;
-    }).catch(Helper.handleError);
+    )
+      .map((response: Response) => {
+        console.log('RESPONSE: ', response);
+        return response;
+      }).catch(Helper.handleError);
   }
 }

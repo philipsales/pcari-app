@@ -37,16 +37,18 @@ export class MedformsCreateComponent implements OnInit {
     this.new_form = new Form(
       '',
       environment.ORG_MEDICAL,
-      '',
+      environment.DEPT_MEDICAL,
       environment.FORM_TYPE_MEDICAL,
-      '',
+      'Pending',
       [
         new Section(
-        this.keyGenerator.create(),
-        'Untitled section',
-        0,
-        [])
-      ]
+          this.keyGenerator.create(),
+          'Untitled section',
+          0,
+          [])
+      ],
+      new Date(),
+      ''
     );
     this.getRegistryTypes();
     this.getDepartments();
@@ -79,7 +81,7 @@ export class MedformsCreateComponent implements OnInit {
 
   onSubmitTrigger(form_to_submit: Form) {
     this.is_processing = true;
-    console.log(form_to_submit, 'SUBMITTING');
+    console.log(form_to_submit, '===SUBMITTING===');
     const data = form_to_submit.toJSON();
     this.formService.submitForm(data).subscribe(
       created_question => {
@@ -88,14 +90,14 @@ export class MedformsCreateComponent implements OnInit {
         this.is_created = true;
         this.notificationsService
           .success(
-          'Form: ' + data.name,
-          'Successfully Saved.',
-          {
-            timeOut: 10000,
-            showProgressBar: true,
-            pauseOnHover: false,
-            clickToClose: false
-          });
+            'Form: ' + data.name,
+            'Successfully Saved.',
+            {
+              timeOut: 10000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false
+            });
       }, errors => {
         this.is_processing = false;
         console.warn('error');
