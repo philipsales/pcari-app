@@ -1,4 +1,4 @@
-
+<div [hidden]="show_icd">
 <div class="col-md-12 table-nav" 
 *ngIf="method == 'CREATE' || method == 'UPDATE'">
 <div class="col-sm-3 reset-wrapper">
@@ -35,9 +35,6 @@
       <div class="row">
       </div>
       <div class="material-form-group">
-        <h1>
-          {{ngForm}}
-        </h1>
           <!-- Case Number-->
           <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
               <input matInput 
@@ -59,9 +56,13 @@
             class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
               <input matInput 
                     [(ngModel)]="_case.diagnosis"
-                    #input_name="ngModel" name="input_casenumber"
+                    #input_case_diagnosis="ngModel" name="input_case_diagnosis"
                     [disabled]="method == 'VIEW'"
                     placeholder="Diagnosis">
+                    <button mat-button 
+                            matSuffix
+                            (click)="onShowICD()"
+                            class="pull-right">ICD Create Oncology</button>
           </mat-form-field>	  
           <!-- Status -->
           <br/><br/>
@@ -77,7 +78,6 @@
   </div>
 </div>      
 </div> <!--Case --> 
-
 
 <app-pcaricase-form-add
 (onSaveFormAddTrigger)="onAddSelectedForm($event)"
@@ -96,3 +96,11 @@
 [view_url]="view_url"
 (onCallSelectFormTrigger)="onAddForm()">
 </app-pcaricase-form-list>
+</div>
+
+<app-icdoncology-manage 
+*ngIf="show_icd"
+(onSelectDiagnosisTrigger)="onSelectDiagnosis($event)"
+(onHideICDTrigger)="onHideICD()">
+</app-icdoncology-manage>
+

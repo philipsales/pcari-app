@@ -11,6 +11,8 @@ export const environment = {
     API_ENDPOINT: 'http://localhost:3001/',
     ORG_BIOBANK: 'University of the Philippines Diliman',
     ORG_MEDICAL: 'University of the Philippines - Philippine General Hospital',
+    DEPT_MEDICAL: 'General Surgery Department',
+    DEPT_BIOBANK: 'Institute of Biology',
     FORM_TYPE_BIOBANK: 'Biobanking Repository',
     FORM_TYPE_MEDICAL: 'Patient Repository'
 };

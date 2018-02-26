@@ -230,7 +230,7 @@ export class DynamicFormComponent implements OnInit {
         this.notificationsService
           .success(
           'Form : ' + updated_formanswer.form_name,
-          'Successfully Updated.',
+          'Successfully Updated',
           {
             timeOut: 10000,
             showProgressBar: true,

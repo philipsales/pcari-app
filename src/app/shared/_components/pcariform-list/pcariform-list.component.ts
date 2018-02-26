@@ -14,9 +14,11 @@ export class PcariformListComponent implements OnInit {
   @Input() update_url: string;
   private _forms: Form[];
   @Input() set forms(value: Form[]) {
-      this._forms = value;
-      console.warn('HELLO!');
+    this._forms = value;
+    console.log(this._forms);
+    console.warn('HELLO!');
   }// -- setter for forms
+  private _date_today;
 
   constructor(
     private formService: FormService,
@@ -24,6 +26,8 @@ export class PcariformListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this._date_today = Date.now();
+    console.log(this._date_today);
   }
 
   setCurrentForm(form: Form) {

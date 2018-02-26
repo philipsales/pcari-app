@@ -28,18 +28,19 @@
       <br/> <br/>
 
       <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"> 
-        <app-pcariform-manage
-          [method]="'CREATE'"
-          [withconsent]="false"
-          [registryTypes]="registryTypes"
-          [departments]="departments"
-          [organizations]="organizations"
-          [form]="new_form"
-          [is_created]="is_created"
-          [is_processing]="is_processing"
-          [preview_url]="'medical/medforms/preview/create'"
-          (onSubmitTrigger)="onSubmitTrigger($event)">
-        </app-pcariform-manage>
-      </div><!-- col-md-12 -->
+          <!-- <h2>MEDICAL app-pcariform-manage</h2> -->
+          <app-pcariform-manage
+            [method]="'CREATE'"
+            [withconsent]="false"
+            [registryTypes]="registryTypes"
+            [departments]="departments"
+            [organizations]="organizations"
+            [form]="new_form"
+            [is_created]="is_created"
+            [is_processing]="is_processing"
+            [preview_url]="'medical/medforms/preview/create'"
+            (onSubmitTrigger)="onSubmitTrigger($event)">
+          </app-pcariform-manage>
+        </div><!-- col-md-12 -->
 </div>
 <!--end of page-content-->

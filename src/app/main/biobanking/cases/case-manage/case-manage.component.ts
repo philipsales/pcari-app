@@ -97,7 +97,7 @@ export class CaseManageComponent implements OnInit {
       console.log(created_case, 'CASE CREATED : case-manage.component');
       this._notificationsService.success(
         'New Case : ' + created_case.case_nbr,
-        'Successfully Created.',
+        'Successfully Created',
         {
           timeOut: 10000,
           showProgressBar: true,
@@ -125,7 +125,7 @@ export class CaseManageComponent implements OnInit {
       console.log(updated_case, 'CASE UPDATED : case-manage.component');
       this._notificationsService.success(
         'Updated Case : ' + updated_case.case_nbr,
-        'Successfully Updated.',
+        'Successfully Updated',
         {
           timeOut: 10000,
           showProgressBar: true,

@@ -192,7 +192,7 @@ export class UserFormComponent implements OnInit {
                 this.is_processing = false;
                 this._notificationsService.success(
                     'New User : ' + input_user.username,
-                    'Successfully Created.',
+                    'Successfully Created',
                     {
                         timeOut: 10000,
                         showProgressBar: true,
@@ -216,7 +216,7 @@ export class UserFormComponent implements OnInit {
                 this.is_processing = false;
                 this._notificationsService.success(
                     'User : ' + input_user.username,
-                    'Successfully Updated.',
+                    'Successfully Updated',
                     {
                         timeOut: 10000,
                         showProgressBar: true,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import {
   Case,
@@ -35,6 +35,9 @@ export class CaseManageComponent implements OnInit {
   private is_processing = false;
   private is_adding_forms = false;
   private selected_forms: Form[];
+
+  @Input() show_icd: boolean;
+  @Output() onShowICDTrigger: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private caseService: CaseService,
@@ -89,7 +92,7 @@ export class CaseManageComponent implements OnInit {
       console.log(created_case, 'CASE CREATED : case-manage.component');
       this._notificationsService.success(
         'New Case : ' + created_case.case_nbr,
-        'Successfully Created.',
+        'Successfully Created',
         {
           timeOut: 10000,
           showProgressBar: true,
@@ -117,7 +120,7 @@ export class CaseManageComponent implements OnInit {
       console.log(updated_case, 'CASE UPDATED : case-manage.component');
       this._notificationsService.success(
         'Updated Case : ' + updated_case.case_nbr,
-        'Successfully Updated.',
+        'Successfully Updated',
         {
           timeOut: 10000,
           showProgressBar: true,
@@ -132,4 +135,19 @@ export class CaseManageComponent implements OnInit {
       this.is_processing = false;
     });
   }
+
+  onShowICD() {
+    console.log("ICD SHOW");
+    this.onShowICDTrigger.emit();
+    this.show_icd = true;
+  }
+  onHideICD() {
+    this.show_icd = false;
+  }
+  onSelectDiagnosis(selected) {
+    this._case.diagnosis = selected.diagnosis_name;
+    this.show_icd = false;
+  }
+
+
 }
