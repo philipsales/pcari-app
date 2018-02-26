@@ -7,8 +7,9 @@ import { UserFormComponent } from './_components/user-form.component';
 
 import { MaterialModule } from 'app/shared/_material/material.module';
 import { EllipsisPipe } from './_pipes/ellipsis.pipe';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-import { ConsentService } from 'app/core/services';
+import { ConsentService, DepartmentService } from 'app/core/services';
 
 // DFORMS
 // import { DformsComponent } from './_components/forms_dforms/dforms.component';
@@ -31,6 +32,7 @@ import { PcariformListComponent } from './_components/pcariform-list/pcariform-l
 import { RouterModule } from '@angular/router';
 import { PcariformManageComponent } from './_components/pcariform-manage/pcariform-manage.component';
 import { KeyGenerator } from 'app/core/utils';
+import { FormDummyApiResponse } from 'app/core/services-dummy';
 import { PcaricaseListComponent } from './_components/pcaricase-list/pcaricase-list.component';
 import { PcaricaseManageComponent } from './_components/pcaricase-manage/pcaricase-manage.component';
 import { PcaricaseFormListComponent } from './_components/pcaricase-form-list/pcaricase-form-list.component';
@@ -46,6 +48,9 @@ import { IcdoncologySearchComponent } from './_components/icdoncology-search/icd
     RouterModule,
     ReactiveFormsModule,
     Ng2CompleterModule,
+    InMemoryWebApiModule.forRoot(FormDummyApiResponse, {
+      passThruUnknownUrl: true, delay: 1000
+    }),
     MaterialModule
   ],
   declarations: [
@@ -77,6 +82,7 @@ import { IcdoncologySearchComponent } from './_components/icdoncology-search/icd
   ],
   providers: [
     ConsentService,
+    DepartmentService,
     KeyGenerator
   ],
   exports: [

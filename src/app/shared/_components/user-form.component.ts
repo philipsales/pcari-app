@@ -12,13 +12,15 @@ import {
     User,
     Position,
     Organization,
-    Role
+    Role,
+    Department
 } from 'app/core/models';
 import {
     UserService,
     PositionService,
     OrganizationService,
-    RoleService
+    RoleService,
+    DepartmentService
 } from 'app/core/services';
 
 import { MatSelectionList } from '@angular/material';
@@ -38,7 +40,17 @@ export class UserFormComponent implements OnInit {
     @Input() set user(value: User) {
         this._user = value;
         this._resetuser = this._user.toJSON();
-        console.warn('HELLO!');
+        if (this._user.department) {
+            this.department_search = this._user.department;
+        } else {
+            this.department_search = '';
+        }
+        console.warn(this.department_search, 'HELLO!');
+        this.departmentService.getDepartments().subscribe(
+            (dept) => {
+                this.departmentCompleterData = this.departmentCompleterService.local(dept, 'name', 'name');
+            }
+        );
     }// -- _reinit setter
 
     @Input() method: string;
@@ -56,11 +68,17 @@ export class UserFormComponent implements OnInit {
     private roles: Role[];
     @ViewChild('sel_roles') sel_roles: MatSelectionList;
 
+    private department_search;
+    private departmentCompleterData: CompleterData;
+    @ViewChild('departmentCompleter') departmentCompleter: CompleterCmp;
+
     private errors: any = {};
     private has_errors = false;
     private is_processing = false;
     private is_organization_ok = false;
+    private is_department_ok = false;
     private approval_status = [];
+    private departments: Department[];
 
     constructor(
         private userService: UserService,
@@ -68,6 +86,8 @@ export class UserFormComponent implements OnInit {
         private positionCompleterService: CompleterService,
         private organizationCompleterService: CompleterService,
         private organizationService: OrganizationService,
+        private departmentCompleterService: CompleterService,
+        private departmentService: DepartmentService,
         private roleService: RoleService,
         private _notificationsService: NotificationsService
     ) {
@@ -157,6 +177,26 @@ export class UserFormComponent implements OnInit {
             this.organizationCompleter.close();
         } else {
             this.organizationCompleter.open();
+        }
+    }
+
+    onSelectDepartment(data: CompleterItem) {
+        if (data && data.originalObject) {
+            console.log(data, 'COMPLETER');
+            this._user.department = data.originalObject.name;
+            this.is_department_ok = true;
+        }
+        console.log(this.department_search, 'COMPLETER');
+        console.log(this._user.department, 'COMPLETER');
+        this.is_department_ok = (this._user.department) ? true : false;
+    }
+
+    onDepartmentSearchClick() {
+        alert('y');
+        if (this.departmentCompleter.isOpen()) {
+            this.departmentCompleter.close();
+        } else {
+            this.departmentCompleter.open();
         }
     }
 
