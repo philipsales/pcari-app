@@ -210,11 +210,16 @@ export class DynamicFormComponent implements OnInit {
 
   onSubmit() {
     this.is_processing = true;
+    console.warn(this.form.value, 'YOUN');
     this.payLoad = JSON.stringify(this.form.value);
     console.warn(this.payLoad, 'YOUN');
     let answers: Answer[] = [];
     Object.keys(this.form.value).forEach((key) => {
-      answers.push(new Answer(key, this.form.value[key]));
+      let value = this.form.value[key];
+      if(value instanceof Array) {
+        value = JSON.stringify(value);
+      }
+      answers.push(new Answer(key, value));
     });
     let forms: FormAnswer[] = [];
     forms.push(new FormAnswer('', '', false, answers));

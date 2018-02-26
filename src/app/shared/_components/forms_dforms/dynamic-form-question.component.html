@@ -39,18 +39,15 @@
 
 
       <div *ngSwitchCase="'checkbox'" class="">
-          <div *ngFor="let opt of question.options" 
-             class="" >
-            <mat-checkbox 
-                    [formControlName]="question.key"
-                    value="{{opt.value}}"
-                    class="material-checkbox-margin"> {{opt.value}}
-            </mat-checkbox>
-            <!--<input type="checkbox" 
-                   [id]="question.key" 
-                   [formControlName]="question.key"
-                   [value]="opt.value"> {{opt.value}}-->
-          </div>
+        <mat-select placeholder="Select your option"
+          class="material-input-full-width"
+         [formControlName]="question.key" multiple>
+          <mat-option *ngFor="let opt of question.options"
+              class="pull-left material-input-full-width"
+              [value]="opt.value">{{opt.value}}
+          </mat-option>
+        </mat-select> 
+        
       </div>
       <div class="clearfix"></div>
 

@@ -44,18 +44,23 @@ export class QuestionControlService {
 
   }//--toFormGroup
 
-  toFormGroup(questions: QuestionBase<any>[]) { 
+  toFormGroup(questions: QuestionBase<any>[]) {
     let group: any = {};
     questions.forEach(question => {
-      console.log(question.value);
+      let value = question.value || '';
+      if (question.controlType === 'checkbox') {
+        if (value) {
+          value = JSON.parse(value);
+        }
+      }
       if (question.required) {
         group[question.key] = new FormControl({
-          value: question.value || '',
+          value: value,
           disabled: question.disabled
         }, Validators.required);
       } else {
         group[question.key] = new FormControl({
-          value: question.value || '',
+          value: value,
           disabled: question.disabled
         });
       }
