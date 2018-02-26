@@ -13,14 +13,20 @@
     <div class="form-group">
       <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
              for="case">Case Number </label>
-
         <div class="col-md-5 col-sm-5 col-xs-12">
-          <input type="text" class="form-control" 
-            disabled
-            type="text" 
-            [value]="casenumber">
+            <label> {{casenumber}} </label>
         </div>
-        <div class="clearfix"></div>
+    </div>
+    <br/> <br/> <br/> <br/>
+    <div class="form-group">
+      <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
+              for="case">Attachment</label>
+        <a>
+        <div class="col-md-5 col-sm-5 col-xs-12"
+             (click)="onClickAttachment(dirpath)" > 
+            <label> {{dirpath}} </label>
+        </div>
+        </a>
     </div>
 
 

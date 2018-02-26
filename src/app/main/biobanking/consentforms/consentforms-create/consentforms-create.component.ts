@@ -85,8 +85,6 @@ export class ConsentformsCreateComponent implements OnInit {
   onSubmitTrigger(form_to_submit: Form) {
     this.is_processing = true;
 
-    console.log(form_to_submit, '===SUBMITTING===');
-
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     form_to_submit.created_by = currentUser.username;
 

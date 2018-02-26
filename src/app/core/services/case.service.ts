@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Headers, RequestOptions, Response, ResponseContentType } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +18,7 @@ export class CaseService {
   private apiV1 = 'v1';
   private caseUrl = environment.API_ENDPOINT + '/cases';
 
-  constructor(private http: Http,
+  constructor(
     private httpclient: HttpClient) {
   }// --constructor
 
@@ -140,5 +140,17 @@ export class CaseService {
         console.log('RESPONSE: ', response);
         return response;
       }).catch(Helper.handleError);
+  }
+
+
+  downloadAttachment(path: string): Observable<Blob> {
+    const url = environment.API_ENDPOINT + `cases/download/${path}`;
+
+    return this.httpclient
+      .get(url, { responseType: 'blob' })
+      .map((response: any) => {
+        return response;
+      })
+      .catch(Helper.handleError);
   }
 }

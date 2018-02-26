@@ -36,6 +36,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() method: string;
   @Input() caseid: string;
   @Input() casenumber: string;
+  @Input() dirpath: string;
   @Input() formanswerid: string;
   @Input() answers: Map<string, string>;
 
@@ -58,7 +59,7 @@ export class DynamicFormComponent implements OnInit {
 
   constructor(
     private qcs: QuestionControlService,
-    private caseservice: CaseService,
+    private caseService: CaseService,
     private formAnswerService: FormAnswerService,
     private consentService: ConsentService,
     private notificationsService: NotificationsService
@@ -233,14 +234,14 @@ export class DynamicFormComponent implements OnInit {
         console.warn(updated_formanswer, 'AYUS');
         this.notificationsService
           .success(
-          'Form : ' + updated_formanswer.form_name,
-          'Successfully Updated',
-          {
-            timeOut: 10000,
-            showProgressBar: true,
-            pauseOnHover: false,
-            clickToClose: false
-          }
+            'Form : ' + updated_formanswer.form_name,
+            'Successfully Updated',
+            {
+              timeOut: 10000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false
+            }
           );
       }, errors => {
         console.warn('errors');
@@ -269,4 +270,18 @@ export class DynamicFormComponent implements OnInit {
     });
     */
   }// --onSubmit
+
+  onClickAttachment(dirPath: string) {
+    this.caseService
+      .downloadAttachment(dirPath)
+      .subscribe(
+        file => {
+          var url = window.URL.createObjectURL(file);
+          window.open(url);
+        },
+        errors => {
+          console.log('attachment error');
+        }
+      );
+  }
 }// --DynamicFormComponent
