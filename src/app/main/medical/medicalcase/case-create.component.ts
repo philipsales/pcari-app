@@ -9,6 +9,7 @@ import {
 import { environment } from 'environments/environment';
 import { FormService, CaseService } from 'app/core/services';
 import { NotificationsService } from 'angular2-notifications';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-case-create',
@@ -27,7 +28,8 @@ export class CaseCreateComponent implements OnInit {
   constructor(
     private formService: FormService,
     private caseService: CaseService,
-    private _notificationsService: NotificationsService
+    private _notificationsService: NotificationsService,
+    private router: Router
   ) {
     this.answers = [];
     this.case = new Case('', environment.ORG_MEDICAL, '', this.answers);
@@ -56,6 +58,7 @@ export class CaseCreateComponent implements OnInit {
           clickToClose: false,
         }
       );
+      this.router.navigate(['/medical/cases']);
     }, errors => {
       console.log(errors, 'ERROR : case-manage.component');
       this.is_processing = false;

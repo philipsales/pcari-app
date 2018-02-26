@@ -12,6 +12,7 @@ import {
 } from 'app/core/services';
 
 import { environment } from 'environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-medforms-create',
@@ -32,7 +33,8 @@ export class MedformsCreateComponent implements OnInit {
     private departmentService: DepartmentService,
     private organizationService: OrganizationService,
     private formService: FormService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router
   ) {
 
     if (this.formService.currentForm) {
@@ -106,6 +108,7 @@ export class MedformsCreateComponent implements OnInit {
               pauseOnHover: false,
               clickToClose: false
             });
+            this.router.navigate(['/medical/medforms']);
       }, errors => {
         this.is_processing = false;
         console.warn('error');

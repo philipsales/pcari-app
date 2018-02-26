@@ -101,7 +101,7 @@ export class ConsentformsCreateComponent implements OnInit {
               pauseOnHover: false,
               clickToClose: false
             });
-            this.router.navigate(['/biobanking/cases']);
+            this.router.navigate(['/biobanking/forms']);
       }, errors => {
         this.is_processing = false;
         console.warn('error');
