@@ -12,6 +12,7 @@ export class User {
     email: string;
     mobile_number: string;
     verification_status: string;
+    department: string;
     roles: string[];
     organizations: { organization: number, position: number }[];
     isActive: boolean;

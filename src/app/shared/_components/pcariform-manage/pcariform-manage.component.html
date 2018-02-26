@@ -70,6 +70,7 @@
                   <mat-form-field class="material-form-control" >
                     <mat-select placeholder="Department"
                                 formControlName="department"
+                                [disabled]="true"
                                 [(ngModel)]="_form.department" >
                       <mat-option *ngFor="let dept of departments"
                                   [id]="dept.key" 

@@ -70,20 +70,24 @@ export class FormService {
 
   getBiobankForms(): Observable<Form[]> {
     const biobank_form_type = environment.FORM_TYPE_BIOBANK;
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
     const url = environment.API_ENDPOINT + 'forms/';
     return this.http.get(url).map((response) => {
       return response['data'].filter((all_forms: FormJSON) => {
-        return all_forms.type === biobank_form_type;
+        return all_forms.type === biobank_form_type && all_forms.department === user['department'];
       }).map(Form.fromJSON);
     }).catch(Helper.handleError);
   }
 
   getMedicalForms(): Observable<Form[]> {
     const medical_form_type = environment.FORM_TYPE_MEDICAL;
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
     const url = environment.API_ENDPOINT + 'forms/';
     return this.http.get(url).map((response: Response) => {
       return response['data'].filter((all_forms: FormJSON) => {
-        return all_forms.type === medical_form_type;
+        return all_forms.type === medical_form_type && all_forms.department === user['department'];
       }).map(Form.fromJSON);
     }).catch(Helper.handleError);
   }
