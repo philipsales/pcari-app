@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 
 import {
   Case,
-  FormAnswer
+  FormAnswer,
+  Form
 } from 'app/core/models';
 import { NoJWTError } from 'app/core/errors';
 import { ActivatedRoute } from '@angular/router';
-import { CaseService } from 'app/core/services';
+import { CaseService, FormService } from 'app/core/services';
 
 import { environment } from 'environments/environment';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-case-update',
@@ -16,12 +18,18 @@ import { environment } from 'environments/environment';
   styleUrls: ['./case-update.component.css']
 })
 export class CaseUpdateComponent implements OnInit {
+
   private case: Case;
+  private forms: Form[];
   private answers: FormAnswer[];
+  private is_processing = false;
+  private medcases: string[];
 
   constructor(
+    private formService: FormService,
     private route: ActivatedRoute,
-    private caseService: CaseService
+    private caseService: CaseService,
+    private _notificationsService: NotificationsService
   ) {
     this.answers = [];
     this.case = new Case('', environment.ORG_BIOBANK, '', this.answers);
@@ -39,6 +47,39 @@ export class CaseUpdateComponent implements OnInit {
         console.warn('TO DO : handle JWT Expired');
       }
     });
+
+    this.formService.getBiobankForms().subscribe(
+      forms => {
+        this.forms = forms;
+        console.log(this.forms, 'filtered forms');
+      }
+    );
+
+    this.caseService.getMedicalCaseNumbers().subscribe(
+      casenbrs => {
+        this.medcases = casenbrs;
+      }
+    );
   }// --OnInit
 
+  onSubmitCase(case_for_update: Case) {
+    this.caseService.update(case_for_update).subscribe((updated_case: Case) => {
+      this.is_processing = false;
+      this.case = updated_case;
+      console.log(updated_case, 'CASE UPDATED : case-update.component');
+      this._notificationsService.success(
+        'Case : ' + updated_case.case_nbr,
+        'Successfully Updated.',
+        {
+          timeOut: 10000,
+          showProgressBar: true,
+          pauseOnHover: false,
+          clickToClose: false,
+        }
+      );
+    }, errors => {
+      console.log(errors, 'ERROR : case-update.component');
+      this.is_processing = false;
+    });
+  }
 }

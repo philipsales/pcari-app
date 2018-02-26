@@ -62,6 +62,7 @@ export class PcaricaseManageComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.warn('halo!');
   }
 
   resetCase() {
