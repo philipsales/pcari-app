@@ -153,7 +153,7 @@
                     <li title="Add Sectino" class="form-side-editor-fxn" >
                       <button 
                           mat-button
-                          matTooltip="Add Section" 
+                          matTooltip="Add Sectionz" 
                           [disabled]="is_processing || is_created"
                           (click)="onAddSection()">
                           <i class="fa fa-3x fa-plus-circle"></i> &nbsp; 
@@ -163,6 +163,7 @@
                       <button 
                           mat-button
                           matTooltip="Preivew Form" 
+                          [disabled]="is_processing || is_created"
                           (click)="onPreviewForm(templateForm.value,formId)" >
                           <i class="fa fa-3x fa-eye"></i> &nbsp; 
                       </button>
@@ -172,6 +173,7 @@
                       <button 
                           mat-button
                           (click)="onSaveForm(_form)" 
+                          [disabled]="is_processing || is_created"
                           matTooltip="Save Form" >
                           <i class="fa fa-3x fa-save"></i> &nbsp; 
                       </button>

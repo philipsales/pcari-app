@@ -229,6 +229,7 @@ form {
 
 .form-side-editor-main {
   position: fixed;
+  top: 115px;
 } 
 
 .form-footer-editor-fxn {

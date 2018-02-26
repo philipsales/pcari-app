@@ -12,6 +12,7 @@ import {
 } from 'app/core/services';
 
 import { environment } from 'environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consentforms-create',
@@ -33,7 +34,8 @@ export class ConsentformsCreateComponent implements OnInit {
     private departmentService: DepartmentService,
     private organizationService: OrganizationService,
     private formService: FormService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private router: Router
   ) {
     this.new_form = new Form(
       '',
@@ -99,6 +101,7 @@ export class ConsentformsCreateComponent implements OnInit {
               pauseOnHover: false,
               clickToClose: false
             });
+            this.router.navigate(['/biobanking/cases']);
       }, errors => {
         this.is_processing = false;
         console.warn('error');
