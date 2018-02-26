@@ -37,6 +37,7 @@ export class CaseCreateComponent implements OnInit {
     this.formService.getBiobankForms().subscribe(
       forms => {
         this.forms = forms;
+        console.log(this.forms, 'filtered forms');
       }
     );
 

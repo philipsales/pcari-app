@@ -9,9 +9,6 @@ import { MatTableModule } from '@angular/material';
 
 import { CaseListComponent } from './case-list.component';
 import { CaseViewComponent } from './case-view.component';
-import { CaseManageComponent } from './case-manage/case-manage.component';
-import { CaseFormManageComponent } from './case-manage/case-form-manage.component';
-import { CaseFormAddComponent } from './case-manage/case-form-add.component';
 import { CaseCreateComponent } from './case-create.component';
 import { CaseUpdateComponent } from './case-update.component';
 import { CaseFormsComponent } from './case-forms/case-forms.component';
@@ -34,9 +31,6 @@ import {
   ],
   declarations: [
     CaseListComponent,
-    CaseManageComponent,
-    CaseFormManageComponent,
-    CaseFormAddComponent,
     CaseViewComponent,
     CaseCreateComponent,
     CaseUpdateComponent,
