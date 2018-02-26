@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 
-import { CaseService } from 'app/core/services';
+import { CaseService, FormService } from 'app/core/services';
 
 import {
   Case,
-  FormAnswer
+  FormAnswer,
+  Form
 } from 'app/core/models';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NoJWTError } from 'app/core/errors';
@@ -21,10 +22,12 @@ import { environment } from 'environments/environment';
 export class CaseViewComponent implements OnInit {
 
   private case: Case;
+  private forms: Form[];
   private answers: FormAnswer[];
 
   constructor(
     private route: ActivatedRoute,
+    private formService: FormService,
     private caseService: CaseService
   ) {
     this.answers = [];
@@ -43,5 +46,13 @@ export class CaseViewComponent implements OnInit {
         console.warn('TO DO : handle JWT Expired');
       }
     });
+
+    this.formService.getMedicalForms().subscribe(
+      forms => {
+        this.forms = forms;
+        console.log(this.forms, 'filtered forms');
+      }
+    );
+
   }// --OnInit
 }
