@@ -1,33 +1,61 @@
-<form data-parsley-validate=""
-    class="form-horizontal form-label-left"
-    #icdCreateForm="ngForm" novalidate>
-    <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
-    <input matInput 
-          [(ngModel)]="_search.site"
-          #input_search_site="ngModel" 
-          name="input_search"
-          placeholder="Site">
-          <mat-hint align="start"><strong>E.g breast</strong> </mat-hint>
-  </mat-form-field>	  
-  <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
-    <input matInput 
-          [(ngModel)]="_search.histology"
-          #input_search="ngModel" 
-          name="input_search_histology"
-          placeholder="Histology">
-          <mat-hint align="start"><strong>E.g neoplasm</strong> </mat-hint>
-  </mat-form-field>	   
 
-  <button class="btn btn-success pull-right"
-          (click)="onSubmitICDSearch(_search)">
-          <i class="fa fa-search"></i> &nbsp; Search
-  </button>
-</form>
+
+
+
+<div class="col-md-12 table-nav">
+  <div class="col-sm-3 reset-wrapper">
+    <button class="btn btn-default pull-left"
+            (click)="onResetDiagnosis()">
+    <i class="fa fa-refresh"></i> &nbsp; Reset
+    </button>
+  </div>
+
+  <div class="col-sm-offset-6 col-md-offset-6 col-sm-3 col-md-3 save-wrapper">
+    <!-- <button class="btn btn-success pull-right">
+    <i class="fa fa-save"></i> &nbsp; Save
+    </button> -->
+
+    <button class="btn btn-success pull-right"
+            (click)="onSubmitICDSearch(_search)">
+            <i class="fa fa-search"></i> &nbsp; Search
+    </button>
+  </div>
+</div> <!-- table-nav -->
+
+
+<div class="col-md-12 col-sm-12 col-xs-12"> 
+  <div class="x_panel">
+    <div class="x_content">
+      <form data-parsley-validate=""
+          class="form-horizontal form-label-left"
+          #icdCreateForm="ngForm" novalidate>
+          <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+          <input matInput 
+                [(ngModel)]="_search.site"
+                #input_search_site="ngModel" 
+                name="input_search"
+                placeholder="Site">
+                <mat-hint align="start"><strong>E.g breast</strong> </mat-hint>
+        </mat-form-field>	  
+        <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+          <input matInput 
+                [(ngModel)]="_search.histology"
+                #input_search="ngModel" 
+                name="input_search_histology"
+                placeholder="Histology">
+                <mat-hint align="start"><strong>E.g neoplasm</strong> </mat-hint>
+        </mat-form-field>	   
+
+        <!-- <button class="btn btn-success pull-right"
+                (click)="onSubmitICDSearch(_search)">
+                <i class="fa fa-search"></i> &nbsp; Search
+        </button> -->
+      </form>
+    </div>
+  </div>
+</div>
 
         
-<!-- <div *ngIf="error">
-  {{error}}
-</div> -->
 <div *ngIf="dataSource" class="col-md-12 col-sm-12 col-xs-12" >
   <div class="x_panel">
     <div class="x_content">
@@ -42,11 +70,14 @@
               </ng-container>
 
               <!-- action -->
-              <ng-container matColumnDef="select">
-                <mat-header-cell *matHeaderCellDef class="select-cell"> Action </mat-header-cell>
+              <ng-container matColumnDef="select" class="">
+                <mat-header-cell 
+                          *matHeaderCellDef 
+                          class=""> Action</mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                  <button mat-button 
-                  (click)="onSelectDiagnosis(row)">
+                  <button mat-button
+                          class="pull-right"
+                          (click)="onSelectDiagnosis(row)">
                     <i class="fa fa-check"></i> Select
                   </button>
                 </mat-cell>    
@@ -56,7 +87,7 @@
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
 
-          <!-- error -->
+          <!-- Error -->
           <div class="mat-row" *ngIf="error">
             <div class="mat-cell">
               {{error}}
