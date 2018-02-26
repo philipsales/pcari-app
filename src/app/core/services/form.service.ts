@@ -72,7 +72,6 @@ export class FormService {
     const url = environment.API_ENDPOINT + 'forms/';
     return this.http.get(url).map((response) => {
       return response['data'].filter((all_forms: FormJSON) => {
-        console.log(all_forms, 'ALL FORMS');
         return all_forms.type === biobank_form_type;
       }).map(Form.fromJSON);
     }).catch(Helper.handleError);

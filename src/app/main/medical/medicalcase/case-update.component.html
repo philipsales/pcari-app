@@ -27,10 +27,16 @@
     </header>
 
     <div class="row" id="page-body">
-      <app-case-manage 
-      [case]="case"
-      [method]="'UPDATE'">
-      </app-case-manage>
+        <app-pcaricase-manage 
+        [case]="case" 
+        [forms]="forms"
+        [update_url]="'/medical/cases/update/'"
+        [view_url]="'/medical/cases/view/'"
+        [method]="'UPDATE'"
+        [case_searchable]="false"
+        [medcases]="[]"
+        (onSubmitCaseTrigger)="onSubmitCase($event)">
+      </app-pcaricase-manage>
     </div> <!-- page-body -->
     
 </div>  <!-- page-content -->
