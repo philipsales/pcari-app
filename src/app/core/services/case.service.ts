@@ -89,6 +89,7 @@ export class CaseService {
   }
 
   update(mycase: Case): Observable<Case> {
+    console.log('CALLED!');
     const url = environment.API_ENDPOINT + 'cases/' + mycase.id;
     const case_json = mycase.toJSON();
     console.log(case_json);

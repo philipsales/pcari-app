@@ -1,6 +1,5 @@
   <form *ngIf="form"
-        [formGroup]="form"
-        (ngSubmit)="onSubmit()" >
+        [formGroup]="form">
 
     <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"
       style="margin-bottom: 20px;"> 
@@ -56,7 +55,8 @@
       *ngIf="method !== 'VIEW'">
       {{form.valid}}
       <button mat-raised-button color="primary"
-              [disabled]="!form.valid" class="btn btn-success pull-right"
+              [disabled]="!form.valid" 
+              class="btn btn-success pull-right"
               (click)="onSubmit()">
           Save Form
       </button>

@@ -43,6 +43,7 @@ export class FormAnswerService {
   }
 
   update(case_id: string, formanswer_id: string, form_answers: FormAnswer): Observable<FormAnswer> {
+    console.log('NATAWAG AKO!');
     const url = environment.API_ENDPOINT + 'cases/' + case_id + '/forms/' + formanswer_id;
     const formanswer_json = form_answers.toJSON();
     console.log(formanswer_json);

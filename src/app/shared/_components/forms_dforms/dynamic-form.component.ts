@@ -54,6 +54,7 @@ export class DynamicFormComponent implements OnInit {
   payLoad = '';
   private section: string[];
   private sections: Section[];
+  private is_processing = false;
 
   constructor(
     private qcs: QuestionControlService,
@@ -208,6 +209,8 @@ export class DynamicFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.is_processing = true;
+    console.warn('YOUN');
     this.payLoad = JSON.stringify(this.form.value);
     let answers: Answer[] = [];
     Object.keys(this.form.value).forEach((key) => {
@@ -226,6 +229,7 @@ export class DynamicFormComponent implements OnInit {
       this.caseid,
       this.formanswerid,
       new FormAnswer('', '', false, answers)).subscribe(updated_formanswer => {
+        this.is_processing = false;
         console.warn(updated_formanswer, 'AYUS');
         this.notificationsService
           .success(
@@ -240,6 +244,7 @@ export class DynamicFormComponent implements OnInit {
           );
       }, errors => {
         console.warn('errors');
+        this.is_processing = false;
         throw errors;
       });
 
