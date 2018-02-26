@@ -1,4 +1,4 @@
-import {AnswerJSON} from './answerjson';
+import { AnswerJSON } from './answerjson';
 
 export interface FormAnswerJSON {
     _id?: string;
@@ -6,4 +6,5 @@ export interface FormAnswerJSON {
     form_name: string;
     date_created: number;
     answers: AnswerJSON[];
+    created_by?: string;
 }

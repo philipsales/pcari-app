@@ -84,29 +84,34 @@ export class ConsentformsCreateComponent implements OnInit {
 
   onSubmitTrigger(form_to_submit: Form) {
     this.is_processing = true;
-    console.log(form_to_submit, '===SUBMITTING===');
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    form_to_submit.created_by = currentUser.username;
+
     const data = form_to_submit.toJSON();
-    this.formService.submitForm(data).subscribe(
-      created_question => {
-        console.warn(created_question, 'AYUS');
-        this.is_processing = false;
-        this.is_created = true;
-        this.notificationsService
-          .success(
-            'Form: ' + data.name,
-            'Successfully Saved.',
-            {
-              timeOut: 10000,
-              showProgressBar: true,
-              pauseOnHover: false,
-              clickToClose: false
-            });
-            this.router.navigate(['/biobanking/forms']);
-      }, errors => {
-        this.is_processing = false;
-        console.warn('error');
-        throw errors;
-      });
+    this.formService
+      .submitForm(data)
+      .subscribe(
+        created_question => {
+          console.warn(created_question, 'AYUS');
+          this.is_processing = false;
+          this.is_created = true;
+          this.notificationsService
+            .success(
+              'Form: ' + data.name,
+              'Successfully Saved.',
+              {
+                timeOut: 10000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: false
+              });
+          this.router.navigate(['/biobanking/forms']);
+        }, errors => {
+          this.is_processing = false;
+          console.warn('error');
+          throw errors;
+        });
 
   }
 }

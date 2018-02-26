@@ -51,6 +51,17 @@ export class CaseCreateComponent implements OnInit {
   }
 
   onSubmitCase(case_for_create: Case) {
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    case_for_create.created_by = currentUser.username;
+
+    for (var i = 0; i < case_for_create.forms.length; ++i) {
+      if (case_for_create.forms[i]) {
+        case_for_create.forms[i].created_by = currentUser.username;
+      }
+    }
+
+
     this.caseService.create(case_for_create).subscribe((created_case: Case) => {
       this.is_processing = false;
       console.log(created_case, 'CASE CREATED : case-manage.component');
