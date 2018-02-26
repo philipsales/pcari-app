@@ -53,7 +53,6 @@
 
     <div class="form-row col-sm-12 pull-right"
       *ngIf="method !== 'VIEW'">
-      {{form.valid}}
       <button mat-raised-button color="primary"
               [disabled]="!form.valid" 
               class="btn btn-success pull-right"
@@ -65,5 +64,6 @@
   </form>
 
   <div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
+    <!-- {{form.valid}} -->
+    <!-- <strong>Saved the following values</strong><br>{{payLoad}} -->
   </div>
