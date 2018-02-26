@@ -38,12 +38,6 @@ export class DatabaseListComponent implements OnInit {
       );
   }
 
-  downloadJSON(): any {
-    this.databaseService
-      .downloadFileJSON()
-      .subscribe((response) => {
-        FileSaver.saveAs(response, "test.json");
-      });
-  }
+
 
 }

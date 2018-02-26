@@ -2,9 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Form, Case, Answer, FormAnswer } from 'app/core/models';
 import { CaseJSON } from 'app/core/interfaces';
 import { FormControl } from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
+import { Observable } from 'rxjs/Observable';
+import { startWith } from 'rxjs/operators/startWith';
+import { map } from 'rxjs/operators/map';
 
 @Component({
   selector: 'app-pcaricase-manage',
@@ -17,6 +17,7 @@ export class PcaricaseManageComponent implements OnInit {
   private show_selected_forms = true;
   private status: any[];
   private _case: Case;
+
   @Input() set case(value: Case) {
     this._case = value;
     this._resetcase = this._case.toJSON();
@@ -31,10 +32,10 @@ export class PcaricaseManageComponent implements OnInit {
       this._medcases = [];
     }
     this.filteredOptions = this.myControl.valueChanges
-    .pipe(
+      .pipe(
       startWith(''),
       map(val => this.filter(val))
-    );
+      );
   }// -- _reinit setter
 
   @Input() method: string;
@@ -42,8 +43,10 @@ export class PcaricaseManageComponent implements OnInit {
   @Input() view_url: string;
   @Input() forms: Form[];
   @Input() case_searchable: boolean;
+  @Input() show_icd: boolean;
 
   @Output() onSubmitCaseTrigger: EventEmitter<Case> = new EventEmitter();
+  @Output() onShowICDTrigger: EventEmitter<any> = new EventEmitter();
 
   private errors: any = {};
   private has_errors = false;
@@ -100,4 +103,19 @@ export class PcaricaseManageComponent implements OnInit {
     console.log(case_for_save, 'CASE');
     this.onSubmitCaseTrigger.emit(case_for_save);
   }
+
+  onShowICD() {
+    console.log("ICD SHOW");
+    this.onShowICDTrigger.emit();
+    this.show_icd = true;
+  }
+
+  onHideICD() {
+    this.show_icd = false;
+  }
+  onSelectDiagnosis(selected) {
+    this._case.diagnosis = selected.diagnosis_name;
+    this.show_icd = false;
+  }
+
 }

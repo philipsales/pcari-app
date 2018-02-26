@@ -44,7 +44,7 @@ export class UserService {
     }// --create
 
     update(this_user: User): Observable<User> {
-        console.log('SHIT', this_user);
+        console.log('FOO', this_user);
         const url = environment.API_ENDPOINT + 'users/' + this_user.id;
         const user_json = this_user.toJSON();
         console.log('fuck', user_json);

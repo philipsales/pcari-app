@@ -11,6 +11,8 @@ export interface FormJSON {
     status?: string;
     created_by?: string;
     date_created?: number;
+    validity_date?: Date;
+    dir_path?: string;
     is_deleted?: boolean;
     sections?: SectionJSON[];
 }

@@ -164,7 +164,9 @@
                     <button class="btn btn-warning"
                       *ngIf="state_view === 'update' || state_view === 'view'"
                       [hidden]="state_view !== 'update' || state_view === 'view'"
-                      (click)="onUpdateClick(database)">
+                      [disabled]="!database.dirPath"
+                      (click)="onDownloadClick(database.dirPath)">
+                      
                       <i class="fa fa-download"></i> &nbsp; Download
                     </button>
                   </div>

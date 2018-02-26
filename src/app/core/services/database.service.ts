@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { Headers, RequestOptions, Response } from '@angular/http';
+import { Headers, RequestOptions, Response, ResponseContentType } from '@angular/http';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 //import { Observable } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 //import { map, catch } from 'rxjs/operators';
@@ -20,12 +20,14 @@ import { Data } from '@angular/router/src/config';
 @Injectable()
 export class DatabaseService {
 
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  //private headers = new Headers({ 'Content-Type': 'application/json' });
 
   private databaseUrlVersion = 'v1';
   private databaseUrl = environment.API_ENDPOINT + '/databases';
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient
+  ) {
   }//--constructor
 
   /*
@@ -39,6 +41,7 @@ export class DatabaseService {
                     .catch(this.handleError);
   }//--getAll
   */
+
   create(database: Database): Observable<Database> {
     const url = environment.API_ENDPOINT + `databases/backup`;
     const database_json = database.toJSON();
@@ -103,22 +106,18 @@ export class DatabaseService {
       .catch(Helper.handleError);
   }
 
-  downloadFileJSON() {
-    const url = `${this.databaseUrl}`;
+  downloadDbDump(path: string): Observable<Blob> {
+    const url = environment.API_ENDPOINT + `databases/download/${path}`;
 
     return this.http
-      .get(url)
-      .map((res) => {
-        console.info("BODY: ", res['_body']);
-        console.info("BODY: ", JSON.stringify(res['_body'].data));
-        //return new Blob([JSON.stringify(res['_body'].data)], {type: 'application/json'});
-        return new Blob([JSON.stringify(res['_body'])], { type: 'application/json' });
-      });
+      .get(url, { responseType: 'blob' })
+      .map((response: any) => {
+        return response;
+      })
+      .catch(Helper.handleError);
   }
 
   private handleError(error: any): Promise<any> {
-    console.log('An error occured');
-    console.log(error);
     return Promise.reject(error.message || error);
   }
 }

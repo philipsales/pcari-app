@@ -124,14 +124,39 @@ export class DatabaseCreateComponent implements OnInit {
         this.is_processing = false;
       }
       );
+  }
 
+  onDownloadClick(dirPath: string) {
+    var path = dirPath.split('/');
+
+    this.databaseService
+      .downloadDbDump(path[1])
+      .subscribe(
+      database => {
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+
+        var fileName = path[1];
+        var url = window.URL.createObjectURL(database);
+        a.href = url;
+        a.download = fileName;
+        a.click();
+
+        this.notificationPrompt({ 'name': path[1] });
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      }
+      );
   }
 
   notificationPrompt(input_database) {
     this._notificationsService
       .success(
       'Database: ' + input_database.name,
-      this.state_view.toUpperCase() + ' SUCCESS ',
+      'Successfully ' + this.state_view.substr(0, 1).toUpperCase() + this.state_view.substr(1) + 'd',
       {
         timeOut: 10000,
         showProgressBar: true,

@@ -22,6 +22,7 @@ export class CaseCreateComponent implements OnInit {
   private answers: FormAnswer[];
   private is_processing = false;
   private medcases: string[];
+  private show_icd: boolean;
 
   constructor(
     private formService: FormService,
@@ -53,7 +54,7 @@ export class CaseCreateComponent implements OnInit {
       console.log(created_case, 'CASE CREATED : case-manage.component');
       this._notificationsService.success(
         'New Case : ' + created_case.case_nbr,
-        'Successfully Created.',
+        'Successfully Created',
         {
           timeOut: 10000,
           showProgressBar: true,

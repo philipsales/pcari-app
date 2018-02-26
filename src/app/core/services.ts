@@ -13,3 +13,4 @@ export * from './services/department.service';
 export * from './services/shared-data.service';
 export * from './services/permission.service';
 export * from './services/formanswer.service';
+export * from './services/icdoncology.service';

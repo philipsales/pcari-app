@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -19,7 +19,7 @@ export class CaseService {
   private caseUrl = environment.API_ENDPOINT + '/cases';
 
   constructor(private http: Http,
-              private httpclient: HttpClient) {
+    private httpclient: HttpClient) {
   }// --constructor
 
   getAll(): Observable<Case[]> {
@@ -62,7 +62,7 @@ export class CaseService {
       }).map((x) => {
         console.log(x);
         return x['case_number'];
-    });
+      });
     }).catch(Helper.handleError);
   }
 
@@ -76,6 +76,7 @@ export class CaseService {
   }
 
   create(mycase: Case): Observable<Case> {
+    console.log('CASE SEVICE', mycase);
     const url = environment.API_ENDPOINT + 'cases/';
     const case_json = mycase.toJSON();
     console.log(case_json);
@@ -85,7 +86,7 @@ export class CaseService {
         // return (response.json().data as Form[])
         console.log(response, 'CASE CREATED from /cases');
         return Case.fromJSON(response);
-    }).catch(Helper.handleError);
+      }).catch(Helper.handleError);
   }
 
   update(mycase: Case): Observable<Case> {
@@ -99,6 +100,45 @@ export class CaseService {
         // return (response.json().data as Form[])
         console.log(response, 'CASE UPDATED from /cases');
         return Case.fromJSON(response);
-    }).catch(Helper.handleError);
+      }).catch(Helper.handleError);
+  }
+
+  setFileHeader() {
+    return new HttpHeaders({
+      'Accept': 'application/json',
+    });
+  }
+
+  upload(fileToUpload: any): Observable<any> {
+    let input = new FormData();
+    input.append("file", fileToUpload);
+    console.log('filetoUpload', fileToUpload);
+    console.log('ipnut', input);
+
+    const url = environment.API_ENDPOINT + 'cases/upload';
+
+    console.log(url);
+
+    var headers = { 'Content-Disposition': 'multipart/form-data' };
+    var header1 = { 'Content-Type': 'application/json' };
+    var header2 = { 'Accept': 'application/json' };
+
+    /*
+    return this.httpclient.post(url, form, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
+    return this.httpclient.post(url, input,
+      {
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      })
+    */
+    return this.httpclient.post(url, input,
+      {
+      }
+    )
+      .map((response: Response) => {
+        console.log('RESPONSE: ', response);
+        return response;
+      }).catch(Helper.handleError);
   }
 }
