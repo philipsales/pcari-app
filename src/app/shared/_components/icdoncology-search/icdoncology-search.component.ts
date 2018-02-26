@@ -34,24 +34,29 @@ export class IcdoncologySearchComponent implements OnInit {
     this.icdOncologyService
       .getDiagnoses(params)
       .subscribe(
-      diagnosis => {
-        console.log('onSubmit: ', diagnosis);
+        diagnosis => {
+          console.log('onSubmit: ', diagnosis);
 
-        if (diagnosis['message']) {
-          this.error = diagnosis['message'];
-          this.dataSource = new MatTableDataSource();
+          if (diagnosis['message']) {
+            this.error = diagnosis['message'];
+            this.dataSource = new MatTableDataSource();
+          }
+          else {
+            this.error = '';
+            this.dataSource = new MatTableDataSource(diagnosis);
+          }
         }
-        else {
-          this.error = '';
-          this.dataSource = new MatTableDataSource(diagnosis);
-        }
-      }
       );
   }
 
   onSelectDiagnosis(selected) {
     console.log("Console", selected);
     this.onSelectDiagnosisTrigger.emit(selected);
+  }
+
+  onResetDiagnosis() {
+    this.error = '';
+    this.dataSource = new MatTableDataSource();
   }
 
 }

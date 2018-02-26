@@ -83,3 +83,9 @@ li {
     width: 80px;
     padding: 5px;
 }
+
+.badge--invalid {
+    background-color: #dd3645;
+    width: 80px;
+    padding: 5px;
+}
