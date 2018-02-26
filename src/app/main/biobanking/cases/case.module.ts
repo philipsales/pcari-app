@@ -21,11 +21,8 @@ import { ShowOnDirtyErrorStateMatcher } from '@angular/material';
 import { CaseListComponent } from './case-list.component';
 import { CaseCreateComponent } from './case-create.component';
 
-import { CaseManageComponent } from './case-manage/case-manage.component';
 import { CaseViewComponent } from './case-view.component';
 import { CaseUpdateComponent } from './case-update.component';
-import { CaseFormManageComponent } from './case-manage/case-form-manage.component';
-import { CaseFormAddComponent } from './case-manage/case-form-add.component';
 import { MatTableModule } from '@angular/material';
 import { CaseFormsComponent } from './case-forms/case-forms.component';
 import { CaseFormsUpdateComponent } from './case-forms/case-forms-update.component';
@@ -44,16 +41,13 @@ import { CaseFormsUpdateComponent } from './case-forms/case-forms-update.compone
   declarations: [
     CaseListComponent,
     CaseCreateComponent,
-    CaseManageComponent,
     CaseViewComponent,
     CaseUpdateComponent,
-    CaseFormManageComponent,
-    CaseFormAddComponent,
     CaseFormsComponent,
     CaseFormsUpdateComponent
   ],
   providers: [
-    // Material Form ErrorMatcher 
+    // Material Form ErrorMatcher
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
 
     CaseDummyApiResponse,
