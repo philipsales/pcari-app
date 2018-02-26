@@ -1,4 +1,4 @@
-import {FormAnswerJSON} from './formanswerjson';
+import { FormAnswerJSON } from './formanswerjson';
 
 export interface CaseJSON {
     _id?: string;
@@ -8,4 +8,5 @@ export interface CaseJSON {
     date_created: number;
     forms: FormAnswerJSON[];
     is_deleted?: boolean;
+    created_by?: string;
 }

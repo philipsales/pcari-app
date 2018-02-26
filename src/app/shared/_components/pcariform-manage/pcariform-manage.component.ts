@@ -137,6 +137,7 @@ export class PcariformManageComponent implements OnInit {
     this.router.navigate([this.preview_url]);
   }
 
+  //Template function for upload directory
   onChangeFile() {
     console.log('new file');
     let fi = this.fileInput.nativeElement;
@@ -156,31 +157,21 @@ export class PcariformManageComponent implements OnInit {
           this.is_processing = false;
         }
       );
-
-    console.log('upload: ', this._form.dir_path);
-    console.log('upload: ', this._form);
-    console.log('upload: ', path);
-
   }
 
 
   onSubmit() {
     console.log('this._name', this._name);
 
-    //const formModel = this.prepareSave();
-
     let fi = this.fileInput.nativeElement;
     let formModel = new FormData();
 
     if (fi.files && fi.files[0]) {
       formModel = fi.files[0];
-      console.log(fi.files[0]);
       console.log('FOMR MODEL', formModel);
     }
 
     this.loading = true;
-    // In a real-world app you'd have a http request / service call here like
-    // this.http.post('apiUrl', formModel)
     this.caseService
       .upload(formModel)
       .subscribe(upload => {

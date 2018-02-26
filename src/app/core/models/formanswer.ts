@@ -9,6 +9,7 @@ export class FormAnswer {
   date_created: Date;
   status: boolean;
   answers: Answer[];
+  created_by?: string
 
   static fromJSON(json): FormAnswer {
     if (typeof json === 'string') {
@@ -20,7 +21,8 @@ export class FormAnswer {
         form_id: json.form_id,
         form_name: json.form_name,
         status: json.status,
-        date_created: new Date(json.date_created)
+        date_created: new Date(json.date_created),
+        created_by: json.created_by
       });
 
       if (json.answers) {
@@ -40,7 +42,8 @@ export class FormAnswer {
     form_id: string,
     form_name: string,
     status: boolean,
-    answers: Answer[]
+    answers: Answer[],
+    created_by?: string
   ) {
     this.form_id = form_id;
     this.form_name = form_name;
@@ -49,6 +52,7 @@ export class FormAnswer {
     if (answers) {
       this.answers = answers;
     }
+    this.created_by = created_by;
   }
 
   toJSON(): FormAnswerJSON {
@@ -64,7 +68,8 @@ export class FormAnswer {
       form_id: this.form_id,
       form_name: this.form_name,
       date_created: date_created,
-      answers: answers
+      answers: answers,
+      created_by: this.created_by
     });
   }
 }
