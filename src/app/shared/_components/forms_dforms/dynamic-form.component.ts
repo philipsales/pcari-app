@@ -217,7 +217,7 @@ export class DynamicFormComponent implements OnInit {
     let answers: Answer[] = [];
     Object.keys(this.form.value).forEach((key) => {
       let value = this.form.value[key];
-      if(value instanceof Array) {
+      if (value instanceof Array) {
         value = JSON.stringify(value);
       }
       answers.push(new Answer(key, value));
@@ -276,9 +276,9 @@ export class DynamicFormComponent implements OnInit {
     */
   }// --onSubmit
 
-  onClickAttachment(dirPath: string) {
+  onClickAttachment(dirpath: string) {
     this.caseService
-      .downloadAttachment(dirPath)
+      .downloadAttachment(dirpath)
       .subscribe(
         file => {
           var url = window.URL.createObjectURL(file);

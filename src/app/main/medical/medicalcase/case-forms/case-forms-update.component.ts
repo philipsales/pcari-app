@@ -14,6 +14,7 @@ export class CaseFormsUpdateComponent implements OnInit {
   private caseform: Form;
   private caseid = '';
   private casenumber = '';
+  private dirpath = '';
   private form_answer_id = '';
   private form_id = '';
   private answers = new Map<string, string>();
@@ -50,6 +51,7 @@ export class CaseFormsUpdateComponent implements OnInit {
         delete this.caseform;
         this.caseform = recv_form;
         console.log(recv_form, 'nakuhang caseform');
+        this.dirpath = recv_form.dir_path;
       }, error => {
         console.log(error); // get the error in error handler
         if (error instanceof NoJWTError) {
