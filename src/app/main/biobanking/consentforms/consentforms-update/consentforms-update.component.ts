@@ -30,9 +30,13 @@ export class ConsentformsUpdateComponent implements OnInit {
     private router: Router
   ) {
     if (this.formService.currentForm) {
-      this.formService.getForm(this.formService.currentForm.id).subscribe((form: Form) => {
-        this.for_update = form;
-      });
+      if (this.formService.currentForm.sections.length > 0) {
+        this.for_update = this.formService.currentForm;
+      } else {
+        this.formService.getForm(this.formService.currentForm.id).subscribe((form: Form) => {
+          this.for_update = form;
+        });
+      }
     } else {
       this.router.navigate(['biobanking/forms']);
     }

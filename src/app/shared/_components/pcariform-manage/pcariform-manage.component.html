@@ -29,6 +29,7 @@
                 <div class="material-form-group">
                   <mat-form-field class="material-form-control">
                         <input matInput 
+                              id="formname"
                               placeholder="Form Name"
                               formControlName="name"
                               [(ngModel)]="_form.name">
@@ -161,7 +162,7 @@
                           mat-button
                           matTooltip="Preivew Form" 
                           [disabled]="is_processing || is_created"
-                          (click)="onPreviewForm(templateForm.value,formId)" >
+                          (click)="onPreviewForm(_form)" >
                           <i class="fa fa-3x fa-eye"></i> &nbsp; 
                       </button>
                     </li>
@@ -170,7 +171,7 @@
                       <button 
                           mat-button
                           (click)="onSaveForm(_form)" 
-                          [disabled]="is_processing || is_created"
+                          [disabled]="!_form.name || is_processing || is_created"
                           matTooltip="Save Form" >
                           <i class="fa fa-3x fa-save"></i> &nbsp; 
                       </button>
