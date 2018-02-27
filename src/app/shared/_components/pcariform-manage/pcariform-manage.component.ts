@@ -7,12 +7,17 @@ import {
   ElementRef,
   ViewChild
 } from '@angular/core';
+
+declare var jquery: any;
+declare var $: any;
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Form, Section, Question, RegType, Department, Organization } from 'app/core/models';
 import { OrganizationService, DepartmentService, RegTypeService, FormService, CaseService } from 'app/core/services';
 
 import { KeyGenerator } from 'app/core/utils';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-pcariform-manage',
@@ -72,6 +77,10 @@ export class PcariformManageComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    $('#formname').focus();
   }
 
   private toFormGroup(data: any) {
