@@ -37,22 +37,33 @@ export class ConsentformsCreateComponent implements OnInit {
     private notificationsService: NotificationsService,
     private router: Router
   ) {
-    this.new_form = new Form(
-      '',
-      environment.ORG_BIOBANK,
-      environment.DEPT_BIOBANK,
-      environment.FORM_TYPE_BIOBANK,
-      'Pending',
-      [
-        new Section(
-          this.keyGenerator.create(),
-          'Untitled section',
-          0,
-          [])
-      ],
-      new Date(),
-      ''
-    );
+    if (this.formService.currentForm) {
+      console.log('BACK TO CREATE');
+      this.new_form = this.formService.currentForm;
+    } else {
+      console.log('COMPLETELY NEW');
+      this.new_form = new Form(
+        '',
+        environment.ORG_BIOBANK,
+        environment.DEPT_BIOBANK,
+        environment.FORM_TYPE_BIOBANK,
+        'Pending',
+        [
+          new Section(
+
+            this.keyGenerator.create(),
+            'Untitled section',
+            0,
+            [])
+        ],
+        new Date(),
+        ''
+      );
+      this.getRegistryTypes();
+      this.getDepartments();
+      this.getOrganizations();
+    }
+
     this.getRegistryTypes();
     this.getDepartments();
     this.getOrganizations();
