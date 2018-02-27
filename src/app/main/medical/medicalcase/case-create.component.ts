@@ -37,7 +37,7 @@ export class CaseCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formService.getMedicalForms().subscribe(
+    this.formService.getValidMedicalForms().subscribe(
       forms => {
         this.forms = forms;
       }

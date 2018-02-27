@@ -47,7 +47,7 @@ export class CaseUpdateComponent implements OnInit {
       }
     });
 
-    this.formService.getMedicalForms().subscribe(
+    this.formService.getValidMedicalForms().subscribe(
       forms => {
         this.forms = forms;
         console.log(this.forms, 'filtered forms');
