@@ -16,6 +16,7 @@ import {
     PermissionService,
     FormAnswerService
 } from './services';
+import { environment } from 'environments/environment';
 
 @NgModule({
     imports: [
@@ -28,7 +29,7 @@ import {
             return localStorage.getItem('access_token');
           },
           authScheme: 'JWT ',
-          whitelistedDomains: ['localhost:3001']
+          whitelistedDomains: environment.API_ALLOWED_DOMAINS
         }
       })
     ],
