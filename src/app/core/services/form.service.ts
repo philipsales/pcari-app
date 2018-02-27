@@ -101,7 +101,7 @@ export class FormService {
     return this.http.get(url).map((response: Response) => {
       return response['data'].filter((all_forms: FormJSON) => {
         return all_forms.type === medical_form_type && all_forms.department === user['department']
-        && moment().isSameOrBefore(all_forms.validity_date, 'day');
+          && moment().isSameOrBefore(all_forms.validity_date, 'day');
       }).map(Form.fromJSON);
     }).catch(Helper.handleError);
   }
@@ -201,6 +201,7 @@ export class FormService {
     let input = new FormData();
     var file = form.file;
     input.append("file", file);
+    console.log('FILE TO UPLOAD', file);
     console.log('FORM BEFORE dirpath: ', form);
     input.append("data", JSON.stringify(Form.fromJSON(form)));
     console.log('FORM AFTER dirpath: ', form);
