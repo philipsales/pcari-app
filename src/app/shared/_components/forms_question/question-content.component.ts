@@ -51,7 +51,7 @@ export class QuestionContentComponent implements OnChanges {
       },
       { 
       "value": "checkbox",
-      "label": "checkbox"
+      "label": "multiple selection"
       },
       { 
       "value": "radiobutton", 
