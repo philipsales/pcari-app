@@ -23,7 +23,7 @@
         <th>Form Name</th>
         <!-- <th>Type</th> -->
         <th>Department</th>
-        <th>Form Validity</th>
+        <th>Consent Validity</th>
         <th>Approval Status</th>
         <th></th>
       </tr>
@@ -40,7 +40,7 @@
           </span>
           <span *ngIf='!((_date_today | date: "MMM dd, yyyy")
             <= (form.validity_date | date: "MMM dd, yyyy"))'
-            class="badge badge--invalid" #invalid> Invalid 
+            class="badge badge--invalid" #invalid> Expired 
           </span>
         </td>
         <td>

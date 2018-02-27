@@ -283,6 +283,10 @@ form {
     margin-top: 20px;
     margin-bottom: 5px;
   }
+
+  .material-view-attachment {
+    cursor: pointer;
+  }
   
   .section-title {
       border-bottom: 1px solid lightgrey;

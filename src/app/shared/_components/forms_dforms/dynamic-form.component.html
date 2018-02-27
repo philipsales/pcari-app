@@ -1,75 +1,85 @@
-  <form *ngIf="form"
-        [formGroup]="form">
+<form *ngIf="form" [formGroup]="form">
 
-    <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"
-      style="margin-bottom: 20px;"> 
+  <!-- Case Details -->
+  <div *ngIf="method !== 'VIEW'">
+    <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper" > 
+      <div class="form-editor-body">
         <div class="row section-title">
             <span class="pull-left">
               <h4>Case Details</h4> 
             </span>
-          </div>
-    </div>
-
-    <div class="form-group">
-      <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
-             for="case">Case Number </label>
-        <div class="col-md-5 col-sm-5 col-xs-12">
-            <label> {{casenumber}} </label>
         </div>
-    </div>
-    <br/> <br/> <br/> <br/>
-    <div class="form-group">
-      <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
-              for="case">Attachment</label>
-        <a>
-        <div class="col-md-5 col-sm-5 col-xs-12"
-             (click)="onClickAttachment(dirpath)" > 
-            <label> {{dirpath}} </label>
-        </div>
-        </a>
-    </div>
-
-
-    
-    
-      <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"> 
-        <div class="form-editor-body">
-          <div class="col-sm-12" style="padding-left: 0; padding-right: 0;"> 
-            <!--insert form Array here-->
-            <div *ngFor="let sections of formArrayTest.controls">
-              <div class="row section-title">
-                <span class="pull-left">
-                  <h4>{{sections.get('name').value}}</h4> 
-                </span>
-              </div>
-
-              <div class="row">
-                <div *ngFor="let questions of sections.get('questionsType').controls">
-                      <df-question [question]="questions.value" [form]="form"></df-question>
-                </div>
-              </div>
-
+        <div class="row">
+            <label class="material-question-label
+                          col-md-offset-2
+                          col-sm-offset-2
+                          col-md-10 col-sm-10 col-xs-10">
+                          Case Number </label>
+            <div class="col-md-8 
+                        col-sm-8 col-xs-8
+                        col-md-offset-4
+                        col-sm-offset-4">
+              <label class="" > {{casenumber}} </label>
             </div>
-            <!--end formarray-->
-
-          </div>
+        </div>
+        <div class="row">
+            <label class="material-question-label
+                          col-md-offset-2
+                          col-sm-offset-2
+                          col-md-10 col-sm-10 col-xs-10">
+                          Consent Form</label>
+            <div class="col-md-8 
+                        col-sm-8 col-xs-8
+                        col-md-offset-4
+                        col-sm-offset-4">
+                <label class="material-view-attachment">
+                  <i class="fa fa-1x fa-paperclip"> </i> {{dirpath}}
+                </label>
+            </div>
         </div>
       </div>
-
-
-    <div class="form-row col-sm-12 pull-right"
-      *ngIf="method !== 'VIEW'">
-      <button mat-raised-button color="primary"
-              [disabled]="!form.valid" 
-              class="btn btn-success pull-right"
-              (click)="onSubmit()">
-          Save Form
-      </button>
     </div>
-
-  </form>
-
-  <div *ngIf="payLoad" class="form-row">
-    <!-- {{form.valid}} -->
-    <!-- <strong>Saved the following values</strong><br>{{payLoad}} -->
   </div>
+  <!-- end Case Details -->
+
+  <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"> 
+    <div class="form-editor-body">
+      <div class="col-sm-12" > 
+        <!--insert form Array here-->
+        <div *ngFor="let sections of formArrayTest.controls">
+          <div class="row section-title">
+            <span class="pull-left">
+              <h4>{{sections.get('name').value}}</h4> 
+            </span>
+          </div>
+
+          <div class="row">
+            <div *ngFor="let questions of sections.get('questionsType').controls">
+                  <df-question [question]="questions.value" [form]="form"></df-question>
+            </div>
+          </div>
+
+        </div>
+        <!--end formarray-->
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-row col-sm-12 pull-right"
+    *ngIf="method !== 'VIEW'">
+    <button mat-raised-button color="primary"
+            [disabled]="!form.valid" 
+            class="btn btn-success pull-right"
+            (click)="onSubmit()">
+        Save Form
+    </button>
+  </div>
+
+</form>
+
+<div *ngIf="payLoad" class="form-row">
+  <!-- {{form.valid}} -->
+  <!-- <strong>Saved the following values</strong><br>{{payLoad}} -->
+</div>

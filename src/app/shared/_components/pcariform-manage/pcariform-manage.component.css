@@ -306,6 +306,7 @@ input.material-right-align {
 .material-file-input-icon {
     line-height: 0;
     margin-right: 10px;
+    margin-bottom: -20px;
     margin-top: -15px;
     text-align: right;
 }

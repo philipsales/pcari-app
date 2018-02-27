@@ -1,5 +1,4 @@
-<div id="page-content"
-     class="col-md-offset-3 col-md-9">
+<div id="page-content" class="col-md-offset-3 col-md-9">
     <header class="app-header row">
       <div class="app-header--primary">
         <div class="app-header--context">
@@ -18,9 +17,9 @@
       <div class="app-header--secondary">
       </div>
     </header>
+    <br/> <br/>
 
   <div class="row">
-
     <div class="col-md-12 table-nav">
       <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-left top_search">
         <div class="input-group">
@@ -34,28 +33,28 @@
     
     <div class="col-md-12">
       <table class="table table-striped">
-	<thead>
-	  <tr>
-	    <th>#</th>
-	    <th>Name</th>
-	    <th>Duration Date</th>
-	    <th>Action</th>
-	  </tr>
-	</thead>
-	<tbody>
-	  <tr  *ngFor="let report of reports; let i = index">
-	    <th scope="row">{{ i + 1 }}</th>
-	    <td>{{ report.name }}</td>
-      <td>{{ report.date_duration_start}} - {{ report.date_duration_end}} </td>
-	    <td>
-				<!--<button class="btn btn-sm btn-info" (click)="view(report.id);" >View</button>-->
-				<!--<a class="btn btn-sm btn-info" [href]="downloadJsonHref" title="view" ></a>-->
-        <!--<button class="btn btn-sm btn-info" (click)="downloadPDF();" >PDF</button>-->
-        <button class="btn btn-sm btn-info" (click)="downloadJSPDF();" >View</button>
-        <!--<button class="btn btn-sm btn-info" (click)="downloadJSON();" >JSON</button>-->
-	    </td>
-	  </tr>
-	</tbody>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Duration Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let report of reports; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ report.name }}</td>
+            <td>{{ report.date_duration_start}} - {{ report.date_duration_end}} </td>
+            <td>
+              <!--<button class="btn btn-sm btn-info" (click)="view(report.id);" >View</button>-->
+              <!--<a class="btn btn-sm btn-info" [href]="downloadJsonHref" title="view" ></a>-->
+              <!--<button class="btn btn-sm btn-info" (click)="downloadPDF();" >PDF</button>-->
+              <button class="btn btn-sm btn-info" (click)="downloadJSPDF();" >View</button>
+              <!--<button class="btn btn-sm btn-info" (click)="downloadJSON();" >JSON</button>-->
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
