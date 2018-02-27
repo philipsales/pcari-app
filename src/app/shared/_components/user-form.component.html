@@ -49,14 +49,15 @@
 		 [ngClass]="{'has-error': errors?.username || 
 			    (input_username.errors && (input_username.dirty || input_username.touched)) }">
 	  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="input_username">
-	    Username <span class="required">*</span>
+	    Email as Username<span class="required">*</span>
 	  </label>
 	  <div class="col-md-6 col-sm-6 col-xs-12">
-	    <input type="text" id="input_username" 
-		   [(ngModel)]="_user.username"
-		   #input_username="ngModel" name="input_username"
-		   required="required"
-		   class="form-control col-md-7 col-xs-12">
+			<input type="text" 
+			id="input_username" 
+			[(ngModel)]="_user.username"
+		  #input_username="ngModel" name="input_username"
+		  required="required"
+		  class="form-control col-md-7 col-xs-12">
 	    <div class="help-block"
 		 *ngIf="errors?.username">
 	      <span *ngIf="errors?.username">
