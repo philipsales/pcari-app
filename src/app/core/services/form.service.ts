@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as moment from 'moment';
 
 // import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
@@ -88,6 +89,31 @@ export class FormService {
     return this.http.get(url).map((response: Response) => {
       return response['data'].filter((all_forms: FormJSON) => {
         return all_forms.type === medical_form_type && all_forms.department === user['department'];
+      }).map(Form.fromJSON);
+    }).catch(Helper.handleError);
+  }
+
+  getValidMedicalForms(): Observable<Form[]> {
+    const medical_form_type = environment.FORM_TYPE_MEDICAL;
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    const url = environment.API_ENDPOINT + 'forms/';
+    return this.http.get(url).map((response: Response) => {
+      return response['data'].filter((all_forms: FormJSON) => {
+        return all_forms.type === medical_form_type && all_forms.department === user['department']
+        && moment().isSameOrBefore(all_forms.validity_date, 'day');
+      }).map(Form.fromJSON);
+    }).catch(Helper.handleError);
+  }
+
+  getValidBiobankForms(): Observable<Form[]> {
+    const biobank_form_type = environment.FORM_TYPE_BIOBANK;
+    const user = JSON.parse(localStorage.getItem('user'));
+    const url = environment.API_ENDPOINT + 'forms/';
+    return this.http.get(url).map((response) => {
+      return response['data'].filter((all_forms: FormJSON) => {
+        return all_forms.type === biobank_form_type && all_forms.department === user['department']
+          && moment().isSameOrBefore(all_forms.validity_date, 'day');
       }).map(Form.fromJSON);
     }).catch(Helper.handleError);
   }

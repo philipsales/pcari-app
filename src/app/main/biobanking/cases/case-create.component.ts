@@ -36,7 +36,7 @@ export class CaseCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formService.getBiobankForms().subscribe(
+    this.formService.getValidBiobankForms().subscribe(
       forms => {
         this.forms = forms;
         console.log(this.forms, 'filtered forms');
