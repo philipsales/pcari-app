@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,10 @@ export class LoginComponent implements OnInit {
   private show_signup = false;
   private show_signin = true;
   private show_about = false;
+  private version = '';
 
   constructor() {
+    this.version = environment.VERSION;
   }
 
   ngOnInit() {
