@@ -55,25 +55,27 @@ export class ConsentformsUpdateComponent implements OnInit {
     console.log(form_to_submit, 'SUBMITTING');
     const data = form_to_submit.toJSON();
 
-    this.formService.updateForm(data).subscribe(
-      created_question => {
-        console.warn(created_question, 'AYUS');
-        this.is_processing = false;
-        this.is_updated = true;
-        this.notificationsService
-          .success(
-          'Form: ' + data.name,
-          'Successfully Updated.',
-          {
-            timeOut: 10000,
-            showProgressBar: true,
-            pauseOnHover: false,
-            clickToClose: false
-          });
-      }, errors => {
-        this.is_processing = false;
-        console.warn('error');
-        throw errors;
-      });
+    this.formService
+      .updateForm(data)
+      .subscribe(
+        created_question => {
+          console.warn(created_question, 'AYUS');
+          this.is_processing = false;
+          this.is_updated = true;
+          this.notificationsService
+            .success(
+              'Form: ' + data.name,
+              'Successfully Updated.',
+              {
+                timeOut: 10000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: false
+              });
+        }, errors => {
+          this.is_processing = false;
+          console.warn('error');
+          throw errors;
+        });
   }
 }

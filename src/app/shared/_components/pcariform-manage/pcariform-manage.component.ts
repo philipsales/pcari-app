@@ -124,7 +124,7 @@ export class PcariformManageComponent implements OnInit {
 
     if (fi.files && fi.files[0]) {
       formModel = fi.files[0];
-      updated_form.dir_path = fi.files[0].name;
+      updated_form.dir_path = (fi.files[0].name).split(' ').join('_');
       updated_form.file = formModel;
     }
 
@@ -142,7 +142,7 @@ export class PcariformManageComponent implements OnInit {
     console.log('new file');
     let fi = this.fileInput.nativeElement;
     let formModel = new FormData();
-    this._form.dir_path = fi.files[0].name;
+    this._form.dir_path = (fi.files[0].name).split(' ').join('_');
   }
 
   onUploadTemplate(path: string) {

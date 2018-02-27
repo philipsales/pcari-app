@@ -171,39 +171,18 @@ export class FormService {
   //submitForm(form: FormJSON): Observable<Form> {
   submitForm(form: any): Observable<Form> {
     const url = environment.API_ENDPOINT + 'forms/';
-    console.log('submitForm: ', url);
-    console.log('Form before: ', form.dir_path);
 
     let input = new FormData();
-
     var file = form.file;
     input.append("file", file);
     console.log('FORM BEFORE dirpath: ', form);
     input.append("data", JSON.stringify(Form.fromJSON(form)));
-    //input.append("data", form);
     console.log('FORM AFTER dirpath: ', form);
 
     return this.http
-      //.post(url, form,
-      .post(url, input,
-      /*
-      .post(url, input,
-    {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-      }
-    }
-    */
-    )
-      /*
+      .post(url, input)
       .map((response: FormJSON) => {
         console.log(response, 'FORM CREATED from /forms');
-        return Form.fromJSON(response);
-      })
-      */
-      .map((response: FormJSON) => {
-        console.log(response, 'FORM CREATED from /forms');
-        //return response['data'].map(Form.fromJSON);
         return Form.fromJSON(response);
       })
 
@@ -213,37 +192,30 @@ export class FormService {
   upload(fileToUpload: any): Observable<any> {
     let input = new FormData();
     input.append("file", fileToUpload);
-    console.log('filetoUpload', fileToUpload);
-    console.log('ipnut', input);
-
     const url = environment.API_ENDPOINT + 'cases/upload';
 
-    console.log(url);
-
-
-    var headers = { 'Content-Disposition': 'multipart/form-data' };
-    var header1 = { 'Content-Type': 'application/json' };
-    var header2 = { 'Accept': 'application/json' };
-
-    /*
-    return this.httpclient.post(url, form, {
-      headers: { 'Content-Type': 'multipart/form-data' }
-    })
-    */
-    return this.http.post(url, input)
+    return this.http
+      .post(url, input)
       .map((response: Response) => {
-        console.log('RESPONSE: ', response);
         return response;
       }).catch(Helper.handleError);
   }
 
-  updateForm(form: FormJSON): Observable<Form> {
+  //updateForm(form: FormJSON): Observable<Form> {
+  updateForm(form: any): Observable<Form> {
     const url = environment.API_ENDPOINT + 'forms/' + form._id;
 
-    return this.http.patch(url, form).map((response: FormJSON) => {
-      // return (response.json().data as Form[])
-      return Form.fromJSON(response);
-    })
+    let input = new FormData();
+    var file = form.file;
+    input.append("file", file);
+    input.append("data", JSON.stringify(Form.fromJSON(form)));
+
+    return this.http
+      //.patch(url, form)
+      .patch(url, input)
+      .map((response: FormJSON) => {
+        return Form.fromJSON(response);
+      })
       .catch(Helper.handleError);
   }
 }
