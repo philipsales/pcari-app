@@ -20,13 +20,13 @@
     <br/> <br/> <br/> <br/>
     <div class="form-group">
       <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
-              for="case">Attachment</label>
-        <a>
-        <div class="col-md-5 col-sm-5 col-xs-12"
+              for="case">Consent Form</label>
+        <div class="col-md-5 col-sm-5 col-xs-12 material-file-input-icon"
              (click)="onClickAttachment(dirpath)" > 
-            <label> {{dirpath}} </label>
+            <label class="material-view-attachment">
+               <i class="fa fa-1x fa-paperclip"> </i> {{dirpath}}
+            </label>
         </div>
-        </a>
     </div>
 
 

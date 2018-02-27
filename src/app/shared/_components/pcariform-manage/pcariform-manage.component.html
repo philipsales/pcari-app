@@ -83,6 +83,36 @@
                   </mat-form-field>
                 </div> <!-- material-form-group -->
     
+  
+                <div class="material-form-group">
+                  <mat-form-field class="material-form-control" >
+                    <input placeholder="Consent Form Validity Date"
+                            formControlName="validity_date"
+                            [(ngModel)]="_form.validity_date"
+                            matInput [matDatepicker]="i" >
+                    <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
+                    <mat-datepicker #i></mat-datepicker>
+                  </mat-form-field>
+                  <mat-form-field class="material-form-control pull-left" >
+                      <div class="col-sm-10 material-file-input-textbox" >
+                        <input placeholder="Consent Form Attachment" 
+                            matInput disabled 
+                            value="{{_form.dir_path}}" >
+                      </div>
+                      <div class="col-sm-1 material-file-input-icon pull-right" >
+                        <button mat-icon-button
+                                (click)="fileInput.click()" > 
+                              <mat-icon>attachment</mat-icon>&nbsp;
+                        </button>
+                      </div>
+                    <span hidden>
+                      <input type="file" 
+                            (change)="onChangeFile()"
+                            #fileInput>
+                    </span>
+                  </mat-form-field>
+                </div>
+              
                 <div class="material-form-group">
                   <mat-form-field class="material-form-control pull-left" >
                     <mat-select formControlName="status" 
@@ -98,40 +128,6 @@
                     </mat-error>
                   </mat-form-field>
                 </div> <!-- material-form-group -->
-  
-                <div class="material-form-group">
-                  <mat-form-field class="material-form-control" >
-                    <input placeholder="Validity Date"
-                            formControlName="validity_date"
-                            [(ngModel)]="_form.validity_date"
-                            matInput [matDatepicker]="i" >
-                    <mat-datepicker-toggle matSuffix [for]="i"></mat-datepicker-toggle>
-                    <mat-datepicker #i></mat-datepicker>
-                  </mat-form-field>
-                </div>
-
-                <div class="material-form-group">
-                  <mat-form-field class="material-form-control pull-left" >
-                      <div class="material-file-input-control" >
-                        <div class="col-sm-10 material-file-input-textbox" >
-                          <input placeholder="Attachment" 
-                              matInput disabled 
-                              value="{{_form.dir_path}}" >
-                        </div>
-                        <div class="col-sm-1 material-file-input-icon pull-right" >
-                          <button mat-icon-button
-                                  (click)="fileInput.click()" > 
-                                <mat-icon>attachment</mat-icon>&nbsp;
-                          </button>
-                        </div>
-                      </div>
-                      <span hidden>
-                        <input type="file" 
-                              (change)="onChangeFile()"
-                              #fileInput>
-                      </span>
-                  </mat-form-field>
-                </div> 
 
              </div> <!-- #formcreatecontainer -->
           </div> <!-- col-sm-10 -->
