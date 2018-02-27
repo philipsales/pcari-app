@@ -1,79 +1,77 @@
-<div id="page-content"
-     class="col-md-offset-3 col-md-9">
-
+<div id="page-content" class="col-md-offset-3 col-md-9">
   <header class="app-header row">
     <div class="app-header--primary">
-      
       <div class="app-header--context">
-	<div class="app-header--breadcrumbs">
-	  <ol class="aui-nav aui-nav-breadcrumbs" resolved="">
-	    <li>
-	      <a [routerLink]="['./']">Administration</a>
-	    </li>
-	  </ol>
-	</div>
-	<h1 class="app-header--heading">
-	  Database 
-	</h1>
+				<div class="app-header--breadcrumbs">
+					<ol class="aui-nav aui-nav-breadcrumbs" resolved="">
+						<li>
+              <a [routerLink]="['/admin/database']">Administration</a>
+						</li>
+            <li>
+							<a [routerLink]="['/admin/database/list']">
+								<strong>Databases List</strong>
+							</a>
+            </li>
+					</ol>
+				</div>
+				<h1 class="app-header--heading">
+					Database 
+				</h1>
       </div>
     </div> <!-- app-header--primary -->
-
-    
-    <div class="app-header--secondary">
-    </div>
-  </header>
+    <div class="app-header--secondary"> </div>
+	</header>
+	<br/> <br/>
 
   <div class="row">
-
     <div class="col-md-12 table-nav">
       <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-left top_search">
-	<div class="input-group">
-	  <input type="text" class="form-control" placeholder="Search for...">
-	  <span class="input-group-btn">
-	    <button class="btn btn-default" type="button">Go!</button>
-	  </span>
-	</div>
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search for...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Go!</button>
+					</span>
+				</div>
       </div>
       <a [routerLink]="['/admin/database/create']"
          class="btn btn-default pull-right">
         <i class="fa fa-plus"></i> &nbsp; Create Backup 
       </a>
     </div>
-    
     <div class="col-md-12">
       <table class="table table-striped">
-	<thead>
-	  <tr>
-	    <th>#</th>
-	    <th>Name</th>
-	    <th>Description</th>
-	    <th>Created By</th>
-	    <th>Date Created</th>
-	    <th style="text-align: center"></th>
-	  </tr>
-	</thead>
-	<tbody>
-	  <!-- <tr  *ngFor='let database of databases | value:"key":true'> -->
-	  <tr  *ngFor='let database of databases; let i = index;'>
-	    <td>{{ i + 1 }}</td>
-	    <td>{{ database.name }}</td>
-	    <td>{{ database.description }}</td>
-	    <td>{{ database.createdBy }}</td>
-	    <td>{{ database.dateCreated | date: 'medium' }}</td>
-			<td style="text-align: right">
-					<button 
-							[routerLink]="['/admin/database/view/',database._id]"
-							class="btn btn-sm btn-default ">
-						 <i class="fa fa-eye"></i> &nbsp; View 
-          </button>
-					<button 
-							[routerLink]="['/admin/database/update/',database._id]"
-							class="btn btn-sm btn-warning ">
-						 <i class="fa fa-edit"></i> &nbsp; Update 
-          </button>
-	    </td>
-	  </tr>
-	</tbody>
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Created By</th>
+						<th>Date Created</th>
+						<th style="text-align: center"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- <tr  *ngFor='let database of databases | value:"key":true'> -->
+					<tr  *ngFor='let database of databases; let i = index;'>
+						<td>{{ i + 1 }}</td>
+						<td>{{ database.name }}</td>
+						<td>{{ database.description }}</td>
+						<td>{{ database.createdBy }}</td>
+						<td>{{ database.dateCreated | date: 'medium' }}</td>
+						<td style="text-align: right">
+								<button 
+										[routerLink]="['/admin/database/view/',database._id]"
+										class="btn btn-sm btn-default ">
+									<i class="fa fa-eye"></i> &nbsp; View 
+								</button>
+								<button 
+										[routerLink]="['/admin/database/update/',database._id]"
+										class="btn btn-sm btn-warning ">
+									<i class="fa fa-edit"></i> &nbsp; Update 
+								</button>
+						</td>
+					</tr>
+				</tbody>
       </table>
     </div>
   </div>

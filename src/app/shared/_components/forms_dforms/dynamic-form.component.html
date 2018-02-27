@@ -1,33 +1,34 @@
-  <form *ngIf="form"
-        [formGroup]="form">
+  <form *ngIf="form" [formGroup]="form">
 
-    <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"
-      style="margin-bottom: 20px;"> 
-        <div class="row section-title">
-            <span class="pull-left">
-              <h4>Case Details</h4> 
-            </span>
+    <!-- Case Details -->
+    <div *ngIf="method !== 'VIEW'">
+      <div class="col-md-12 col-sm-12 col-xs-12 form-wrapper"
+        style="margin-bottom: 20px;"> 
+          <div class="row section-title">
+              <span class="pull-left">
+                <h4>Case Details</h4> 
+              </span>
+            </div>
+      </div>
+      <div class="form-group">
+        <label class="question-label col-md-offset-2 col-md-2 col-sm-offset-2 col-sm-2 col-xs-12" 
+              for="case">Case Number </label>
+          <div class="col-md-5 col-sm-5 col-xs-12">
+              <label> {{casenumber}} </label>
           </div>
+      </div>
+      <div class="form-group">
+        <label class="question-label col-md-offset-2 col-md-2 col-sm-offset-2 col-sm-2 col-xs-12" 
+                for="">Consent Form</label>
+          <div class="col-md-5 col-sm-5 col-xs-12 material-file-input-icon"
+              (click)="onClickAttachment(dirpath)" > 
+              <label class="material-view-attachment">
+                <i class="fa fa-1x fa-paperclip"> </i> {{dirpath}}
+              </label>
+          </div>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
-             for="case">Case Number </label>
-        <div class="col-md-5 col-sm-5 col-xs-12">
-            <label> {{casenumber}} </label>
-        </div>
-    </div>
-    <br/> <br/> <br/> <br/>
-    <div class="form-group">
-      <label class="question-label col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-12" 
-              for="case">Consent Form</label>
-        <div class="col-md-5 col-sm-5 col-xs-12 material-file-input-icon"
-             (click)="onClickAttachment(dirpath)" > 
-            <label class="material-view-attachment">
-               <i class="fa fa-1x fa-paperclip"> </i> {{dirpath}}
-            </label>
-        </div>
-    </div>
+    <!-- end Case Details -->
 
 
     
