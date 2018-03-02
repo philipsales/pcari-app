@@ -18,7 +18,7 @@ import {
 } from './services';
 import { environment } from 'environments/environment';
 
-export function test() {
+export function getToken() {
   return localStorage.getItem('access_token');
 };
 
@@ -29,7 +29,7 @@ export function test() {
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: test,
+        tokenGetter: getToken,
         authScheme: 'JWT ',
         whitelistedDomains: environment.API_ALLOWED_DOMAINS
       }

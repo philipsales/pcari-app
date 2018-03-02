@@ -16,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'reports',
-        loadChildren: './biobankreports/reports-medical.module#ReportsMedicalModule'
+        loadChildren: './medicalreports/reports-medical.module#ReportsMedicalModule'
       },
       { path: '', redirectTo: 'cases' }
     ]
