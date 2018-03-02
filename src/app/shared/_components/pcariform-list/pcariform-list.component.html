@@ -53,6 +53,11 @@
               class="btn btn-sm btn-warning">
             <i class="fa fa-edit"></i> &nbsp; Update 
           </button>
+          <button 
+              (click)="callDeleteForm(form)"
+              class="btn btn-sm btn-warning">
+            <i class="fa fa-trash"></i> &nbsp; Delete 
+          </button>
         </td>
         <!--<td style="text-align: center">
           <button 
@@ -64,3 +69,9 @@
     </tbody>
   </table>
 </div>
+
+
+<app-delete-modal
+    [show]="for_delete"
+    (confirmedEvent)="onConfirmDeleteForm($event)"> 
+</app-delete-modal>

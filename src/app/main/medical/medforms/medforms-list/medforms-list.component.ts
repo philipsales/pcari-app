@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormService } from 'app/core/services';
 import { Form } from 'app/core/models';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-medforms-list',
@@ -11,7 +12,8 @@ import { Form } from 'app/core/models';
 export class MedformsListComponent implements OnInit {
   private forms: Form[];
 
-  constructor(private formService: FormService) {
+  constructor(
+    private formService: FormService) {
     this.forms = [];
   }
 

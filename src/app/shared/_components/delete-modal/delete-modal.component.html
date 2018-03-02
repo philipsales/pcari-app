@@ -1,0 +1,25 @@
+<div id="modal_form_confirmdelete" 
+  class="modal cancel-modal-holder-of-form" 
+  data-backdrop="static" data-keyboard="false"
+  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+          <h4 class="modal-header">Delete</h4>
+          <div class="modal-body">
+            <p>Are you sure?</p>
+            <form  style="text-align: right;">
+              <button type="submit" 
+                (click)="onSubmit(false)"
+                class="btn">
+                Cancel
+              </button>
+                <button type="submit" 
+                  (click)="onSubmit(true)"
+                  class="btn btn-primary">
+                  Yes
+                </button>
+            </form>
+          </div>
+        </div>
+    </div>
+</div>

@@ -88,6 +88,7 @@ export class FormService {
     const url = environment.API_ENDPOINT + 'forms/';
     return this.http.get(url).map((response: Response) => {
       return response['data'].filter((all_forms: FormJSON) => {
+        console.log(all_forms, 'ALL');
         return all_forms.type === medical_form_type && all_forms.department === user['department'];
       }).map(Form.fromJSON);
     }).catch(Helper.handleError);
@@ -128,6 +129,15 @@ export class FormService {
       .catch(Helper.handleError);
   }
 
+  delete(form: Form): Observable<Form> {
+    const url = environment.API_ENDPOINT + `forms/${form.id}`;
+    return this.http.delete(url)
+      .map((response: FormJSON) => {
+        // return (response.json().data as Form)
+        return Form.fromJSON(response);
+      })
+      .catch(Helper.handleError);
+  }
   /*
   // TODO: SHOUD return Object Form instead of Question
   submitForm(form: Form): Observable<Question> {
