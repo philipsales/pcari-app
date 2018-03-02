@@ -102,6 +102,7 @@ export class FormService {
     return this.http.get(url).map((response: Response) => {
       return response['data'].filter((all_forms: FormJSON) => {
         return all_forms.type === medical_form_type && all_forms.department === user['department']
+        && all_forms.status === 'Approved'
         && moment().isSameOrBefore(all_forms.validity_date, 'day');
       }).map(Form.fromJSON);
     }).catch(Helper.handleError);
@@ -114,6 +115,7 @@ export class FormService {
     return this.http.get(url).map((response) => {
       return response['data'].filter((all_forms: FormJSON) => {
         return all_forms.type === biobank_form_type && all_forms.department === user['department']
+          && all_forms.status === 'Approved'
           && moment().isSameOrBefore(all_forms.validity_date, 'day');
       }).map(Form.fromJSON);
     }).catch(Helper.handleError);
