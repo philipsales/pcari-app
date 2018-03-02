@@ -18,6 +18,10 @@ import {
 } from './services';
 import { environment } from 'environments/environment';
 
+export function test() {
+  return localStorage.getItem('access_token');
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,9 +29,7 @@ import { environment } from 'environments/environment';
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('access_token');
-        },
+        tokenGetter: test,
         authScheme: 'JWT ',
         whitelistedDomains: environment.API_ALLOWED_DOMAINS
       }
