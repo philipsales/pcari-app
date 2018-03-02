@@ -84,36 +84,40 @@ export class PcariformListComponent implements OnInit {
 
   approveForm(for_approval: Form, is_approve: boolean) {
     console.log(for_approval, 'FORM FOR DELETE');
-    if (is_approve) {
-      for_approval.status = 'Approved';
-    } else {
-      for_approval.status = 'Rejected';
-    }
-    this.formService.updateForm(for_approval.toJSON()).subscribe(
-      updated_form => {
-        console.warn(updated_form, 'AYUS');
-        this.is_processing = false;
-        const total = this._forms.length;
-        for (let i = 0; i < total; ++i) {
-          if (this._forms[i].id === updated_form.id) {
-            this._forms[i] = updated_form;
-            break;
+
+    let getFormSubscription = this.formService.getForm(for_approval.id);
+    getFormSubscription.subscribe((form: Form) => {
+      if (is_approve) {
+        form.status = 'Approved';
+      } else {
+        form.status = 'Rejected';
+      }
+      this.formService.updateForm(form.toJSON()).subscribe(
+        updated_form => {
+          console.warn(updated_form, 'AYUS');
+          this.is_processing = false;
+          const total = this._forms.length;
+          for (let i = 0; i < total; ++i) {
+            if (this._forms[i].id === updated_form.id) {
+              this._forms[i] = updated_form;
+              break;
+            }
           }
-        }
-        this.notificationsService
-          .success(
-            'Form: ' + updated_form.name,
-            (is_approve ? 'Approved.' : 'Rejected.'),
-            {
-              timeOut: 10000,
-              showProgressBar: true,
-              pauseOnHover: false,
-              clickToClose: false
-            });
-      }, errors => {
-        this.is_processing = false;
-        console.warn('error');
-        throw errors;
-      });
+          this.notificationsService
+            .success(
+              'Form: ' + updated_form.name,
+              (is_approve ? 'Approved.' : 'Rejected.'),
+              {
+                timeOut: 10000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: false
+              });
+        }, errors => {
+          this.is_processing = false;
+          console.warn('error');
+          throw errors;
+        });
+    });
   }
 }
