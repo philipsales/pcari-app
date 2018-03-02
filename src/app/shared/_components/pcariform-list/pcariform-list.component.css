@@ -90,6 +90,17 @@ li {
     padding: 5px;
 }
 
+.badge--danger {
+    background-color: #d9534f;
+    width: 80px;
+    padding: 5px;
+}
+
+.btn.btn-warning:disabled, .btn.btn-success:disabled {
+    background-color: lightgray;
+    border: gray;
+}
+
 .form_name {
   display: inline-block;
   cursor:  pointer;

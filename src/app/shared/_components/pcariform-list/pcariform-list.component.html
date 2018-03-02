@@ -22,9 +22,9 @@
         <th>#</th>
         <th>Form Name</th>
         <!-- <th>Type</th> -->
-        <th>Department</th>
-        <th>Consent Validity</th>
-        <th>Approval Status</th>
+        <th style="text-align: left;">Department</th>
+        <th style="text-align: center;">Validity</th>
+        <th style="text-align: center;">Approval</th>
         <th style="text-align: center;">Manage</th>
       </tr>
     </thead>
@@ -32,8 +32,8 @@
       <tr  *ngFor="let form of _forms; let i = index">
         <th scope="row">{{ i + 1 }}</th>
         <td> {{ form.name }}</td>
-        <td>{{ form.department }}</td>
-        <td>
+        <td style="text-align: left;">{{ form.department }}</td>
+        <td  style="text-align: center;">
           <span *ngIf='((_date_today | date: "MMM dd, yyyy")
             <= (form.validity_date | date: "MMM dd, yyyy"))'
             class="badge badge--success" #valid> Valid 
@@ -43,20 +43,33 @@
             class="badge badge--invalid" #invalid> Expired 
           </span>
         </td>
-        <td>
+        <td style="text-align: center;">
           <span *ngIf="form.status ==='Pending'" class="badge badge--failed" #pending> {{form.status }}</span>
           <span *ngIf="form.status ==='Approved'" class="badge badge--success" #active> {{form.status }}</span>
+          <span *ngIf="form.status ==='Rejected'" class="badge badge--danger" #rejected> {{form.status }}</span>
         </td>
-        <td style="text-align: right">
+        <td style="text-align: center;">
+          <button 
+          [disabled]="form.status !=='Pending'"
+          (click)="approveForm(form, true)"
+          class="btn btn-sm btn-success">
+            <i class="fa fa-check-circle"></i> 
+          </button>
+          <button 
+          [disabled]="form.status !=='Pending'"
+            (click)="approveForm(form, false)"
+            class="btn btn-sm btn-warning">
+            <i class="fa fa-times-circle"></i>
+          </button>
           <button 
               (click)="setCurrentForm(form)"
-              class="btn btn-sm btn-warning">
-            <i class="fa fa-edit"></i> &nbsp; Update 
+              class="btn btn-sm btn-info">
+            <i class="fa fa-edit"></i>
           </button>
           <button 
               (click)="callDeleteForm(form)"
               class="btn btn-sm btn-danger">
-            <i class="fa fa-trash"></i> &nbsp; Delete 
+            <i class="fa fa-trash"></i> 
           </button>
         </td>
         <!--<td style="text-align: center">
