@@ -19,7 +19,7 @@
   <button class="btn btn-success pull-right"
     [disabled]="is_adding_forms"
     (click)="onSubmitCase(_case)">
-    <i class="fa fa-save"></i> &nbsp; Save
+    <i class="fa fa-save e2e-save-case"></i> &nbsp; Save Case
   </button>
 </div>
 </div>
@@ -38,6 +38,7 @@
           <!-- Case Number-->
           <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
               <input matInput 
+                    id="casenumber"
                     [formControl]="myControl"
                     [(ngModel)]="_case.case_nbr"
                     [disabled]="method == 'VIEW'"

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormSectionArrayComponent } from './question-section-array.component';
+import { FormSectionArrayComponent } from './form-section-array.component';
 
 describe('FormSectionArrayComponent', () => {
   let component: FormSectionArrayComponent;
@@ -8,9 +8,9 @@ describe('FormSectionArrayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormSectionArrayComponent ]
+      declarations: [FormSectionArrayComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

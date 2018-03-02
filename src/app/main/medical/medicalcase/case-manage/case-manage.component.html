@@ -37,53 +37,64 @@
                 <!-- Case Number-->
                 <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
                     <input matInput 
-                          [(ngModel)]="_case.case_nbr"
-                          #input_name="ngModel" name="input_case_number"
-                          [disabled]="method == 'VIEW'"
-                          placeholder="Case Number">
-                </mat-form-field>	
-    
-                <!-- Diagnosis-->
-                <mat-form-field class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
-                    <input matInput 
-                          [(ngModel)]="_case.diagnosis"
-                          #input_name="ngModel" name="input_case_diagnosis"
-                          [disabled]="method == 'VIEW'"
-                          placeholder="Diagnosis">
-                          <button mat-button 
-                          matSuffix
-                          (click)="onShowICD()"
-                          class="pull-right">ICD Update Oncology</button>
-                </mat-form-field>	  
-                <!-- Status -->
-                <br/><br/>
-                <mat-slide-toggle class="material-form-control col-md-offset-1 col-md-11 col-sm-12 col-xs-12"
+                          [(ngModel)]="_case.case_ntrol"
+                    [(ngModel)]="_case.case_nbr"
                     [disabled]="method == 'VIEW'"
-                    [(ngModel)]="_case.is_active"
-                    #input_is_active="ngModel" 
-                    name="input_is_active">
-                    {{ _case.is_active ? 'Active' : ' Inactive' }}
-                </mat-slide-toggle>
-            </div> <br/><br/>
-          </form>
-        </div>
-      </div>      
-    </div> <!--Case --> 
-    
-  <app-case-form-add
-    (onSaveFormAddTrigger)="onAddSelectedForm($event)"
-    (onCancelFormAddTrigger)="onCancelAddForm()"
-    [show]="!show_selected_forms">
-  </app-case-form-add>
+                    [matAutocomplete]="auto"
+                    placeholder="Case Number">
+          </mat-form-field>	
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
 
-  <app-case-form-manage 
-    [caseid]="_case.id"
-    [casenumber]="_case.case_nbr"
-    [show]="show_selected_forms"
-    [forms]="_case.forms"
-    [method]="method"
-    (onCallSelectFormTrigger)="onAddForm()">
-  </app-case-form-manage>
+          <!-- Diagnosis-->
+          <mat-form-field 
+            *ngIf="!case_searchable"
+            class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
+              <input matInput 
+                    [(ngModel)]="_case.diagnosis"
+                    #input_case_diagnosis="ngModel" name="input_case_diagnosis"
+                    [disabled]="method == 'VIEW'"
+                    placeholder="Diagnosis">
+                    <button mat-button 
+                            matSuffix
+                            (click)="onShowICD()"
+                            class="pull-right">ICD Oncology</button>
+          </mat-form-field>	  
+          <!-- Status -->
+          <br/><br/>
+          <mat-slide-toggle class="material-form-control col-md-offset-1 col-md-11 col-sm-12 col-xs-12"
+              [disabled]="method == 'VIEW'"
+              [(ngModel)]="_case.is_active"
+              #input_is_active="ngModel" 
+              name="input_is_active">
+              {{ _case.is_active ? 'Active' : ' Inactive' }}
+          </mat-slide-toggle>
+      </div> <br/><br/>
+    </form>
+  </div>
+</div>      
+</div> <!--Case --> 
+
+<app-pcaricase-form-add
+(onSaveFormAddTrigger)="onAddSelectedForm($event)"
+(onCancelFormAddTrigger)="onCancelAddForm()"
+[forms]="forms"
+[show]="!show_selected_forms">
+</app-pcaricase-form-add>
+
+<app-pcaricase-form-list 
+[caseid]="_case.id"
+[casenumber]="_case.case_nbr"
+[show]="show_selected_forms"
+[forms]="_case.forms"
+[method]="method"
+[update_url]="update_url"
+[view_url]="view_url"
+(onCallSelectFormTrigger)="onAddForm()">
+</app-pcaricase-form-list>
 </div>
 
 <app-icdoncology-manage 
@@ -91,3 +102,4 @@
 (onSelectDiagnosisTrigger)="onSelectDiagnosis($event)"
 (onHideICDTrigger)="onHideICD()">
 </app-icdoncology-manage>
+

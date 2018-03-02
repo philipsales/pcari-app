@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { RegTypeService } from './registry-type.service';
+import { RegTypeService } from './regtype.service';
 
 describe('RegTypeService', () => {
   beforeEach(() => {

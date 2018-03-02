@@ -1,0 +1,30 @@
+{
+    "page_login" : "/login",
+    "login" : {
+        "id" : {
+            "input_username" : "username",
+            "input_password" : "password"
+        },
+        "css" : {
+
+        } 
+    },
+    "my_account" : {
+        "id" : {
+            "input_username" : "username",
+            "input_password" : "password"
+        },
+        "css" : {
+
+        } 
+    },
+    "admin" : {
+        "id" : {
+            "input_username" : "username",
+            "input_password" : "password"
+        },
+        "css" : {
+
+        } 
+    }
+}

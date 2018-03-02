@@ -10,7 +10,7 @@
       </div>
       <a [routerLink]="[create_url]"
          class="btn btn-default pull-right">
-        <i class="fa fa-plus"></i> &nbsp; Create Case 
+        <i class="fa fa-plus e2e-create-case"></i> &nbsp; Create Case 
       </a>
     </div>
     
@@ -28,7 +28,7 @@
 				<tbody>
 					<tr  *ngFor="let case of _cases; let i = index">
 						<th scope="row">{{ i + 1 }}</th>
-						<td>{{ case.case_nbr }}</td>
+						<td class="e2e-newest-case">{{ case.case_nbr }}</td>
 						<td *ngIf="show_diagnosis"
 							matTooltip="{{case.diagnosis}}" >{{case.diagnosis | ellipsis:40 }} </td>
 						<td>{{ case.date_created | date: 'MMM dd, yyyy' }}</td>
@@ -42,7 +42,7 @@
 							[routerLink]="[view_url, case.id]">
 							<i class="fa fa-eye"></i> View</button>
 							<button 
-							class="btn btn-sm btn-warning"
+							class="btn btn-sm btn-warning e2e-update-newest-case"
 							[routerLink]="[update_url, case.id]">
 							<i class="fa fa-edit"></i> Update</button>
 						</td>

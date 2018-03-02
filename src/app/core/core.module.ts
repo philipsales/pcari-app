@@ -7,32 +7,32 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
 import {
-    UserService,
-    RoleService,
-    PositionService,
-    OrganizationService,
-    AuthService,
-    CaseService,
-    PermissionService,
-    FormAnswerService
+  UserService,
+  RoleService,
+  PositionService,
+  OrganizationService,
+  AuthService,
+  CaseService,
+  PermissionService,
+  FormAnswerService
 } from './services';
 import { environment } from 'environments/environment';
 
 @NgModule({
-    imports: [
-      CommonModule,
-      HttpModule,
-      HttpClientModule,
-      JwtModule.forRoot({
-        config: {
-          tokenGetter: () => {
-            return localStorage.getItem('access_token');
-          },
-          authScheme: 'JWT ',
-          whitelistedDomains: environment.API_ALLOWED_DOMAINS
-        }
-      })
-    ],
+  imports: [
+    CommonModule,
+    HttpModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('access_token');
+        },
+        authScheme: 'JWT ',
+        whitelistedDomains: environment.API_ALLOWED_DOMAINS
+      }
+    })
+  ],
   providers: [
     UserService,
     RoleService,
@@ -43,6 +43,6 @@ import { environment } from 'environments/environment';
     PermissionService,
     FormAnswerService
   ],
-    declarations: [],
+  declarations: [],
 })
 export class CoreModule { }

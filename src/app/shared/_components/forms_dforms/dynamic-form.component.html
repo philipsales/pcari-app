@@ -34,7 +34,8 @@
                         col-md-offset-4
                         col-sm-offset-4">
                 <label class="material-view-attachment">
-                  <i class="fa fa-1x fa-paperclip"> </i> {{dirpath}}
+                  <span *ngIf="!dirpath">No attachment</span>
+                  <i *ngIf="dirpath" class="fa fa-1x fa-paperclip"> </i> {{dirpath}}
                 </label>
             </div>
         </div>
@@ -72,7 +73,7 @@
     *ngIf="method !== 'VIEW'">
     <button mat-raised-button color="primary"
             [disabled]="!form.valid" 
-            class="btn btn-success pull-right"
+            class="btn btn-success pull-right "
             (click)="onSubmit()">
         Save Form
     </button>

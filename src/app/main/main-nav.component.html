@@ -2,7 +2,7 @@
      class="col-md-3 left_col">
   <div id="side_nav-content" class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
-      <a href="index.html" class="site_title"><i class="fa fa-medkit"></i> <span>Gentelella Alela!</span></a>
+       <a href="index.html" class="site_title"><i class="fa fa-medkit"></i> <span>Gentelella Alela!</span></a> 
     </div>
 
     <div class="clearfix"></div>
@@ -29,24 +29,24 @@
     <li  routerLinkActive="active"
       *ngIf="roles.indexOf('Biobank Researcher') !== -1">
 	    <a  [routerLink]="['/biobanking']">
-	      <i class="fa fa-flask"></i>
+	      <i class="fa fa-flask e2e-biobank"></i>
 	      Biobank
 	    </a>
 	  </li>
     <li  routerLinkActive="active"
       *ngIf="roles.indexOf('Medical Researcher') !== -1">
 	    <a  [routerLink]="['/medical']">
-	      <i class="fa fa-heartbeat"></i>
+	      <i class="fa fa-heartbeat e2e-medical"></i>
 	      Medical
 	    </a>
 	  </li>
     <li  routerLinkActive="active"
       *ngIf="roles.indexOf('Admin') !== -1">
 	    <a  [routerLink]="['/admin']">
-	      <i class="fa fa-tasks"></i>
+	      <i class="fa fa-tasks e2e-admin"></i>
 	      Admin
 	    </a>
-	  </li>
+	  </li> 
 	</ul>
       </div>
 
@@ -60,7 +60,7 @@
           <i class="fa fa-user-circle-o"></i>User 
         </a>
       </li>
-    </ul>
+    </ul> 
     <!-- /menu footer buttons -->
   </div>
 </div>  <!-- side_nav -->

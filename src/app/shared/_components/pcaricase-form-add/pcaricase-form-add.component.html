@@ -1,13 +1,14 @@
 <!-- Selected Forms  -->
 <div class="col-md-12 col-sm-12 col-xs-12"           
     *ngIf="_show"> 
+<h2>pcaricase-form-add</h2>
     <div class="x_panel">
       <div class="x_title">
         <h2 class="pull-left">Case Forms</h2>
         <div class="pull-right">
             <button mat-button
               (click)="onAddSelectedForm()">
-              <i class="fa fa-plus"></i> Add Selected
+              <i class="fa fa-plus e2e-add-form-to-case"></i> Add Selected
             </button>
 
             <button mat-button (click)="onCancelAddForm()">
@@ -29,7 +30,7 @@
               <!-- Name Column -->
             <ng-container matColumnDef="name">
               <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+              <mat-cell *matCellDef="let element" > {{element.name}} </mat-cell>
             </ng-container>
 
             <!-- Weight Column -->
@@ -53,6 +54,7 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
                   <mat-checkbox (click)="$event.stopPropagation()"
+                                class="e2e-select-newest-case" 
                                 (change)="$event ? selection.toggle(row) : null"
                                 [checked]="selection.isSelected(row)">
                   </mat-checkbox>

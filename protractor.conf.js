@@ -6,10 +6,19 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './e2e/**/*.e2e-spec.ts'
+    './e2e/custom.config.js',
+    //'./e2e/login/login.e2e-spec.js',
+    './e2e/biobank/biobank.e2e-spec.js'
+    //'./e2e/admin/admin.e2e-spec.js'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    'chromeOptions': {
+      'args': [
+      'show-fps-counter=true'
+     // '--window-size=900,800'
+    ]
+    }
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
@@ -25,4 +34,16 @@ exports.config = {
     });
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
+  /*
+  framework: 'mocha',
+  mochaOpts: {
+    reporter: "spec",
+    slow: 3000
+  },
+  onPrepare() {
+    require('ts-node').register({
+      project: 'tsconfig.json'
+    });
+  }
+  */
 };
