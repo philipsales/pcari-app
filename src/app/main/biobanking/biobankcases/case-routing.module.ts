@@ -5,13 +5,13 @@ import { CaseListComponent } from './case-list.component';
 import { CaseCreateComponent } from './case-create.component';
 import { CaseViewComponent } from './case-view.component';
 import { CaseUpdateComponent } from './case-update.component';
-import { CaseFormsComponent } from 'app/main/biobanking/cases/case-forms/case-forms.component';
-import { CaseFormsUpdateComponent } from 'app/main/biobanking/cases/case-forms/case-forms-update.component';
+import { CaseFormsComponent } from 'app/main/biobanking/biobankcases/case-forms/case-forms.component';
+import { CaseFormsUpdateComponent } from 'app/main/biobanking/biobankcases/case-forms/case-forms-update.component';
 
 const routes: Routes = [
     {
-      path: 'list',
-      component: CaseListComponent
+        path: 'list',
+        component: CaseListComponent
     },
     {
         path: 'view/:id',
@@ -33,7 +33,7 @@ const routes: Routes = [
         path: 'create',
         component: CaseCreateComponent
     },
-    {path: '', redirectTo: 'list'}
+    { path: '', redirectTo: 'list' }
 ];
 
 @NgModule({

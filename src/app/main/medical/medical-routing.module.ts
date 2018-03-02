@@ -8,21 +8,15 @@ const routes: Routes = [
     children: [
       {
         path: 'cases',
-        loadChildren: './medicalcase/medicalcase.module#MedicalcaseModule'
+        loadChildren: './medicalcases/medicalcase.module#MedicalcaseModule'
       },
-      /*
-      {
-        path: 'forms',
-        loadChildren: './forms/form.module#FormModule'
-      },
-      */
       {
         path: 'medforms',
-        loadChildren: './medforms/medforms.module#MedformsModule'
+        loadChildren: './medicalforms/medforms.module#MedformsModule'
       },
       {
         path: 'reports',
-        loadChildren: './reports/reports-medical.module#ReportsMedicalModule'
+        loadChildren: './biobankreports/reports-medical.module#ReportsMedicalModule'
       },
       { path: '', redirectTo: 'cases' }
     ]
