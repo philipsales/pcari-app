@@ -213,6 +213,7 @@ export class FormService {
     let input = new FormData();
     var file = form.file;
     input.append("file", file);
+    console.log('FILE TO UPLOAD', file);
     console.log('FORM BEFORE dirpath: ', form);
     input.append("data", JSON.stringify(Form.fromJSON(form)));
     console.log('FORM AFTER dirpath: ', form);
