@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { BioformsListComponent } from './bioforms-list/bioforms-list.component';
 import { ConsentformsCreateComponent } from './bioforms-create/consentforms-create.component';
 import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-preview.component';
-import { ConsentformsUpdateComponent } from './bioforms-update/consentforms-update.component';
+import { BioformsUpdateComponent } from './bioforms-update/bioforms-update.component';
 
 const routes: Routes = [
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'update',
-    component: ConsentformsUpdateComponent
+    component: BioformsUpdateComponent
   },
   { path: '', redirectTo: 'list' }
 ];

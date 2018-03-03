@@ -11,7 +11,7 @@ import { FormService, DepartmentService, RegTypeService, OrganizationService } f
 import { ConsentformsRoutingModule } from './bioforms-routing.module';
 import { BioformsListComponent } from './bioforms-list/bioforms-list.component';
 import { ConsentformsCreateComponent } from './bioforms-create/consentforms-create.component';
-import { ConsentformsUpdateComponent } from './bioforms-update/consentforms-update.component';
+import { BioformsUpdateComponent } from './bioforms-update/bioforms-update.component';
 import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-preview.component';
 
 @NgModule({
@@ -27,7 +27,7 @@ import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-pr
   declarations: [
     BioformsListComponent,
     ConsentformsCreateComponent,
-    ConsentformsUpdateComponent,
+    BioformsUpdateComponent,
     ConsentformsPreviewComponent
   ],
   providers: [

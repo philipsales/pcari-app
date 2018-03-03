@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
-  selector: 'app-consentforms-update',
-  templateUrl: './consentforms-update.component.html',
-  styleUrls: ['./consentforms-update.component.css']
+  selector: 'app-bioforms-update',
+  templateUrl: './bioforms-update.component.html',
+  styleUrls: ['./bioforms-update.component.css']
 })
-export class ConsentformsUpdateComponent implements OnInit {
+export class BioformsUpdateComponent implements OnInit {
 
   for_update: Form;
   registryTypes: RegType[];
