@@ -8,7 +8,7 @@ const routes: Routes = [
     children: [
       {
         path: 'cases',
-        loadChildren: './medicalcases/case.module#CaseModule'
+        loadChildren: './medicalcases/medcase.module#MedcaseModule'
       },
       {
         path: 'medforms',

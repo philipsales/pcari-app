@@ -12,7 +12,7 @@ import { ConsentformsRoutingModule } from './bioforms-routing.module';
 import { BioformsListComponent } from './bioforms-list/bioforms-list.component';
 import { BioformsCreateComponent } from './bioforms-create/bioforms-create.component';
 import { BioformsUpdateComponent } from './bioforms-update/bioforms-update.component';
-import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-preview.component';
+import { BioformsPreviewComponent } from './bioforms-preview/bioforms-preview.component';
 
 @NgModule({
   imports: [
@@ -28,7 +28,7 @@ import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-pr
     BioformsListComponent,
     BioformsCreateComponent,
     BioformsUpdateComponent,
-    ConsentformsPreviewComponent
+    BioformsPreviewComponent
   ],
   providers: [
     FormService,

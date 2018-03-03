@@ -4,11 +4,11 @@ import { FormService } from '../../../../core/services';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-consentforms-preview',
-  templateUrl: './consentforms-preview.component.html',
-  styleUrls: ['./consentforms-preview.component.css']
+  selector: 'app-bioforms-preview',
+  templateUrl: './bioforms-preview.component.html',
+  styleUrls: ['./bioforms-preview.component.css']
 })
-export class ConsentformsPreviewComponent implements OnInit {
+export class BioformsPreviewComponent implements OnInit {
 
   caseform: Form;
   origin = '';

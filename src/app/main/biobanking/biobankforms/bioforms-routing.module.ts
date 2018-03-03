@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BioformsListComponent } from './bioforms-list/bioforms-list.component';
 import { BioformsCreateComponent } from './bioforms-create/bioforms-create.component';
-import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-preview.component';
+import { BioformsPreviewComponent } from './bioforms-preview/bioforms-preview.component';
 import { BioformsUpdateComponent } from './bioforms-update/bioforms-update.component';
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'preview/:origin',
-    component: ConsentformsPreviewComponent
+    component: BioformsPreviewComponent
   },
   {
     path: 'update',

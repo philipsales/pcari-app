@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { CaseRoutingModule } from './case-routing.module';
+import { MedcaseRoutingModule } from './medcase-routing.module';
 
 import { SharedModule } from 'app/shared/shared.module';
 import { MaterialModule } from 'app/shared/_material/material.module';
@@ -28,7 +28,7 @@ import {
     SharedModule,
     MaterialModule,
     MatTableModule,
-    CaseRoutingModule
+    MedcaseRoutingModule
   ],
   declarations: [
     CaseListComponent,
@@ -44,4 +44,4 @@ import {
     IcdoncologyService
   ]
 })
-export class CaseModule { }
+export class MedcaseModule { }
