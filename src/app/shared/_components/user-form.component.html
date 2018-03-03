@@ -154,10 +154,10 @@
 						[minSearchLength]="0"
 						(selected)="onSelectDepartment($event)" 
 						[disabled]="method == 'MYACCOUNT'"
-						[inputClass]="form-control"
+						[inputClass]="'form-control'"
 						[openOnClick]="true"
 						[required]="method == 'CREATE'"
-						[inputName]="input_department_search">
+						[inputName]="'input_department_search'">
 				</ng2-completer>
 				<div class="input-group-btn">
 					<button type="button"
@@ -401,14 +401,14 @@
 	    <div class="input-group">
 	      <ng2-completer #organizationCompleter
 			     name="input_organization_search"
-			     [(ngModel)]="organization_search"
-		             [datasource]="organizationCompleterData"
+					 [(ngModel)]="organization_search" 
+					 [datasource]="organizationCompleterData"
 			     [minSearchLength]="0"
 			     (selected)="onSelectOrganization($event)" 
-			     [inputClass]="form-control"
+			     [inputClass]="'form-control'"
 					 [openOnClick]="true"
 					 [required]="method == 'CREATE'"
-			     [inputName]="input_organization_search">
+			     [inputName]="'input_organization_search'">
 	      </ng2-completer>
 	      <div class="input-group-btn">
 		<button type="button"
@@ -434,12 +434,12 @@
 	  <div class="col-md-6 col-sm-6 col-xs-12">
 	    <div class="input-group">
 	      <ng2-completer #positionCompleter
-		             name="input_position_search"
+					name="input_position_search"
 			     [(ngModel)]="position_search"
-		             [datasource]="positionCompleterData"
+					 [datasource]="positionCompleterData"
 			     [minSearchLength]="0"
 			     (selected)="onSelectPosition($event)" 
-			     [inputClass]="form-control"
+			     [inputClass]="'form-control'"
 			     [openOnClick]="true"
 					 [inputName]="'input_position_search'"
 					 [required]="method == 'CREATE'"

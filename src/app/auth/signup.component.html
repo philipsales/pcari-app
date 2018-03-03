@@ -21,7 +21,8 @@
     </div>
     
     <form id="signup_form" name="form"
-      (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+      (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+      <!-- (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate -->
 
       <!-- Username -->
       <div class="form-group"
@@ -49,8 +50,12 @@
       </div>
 
       <!-- Password -->
-      <div class="form-group" style="margin-bottom: 0;"
+      <!-- <div class="form-group" style="margin-bottom: 0;"
 		    [ngClass]="{'has-error': error?.password || 
+          (signuppassword.dirty || signuppassword.touched) && 
+          (signuppassword.error) }"> -->
+      <div class="form-group" style="margin-bottom: 0;"
+		    [ngClass]="{'has-error': error || 
           (signuppassword.dirty || signuppassword.touched) && 
           (signuppassword.error) }">
         <label for="username" class="form-label">

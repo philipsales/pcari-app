@@ -38,6 +38,7 @@ export class UserFormComponent implements OnInit {
     _resetuser: UserJSON;
     _user: User;
 
+
     @Input() set user(value: User) {
         this._user = value;
         this._resetuser = this._user.toJSON();
@@ -93,6 +94,7 @@ export class UserFormComponent implements OnInit {
         private roleService: RoleService,
         private _notificationsService: NotificationsService
     ) {
+
         this._user = new User('', false, '', '', '', '', '', '', false);
         this._user.gender = 'M';
         this.confirmation_password = '';

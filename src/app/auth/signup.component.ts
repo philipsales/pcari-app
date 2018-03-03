@@ -65,6 +65,7 @@ export class SignupComponent implements OnInit {
       },
       errors => {
         this.error = errors;
+        console.log('PASWORD ERROR', errors);
         this.loading = false;
         this.is_error = true;
       });
