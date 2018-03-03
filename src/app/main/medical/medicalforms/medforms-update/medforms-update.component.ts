@@ -14,12 +14,12 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class MedformsUpdateComponent implements OnInit {
 
-  private for_update: Form;
-  private registryTypes: RegType[];
-  private departments: Department[];
-  private organizations: Organization[];
-  private is_updated = false;
-  private is_processing = false;
+  for_update: Form;
+  registryTypes: RegType[];
+  departments: Department[];
+  organizations: Organization[];
+  is_updated = false;
+  is_processing = false;
 
   constructor(
     private formService: FormService,
@@ -66,14 +66,14 @@ export class MedformsUpdateComponent implements OnInit {
         this.is_updated = true;
         this.notificationsService
           .success(
-          'Form: ' + data.name,
-          'Successfully Updated.',
-          {
-            timeOut: 10000,
-            showProgressBar: true,
-            pauseOnHover: false,
-            clickToClose: false
-          });
+            'Form: ' + data.name,
+            'Successfully Updated.',
+            {
+              timeOut: 10000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false
+            });
       }, errors => {
         this.is_processing = false;
         console.warn('error');

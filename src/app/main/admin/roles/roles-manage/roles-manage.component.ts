@@ -13,8 +13,8 @@ import { RoleJSON } from 'app/core/interfaces';
     styleUrls: ['./roles-manage.component.css']
 })
 export class RolesManageComponent implements OnInit {
-    private _resetrole: RoleJSON;
-    private _role: Role;
+    _resetrole: RoleJSON;
+    _role: Role;
     @Input() set role(value: Role) {
         this._role = value;
         if (!this._role.permissions) {
@@ -26,11 +26,11 @@ export class RolesManageComponent implements OnInit {
 
     @Input() method: string;
 
-    private errors: any = {};
-    private has_errors = false;
-    private is_processing = false;
-    private permissions: Permission[];
-    private selected_permissions: String[];
+    errors: any = {};
+    has_errors = false;
+    is_processing = false;
+    permissions: Permission[];
+    selected_permissions: String[];
 
     @ViewChild('permission') permission: MatSelectionList;
 

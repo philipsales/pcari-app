@@ -9,7 +9,7 @@ import { Form } from 'app/core/models';
   styleUrls: ['./medforms-list.component.css']
 })
 export class MedformsListComponent implements OnInit {
-  private forms: Form[];
+  forms: Form[];
 
   constructor(private formService: FormService) {
     this.forms = [];

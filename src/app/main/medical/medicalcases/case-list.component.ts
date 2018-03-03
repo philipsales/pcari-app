@@ -11,7 +11,7 @@ import { NoJWTError } from 'app/core/errors';
 })
 export class CaseListComponent implements OnInit {
 
-  private cases: Case[];
+  cases: Case[];
 
   constructor(private caseService: CaseService) { }
 

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ConsentformsListComponent } from './consentforms-list/consentforms-list.component';
-import { ConsentformsCreateComponent } from './consentforms-create/consentforms-create.component';
-import { ConsentformsPreviewComponent } from './consentforms-preview/consentforms-preview.component';
-import { ConsentformsUpdateComponent } from './consentforms-update/consentforms-update.component';
+import { ConsentformsListComponent } from './biobankforms-list/consentforms-list.component';
+import { ConsentformsCreateComponent } from './biobankforms-create/consentforms-create.component';
+import { ConsentformsPreviewComponent } from './biobankforms-preview/consentforms-preview.component';
+import { ConsentformsUpdateComponent } from './biobankforms-update/consentforms-update.component';
 
 const routes: Routes = [
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'update',
     component: ConsentformsUpdateComponent
   },
-  {path: '', redirectTo: 'list'}
+  { path: '', redirectTo: 'list' }
 ];
 
 @NgModule({

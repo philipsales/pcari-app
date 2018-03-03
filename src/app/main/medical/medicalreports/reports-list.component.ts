@@ -20,8 +20,8 @@ declare var jsPDF: any;
 })
 export class ReportListComponent implements OnInit {
 
-  private reports : Report[];
-  private selectedReport : Report;
+  reports: Report[];
+  private selectedReport: Report;
 
   constructor(
     private reportService: ReportService
@@ -29,22 +29,22 @@ export class ReportListComponent implements OnInit {
 
   ngOnInit() {
     this.reportService
-        .getReports()
-        .then(reports => {
-          console.log(reports);
-          return this.reports = reports;
-        });
+      .getReports()
+      .then(reports => {
+        console.log(reports);
+        return this.reports = reports;
+      });
   }
 
   view(id: number): void {
     console.info("---id--", id);
 
     this.reportService
-        .getReport(id)
-        .then(selectedReport => {
-          console.info("selectedReport: ", selectedReport);
-          this.selectedReport = selectedReport;
-        });
+      .getReport(id)
+      .then(selectedReport => {
+        console.info("selectedReport: ", selectedReport);
+        this.selectedReport = selectedReport;
+      });
   }
 
 
@@ -66,17 +66,17 @@ export class ReportListComponent implements OnInit {
 
   downloadJSPDF(): any {
     var columns = [
-      {title: "Demographics", datakey: "id" },
-      {title: "Total", datakey: "name" }
+      { title: "Demographics", datakey: "id" },
+      { title: "Total", datakey: "name" }
     ];
     var rows = [
-      {"id": 1, "name": "Male"},
-      {"id": 2, "name": "Female"}
+      { "id": 1, "name": "Male" },
+      { "id": 2, "name": "Female" }
     ];
 
     var doc = new jsPDF('p', 'pt');
     doc.text("Breast Cancer Stats");
-    doc.autoTable(columns,rows);
+    doc.autoTable(columns, rows);
     doc.save("table.pdf");
   }
 

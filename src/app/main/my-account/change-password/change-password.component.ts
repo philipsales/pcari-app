@@ -10,15 +10,15 @@ import { User } from 'app/core/models';
   styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent implements OnInit {
-  private errors: any = {};
-  private has_errors = false;
-  private is_processing = false;
+  errors: any = {};
+  has_errors = false;
+  is_processing = false;
 
   old_password = '';
   new_password = '';
   confirmation_password = '';
 
-  private user: User;
+  user: User;
 
   constructor(
     private userService: UserService,
@@ -49,7 +49,7 @@ export class ChangePasswordComponent implements OnInit {
         console.log(result, 'RESULT');
         if (result) {
           this.changeMyPassword();
-        }  else {
+        } else {
           console.log('WRONG!');
           this.errors = {
             'old_password': 'Incorrect Old Password'
@@ -70,22 +70,22 @@ export class ChangePasswordComponent implements OnInit {
 
   changeMyPassword() {
     this.userService.updateMyPassword(this.user.id, this.new_password).subscribe(
-        created_user => {
-          this.is_processing = false;
-          this._notificationsService.success(
-              'Successfully Updated Password',
-              {
-                  timeOut: 10000,
-                  showProgressBar: true,
-                  pauseOnHover: false,
-                  clickToClose: false,
-              });
-        },
-        errors  => {
-          this.errors = errors;
-          this.has_errors = true;
-          this.is_processing = false;
-        });
+      created_user => {
+        this.is_processing = false;
+        this._notificationsService.success(
+          'Successfully Updated Password',
+          {
+            timeOut: 10000,
+            showProgressBar: true,
+            pauseOnHover: false,
+            clickToClose: false,
+          });
+      },
+      errors => {
+        this.errors = errors;
+        this.has_errors = true;
+        this.is_processing = false;
+      });
   }
 
 }

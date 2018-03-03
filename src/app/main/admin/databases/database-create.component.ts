@@ -14,8 +14,8 @@ import { DatabaseJSON } from 'app/core/interfaces';
 })
 export class DatabaseCreateComponent implements OnInit {
 
-  private database_id: string;
-  private database: Database;
+  database_id: string;
+  database: Database;
 
   errors: any = {};
   has_errors = false;

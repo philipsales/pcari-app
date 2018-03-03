@@ -12,8 +12,9 @@ import * as FileSaver from 'file-saver';
 })
 export class DatabaseListComponent implements OnInit {
 
-  private databases: Database[] = [];
+  databases: Database[] = [];
   private title;
+
   constructor(private databaseService: DatabaseService) { }
 
   ngOnInit() {
@@ -32,9 +33,9 @@ export class DatabaseListComponent implements OnInit {
     this.databaseService
       .getDatabases()
       .subscribe(
-      databases => {
-        this.databases = databases;
-      }
+        databases => {
+          this.databases = databases;
+        }
       );
   }
 

@@ -12,8 +12,8 @@ import { IcdoncologyService } from 'app/core/services';
 })
 export class IcdoncologySearchComponent implements OnInit {
 
-  private _search: any = {};
-  private dataSource: MatTableDataSource<any>;
+  _search: any = {};
+  dataSource: MatTableDataSource<any>;
   private diagnosis: Icdoncology[];
   private error: string;
 

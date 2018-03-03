@@ -13,10 +13,10 @@ import { map } from 'rxjs/operators/map';
 })
 export class PcaricaseManageComponent implements OnInit {
 
-  private _resetcase: CaseJSON;
-  private show_selected_forms = true;
-  private status: any[];
-  private _case: Case;
+  _resetcase: CaseJSON;
+  show_selected_forms = true;
+  status: any[];
+  _case: Case;
 
   @Input() set case(value: Case) {
     this._case = value;
@@ -33,8 +33,8 @@ export class PcaricaseManageComponent implements OnInit {
     }
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
-      startWith(''),
-      map(val => this.filter(val))
+        startWith(''),
+        map(val => this.filter(val))
       );
   }// -- _reinit setter
 
@@ -48,12 +48,12 @@ export class PcaricaseManageComponent implements OnInit {
   @Output() onSubmitCaseTrigger: EventEmitter<Case> = new EventEmitter();
   @Output() onShowICDTrigger: EventEmitter<any> = new EventEmitter();
 
-  private errors: any = {};
-  private has_errors = false;
-  private is_processing = false;
-  private is_adding_forms = false;
-  private selected_forms: Form[];
-  private options: string[];
+  errors: any = {};
+  has_errors = false;
+  is_processing = false;
+  is_adding_forms = false;
+  selected_forms: Form[];
+  options: string[];
   filteredOptions: Observable<string[]>;
   myControl: FormControl = new FormControl();
 

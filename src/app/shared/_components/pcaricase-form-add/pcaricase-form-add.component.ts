@@ -13,12 +13,13 @@ export class PcaricaseFormAddComponent implements OnInit {
 
   private _forms: Form[];
   @Input() set forms(value: Form[]) {
-      this._forms = value;
-      console.warn(this._forms, 'HELLO!');
-      this.dataSource = new MatTableDataSource(this._forms);
-      this.selection = new SelectionModel<Form>(this.allowMultiSelect, this.initialSelection);
+    this._forms = value;
+    console.warn(this._forms, 'HELLO!');
+    this.dataSource = new MatTableDataSource(this._forms);
+    this.selection = new SelectionModel<Form>(this.allowMultiSelect, this.initialSelection);
   }// -- setter for forms
-  private _show: boolean;
+
+  _show: boolean;
   @Input() set show(value: boolean) {
     console.warn(this._show);
     this._show = value;

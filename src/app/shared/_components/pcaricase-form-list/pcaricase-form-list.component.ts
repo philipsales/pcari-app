@@ -14,10 +14,10 @@ export class PcaricaseFormListComponent implements OnInit {
   @Input() update_url: string;
   @Input() view_url: string;
 
-  private _show: boolean;
+  _show: boolean;
   @Input() set show(value: boolean) {
-      console.warn(this._show);
-      this._show = value;
+    console.warn(this._show);
+    this._show = value;
   }// -- _reinit setter
 
   @Output() onCallSelectFormTrigger: EventEmitter<null> = new EventEmitter();

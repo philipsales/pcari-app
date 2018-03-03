@@ -15,7 +15,8 @@ export class QuestionOptionComponent implements OnInit {
   @Input() formArray: FormArray;
   @Input() option: Option;
   @Input() viewState: string;
-  @Input() optionType: String[];
+  @Input() optionType: string;
+  //@Input() optionType: string[];
 
 
   @Output() removed = new EventEmitter();
@@ -24,7 +25,7 @@ export class QuestionOptionComponent implements OnInit {
   index: number;
 
   constructor(
-   private fb: FormBuilder
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -32,11 +33,11 @@ export class QuestionOptionComponent implements OnInit {
     this.index = this.formArray.length;
     this.formArray.push(this.optionGroup);
   }
-  
-  toFormGroup(option: Option){
+
+  toFormGroup(option: Option) {
     return this.fb.group({
-      key  : option.key,
-      name : option.name
+      key: option.key,
+      name: option.name
     });
   }
 

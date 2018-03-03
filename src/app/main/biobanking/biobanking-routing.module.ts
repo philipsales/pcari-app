@@ -13,7 +13,7 @@ const routes: Routes = [
       },
       {
         path: 'forms',
-        loadChildren: './biobankforms/consentforms.module#ConsentformsModule'
+        loadChildren: './biobankforms/biobankforms.module#ConsentformsModule'
       },
       {
         path: 'reports',

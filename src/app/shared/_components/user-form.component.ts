@@ -35,8 +35,9 @@ import { UserJSON } from 'app/core/interfaces';
 
 export class UserFormComponent implements OnInit {
 
-    private _resetuser: UserJSON;
-    private _user: User;
+    _resetuser: UserJSON;
+    _user: User;
+
     @Input() set user(value: User) {
         this._user = value;
         this._resetuser = this._user.toJSON();
@@ -55,30 +56,31 @@ export class UserFormComponent implements OnInit {
 
     @Input() method: string;
 
-    private confirmation_password: String;
+    confirmation_password: String;
 
-    private position_search = '';
-    private positionCompleterData: CompleterData;
+    position_search = '';
+    positionCompleterData: CompleterData;
     @ViewChild('positionCompleter') positionCompleter: CompleterCmp;
 
-    private organization_search = '';
-    private organizationCompleterData: CompleterData;
+    organization_search = '';
+    organizationCompleterData: CompleterData;
     @ViewChild('organizationCompleter') organizationCompleter: CompleterCmp;
 
-    private roles: Role[];
+    roles: Role[];
     @ViewChild('sel_roles') sel_roles: MatSelectionList;
 
-    private department_search;
-    private departmentCompleterData: CompleterData;
+    department_search;
+    departmentCompleterData: CompleterData;
     @ViewChild('departmentCompleter') departmentCompleter: CompleterCmp;
 
-    private errors: any = {};
-    private has_errors = false;
-    private is_processing = false;
-    private is_organization_ok = false;
-    private is_department_ok = false;
-    private approval_status = [];
-    private departments: Department[];
+    errors: any = {};
+
+    has_errors = false;
+    is_processing = false;
+    is_organization_ok = false;
+    is_department_ok = false;
+    approval_status = [];
+    departments: Department[];
 
     constructor(
         private userService: UserService,

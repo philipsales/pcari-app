@@ -10,12 +10,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MedformsPreviewComponent implements OnInit {
 
-  private caseform: Form;
+  caseform: Form;
+  origin = '';
   private caseid = '';
   private casenumber = '';
   private form_answer_id = '';
   private form_id = '';
-  private origin = '';
   private answers = new Map<string, string>();
 
   constructor(

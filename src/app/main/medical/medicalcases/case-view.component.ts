@@ -21,8 +21,8 @@ import { environment } from 'environments/environment';
 })
 export class CaseViewComponent implements OnInit {
 
-  private case: Case;
-  private forms: Form[];
+  case: Case;
+  forms: Form[];
   private answers: FormAnswer[];
 
   constructor(

@@ -20,12 +20,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./medforms-create.component.css']
 })
 export class MedformsCreateComponent implements OnInit {
-  private new_form: Form;
-  private registryTypes: RegType[];
-  private departments: Department[];
-  private organizations: Organization[];
-  private is_created = false;
-  private is_processing = false;
+  new_form: Form;
+  registryTypes: RegType[];
+  departments: Department[];
+  organizations: Organization[];
+  is_created = false;
+  is_processing = false;
 
   constructor(
     private keyGenerator: KeyGenerator,
@@ -108,7 +108,7 @@ export class MedformsCreateComponent implements OnInit {
               pauseOnHover: false,
               clickToClose: false
             });
-            this.router.navigate(['/medical/medforms']);
+        this.router.navigate(['/medical/medforms']);
       }, errors => {
         this.is_processing = false;
         console.warn('error');

@@ -11,8 +11,9 @@ import { NoJWTError } from 'app/core/errors';
 })
 export class CaseFormsComponent implements OnInit {
 
-  private caseform: Form;
-  private caseid = '';
+  caseform: Form;
+  caseid = '';
+
   private casenumber = '';
   private form_answer_id = '';
   private form_id = '';
