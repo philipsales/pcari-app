@@ -10,7 +10,7 @@ import { FormService, DepartmentService, RegTypeService, OrganizationService } f
 
 import { ConsentformsRoutingModule } from './bioforms-routing.module';
 import { BioformsListComponent } from './bioforms-list/bioforms-list.component';
-import { ConsentformsCreateComponent } from './bioforms-create/consentforms-create.component';
+import { BioformsCreateComponent } from './bioforms-create/bioforms-create.component';
 import { BioformsUpdateComponent } from './bioforms-update/bioforms-update.component';
 import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-preview.component';
 
@@ -26,7 +26,7 @@ import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-pr
   ],
   declarations: [
     BioformsListComponent,
-    ConsentformsCreateComponent,
+    BioformsCreateComponent,
     BioformsUpdateComponent,
     ConsentformsPreviewComponent
   ],

@@ -15,11 +15,11 @@ import { environment } from 'environments/environment';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-consentforms-create',
-  templateUrl: './consentforms-create.component.html',
-  styleUrls: ['./consentforms-create.component.css']
+  selector: 'app-bioforms-create',
+  templateUrl: './bioforms-create.component.html',
+  styleUrls: ['./bioforms-create.component.css']
 })
-export class ConsentformsCreateComponent implements OnInit {
+export class BioformsCreateComponent implements OnInit {
 
   new_form: Form;
   method = "CREATE";
