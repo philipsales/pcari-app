@@ -17,12 +17,12 @@ export class DatabaseCreateComponent implements OnInit {
   private database_id: string;
   private database: Database;
 
-  private errors: any = {};
-  private has_errors = false;
-  private is_processing = false;
+  errors: any = {};
+  has_errors = false;
+  is_processing = false;
 
-  private state_view: string;
-  private is_restore: boolean;
+  state_view: string;
+  is_restore: boolean;
 
   constructor(
     private _notificationsService: NotificationsService,
@@ -68,9 +68,9 @@ export class DatabaseCreateComponent implements OnInit {
     this.databaseService
       .getDatabase(this.database_id)
       .subscribe(
-      database => {
-        this.database = database;
-      });
+        database => {
+          this.database = database;
+        });
   }
 
   onSaveClick(input_database: Database) {
@@ -79,14 +79,14 @@ export class DatabaseCreateComponent implements OnInit {
     this.databaseService
       .create(input_database)
       .subscribe(
-      saved_database => {
-        this.notificationPrompt(saved_database);
-      },
-      errors => {
-        this.errors = errors;
-        this.has_errors = true;
-        this.is_processing = false;
-      }
+        saved_database => {
+          this.notificationPrompt(saved_database);
+        },
+        errors => {
+          this.errors = errors;
+          this.has_errors = true;
+          this.is_processing = false;
+        }
       );
   }
 
@@ -94,14 +94,14 @@ export class DatabaseCreateComponent implements OnInit {
     this.databaseService
       .update(this.database_id, input_database)
       .subscribe(
-      updated_database => {
-        this.notificationPrompt(updated_database);
-      },
-      errors => {
-        this.errors = errors;
-        this.has_errors = true;
-        this.is_processing = false;
-      }
+        updated_database => {
+          this.notificationPrompt(updated_database);
+        },
+        errors => {
+          this.errors = errors;
+          this.has_errors = true;
+          this.is_processing = false;
+        }
       );
   }
 
@@ -115,14 +115,14 @@ export class DatabaseCreateComponent implements OnInit {
     this.databaseService
       .restore(id)
       .subscribe(
-      restored_database => {
-        this.notificationPrompt(restored_database);
-      },
-      errors => {
-        this.errors = errors;
-        this.has_errors = true;
-        this.is_processing = false;
-      }
+        restored_database => {
+          this.notificationPrompt(restored_database);
+        },
+        errors => {
+          this.errors = errors;
+          this.has_errors = true;
+          this.is_processing = false;
+        }
       );
   }
 
@@ -132,37 +132,37 @@ export class DatabaseCreateComponent implements OnInit {
     this.databaseService
       .downloadDbDump(path[1])
       .subscribe(
-      database => {
-        var a = document.createElement("a");
-        document.body.appendChild(a);
+        database => {
+          var a = document.createElement("a");
+          document.body.appendChild(a);
 
-        var fileName = path[1];
-        var url = window.URL.createObjectURL(database);
-        a.href = url;
-        a.download = fileName;
-        a.click();
+          var fileName = path[1];
+          var url = window.URL.createObjectURL(database);
+          a.href = url;
+          a.download = fileName;
+          a.click();
 
-        this.notificationPrompt({ 'name': path[1] });
-      },
-      errors => {
-        this.errors = errors;
-        this.has_errors = true;
-        this.is_processing = false;
-      }
+          this.notificationPrompt({ 'name': path[1] });
+        },
+        errors => {
+          this.errors = errors;
+          this.has_errors = true;
+          this.is_processing = false;
+        }
       );
   }
 
   notificationPrompt(input_database) {
     this._notificationsService
       .success(
-      'Database: ' + input_database.name,
-      'Successfully ' + this.state_view.substr(0, 1).toUpperCase() + this.state_view.substr(1) + 'd',
-      {
-        timeOut: 10000,
-        showProgressBar: true,
-        pauseOnHover: false,
-        clickToClose: false
-      })
+        'Database: ' + input_database.name,
+        'Successfully ' + this.state_view.substr(0, 1).toUpperCase() + this.state_view.substr(1) + 'd',
+        {
+          timeOut: 10000,
+          showProgressBar: true,
+          pauseOnHover: false,
+          clickToClose: false
+        })
   }
 
 }

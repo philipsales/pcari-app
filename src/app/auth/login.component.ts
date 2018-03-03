@@ -7,10 +7,10 @@ import { environment } from 'environments/environment';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private show_signup = false;
-  private show_signin = true;
-  private show_about = false;
-  private version = '';
+  show_signup = false;
+  show_signin = true;
+  show_about = false;
+  version = '';
 
   constructor() {
     this.version = environment.VERSION;

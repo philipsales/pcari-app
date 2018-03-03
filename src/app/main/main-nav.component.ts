@@ -8,7 +8,7 @@ import { User } from 'app/core/models';
 })
 export class MainNavComponent implements OnInit {
 
-  private roles: string[];
+  roles: string[];
   private firstname: string;
 
   constructor() { }

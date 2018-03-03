@@ -26,7 +26,7 @@
       <!-- Username -->
       <div class="form-group"
         [ngClass]="{'has-error': ((signupusername.dirty || signupusername.touched) && 
-          (signupusername.errors) || !valid_email) }">
+          (signupusername.error) || !valid_email) }">
         <label for="username" class="form-label">EMAIL ADDRESS</label>
         <input id="signup_username" name="username" autofocus=""
           class="form-control" type="text" value="" 
@@ -35,8 +35,8 @@
           placeholder="yourname@email.com" style="text-align: left;" >
           <div class="help-block"
             *ngIf="(signupusername.dirty || signupusername.touched) && 
-              (signupusername.errors)">
-              <span [hidden]="!(signupusername.errors.required)">
+              (signupusername.error)">
+              <span [hidden]="!(signupusername.error.required)">
               Email Address is required
               </span>
           </div>
@@ -50,9 +50,9 @@
 
       <!-- Password -->
       <div class="form-group" style="margin-bottom: 0;"
-		    [ngClass]="{'has-error': errors?.password || 
+		    [ngClass]="{'has-error': error?.password || 
           (signuppassword.dirty || signuppassword.touched) && 
-          (signuppassword.errors) }">
+          (signuppassword.error) }">
         <label for="username" class="form-label">
           <span class="pull-left">PASSWORD</span>
         </label>
@@ -61,8 +61,8 @@
           placeholder="Enter your password" style="text-align: left;" >
           <div class="help-block"
             *ngIf="(signuppassword.dirty || signuppassword.touched) && 
-              (signuppassword.errors)">
-              <span [hidden]="!(signuppassword.errors.required)">
+              (signuppassword.error)">
+              <span [hidden]="!(signuppassword.error.required)">
               Password is required
               </span>
             </div>
@@ -71,7 +71,7 @@
        <!-- Confirm Password -->
        <div class="form-group"
         [ngClass]="{'has-error': (signupconfirmpassword.dirty || signupconfirmpassword.touched) && 
-              (signupconfirmpassword.errors ||
+              (signupconfirmpassword.error ||
               (model.password != confirm_password)) }">
           <label for="username" class="form-label">
           </label>
@@ -80,8 +80,8 @@
             placeholder="Confirm your password" style="text-align: left;" >
             <div class="help-block"
 		          *ngIf="(signupconfirmpassword.dirty || signupconfirmpassword.touched) && 
-                (signupconfirmpassword.errors)">
-                <span  [hidden]="!(signupconfirmpassword.errors.required)">
+                (signupconfirmpassword.error)">
+                <span  [hidden]="!(signupconfirmpassword.error.required)">
                  Please confirm your password
                 </span>
             </div>
@@ -98,7 +98,7 @@
         <!-- First Name -->
         <div class="form-group"
          [ngClass]="{'has-error': (signupfirstname.dirty || signupfirstname.touched) && 
-          (signupfirstname.errors) }">
+          (signupfirstname.error) }">
           <label for="firstname" class="form-label">First Name</label>
           <input id="firstname" name="firstname" autofocus=""
             class="form-control" type="text" value="" 
@@ -106,8 +106,8 @@
             placeholder="" style="text-align: left;" >
             <div class="help-block"
             *ngIf="(signupfirstname.dirty || signupfirstname.touched) && 
-              (signupfirstname.errors)">
-              <span [hidden]="!(signupfirstname.errors.required)">
+              (signupfirstname.error)">
+              <span [hidden]="!(signupfirstname.error.required)">
               First Name is required
               </span>
             </div>

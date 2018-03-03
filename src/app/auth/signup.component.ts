@@ -11,11 +11,11 @@ import { User } from 'app/core/models';
 })
 export class SignupComponent implements OnInit {
 
-  private _show: boolean;
+  _show: boolean;
   @Input() set show(value: boolean) {
-      console.warn(this._show);
-      this._show = value;
-      this.reset();
+    console.warn(this._show);
+    this._show = value;
+    this.reset();
   }// -- _reinit setter
 
   model: any = {};
@@ -28,9 +28,9 @@ export class SignupComponent implements OnInit {
   valid_email = false;
 
   constructor(
-      private router: Router,
-      private userService: UserService,
-      private authService: AuthService) {
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
         console.warn('OK!');
         this.is_successful = true;
       },
-      errors  => {
+      errors => {
         this.error = errors;
         this.loading = false;
         this.is_error = true;

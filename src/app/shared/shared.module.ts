@@ -12,7 +12,6 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ConsentService, DepartmentService } from 'app/core/services';
 
 // DFORMS
-// import { DformsComponent } from './_components/forms_dforms/dforms.component';
 import { DynamicFormComponent } from './_components/forms_dforms/dynamic-form.component';
 import { DynamicFormQuestionComponent } from './_components/forms_dforms/dynamic-form-question.component';
 
