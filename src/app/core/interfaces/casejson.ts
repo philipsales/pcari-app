@@ -5,6 +5,7 @@ export interface CaseJSON {
     case_number: string;
     organization: string;
     diagnosis: string;
+    is_active: string;
     date_created: number;
     forms: FormAnswerJSON[];
     is_deleted?: boolean;

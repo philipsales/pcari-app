@@ -18,11 +18,12 @@ import { Router } from '@angular/router';
 })
 export class CaseCreateComponent implements OnInit {
 
-  private case: Case;
-  private forms: Form[];
   private answers: FormAnswer[];
-  private is_processing = false;
-  private show_icd: boolean;
+
+  case: Case;
+  forms: Form[];
+  is_processing = false;
+  show_icd: boolean;
 
 
   constructor(
@@ -65,7 +66,7 @@ export class CaseCreateComponent implements OnInit {
     });
   }
 
-  onShowICD() {
+  onShowICD(value) {
     console.log("onSHOWICD CaseCreate");
     this.show_icd = true;
   }

@@ -12,10 +12,13 @@ export class PcaricaseListComponent implements OnInit {
   @Input() view_url: string;
   @Input() update_url: string;
   @Input() show_diagnosis: boolean;
-  private _cases: Case[];
+
+  is_adding_forms = true;
+  _cases: Case[];
+
   @Input() set cases(value: Case[]) {
-      this._cases = value;
-      console.warn('HELLO!');
+    this._cases = value;
+    console.warn('HELLO!');
   }// -- setter for forms
 
   constructor() { }

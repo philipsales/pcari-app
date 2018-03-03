@@ -16,8 +16,8 @@ import { RoleJSON } from 'app/core/interfaces';
 })
 export class RolesViewComponent implements OnInit {
 
-  private role: Role;
-  private role_id: string;
+  role: Role;
+  role_id: string;
 
   constructor(
     private route: ActivatedRoute,

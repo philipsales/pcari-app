@@ -8,7 +8,7 @@ import { User } from 'app/core/models';
 })
 export class UsersCreateComponent implements OnInit {
 
-  private new_user: User;
+  new_user: User;
 
   constructor() { }
 

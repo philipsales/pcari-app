@@ -21,10 +21,10 @@ import { environment } from 'environments/environment';
 })
 export class CaseViewComponent implements OnInit {
 
-  private case: Case;
-  private forms: Form[];
-  private answers: FormAnswer[];
-  private medcases: string[];
+  case: Case;
+  forms: Form[];
+  answers: FormAnswer[];
+  medcases: string[];
 
   constructor(
     private formService: FormService,

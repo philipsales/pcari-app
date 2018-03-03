@@ -1,19 +1,21 @@
 <!-- Selected Forms  -->
 <div class="col-md-12 col-sm-12 col-xs-12"           
     *ngIf="_show"> 
-<h2>pcaricase-form-add</h2>
     <div class="x_panel">
       <div class="x_title">
         <h2 class="pull-left">Case Forms</h2>
         <div class="pull-right">
-            <button mat-button
+
+            <button class="btn btn-success"
               (click)="onAddSelectedForm()">
               <i class="fa fa-plus e2e-add-form-to-case"></i> Add Selected
             </button>
 
-            <button mat-button (click)="onCancelAddForm()">
+            <button class="btn btn-danger"
+              (click)="onCancelAddForm()">
               <i class="fa fa-window-close"></i> Cancel
-          </button>
+            </button>
+
         </div>
         <div class="clearfix"></div>
       </div>

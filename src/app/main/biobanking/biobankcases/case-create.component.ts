@@ -18,12 +18,12 @@ import { Router } from '@angular/router';
 })
 export class CaseCreateComponent implements OnInit {
 
-  private case: Case;
-  private forms: Form[];
-  private answers: FormAnswer[];
-  private is_processing = false;
-  private medcases: string[];
-  private show_icd: boolean;
+  case: Case;
+  forms: Form[];
+  answers: FormAnswer[];
+  is_processing = false;
+  medcases: string[];
+  show_icd: boolean;
 
   constructor(
     private formService: FormService,

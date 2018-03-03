@@ -13,15 +13,17 @@ export class PcariformListComponent implements OnInit {
 
   @Input() create_url: string;
   @Input() update_url: string;
-  private _forms: Form[];
+
+  _forms: Form[];
   @Input() set forms(value: Form[]) {
     this._forms = value;
     console.log(this._forms);
     console.warn('HELLO!');
   }// -- setter for forms
+
+  for_delete: Form;
+  is_processing = false;
   private _date_today;
-  private for_delete: Form;
-  private is_processing = false;
 
   @Output() deleteFormEvent: EventEmitter<Form> = new EventEmitter();
 

@@ -15,8 +15,8 @@ import { UserJSON } from 'app/core/interfaces';
 })
 export class UsersUpdateComponent implements OnInit {
 
-  private user: User;
-  private user_id: string;
+  user: User;
+  user_id: string;
 
   constructor(
     private route: ActivatedRoute,

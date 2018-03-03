@@ -13,11 +13,11 @@ import { MatSelectionList } from '@angular/material';
 })
 export class RolesCreateComponent implements OnInit {
 
-    private new_role: Role;
+  new_role: Role;
 
-    constructor() {
-      this.new_role = new Role('', '', false);
-    }// --constructor
+  constructor() {
+    this.new_role = new Role('', '', false);
+  }// --constructor
 
   ngOnInit() {
   }

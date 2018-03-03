@@ -14,12 +14,12 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class ConsentformsUpdateComponent implements OnInit {
 
-  private for_update: Form;
-  private registryTypes: RegType[];
-  private departments: Department[];
-  private organizations: Organization[];
-  private is_updated = false;
-  private is_processing = false;
+  for_update: Form;
+  registryTypes: RegType[];
+  departments: Department[];
+  organizations: Organization[];
+  is_updated = false;
+  is_processing = false;
 
   constructor(
     private formService: FormService,

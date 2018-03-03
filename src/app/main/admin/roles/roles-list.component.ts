@@ -10,16 +10,16 @@ import { Role } from 'app/core/models';
 })
 export class RolesListComponent implements OnInit {
 
-  private roles : Role[];
-    
+  roles: Role[];
+
   constructor(private roleService: RoleService) {
   }//--constructor
 
   ngOnInit() {
-      this.roleService.getAll().subscribe(roles => {
-	  this.roles = roles;
-	  console.warn(roles);
-      });
+    this.roleService.getAll().subscribe(roles => {
+      this.roles = roles;
+      console.warn(roles);
+    });
   }//--OnInit
 
 }

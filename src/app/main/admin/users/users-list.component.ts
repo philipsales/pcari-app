@@ -11,23 +11,23 @@ import { NoJWTError } from 'app/core/errors';
 })
 export class UsersListComponent implements OnInit {
 
-  private users : User[];
-    
+  users: User[];
+
   constructor(private userService: UserService) {
   }//--constructor
 
   ngOnInit() {
-      this.userService.getAll().subscribe(
-        users => {
-            this.users = users;
-            console.warn(users);
-        },error => {
-            console.log(error);//get the error in error handler
-            if(error instanceof NoJWTError){
-              console.warn('TO DO : handle JWT Expired');
-            }
+    this.userService.getAll().subscribe(
+      users => {
+        this.users = users;
+        console.warn(users);
+      }, error => {
+        console.log(error);//get the error in error handler
+        if (error instanceof NoJWTError) {
+          console.warn('TO DO : handle JWT Expired');
         }
-      );
+      }
+    );
   }//--OnInit
 
 }

@@ -17,6 +17,7 @@
 
 <div class="col-sm-3 save-wrapper">
   <button class="btn btn-success pull-right"
+    *ngIf="!is_adding_forms"
     [disabled]="is_adding_forms"
     (click)="onSubmitCase(_case)">
     <i class="fa fa-save e2e-save-case"></i> &nbsp; Save Case

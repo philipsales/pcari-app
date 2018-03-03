@@ -14,8 +14,9 @@ import { RoleJSON } from 'app/core/interfaces';
   styleUrls: ['./roles-update.component.css']
 })
 export class RolesUpdateComponent implements OnInit {
-  private role: Role;
-  private role_id: string;
+
+  role: Role;
+  role_id: string;
 
   constructor(
     private route: ActivatedRoute,

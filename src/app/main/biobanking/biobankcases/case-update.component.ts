@@ -19,11 +19,11 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class CaseUpdateComponent implements OnInit {
 
-  private case: Case;
-  private forms: Form[];
-  private answers: FormAnswer[];
-  private is_processing = false;
-  private medcases: string[];
+  case: Case;
+  forms: Form[];
+  answers: FormAnswer[];
+  is_processing = false;
+  medcases: string[];
 
   constructor(
     private formService: FormService,

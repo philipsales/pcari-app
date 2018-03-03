@@ -7,6 +7,7 @@ export class Case {
   organization: string;
   date_created: Date;
   diagnosis?: string;
+  is_active?: string;
   forms?: FormAnswer[];
   is_deleted: boolean;
   created_by?: string;
@@ -21,6 +22,7 @@ export class Case {
         case_nbr: json.case_number,
         organization: json.organization,
         diagnosis: json.diagnosis,
+        is_active: json.is_active,
         date_created: new Date(json.date_created),
         is_deleted: json.isDeleted,
         created_by: json.created_by
@@ -44,11 +46,13 @@ export class Case {
     organization: string,
     diagnosis: string,
     forms: FormAnswer[],
-    created_by?: string
+    created_by?: string,
+    is_active?: string
   ) {
     this.case_nbr = case_nbr;
     this.organization = organization;
     this.diagnosis = diagnosis;
+    this.is_active = is_active;
     this.forms = forms;
     this.is_deleted = false;
     this.created_by = created_by;
@@ -68,6 +72,7 @@ export class Case {
       case_number: this.case_nbr,
       organization: this.organization,
       diagnosis: this.diagnosis,
+      is_active: this.is_active,
       date_created: date_created,
       created_by: this.created_by,
       forms: forms

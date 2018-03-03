@@ -21,12 +21,14 @@ import { Router } from '@angular/router';
 })
 export class ConsentformsCreateComponent implements OnInit {
 
-  private new_form: Form;
-  private registryTypes: RegType[];
-  private departments: Department[];
-  private organizations: Organization[];
-  private is_created = false;
-  private is_processing = false;
+  new_form: Form;
+  method = "CREATE";
+
+  registryTypes: RegType[];
+  departments: Department[];
+  organizations: Organization[];
+  is_created = false;
+  is_processing = false;
 
   constructor(
     private keyGenerator: KeyGenerator,

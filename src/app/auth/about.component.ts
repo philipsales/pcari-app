@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  private _show: boolean;
+  _show: boolean;
   @Input() set show(value: boolean) {
     console.warn(this._show);
     this._show = value;

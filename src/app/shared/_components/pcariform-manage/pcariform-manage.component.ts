@@ -56,12 +56,12 @@ export class PcariformManageComponent implements OnInit {
 
   @Output() onSubmitTrigger: EventEmitter<Form> = new EventEmitter();
 
-  private templateForm: FormGroup;
-  private status: any[];
+  templateForm: FormGroup;
+  status: any[];
 
-  private errors: any = {};
-  private has_errors = false;
-  private hide_key = true;
+  errors: any = {};
+  has_errors = false;
+  hide_key = true;
 
   constructor(
     private fb: FormBuilder,

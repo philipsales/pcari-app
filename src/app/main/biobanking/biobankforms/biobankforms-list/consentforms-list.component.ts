@@ -10,7 +10,7 @@ import { Form } from 'app/core/models';
 })
 export class ConsentformsListComponent implements OnInit {
 
-  private forms: Form[];
+  forms: Form[];
 
   constructor(private formService: FormService) {
     this.formService.currentForm = undefined;

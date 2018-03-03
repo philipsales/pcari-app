@@ -11,12 +11,13 @@ import { NoJWTError } from 'app/core/errors';
 })
 export class CaseFormsComponent implements OnInit {
 
-  private caseform: Form;
-  private caseid = '';
-  private casenumber = '';
-  private form_answer_id = '';
-  private form_id = '';
   private answers = new Map<string, string>();
+
+  caseform: Form;
+  caseid = '';
+  casenumber = '';
+  form_answer_id = '';
+  form_id = '';
 
   constructor(
     private route: ActivatedRoute,

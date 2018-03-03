@@ -5,7 +5,8 @@
         <div class="x_title">
           <h2 class="pull-left">Case Forms</h2>
           <div class="pull-right" *ngIf="!is_adding_forms">
-            <button mat-button class="pull-right"
+
+            <button class="btn btn-info"
                 *ngIf="method == 'UPDATE' || method == 'CREATE'"
                 (click)="onAddForm()">
                 <i class="fa fa-plus e2e-add-form"></i> Add Form
