@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Form } from 'app/core/models';
 import { FormService } from '../../../core/services';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-pcariform-list',
@@ -19,9 +20,14 @@ export class PcariformListComponent implements OnInit {
     console.warn('HELLO!');
   }// -- setter for forms
   private _date_today;
+  private for_delete: Form;
+  private is_processing = false;
+
+  @Output() deleteFormEvent: EventEmitter<Form> = new EventEmitter();
 
   constructor(
     private formService: FormService,
+    private notificationsService: NotificationsService,
     private router: Router
   ) { }
 
@@ -35,4 +41,83 @@ export class PcariformListComponent implements OnInit {
     this.router.navigate([this.update_url]);
   }
 
+  callDeleteForm(for_delete: Form) {
+    this.for_delete = for_delete;
+  }
+
+  confirmDelete(event: Form) {
+    console.log('show please');
+    this.for_delete = event;
+  }
+
+  onConfirmDeleteForm(proceed_delete: boolean) {
+    console.warn(proceed_delete, 'ANSWER');
+    if (proceed_delete) {
+      this.deleteForm(this.for_delete);
+    }
+    this.for_delete = undefined;
+  }
+
+  deleteForm(for_delete: Form) {
+    console.log(for_delete, 'FORM FOR DELETE');
+    this.formService.delete(for_delete).subscribe(
+      updated_form => {
+        console.warn(updated_form, 'AYUS');
+        this.is_processing = false;
+        this._forms = this._forms.filter((form: Form) => form.id !== updated_form.id);
+        this.notificationsService
+          .success(
+            'Form: ' + updated_form.name,
+            'Successfully Deleted.',
+            {
+              timeOut: 10000,
+              showProgressBar: true,
+              pauseOnHover: false,
+              clickToClose: false
+            });
+      }, errors => {
+        this.is_processing = false;
+        console.warn('error');
+        throw errors;
+      });
+  }
+
+  approveForm(for_approval: Form, is_approve: boolean) {
+    console.log(for_approval, 'FORM FOR DELETE');
+
+    let getFormSubscription = this.formService.getForm(for_approval.id);
+    getFormSubscription.subscribe((form: Form) => {
+      if (is_approve) {
+        form.status = 'Approved';
+      } else {
+        form.status = 'Rejected';
+      }
+      this.formService.updateForm(form.toJSON()).subscribe(
+        updated_form => {
+          console.warn(updated_form, 'AYUS');
+          this.is_processing = false;
+          const total = this._forms.length;
+          for (let i = 0; i < total; ++i) {
+            if (this._forms[i].id === updated_form.id) {
+              this._forms[i] = updated_form;
+              break;
+            }
+          }
+          this.notificationsService
+            .success(
+              'Form: ' + updated_form.name,
+              (is_approve ? 'Approved.' : 'Rejected.'),
+              {
+                timeOut: 10000,
+                showProgressBar: true,
+                pauseOnHover: false,
+                clickToClose: false
+              });
+        }, errors => {
+          this.is_processing = false;
+          console.warn('error');
+          throw errors;
+        });
+    });
+  }
 }

@@ -194,7 +194,6 @@ export class UserFormComponent implements OnInit {
     }
 
     onDepartmentSearchClick() {
-        alert('y');
         if (this.departmentCompleter.isOpen()) {
             this.departmentCompleter.close();
         } else {

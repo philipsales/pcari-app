@@ -26,4 +26,7 @@ export class ConsentformsListComponent implements OnInit {
     );
   }
 
+  onDeleteForm(for_delete: Form) {
+    console.log(for_delete, 'FORM FOR DELETE');
+  }
 }
