@@ -8,18 +8,18 @@ const routes: Routes = [
     path: '', component: BiobankingComponent,
     children: [
       {
-        path: 'cases',
-        loadChildren: './biobankcases/case.module#CaseModule'
+        path: 'forms',
+        loadChildren: './biobankforms/bioforms.module#ConsentformsModule'
       },
       {
-        path: 'forms',
-        loadChildren: './biobankforms/biobankforms.module#ConsentformsModule'
+        path: 'cases',
+        loadChildren: './biobankcases/biocase.module#BiocaseModule'
       },
       {
         path: 'reports',
         loadChildren: './biobankreports/reports-biobanking.module#ReportsBiobankingModule'
       },
-      { path: '', redirectTo: 'cases' }
+      { path: '', redirectTo: 'forms' }
     ]
   }
 ];

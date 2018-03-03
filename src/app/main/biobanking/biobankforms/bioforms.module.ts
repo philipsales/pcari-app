@@ -8,11 +8,11 @@ import { KeyGenerator } from 'app/core/utils';
 import { FormDummyApiResponse } from 'app/core/services-dummy';
 import { FormService, DepartmentService, RegTypeService, OrganizationService } from 'app/core/services';
 
-import { ConsentformsRoutingModule } from './biobankforms-routing.module';
-import { ConsentformsListComponent } from './biobankforms-list/consentforms-list.component';
-import { ConsentformsCreateComponent } from './biobankforms-create/consentforms-create.component';
-import { ConsentformsUpdateComponent } from './biobankforms-update/consentforms-update.component';
-import { ConsentformsPreviewComponent } from './biobankforms-preview/consentforms-preview.component';
+import { ConsentformsRoutingModule } from './bioforms-routing.module';
+import { BioformsListComponent } from './bioforms-list/bioforms-list.component';
+import { ConsentformsCreateComponent } from './bioforms-create/consentforms-create.component';
+import { ConsentformsUpdateComponent } from './bioforms-update/consentforms-update.component';
+import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-preview.component';
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import { ConsentformsPreviewComponent } from './biobankforms-preview/consentform
     ConsentformsRoutingModule
   ],
   declarations: [
-    ConsentformsListComponent,
+    BioformsListComponent,
     ConsentformsCreateComponent,
     ConsentformsUpdateComponent,
     ConsentformsPreviewComponent

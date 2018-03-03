@@ -30,14 +30,14 @@ const routes: Routes = [
     component: CaseFormsComponent
   },
   {
-      path: 'update/:id/forms/:formid',
-      component: CaseFormsUpdateComponent
+    path: 'update/:id/forms/:formid',
+    component: CaseFormsUpdateComponent
   },
-  {path: '', redirectTo: 'list'}
+  { path: '', redirectTo: 'list' }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MedicalcaseRoutingModule { }
+export class CaseRoutingModule { }

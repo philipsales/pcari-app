@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ConsentformsListComponent } from './biobankforms-list/consentforms-list.component';
-import { ConsentformsCreateComponent } from './biobankforms-create/consentforms-create.component';
-import { ConsentformsPreviewComponent } from './biobankforms-preview/consentforms-preview.component';
-import { ConsentformsUpdateComponent } from './biobankforms-update/consentforms-update.component';
+import { BioformsListComponent } from './bioforms-list/bioforms-list.component';
+import { ConsentformsCreateComponent } from './bioforms-create/consentforms-create.component';
+import { ConsentformsPreviewComponent } from './bioforms-preview/consentforms-preview.component';
+import { ConsentformsUpdateComponent } from './bioforms-update/consentforms-update.component';
 
 const routes: Routes = [
   {
     path: 'list',
-    component: ConsentformsListComponent
+    component: BioformsListComponent
   },
   {
     path: 'create',
