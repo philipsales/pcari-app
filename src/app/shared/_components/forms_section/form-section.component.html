@@ -19,7 +19,8 @@
        <div class="material-form-group">
          <mat-form-field class="material-input-full-width">
               <input matInput 
-                     placeholder="Section Name"
+                     id="e2e-form-name-{{index}}"
+                     placeholder="e2e-form-name-{{index}}"
                      formControlName="name"
                      [(ngModel)]="section.name">
           </mat-form-field>
@@ -52,6 +53,7 @@
     </mat-card-header>
       <question-content-array 
               [parentForm]="sectionGroup"
+              [sectionIndex]="index"
               [questions]="section?.questions"
               [viewState]="viewState"  >
       </question-content-array>

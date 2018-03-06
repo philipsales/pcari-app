@@ -2,19 +2,25 @@
   <div formArrayName="questions">
       <div *ngFor="let question of questions; let i = index;">
         <div class="panel panel-default">
-            <question-content
-               [formArray]="parentForm.controls.questions"
-               [question]="question" 
-               [viewState]="viewState"
-               (clone)="cloneQuestion(question,i)"
-               (removed)="removeQuestion(i)" >
-            </question-content>
+            <span id="e2e-question-content-{{sectionIndex}}-{{i}}">
+              <question-content
+                [sectionIndex]="sectionIndex"
+                [questionIndex]="index"
+                [formArray]="parentForm.controls.questions"
+                [question]="question" 
+                [viewState]="viewState"
+                (clone)="cloneQuestion(question,i)"
+                (removed)="removeQuestion(i)" >
+              </question-content>
+            </span>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-11 col-md-11">
           <mat-card-actions class="pull-right">
             <button mat-raised-button color="primary"
+                    class="e2e-add-question"
+                    id="e2e-add-question-{{sectionIndex}}"
                     (click)="addQuestion()">
                 Add Question
             </button>

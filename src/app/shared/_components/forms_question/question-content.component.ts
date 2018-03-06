@@ -14,6 +14,8 @@ export class QuestionContentComponent implements OnChanges {
   @Input() formArray: FormArray;
   @Input() question: Question;
   @Input() viewState: string;
+  @Input() sectionIndex: number;
+  @Input() questionIndex: number;
 
   @Output() removed = new EventEmitter();
   @Output() clone = new EventEmitter();
@@ -23,9 +25,9 @@ export class QuestionContentComponent implements OnChanges {
 
   questionTypes: any[];
 
-  constructor( 
+  constructor(
     private fb: FormBuilder
-  ) { 
+  ) {
 
   }
 
@@ -36,42 +38,42 @@ export class QuestionContentComponent implements OnChanges {
     this.formArray.push(this.questionGroup);
 
     //Make into questionTypeService
-    this.questionTypes = [ 
-      { 
-      "value": "textbox",     
-      "label": "text"
+    this.questionTypes = [
+      {
+        "value": "textbox",
+        "label": "text"
       },
-      { 
-      "value": "textarea",    
-      "label": "paragraph"
+      {
+        "value": "textarea",
+        "label": "paragraph"
       },
-      { 
-      "value": "dropdown",    
-      "label": "dropdown"
+      {
+        "value": "dropdown",
+        "label": "dropdown"
       },
-      { 
-      "value": "checkbox",
-      "label": "multiple selection"
+      {
+        "value": "checkbox",
+        "label": "multiple selection"
       },
-      { 
-      "value": "radiobutton", 
-      "label": "radio"
+      {
+        "value": "radiobutton",
+        "label": "radio"
       },
-      { 
-      "value": "datepicker",  
-      "label": "date"
+      {
+        "value": "datepicker",
+        "label": "date"
       }
     ];
   }
 
-  toFormGroup(question: Question){
+  toFormGroup(question: Question) {
     return this.fb.group({
-        key        : question.key,
-        label      : question.label,
-        type       : question.type,
-        value      : question.value,
-        required   : question.required,
-        order      : question.order
+      key: question.key,
+      label: question.label,
+      type: question.type,
+      value: question.value,
+      required: question.required,
+      order: question.order
     });
   }
 

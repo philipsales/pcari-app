@@ -7,22 +7,23 @@ import { Question, Form, Section } from 'app/core/models';
 @Component({
   selector: 'form-section-array',
   templateUrl: './form-section-array.component.html',
-  styleUrls: ['./form-section-array.component.css'] })
+  styleUrls: ['./form-section-array.component.css']
+})
 export class FormSectionArrayComponent implements OnInit {
 
   @Input() parentForm: FormGroup;
   @Input() sections: Section[];
-  @Input() viewState: string; 
+  @Input() viewState: string;
 
-  constructor( private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.initSection();
     this.parentForm.addControl('sections', new FormArray([]));
   }
 
-  initSection(){
-    if(this.sections.length == 0){
+  initSection() {
+    if (this.sections.length == 0) {
       this.sections.push(new Section(
         '',
         ''
@@ -30,8 +31,8 @@ export class FormSectionArrayComponent implements OnInit {
     }
   }
 
-  addSection(){
-    let questions : Question[] = [];
+  addSection() {
+    let questions: Question[] = [];
     this.sections.push(new Section(
       '',
       '',
@@ -40,14 +41,14 @@ export class FormSectionArrayComponent implements OnInit {
     ));
   }
 
-  removeSection(index: number){
+  removeSection(index: number) {
 
-    if(this.sections.length > 1){
-      this.sections.splice(index,1);
+    if (this.sections.length > 1) {
+      this.sections.splice(index, 1);
 
       (<FormArray>this.parentForm
-                      .get('sections'))
-                      .removeAt(index);
+        .get('sections'))
+        .removeAt(index);
     }
 
   }

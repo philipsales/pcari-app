@@ -7,8 +7,11 @@
            <input type="hidden" 
             formControlName="key">
            <mat-form-field class="col-md-9">
+                     <!-- id="e2e-question-content-{{sectionIndex}}{{index}}" -->
+                     <!-- id="e2e-question-content" -->
               <input matInput 
-                     placeholder="Question {{index+1}}"
+                     placeholder="e2e-question-content-label-{{sectionIndex}}-{{index}}"
+                     id="e2e-question-content-label-{{sectionIndex}}-{{index}}"
                      formControlName="label"
                      [(ngModel)]="question.label">
            </mat-form-field>
@@ -17,6 +20,7 @@
                          formControlName="type"
                          [(ngModel)]="question.type" >
                 <mat-option *ngFor="let type of questionTypes"
+                        id="e2e-question-content-{{type.label}}-{{sectionIndex}}-{{index}}"
                          [value]="type.value">{{type.label}}
                 </mat-option>
               </mat-select>
@@ -35,6 +39,8 @@
                          questionGroup.get('type').value=='textarea' ||
                          questionGroup.get('type').value=='datepicker'">
             <question-option-array
+               [sectionIndex]="sectionIndex"
+               [questionIndex]="index"
                [parentForm]="questionGroup"
                [options]="question?.options" 
                [viewState]="viewState" >

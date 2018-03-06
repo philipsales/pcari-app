@@ -153,6 +153,7 @@
                           mat-button
                           matTooltip="Add Sectionz" 
                           [disabled]="is_processing || is_created"
+                          class="e2e-add-new-section"
                           (click)="onAddSection()">
                           <i class="fa fa-3x fa-plus-circle"></i> &nbsp; 
                       </button>
@@ -172,8 +173,9 @@
                           mat-button
                           (click)="onSaveForm(_form)" 
                           [disabled]="!_form.name || is_processing || is_created"
+                          id="e2e-save-form"
                           matTooltip="Save Form" >
-                          <i class="fa fa-3x fa-save e2e-save-form"></i> &nbsp; 
+                          <i class="fa fa-3x fa-save "></i> &nbsp; 
                       </button>
                     </li>
                   </ul>

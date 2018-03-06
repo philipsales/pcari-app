@@ -16,6 +16,8 @@ export class QuestionOptionComponent implements OnInit {
   @Input() option: Option;
   @Input() viewState: string;
   @Input() optionType: string;
+  @Input() sectionIndex: number;
+  @Input() questionIndex: number;
   //@Input() optionType: string[];
 
 

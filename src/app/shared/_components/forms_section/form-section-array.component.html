@@ -28,12 +28,18 @@
       <div formArrayName="sections">
         <div *ngFor="let section of sections; let i = index;">
           <div *ngIf="viewState=='create'">
+            <span id="e2e-form-section-{{i}}">
+                <!-- <input type="text"
+                    placeholder="e2e-form-section-{{i}}"
+                    class="e2e-form-test-{{i}}"> -->
             <form-section
                [formArray]="parentForm.controls.sections" 
                [section]="section" 
+               [index]="i" 
                [viewState]="viewState"  
                (removed)="removeSection(i)" >
             </form-section>
+            </span>
           </div>
         <div>
       </div>
