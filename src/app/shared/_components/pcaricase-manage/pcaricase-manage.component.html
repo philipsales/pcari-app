@@ -58,12 +58,14 @@
             class="material-form-control col-md-offset-1 col-md-10 col-sm-12 col-xs-12">
               <input matInput 
                     [(ngModel)]="_case.diagnosis"
-                    #input_case_diagnosis="ngModel" name="input_case_diagnosis"
+                    #input_case_diagnosis="ngModel" 
+                    name="input_case_diagnosis"
                     [disabled]="method == 'VIEW'"
                     placeholder="Diagnosis">
                     <button mat-button 
                             matSuffix
                             (click)="onShowICD()"
+                            [disabled]="method == 'VIEW'"
                             class="pull-right">ICD Oncology</button>
           </mat-form-field>	  
           <!-- Status -->

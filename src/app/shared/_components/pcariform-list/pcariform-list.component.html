@@ -44,22 +44,22 @@
             class="badge badge--invalid" #invalid> Expired 
           </span>
         </td>
-        <td style="text-align: center;">
+        <td style="text-align: center;" >
           <span *ngIf="form.status ==='Pending'" class="badge badge--failed" #pending> {{form.status }}</span>
           <span *ngIf="form.status ==='Approved'" class="badge badge--success" #active> {{form.status }}</span>
           <span *ngIf="form.status ==='Rejected'" class="badge badge--danger" #rejected> {{form.status }}</span>
         </td>
-        <td style="text-align: center;">
+        <td style="text-align: center;" id="e2e-newest-form-btn-{{i}}">
           <button 
           [disabled]="form.status !=='Pending'"
           (click)="approveForm(form, true)"
-          class="btn btn-sm btn-success">
-            <i class="fa fa-check-circle"></i> 
+          class="btn btn-sm btn-success" >
+            <i class="fa fa-check-circle e2e-newest-form-approve-btn"></i> 
           </button>
           <button 
           [disabled]="form.status !=='Pending'"
             (click)="approveForm(form, false)"
-            class="btn btn-sm btn-warning">
+            class="btn btn-sm btn-warning" >
             <i class="fa fa-times-circle"></i>
           </button>
           <button 

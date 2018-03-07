@@ -71,11 +71,12 @@
 
   <div class="form-row col-sm-12 pull-right"
     *ngIf="method !== 'VIEW'">
-    <button mat-raised-button color="primary"
+    <button  
             [disabled]="!form.valid" 
-            class="btn btn-success pull-right "
+            class="e2e-save-data-form pull-right btn btn-success"
+            id="e2e-save-data-form-id"
             (click)="onSubmit()">
-        Save Form
+        <i class="fa fa-1x fa-save "></i> &nbsp;Save Form
     </button>
   </div>
 

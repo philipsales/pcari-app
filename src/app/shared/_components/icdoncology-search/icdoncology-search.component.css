@@ -160,5 +160,14 @@ form {
 }
 
 .mat-column-select {
-  max-width: 100px;
+    max-width: 100px;
+}
+
+.mat-row-diagnosis {
+    cursor: pointer;
+}
+
+.mat-row-diagnosis:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
