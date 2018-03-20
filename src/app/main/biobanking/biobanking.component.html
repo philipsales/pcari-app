@@ -38,15 +38,24 @@
   <div class="row">
     <div class="sidebar">
       <ul class="nav nav-sidebar" style="">
-				<li routerLinkActive="active">
+				<li routerLinkActive="active"
+				appPcariauth
+				[mustHavePermission]="['biobank_form_create', 'biobank_form_approve', 'biobank_form_view', 'biobank_form_update', 'biobank_form_delete']"
+				[mustBeAll]="false">
 						<a  [routerLink]="['./forms']">
 							<i class="fa fa-clone e2e-biobank-form"></i>Forms</a>
 				</li>
-				<li routerLinkActive="active">
+				<li routerLinkActive="active"
+				appPcariauth
+				[mustHavePermission]="['biobank_case_create', 'biobank_case_view', 'biobank_case_update']"
+				[mustBeAll]="false">
 					<a  [routerLink]="['./cases']">
 						<i class="fa fa-stethoscope e2e-biobank-case"></i>&nbsp;Cases</a>
 				</li>
-				<li routerLinkActive="active">
+				<li routerLinkActive="active"
+				appPcariauth
+				[mustHavePermission]="['biobank_report_view']"
+				[mustBeAll]="false">
 					<a  [routerLink]="['./reports']">
 						<i class="fa fa-area-chart e2e-biobank-report"></i>Reports</a>
 				</li>

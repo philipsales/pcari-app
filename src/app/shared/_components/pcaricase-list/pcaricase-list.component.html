@@ -8,9 +8,12 @@
 					</span>
 				</div>
       </div>
-      <a [routerLink]="[create_url]"
+	  <a [routerLink]="[create_url]"
+	  appPcariauth
+		[mustHavePermission]="['biobank_case_create', 'medical_case_create']"
+		[mustBeAll]="false" 
          class="btn btn-default pull-right">
-        <i class="fa fa-plus e2e-create-case"></i> &nbsp; Create Case 
+        <i class="fa fa-plus e2e-create-case"></i> &nbsp; Create Case
       </a>
     </div>
     
@@ -38,10 +41,16 @@
 						</td>
 						<td style="text-align: right">
 							<button 
+							appPcariauth
+							  [mustHavePermission]="['biobank_case_view', 'medical_case_view']"
+							  [mustBeAll]="false" 
 							class="btn btn-sm btn-default"
 							[routerLink]="[view_url, case.id]">
 							<i class="fa fa-eye"></i> View</button>
 							<button 
+							appPcariauth
+							  [mustHavePermission]="['biobank_case_update', 'medical_case_update']"
+							  [mustBeAll]="false" 
 							class="btn btn-sm btn-warning e2e-update-newest-case"
 							[routerLink]="[update_url, case.id]">
 							<i class="fa fa-edit"></i> Update</button>

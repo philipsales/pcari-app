@@ -27,7 +27,7 @@
         </li>
         <li routerLinkActive="active"
           appPcariauth
-            [mustHavePermission]="['admin_database_update', 'admin_database_restore']"
+            [mustHavePermission]="['admin_database_create', 'admin_database_update', 'admin_database_restore']"
             [mustBeAll]="false">
           <a  [routerLink]="['./database']">
             <i class="fa fa-database"></i>&nbsp;Databases

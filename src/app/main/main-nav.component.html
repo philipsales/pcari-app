@@ -27,14 +27,18 @@
 	<h3>General</h3>
 	<ul class="nav side-menu" style="">
     <li  routerLinkActive="active"
-      *ngIf="roles.indexOf('Biobank Researcher') !== -1">
+    appPcariauth
+       [mustHavePermission]="['biobank_form_create', 'biobank_form_approve', 'biobank_form_view', 'biobank_form_update', 'biobank_form_delete', 'biobank_case_create', 'biobank_case_view', 'biobank_case_update', 'biobank_report_view']"
+       [mustBeAll]="false">
 	    <a  [routerLink]="['/biobanking']">
 	      <i class="fa fa-flask e2e-biobank"></i>
 	      Biobank
 	    </a>
 	  </li>
     <li  routerLinkActive="active"
-      *ngIf="roles.indexOf('Medical Researcher') !== -1">
+       appPcariauth
+          [mustHavePermission]="['medical_form_create', 'medical_form_approve', 'medical_form_view', 'medical_form_update', 'medical_form_delete', 'medical_case_create', 'medical_case_view', 'medical_case_update', 'medical_report_view']"
+          [mustBeAll]="false">
 	    <a  [routerLink]="['/medical']">
 	      <i class="fa fa-heartbeat e2e-medical"></i>
 	      Medical
