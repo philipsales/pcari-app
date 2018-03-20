@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { SharedModule } from 'app/shared/shared.module';
+
 //InMemory modules
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -20,6 +22,7 @@ import { KeysPipe } from 'app/core/utils';
     CommonModule,
     FormsModule,
     HttpModule,
+    SharedModule,
     // InMemoryWebApiModule.forRoot(DatabaseDummyApiResponse),
     DatabaseRoutingModule
   ],

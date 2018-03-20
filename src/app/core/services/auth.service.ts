@@ -25,6 +25,7 @@ export class AuthService {
       return this.http.post(url, { username: username, password: password }).map((response: Response) => {
             console.log(response.json());
             const token = response.json() && response.json().token;
+            const permissions = response.json() && response.json().permissions;
             if (token) {
                 this.token = token;
                 const user = response.json() && response.json().user;
@@ -35,6 +36,7 @@ export class AuthService {
                 localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token, user: this.current_user }));
                 localStorage.setItem('user', JSON.stringify(this.current_user));
                 localStorage.setItem('access_token', this.token);
+                localStorage.setItem('permissions', JSON.stringify(permissions));
 
                 console.warn(this.current_user, 'LOGIN : auth.service.ts');
                 console.warn(this.token, 'LOGIN : auth.service.ts');

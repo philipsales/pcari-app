@@ -34,7 +34,10 @@
 	  </span>
 	</div>
       </div>
-      <a [routerLink]="['/admin/roles/create']"
+			<a [routerLink]="['/admin/roles/create']" 
+			appPcariauth
+			[mustHavePermission]="['admin_role_create']"
+			[mustBeAll]="true" 
 	 class="btn btn-default pull-right">
 	<i class="fa fa-plus"></i> &nbsp; Create Role
       </a>
@@ -61,11 +64,15 @@
 	      <span *ngIf="!role.isActive"  class="badge badge--failed" #inactive>Inactive</span>
 			</td>
 			<td style="text-align: right">
-        <button 
+        <button appPcariauth
+				[mustHavePermission]="['admin_role_view']"
+				[mustBeAll]="true" 
 				 class="btn btn-sm btn-default"
 				 [routerLink]="['/admin/roles/view', role.id]">
 				 <i class="fa fa-eye"></i> View</button>
-				 <button 
+				 <button appPcariauth
+				 [mustHavePermission]="['admin_role_update']"
+				 [mustBeAll]="true" 
 				 class="btn btn-sm btn-warning"
 				 [routerLink]="['/admin/roles/update', role.id]">
          <i class="fa fa-edit"></i> Update</button>

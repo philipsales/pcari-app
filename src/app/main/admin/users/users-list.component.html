@@ -36,8 +36,11 @@
 	  </span>
 	</div>
       </div>
-      <a [routerLink]="['/admin/users/create']" class="btn btn-default pull-right">
-	<i class="fa fa-plus"></i> &nbsp; Create User
+			<a appPcariauth
+			[mustHavePermission]="['admin_user_create']"
+			[mustBeAll]="true" 
+				[routerLink]="['/admin/users/create']" class="btn btn-default pull-right">
+				<i class="fa fa-plus"></i> &nbsp; Create User
       </a>
     </div>
     
@@ -63,11 +66,15 @@
 				<span *ngIf="!user.isActive" class="badge badge--failed" #inactive> Inactive </span>
 			</td>
 			<td style="text-align: right">
-					<button 
+					<button appPcariauth
+					[mustHavePermission]="['admin_user_view']"
+					[mustBeAll]="true" 
 					 class="btn btn-sm btn-default"
 					 [routerLink]="['/admin/users/view', user.id]">
 					 <i class="fa fa-eye"></i> View</button>
-					 <button 
+					 <button appPcariauth
+					 [mustHavePermission]="['admin_user_update']"
+					 [mustBeAll]="true" 
 					 class="btn btn-sm btn-warning"
 					 [routerLink]="['/admin/users/update', user.id]">
 					 <i class="fa fa-edit"></i> Update</button>

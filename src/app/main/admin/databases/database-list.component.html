@@ -33,7 +33,10 @@
 					</span>
 				</div>
       </div>
-      <a [routerLink]="['/admin/database/create']"
+			<a [routerLink]="['/admin/database/create']"
+			appPcariauth
+				 [mustHavePermission]="['admin_database_create']"
+				 [mustBeAll]="true" 
          class="btn btn-default pull-right">
         <i class="fa fa-plus"></i> &nbsp; Create Backup 
       </a>
@@ -57,12 +60,14 @@
 						<td>{{ database.description }}</td>
 						<td>{{ database.dateCreated | date: 'medium' }}</td>
 						<td style="text-align: right">
-								<button 
+								<button
 										[routerLink]="['/admin/database/view/',database._id]"
 										class="btn btn-sm btn-default ">
 									<i class="fa fa-eye"></i> &nbsp; View 
 								</button>
-								<button 
+								<button appPcariauth
+								[mustHavePermission]="['admin_database_update']"
+								[mustBeAll]="true" 
 										[routerLink]="['/admin/database/update/',database._id]"
 										class="btn btn-sm btn-warning ">
 									<i class="fa fa-edit"></i> &nbsp; Update 

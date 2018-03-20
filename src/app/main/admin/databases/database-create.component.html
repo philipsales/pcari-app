@@ -65,7 +65,10 @@
             (click)="onSaveClick(database)">
             <i class="fa fa-save"></i> &nbsp; Save
           </button>
-          <button class="btn btn-success pull-right"
+          <button class="btn btn-success pull-right" 
+          appPcariauth
+          [mustHavePermission]="['admin_database_update']"
+          [mustBeAll]="true"
             *ngIf="state_view === 'update'"
             [hidden]="state_view !== 'update'"
             [disabled]="!databaseCreateForm.form.valid || is_processing"
@@ -73,6 +76,9 @@
             <i class="fa fa-edit"></i> &nbsp; Update 
           </button>
           <button class="btn btn-danger pull-right"
+          appPcariauth
+          [mustHavePermission]="['admin_database_restore']"
+          [mustBeAll]="true"
             *ngIf="state_view === 'update'"
             [hidden]="state_view !== 'update'"
             (click)="is_restore=true"
@@ -174,6 +180,9 @@
                   </div>
                   <div class="col-sm-4 col-md-4">
                     <button class="btn btn-warning"
+                    appPcariauth
+                      [mustHavePermission]="['admin_database_download']"
+                      [mustBeAll]="true"
                       *ngIf="state_view === 'update' || state_view === 'view'"
                       [hidden]="state_view !== 'update' || state_view === 'view'"
                       [disabled]="!database.dirPath"

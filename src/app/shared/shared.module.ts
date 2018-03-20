@@ -39,6 +39,7 @@ import { PcaricaseFormAddComponent } from './_components/pcaricase-form-add/pcar
 import { IcdoncologyManageComponent } from './_components/icdoncology-manage/icdoncology-manage.component';
 import { IcdoncologySearchComponent } from './_components/icdoncology-search/icdoncology-search.component';
 import { DeleteModalComponent } from './_components/delete-modal/delete-modal.component';
+import { PcariauthDirective } from './_directives/pcariauth.directive';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { DeleteModalComponent } from './_components/delete-modal/delete-modal.co
     PcaricaseFormAddComponent,
     IcdoncologyManageComponent,
     IcdoncologySearchComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    PcariauthDirective
   ],
   providers: [
     ConsentService,
@@ -95,7 +97,8 @@ import { DeleteModalComponent } from './_components/delete-modal/delete-modal.co
     PcaricaseListComponent,
     PcaricaseManageComponent,
     IcdoncologyManageComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    PcariauthDirective
   ]
 })
 export class SharedModule { }
