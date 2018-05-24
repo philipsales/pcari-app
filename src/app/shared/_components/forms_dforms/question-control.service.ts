@@ -50,7 +50,9 @@ export class QuestionControlService {
       let value = question.value || '';
       if (question.controlType === 'checkbox') {
         if (value) {
-          value = JSON.parse(value);
+          //revert string into string[]
+          //value = JSON.parse(value);
+          value= value.split(',');
         }
       }
       if (question.required) {

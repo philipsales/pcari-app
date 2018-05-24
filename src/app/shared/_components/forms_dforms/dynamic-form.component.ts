@@ -38,7 +38,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() casenumber: string;
   @Input() dirpath: string;
   @Input() formanswerid: string;
-  @Input() answers: Map<string, string>;
+  @Input() answers: Map<string, string[]>;
 
   private sectionz: Section[] = [];
   @Input() set insectionz(value: Section[]) {
@@ -211,23 +211,25 @@ export class DynamicFormComponent implements OnInit {
 
   onSubmit() {
     this.is_processing = true;
-    console.warn(this.form.value, 'YOUN');
+    console.warn(this.form.value, 'FORM.VALUE');
     this.payLoad = JSON.stringify(this.form.value);
-    console.warn(this.payLoad, 'YOUN');
+    console.warn(this.payLoad, 'Stringified FORM.VALUE');
     let answers: Answer[] = [];
     Object.keys(this.form.value).forEach((key) => {
       let value = this.form.value[key];
+      /*
       if (value instanceof Array) {
         value = JSON.stringify(value);
       }
+      */
       answers.push(new Answer(key, value));
     });
     let forms: FormAnswer[] = [];
     forms.push(new FormAnswer('', '', false, answers));
 
     console.warn(this.casenumber, 'CASE NUMBER');
-    console.warn(answers, 'WAAAAAAAAA');
-    console.warn(forms, 'WAAAAAAAAA');
+    console.warn(answers, 'WAAAAAAAAA-ANSWERS');
+    console.warn(forms, 'WAAAAAAAAA-FORMS');
     console.warn(this.caseid, 'WAAAAAAAAA');
     console.warn(this.formanswerid, 'WAAAAAAAAA');
 

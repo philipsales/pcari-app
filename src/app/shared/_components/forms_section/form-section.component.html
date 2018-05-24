@@ -18,9 +18,10 @@
              [(ngModel)]="section.key">
        <div class="material-form-group">
          <mat-form-field class="material-input-full-width">
+              <!-- placeholder="e2e-form-name-{{index}}" -->
               <input matInput 
                      id="e2e-form-name-{{index}}"
-                     placeholder="e2e-form-name-{{index}}"
+                     placeholder="Section"
                      formControlName="name"
                      [(ngModel)]="section.name">
           </mat-form-field>

@@ -42,11 +42,13 @@ export class CaseFormsUpdateComponent implements OnInit {
       if (form_answers.answers) {
         this.answers.clear();
         form_answers.answers.map((answer: Answer) => {
-          this.answers.set(answer.key, answer.answer);
+          //Convert String[] to string for answers
+          var answerArray;
+          answerArray = answer.answer.toString();
+          this.answers.set(answer.key, answerArray);
         });
       }
       console.log(response, 'answers for caseform');
-      console.log(this.answers, 'answers for caseform');
 
       this.formService.getForm(this.form_id).subscribe((recv_form: Form) => {
         delete this.caseform;

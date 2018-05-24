@@ -11,9 +11,10 @@
     <span class="col-sm-10" >
        <div class="material-form-group">
          <mat-form-field class="col-md-12">
+              <!-- placeholder="e2e-question-option-{{sectionIndex}}-{{questionIndex}}-{{index}}" -->
               <input matInput 
                      id="e2e-question-option-{{sectionIndex}}-{{questionIndex}}-{{index}}"
-                     placeholder="e2e-question-option-{{sectionIndex}}-{{questionIndex}}-{{index}}"
+                     placeholder="Option {{index}}"
                      formControlName="name"
                      [(ngModel)]="option.name">
           </mat-form-field>

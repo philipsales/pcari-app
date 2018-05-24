@@ -6,7 +6,7 @@ export class CheckboxQuestion extends QuestionBase<string> {
     options: {
       key   : string,
       index : number,
-      value : string
+      value : string[]
     }[] = [];
 
     constructor(
