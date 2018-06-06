@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response, ResponseContentType } from '@angular/http';
 
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 //import { map, catch } from 'rxjs/operators';
 //import { Observable } from 'rxjs';
@@ -15,9 +16,9 @@ import { environment }    from 'environments/environment';
 export class ReportService {
 
   private reportUrlVersion = 'v1';
-  private reportUrl = environment.API_ENDPOINT + '/reports'; 
+  private reportUrl = environment.API_ENDPOINT + 'reports'; 
   
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }//--constructor
 
   getReports(): Promise<Report[]> {
@@ -46,7 +47,7 @@ export class ReportService {
   }//--getReport
 
   downloadFileJSON() {
-    const url = environment.API_ENDPOINT + '/reports'; 
+    const url = environment.API_ENDPOINT + 'reports'; 
 
     return this.http
                .get(url)
@@ -58,7 +59,7 @@ export class ReportService {
   }
 
   downloadFilePDF() {
-    const url = environment.API_ENDPOINT + '/reports'; 
+    const url = environment.API_ENDPOINT + 'reports'; 
 
     return this.http
                .get(url)
@@ -69,13 +70,22 @@ export class ReportService {
                });
   }
 
-
-
-
   private handleError(error: any): Promise<any> {
     console.log('An error occured');
     console.log(error);
     return Promise.reject(error.message || error);
+  }
+
+  getMedicalReports(): Observable<Report[]> {
+    const url = environment.API_ENDPOINT + 'reports/medicalreports';
+
+    return this.http
+      .get(url)
+      .map((response: Response) => {
+        console.log('databases----', response['result']);
+        return response['result'];
+      })
+      .catch(Helper.handleError);
   }
 
 }

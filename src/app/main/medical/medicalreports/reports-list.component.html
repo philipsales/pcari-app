@@ -29,29 +29,40 @@
           </span>
         </div>
       </div>
+      <button class="btn btn-success pull-right"
+        (click)="onDownloadReport()">
+        <i class="fa fa-plus e2e-report-medical-download"></i> &nbsp; Generate Report 
+      </button>
+      <!--
+      <a class="btn btn-default pull-right">
+          <i class="fa fa-plus e2e-report-medical-download"></i> &nbsp; Download Report 
+      </a>
+      -->
     </div>
     
     <div class="col-md-12">
       <table class="table table-striped">
         <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Duration Date</th>
-            <th>Action</th>
-          </tr>
+          <!-- <tr> -->
+          <!-- <tr  *ngFor="let report of tableHeaders; let i = index">
+            <th>{{report}}</th>
+          </tr> -->
         </thead>
         <tbody>
-          <tr  *ngFor="let report of reports; let i = index">
+          <!-- <tr  *ngFor="let report of reports; let i = index">
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ report.name }}</td>
             <td>{{ report.date_duration_start}} - {{ report.date_duration_end}} </td>
             <td>
-              <!--<button class="btn btn-sm btn-info" (click)="view(report.id);" >View</button>-->
-              <!--<a class="btn btn-sm btn-info" [href]="downloadJsonHref" title="view" ></a>-->
-              <!--<button class="btn btn-sm btn-info" (click)="downloadPDF();" >PDF</button>-->
-              <button class="btn btn-sm btn-info" (click)="downloadJSPDF();" >View</button>
-              <!--<button class="btn btn-sm btn-info" (click)="downloadJSON();" >JSON</button>-->
+            </td>
+          </tr> -->
+          <tr  *ngFor="let data of testData; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <!-- <td *ngFor="let key of objectKeys(data).reverse()"> -->
+            <td *ngFor="let key of objectKeys(data).sort()">
+              <strong>{{ key }}</strong>
+              <br/>
+              <span>{{ data[key] }}</span>
             </td>
           </tr>
         </tbody>
