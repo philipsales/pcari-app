@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map'
+import { Angular5Csv } from 'angular5-csv/Angular5-csv';
 
 //import * as jsPDF from 'jspdf';
 declare var jsPDF: any;
@@ -52,9 +53,10 @@ export class ReportListComponent implements OnInit {
 
   downloadJSON(): any {
     this.reportService
-      .downloadFileJSON()
+      .downloadFileCSV()
       .subscribe((response) => {
-        FileSaver.saveAs(response, "testHeader.json");
+        //FileSaver.saveAs(response, "testHeader.json");
+          this.pivotTable(response);
       });
   }
 
@@ -82,20 +84,39 @@ export class ReportListComponent implements OnInit {
     doc.save("table.pdf");
   }
 
-  onDownloadReport(): any {
+  onDownloadMedicalRaw(): any {
     console.log('hell0 ');
     this.reportService
-      .getMedicalReports()
+      .getMedicalReportRaw()
       .subscribe(
-        reports => {
-          this.pivotTable(reports);
+        reportraw => {
+          this.pivotTable(reportraw);
           //this.reports = reports;
         }
       );
   }
 
+  reportCounts: any[]=[];
+  tableCounts(reports): any {
+    this.reportCounts = reports.payload;
+  }
+
+  onViewMedicalCount(): any {
+    console.log('hell0 ');
+    this.reportService
+      .getMedicalReportCounts()
+      .subscribe(
+        reportcounts => {
+          this.tableCounts(reportcounts);
+          //this.reports = reports;
+        }
+      );
+  }
+
+
   reportsTable: any[];
   tableHeaders: string[]=[]; 
+  tableHeaders2: string[]=[]; 
   unique: string[]=[];
   testData: any[]=[];
   tempHeader: string[]=[];
@@ -158,17 +179,47 @@ export class ReportListComponent implements OnInit {
 
   setPivotTable(): any{
 
+    console.log('initial--',this.testData);
     for (let header of this.tableHeaders) {
       for (let keys of Object.values(this.testData)) {
           if(!(header in keys)){ 
+            console.log('keys--header',keys[header]);
             keys[header] = "";
           }
       }
     } 
-        console.log('FINAL--',this.testData);
-        this.testData = Object.values(this.testData);
-        console.log('Valeus onlly--',this.testData);
 
+    console.log('headers--',this.tableHeaders);
+    console.log('FINAL--',this.testData);
+    this.testData = Object.values(this.testData);
+    console.log('Valeus onlly--',this.testData);
+    var values= Object.values(this.testData);
+    var keys = Object.keys(this.testData);
+    console.log('keys--',keys);
+    console.log('values--',values);
+    console.log('vaiheaderslues--',Object.keys(values[0]));
+
+    this.tableHeaders2 = Object.keys(values[0]);
+        var testBlob = new Blob();
+
+      //testBlob = new Blob([JSON.stringify(this.testData)], {type: 'application/csv'});
+      //FileSaver.saveAs(testBlob, "testHeader.csv");
+     // this.setCSVTemplate(this.testData);
+  }
+
+  setCSVTemplate(data): any {
+
+
+   new Angular5Csv(data, 'My Report');
+   // new Angular5Csv(data, 'My Report');
+       /*
+    var testBlob = new Blob([JSON.stringify(CSV)], 
+      {type: 'data:application/octet-stream;base64'});
+    var testBlob = new Blob([JSON.stringify(CSV)], 
+      {type: 'application/csv'});
+
+    FileSaver.saveAs(testBlob, "testHeader.csv");
+    */
   }
 
   setPivotTableTest(): any{

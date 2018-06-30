@@ -76,7 +76,19 @@ export class ReportService {
     return Promise.reject(error.message || error);
   }
 
-  getMedicalReports(): Observable<Report[]> {
+  getMedicalReportCounts(): Observable<Report[]> {
+    const url = environment.API_ENDPOINT + 'reports/medicalreportcounts';
+
+    return this.http
+      .get(url)
+      .map((response: Response) => {
+        console.log('databases----', response['result']);
+        return response['result'];
+      })
+      .catch(Helper.handleError);
+  }
+
+  getMedicalReportRaw(): Observable<Report[]> {
     const url = environment.API_ENDPOINT + 'reports/medicalreports';
 
     return this.http
@@ -86,6 +98,20 @@ export class ReportService {
         return response['result'];
       })
       .catch(Helper.handleError);
+  }
+
+  downloadFileCSV() {
+    const url = environment.API_ENDPOINT + 'reports/medicalreports';
+
+    return this.http
+               .get(url)
+               .map((response: Response) => {
+                 console.log('databases----', response['result'].payload);
+                 console.log('stringify',[JSON.stringify(response['result'].payload)], {type: 'application/json'});
+                 return response['result'];
+                 //return new Blob([JSON.stringify(response['result'].payload)], {type: 'application/json'});
+                 //return new Blob([JSON.stringify(res['_body'].data)], {type: 'application/json'});
+               });
   }
 
 }

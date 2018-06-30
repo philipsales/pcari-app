@@ -30,8 +30,16 @@
         </div>
       </div>
       <button class="btn btn-success pull-right"
-        (click)="onDownloadReport()">
-        <i class="fa fa-plus e2e-report-medical-download"></i> &nbsp; Generate Report 
+        (click)="onViewMedicalCount()">
+        <i class="fa fa-plus e2e-report-medical-view"></i> &nbsp; View Report 
+      </button>
+      <button class="btn btn-success pull-right"
+        (click)="onDownloadMedicalRaw()">
+        <i class="fa fa-plus e2e-report-medical-download"></i> &nbsp; Download Raw Report 
+      </button>
+      <button class="btn btn-success pull-right"
+        (click)="downloadJSON()">
+        <i class="fa fa-plus e2e-report-medical-download"></i> &nbsp; Download JSONReport 
       </button>
       <!--
       <a class="btn btn-default pull-right">
@@ -39,7 +47,24 @@
       </a>
       -->
     </div>
-    
+     <div class="col-md-12">
+      <table class="table table-striped">
+        <thead> 
+          <tr  *ngFor="let data of testData; let i = index">
+            <!-- <th>{{ objectKeys(data).sort() }}</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr  *ngFor="let data of testData; let i = index">
+            <td *ngFor="let key of objectKeys(data).sort()">
+              <span>{{ data[key] }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <div class="col-md-12">
       <table class="table table-striped">
         <thead>
@@ -49,22 +74,13 @@
           </tr> -->
         </thead>
         <tbody>
-          <!-- <tr  *ngFor="let report of reports; let i = index">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>{{ report.name }}</td>
-            <td>{{ report.date_duration_start}} - {{ report.date_duration_end}} </td>
-            <td>
-            </td>
-          </tr> -->
-          <tr  *ngFor="let data of testData; let i = index">
-            <th scope="row">{{ i + 1 }}</th>
-            <!-- <td *ngFor="let key of objectKeys(data).reverse()"> -->
-            <td *ngFor="let key of objectKeys(data).sort()">
-              <strong>{{ key }}</strong>
-              <br/>
-              <span>{{ data[key] }}</span>
-            </td>
-          </tr>
+     
+          <span  *ngFor="let data of reportCounts; let i = index">
+            <tr *ngFor="let key of objectKeys(data).sort()">
+              <td> <strong>{{ key }}</strong> </td>
+              <td> <span>{{ data[key] }}</span> </td>
+            </tr>
+          </span>
         </tbody>
       </table>
     </div>
